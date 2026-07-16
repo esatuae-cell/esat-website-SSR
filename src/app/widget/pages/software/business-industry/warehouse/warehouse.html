@@ -1,0 +1,159 @@
+<app-business-insustry-submenu></app-business-insustry-submenu>
+
+<section class="product industry" data-aos="fade-up">
+  <div class="container" style="margin-top: 1vh">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ERP UAE"
+          />
+          <div class="modiconinside text-center">
+            <!-- <i class="modIcon icon-{{module.icon}}"></i> -->
+            <i style="display: flex; justify-content: center">
+              <img
+                style="width: 66px; padding: 10px; display: block; text-align: center"
+                src="assets/images/warehouse.svg"
+                alt="ERP UAE"
+              />
+            </i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <p>
+              A Warehouse Management System (WMS) is used to easily handle all the Warehouse
+              activities.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>  </div> -->
+
+          <div class="bottom">
+            <p>
+              A Warehouse Management System (WMS) is a software application or platform that
+              organizations use to manage and optimize their warehouse and distribution center
+              operations. It is essential in streamlining the storage, movement, and tracking of
+              inventory and goods within a warehouse.
+            </p>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6 menu-h5">
+              <h5>Inventory Management</h5>
+              <h5>Order Management</h5>
+              <h5>Location Management</h5>
+              <h5>Real-time Visibility</h5>
+              <h5>Barcode and RFID Integration</h5>
+              <h5>Returns Management</h5>
+              <h5>Bin Management</h5>
+              <h5>Billing Module</h5>
+              <h5>Inward receiving Process</h5>
+            </div>
+            <div class="col-sm-6 menu-h5">
+              <h5>Reports, dashboards, and business intelligence.</h5>
+              <p>
+                The Warehouse Module's Group Reports and Dashboards assist businesses in making
+                data-driven decisions by gathering, analyzing, and presenting data.
+              </p>
+              <h5>Move Process</h5>
+              <h5>Outwards</h5>
+              <h5>Picklist</h5>
+              <h5>Pick and move on Mobile devices</h5>
+              <!-- <div *ngFor="let image of _albums; let i=index">
+           
+                                <div class="Divmagnification">
+                                    <img class="img-responsive magnification"
+                                        src="{{image.thumb}}?v={{$rootScope.version}}" />
+                                    <div class="overlay" (click)="openLightbox(i)">
+                                        <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                                    </div>
+                                </div>
+                                <h5 class="text-center color-red" (click)="openLightbox(i)">View enlarged image</h5>
+                            </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <ul class="col-sm-6">
+              <li><i class="icon-esatform"></i>Human Resource Management</li>
+              <li><i class="icon-esatform"></i>Human Capital Management</li>
+              <li><i class="icon-esatform"></i>Payroll Management</li>
+              <li><i class="icon-esatform"></i>Inventory Management</li>
+              <li><i class="icon-esatform"></i>Procurement Management</li>
+              <li><i class="icon-esatform"></i>Assets Management</li>
+            </ul>
+
+            <ul class="col-sm-6">
+              <li><i class="icon-esatform"></i>Customer Relationship Management</li>
+              <li><i class="icon-esatform"></i>Budget and Project Management</li>
+              <li><i class="icon-esatform"></i>Sub-Contract Management</li>
+              <li><i class="icon-esatform"></i>Sales Management</li>
+              <li><i class="icon-esatform"></i>Finance Management</li>
+              <li><i class="icon-esatform"></i>Warehouse Management</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div class="footdata text-center">
+      <h3
+        class="f-18"
+        onclick="
+          $('iframe[title|=\'chat widget\']')
+            .contents()
+            .find('#tawkchat-minified-container')
+            .click()
+        "
+      >
+        How to get started
+      </h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

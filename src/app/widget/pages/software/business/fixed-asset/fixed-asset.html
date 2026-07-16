@@ -1,0 +1,246 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product" data-aos="fade-up">
+  <div class="container">
+    <div class="row" style="padding-top: 1vh">
+      <!-- <div class="col-sm-12">
+        <ul class="modList app-header dflex">
+          <li
+            [hidden]="$rootScope.modHide"
+            *ngFor="let module of $rootScope.allmoduleList; let $index = index"
+            [ngClass]="{ active: module.id == 'am' }"
+            [routerLink]="['..', module.link]"
+            routerLinkActive="active"
+          >
+            
+            <h6 [innerHtml]="module.name"></h6>
+          
+          </li>
+        </ul>
+      </div> -->
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ERP-UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+            <!-- <h6 > Fixed Asset Management</h6>-->
+          </div>
+          <div class="tagPrara">
+            <!-- <p class="text-white">{{dataValue.acf.description}}</p> -->
+            <p>
+              With world-class Asset Management Solution from ESAT, you can efficiently manage and
+              control the entire life cycle of your company’s assets.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head pt-3">
+            <h4 class="f-18">Overview</h4>
+          </div>
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>
+
+                    </div> -->
+          <div class="boyyom">
+            Asset Management Solution handles all fixed assets-related transactions that are part of
+            an organization’s Financial Accounting. This solution manages and controls the life
+            cycle of company’s assets and the company’s performance, including the acquisition and
+            classification of assets acquired. Moreover, Asset Management Solution performs quick
+            calculations of depreciation based on any commonly used methods— in addition to asset
+            revaluation and impairment, sale and disposal. The Asset Management Solution provides
+            comprehensive recording, tracking and management. In other words, you will get real-time
+            and accurate data on all of your company’s assets.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <!-- <h5>{{ovrleft.title}}</h5>
+                                <p>{{ovrleft.description}}</p>-->
+
+                <h5>Prompt Renewal</h5>
+                <p>
+                  Save time and money through prompt renewal of insurance and warranty contracts
+                </p>
+
+                <h5>Accountability</h5>
+                <p>Bring about accountability in your equipment inventory</p>
+
+                <h5>Breakdown Tracking</h5>
+                <p>Track frequent breakdowns</p>
+
+                <h5>Chart Calculation</h5>
+                <p>Chart of depreciation for assets</p>
+
+                <h5>Asset registry & usage</h5>
+                <p>Comprehensive asset registry & maintain records</p>
+
+                <h5>Equipment Repair Costs</h5>
+                <p>Keep track of equipment repair costs</p>
+
+                <h5>Time & Cost Reduction</h5>
+                <p>Minimize the time and costs of fixed assets maintenance</p>
+
+                <h5>Cost Control</h5>
+                <p>Improve cost control for planning and replacement of company’s assets</p>
+
+                <h5>Document Maintenance</h5>
+                <p>Maintain manufacturer and supplier details</p>
+
+                <h5>Location Tracking</h5>
+                <p>Track assets locations easily</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <h5>RFID Integration</h5>
+                <p>RFID integration for assets tracking</p>
+
+                <h5>Report on Assets</h5>
+                <p>Repair and Work order</p>
+
+                <h5>Define Tax Information</h5>
+                <p>Set different types of Tax</p>
+
+                <h5>Asset KPI</h5>
+                <p>Hold Assets in corporate Book</p>
+
+                <h5>Asset Mass Addition</h5>
+                <p>Asset Account Integration</p>
+
+                <h5>Reports, Dashboards, and Business Intelligence</h5>
+                <p>
+                  The Fixed Asset Module's Group Reports and Dashboards assist businesses in making
+                  data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+              </div>
+              <div *ngFor="let image of _albums; let i = index">
+                <h5>{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center color-red" (click)="openLightbox(i)">View enlarged image</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="featureandbenif">
+                    <div class="head">
+                        <h4>Components</h4>
+                        <i (click)="component = !component" class="arrow-down fa fa-angle-double-up"
+                            [ngClass]="{'fa-angle-double-down':component == false }"></i>
+                    </div>
+                    <div class="bottom row" [hidden]='component'>
+                        <div class="col-sm-6">
+                            <ul> 
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul>
+                                <li *ngFor="let components of dataValue.acf.components; let $index = index;">
+                                    <div *ngIf="$index > 9">
+                                        <i class="icon-esatform"></i>{{components.name}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Asset Account Settings</li>
+                <li><i class="icon-esatform"></i> Asset Information & Creation</li>
+                <li><i class="icon-esatform"></i> Asset Master Information & Register</li>
+                <li><i class="icon-esatform"></i> Asset Capitalization</li>
+                <li><i class="icon-esatform"></i> Asset Depreciation Schedule/Auto Asset</li>
+                <li><i class="icon-esatform"></i> Asset Depreciation and Position</li>
+                <li><i class="icon-esatform"></i> Asset Disposal Request</li>
+                <li><i class="icon-esatform"></i> Asset Disposal</li>
+                <li><i class="icon-esatform"></i> Asset Transfer Request</li>
+                <li><i class="icon-esatform"></i> Asset Transfer</li>
+                <li><i class="icon-esatform"></i> Asset Gate Pass</li>
+                <li><i class="icon-esatform"></i> Asset Barcode Printing</li>
+                <li><i class="icon-esatform"></i> Asset Insurance Contract</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Asset Revision and Revaluation</li>
+                <li><i class="icon-esatform"></i> Asset Issue</li>
+                <li><i class="icon-esatform"></i> Asset Hand Over</li>
+                <li><i class="icon-esatform"></i> Asset Status Change and Maintenance</li>
+                <li><i class="icon-esatform"></i> Asset Excess Entry</li>
+                <li><i class="icon-esatform"></i> Excess Shortage Entry</li>
+                <li><i class="icon-esatform"></i> Excess and Shortage Summary</li>
+                <li><i class="icon-esatform"></i> Asset Import and Export</li>
+                <li><i class="icon-esatform"></i> Asset Acquisition</li>
+                <li><i class="icon-esatform"></i> Asset Distribution Set</li>
+                <li><i class="icon-esatform"></i> Asset Preventive Maintenance</li>
+                <li><i class="icon-esatform"></i> Asset Repair and Work Order</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-h3">How to get started</h3>
+      <p>Talk to one of our team experts to consult which solutions are best for your business.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 [routerLink]="['/contact']" class="f-h3"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 [routerLink]="['/support/support-sw']" class="f-h3"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

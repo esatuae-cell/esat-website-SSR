@@ -1,0 +1,303 @@
+<section id="contmain" class="pad-50">
+  <div class="container-fluid vw-90">
+    <div class="row">
+      <!-- ================= CONTACT FORM ================= -->
+      <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="contactForm ps-3 pe-3 pt-5" data-aos="fade-up">
+          <h2 class="text-demo text-center text-lblue f-2">Get free Consultation.</h2>
+
+          <h3 class="txtesat text-center text-dblue f-1">Let's see what ESAT can do for you.</h3>
+
+          <form class="contact-form" [formGroup]="angForm" novalidate (ngSubmit)="onComplete()">
+            <!-- ROW 1 -->
+            <div class="row">
+              <!-- NAME -->
+              <div class="col-sm-6 inpzero">
+                <div class="form-group">
+                  <label class="textlbl"> Name <span style="color: red">*</span> </label>
+
+                  <input
+                    class="form-control"
+                    formControlName="name"
+                    type="text"
+                    placeholder="Please enter your name"
+                    [ngClass]="{
+                      errorwrapper: angForm.get('name')?.invalid && angForm.get('name')?.touched,
+                    }"
+                  />
+                </div>
+
+                <div
+                  class="error"
+                  *ngIf="angForm.get('name')?.invalid && angForm.get('name')?.touched"
+                >
+                  Please enter your name
+                </div>
+              </div>
+
+              <!-- EMAIL -->
+              <div class="col-sm-6 inpzero">
+                <div class="form-group">
+                  <label class="textlbl"> Email Address <span style="color: red">*</span> </label>
+
+                  <input
+                    class="form-control"
+                    formControlName="email"
+                    type="text"
+                    placeholder="Please enter your email"
+                    [ngClass]="{
+                      errorwrapper: angForm.get('email')?.invalid && angForm.get('email')?.touched,
+                    }"
+                  />
+                </div>
+
+                <div
+                  class="error"
+                  *ngIf="angForm.get('email')?.invalid && angForm.get('email')?.touched"
+                >
+                  <div *ngIf="angForm.get('email')?.errors?.['required']">
+                    Please enter your email address
+                  </div>
+                  <div *ngIf="angForm.get('email')?.errors?.['email']">
+                    Please enter a valid email address
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ROW 2 -->
+            <div class="row">
+              <!-- SUBJECT -->
+              <div class="col-sm-6 inpzero">
+                <div class="form-group">
+                  <label class="textlbl">Subject</label>
+
+                  <select
+                    class="form-control"
+                    formControlName="subject"
+                    activate(event:
+                    Event)
+                    {
+                    const
+                    select="event.target"
+                    as
+                    HTMLSelectElement;
+                    this.activelist="select.selectedIndex;"
+                    }
+                  >
+                    <option *ngFor="let item of subjectOptions" [value]="item.name">
+                      {{ item.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- BUSINESS TYPE -->
+              <div class="col-sm-6 inpzero">
+                <div class="form-group">
+                  <label class="textlbl">
+                    Type of Business <span style="color: red">*</span>
+                  </label>
+
+                  <select
+                    class="form-control"
+                    formControlName="typeofbus"
+                    [ngClass]="{
+                      errorwrapper:
+                        angForm.get('typeofbus')?.invalid && angForm.get('typeofbus')?.touched,
+                    }"
+                  >
+                    <option value="">Select</option>
+                    <option>Advertising & Marketing Services</option>
+                    <option>Agriculture</option>
+                    <option>Computer & IT Services</option>
+                    <option>Construction & Contracting</option>
+                    <option>Consulting Services</option>
+                    <option>eCommerce</option>
+                    <option>Education</option>
+                    <option>Finance, Accounting & Insurance</option>
+                    <option>Manufacturing</option>
+                    <option>Real Estate</option>
+                    <option>Retail</option>
+                  </select>
+                </div>
+
+                <div
+                  class="error"
+                  *ngIf="angForm.get('typeofbus')?.invalid && angForm.get('typeofbus')?.touched"
+                >
+                  Fill required field
+                </div>
+              </div>
+            </div>
+
+            <!-- ROW 3 -->
+            <div class="row">
+              <!-- COMPANY -->
+              <div class="col-sm-6 inpzero">
+                <div class="form-group">
+                  <label class="textlbl"> Company Name <span style="color: red">*</span> </label>
+
+                  <input
+                    class="form-control"
+                    formControlName="comp_name"
+                    type="text"
+                    placeholder="Enter company name"
+                    [ngClass]="{
+                      errorwrapper:
+                        angForm.get('comp_name')?.invalid && angForm.get('comp_name')?.touched,
+                    }"
+                  />
+                </div>
+
+                <div
+                  class="error"
+                  *ngIf="angForm.get('comp_name')?.invalid && angForm.get('comp_name')?.touched"
+                >
+                  Please enter your company name
+                </div>
+              </div>
+
+              <!-- LOCATION -->
+              <div class="col-sm-6 inpzero">
+                <div class="form-group">
+                  <label class="textlbl">Location</label>
+
+                  <input
+                    class="form-control"
+                    formControlName="location"
+                    type="text"
+                    placeholder="Company location"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- ROW 4 -->
+            <div class="row">
+              <!-- WEBSITE -->
+              <div class="col-sm-6 inpzero">
+                <div class="form-group">
+                  <label class="textlbl">Website</label>
+
+                  <input
+                    class="form-control"
+                    formControlName="website"
+                    type="text"
+                    placeholder="Company website"
+                  />
+                </div>
+              </div>
+
+              <!-- PHONE -->
+              <div class="col-sm-6 inpzero">
+                <div class="form-group">
+                  <label class="textlbl"> Phone No <span style="color: red">*</span> </label>
+
+                  <input
+                    class="form-control"
+                    formControlName="phone_no"
+                    type="text"
+                    placeholder="05XXXXXXXX"
+                    [ngClass]="{
+                      errorwrapper:
+                        angForm.get('phone_no')?.invalid && angForm.get('phone_no')?.touched,
+                    }"
+                  />
+                </div>
+
+                <div
+                  class="error"
+                  *ngIf="angForm.get('phone_no')?.invalid && angForm.get('phone_no')?.touched"
+                >
+                  Please enter valid phone number
+                </div>
+              </div>
+            </div>
+
+            <!-- MESSAGE -->
+            <div class="row">
+              <div class="col-sm-12 inpzero">
+                <div class="form-group">
+                  <label class="textlbl">
+                    How can we help you? <span style="color: red">*</span>
+                  </label>
+
+                  <textarea
+                    class="txt form-control"
+                    formControlName="textarea"
+                    rows="5"
+                    placeholder="Enter your message (min 50 characters)"
+                    [ngClass]="{
+                      errorwrapper:
+                        angForm.get('textarea')?.invalid && angForm.get('textarea')?.touched,
+                    }"
+                  ></textarea>
+                </div>
+
+                <div
+                  class="error"
+                  *ngIf="angForm.get('textarea')?.invalid && angForm.get('textarea')?.touched"
+                >
+                  Please enter your message (minimum 50 characters)
+                </div>
+              </div>
+            </div>
+
+            <!-- SUBMIT -->
+            <div class="col-sm-12 form-default btnc mt-3">
+              <button type="submit" class="btn btn-primary btnn border-0 bg-theme">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ================= RIGHT CONTENT ================= -->
+      <div class="col-sm-12 col-md-12 col-lg-4 contactForm-address" data-aos="fade-up">
+        <h2 class="text-demo text-center">Book Your Free DEMO Now</h2>
+        <h1 class="txtesat text-center">ESAT Business ERP</h1>
+        <h5 class="text-center oneerp">one account for all your companies</h5>
+
+        <img src="/assets/images/ERP_mockup.jpg" class="img-fluid w-100" />
+
+        <div class="find-section">
+          <div class="img-fluid d-flex row justify-content-center w-100"></div>
+
+          <h5 class="lets pb-3">Let's find Our location</h5>
+          <div class="img-fluid d-flex row justify-content-center; w-25">
+            <img src="/assets/images/maps_01-01.svg" alt="ESAT UAE" />
+          </div>
+        </div>
+
+        <h4 class="text-center mt-3">Enterprise Systems Analysis Technology</h4>
+
+        <p class="text-center">
+          <i class="fa fa-map-marker"></i>
+          PO Box 54558, Mussafah, Abu Dhabi, UAE
+        </p>
+
+        <p class="text-center f-1 contect-num">
+          <i class="fa fa-phone"></i>
+          +971 2 553 8777 | +971 56 684 2328 | <i class="fa fa-fax"></i> +971 2 553 8773
+        </p>
+
+        <p class="text-center">
+          <i class="fa fa-envelope"></i> info@esat.ae &nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fa fa-globe"></i> www.esat.ae
+        </p>
+      </div>
+
+      <!-- ================= MAP ================= -->
+      <div class="col-sm-12 col-md-12 col-lg-4" data-aos="fade-up">
+        <section id="map" class="h-100">
+          <iframe
+            class="w-100 h-100"
+            style="border: 0"
+            loading="lazy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.583406172552!2d54.519069275355065!3d24.361000278258732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e40cca53b800f%3A0xf4e0e837c6d81938!2sEnterprise%20Systems%20Analysis%20Technology%20%5BESAT%5D!5e0!3m2!1sen!2sae!4v1737548852766!5m2!1sen!2sae"
+          ></iframe>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+
+.mnu-border{
+    border-bottom:1px solid #ebebebf5;
+    width:100%;
+    display:block;
+    padding-bottom:10px;
+}
+.navbar-sub{
+    margin:0px;
+    padding:0px;
+    display:flex;
+   gap: 1.5rem;
+    li{
+        list-style: none;
+        font-size:15px;
+        color:#5d5d5d;
+        a{
+            color:#5d5d5d;
+        }
+    }
+}
+.navbar-sub-sub{
+    padding:0px;
+    margin:0px;
+    display:flex;
+   gap: 1rem;
+    li{
+list-style: none;
+font-size: 15px;
+color:#5d5d5d;
+ a{
+            color:#5d5d5d;
+        }
+        a:hover{
+            color:#122a4f;
+        }
+    }
+}
+
+/* Default */
+.submenu {
+    color:#000;
+}
+
+/* Only on Hardware page */
+/* .submenu.hardware-menu {
+    background: #0066cc;
+} */
+
+.submenu.hardware-menu li a {
+    color: white;
+}

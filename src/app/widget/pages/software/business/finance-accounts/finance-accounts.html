@@ -1,0 +1,207 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product finance" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              ESAT Finance Management Solution enables finance teams to be more productive, and
+              serves business managers with innovative best practices.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <div class="bottom">
+            Financial discipline is the key to the success of any organization. Finance & Accounts
+            Managementd Solution provides you with the most comprehensive and global ﬁnancial
+            management solution available today. This solution controls and effectively manages the
+            entire monetary flow of the organization; it is a helpful, comprehensive tool for
+            dealing with all aspects of accounting transactions, budget management, multi-currency
+            transactions, revenue recognition, management accounting cost allocations, ﬁnancial
+            reporting and compliance management. With ESAT Finance Management Solution, you can have
+            a real-time picture of the ﬁnancial performance of your business, and get the following
+            beneﬁts that will ensure compliance and predictable business performance & more...
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Reduce overall finance costs.</h5>
+                <p>
+                  Innovate processes, collaborate with supply chain partners, streamline operations
+                  to reduce costs resource demands, and track with Budget Control System.
+                </p>
+
+                <h5 class="f-14">Optimize global cash management</h5>
+                <p>
+                  You can report, analyze, allocate cash in real-time, and establish in-house banks
+                  or payment centers
+                </p>
+
+                <h5 class="f-14">Improve overall corporate performance</h5>
+                <p>
+                  ESAT Finance Management Solution provides the foundation for quickly reading,
+                  evaluating and responding to changing business conditions with accurate,
+                  reconciled and timely financial data
+                </p>
+
+                <h5 class="f-14">Improve corporate governance and transparency.</h5>
+                <p>
+                  ESAT Finance Management Solution provides broader support of accounting standards,
+                  federal regulations, and improved administration of internal controls & VAT/GST
+                  Complaints ( Input VAT, OutPut VAT& VAT return )
+                </p>
+                <h5 class="f-14">Improve process integration</h5>
+                <p>
+                  You can integrate risk and bank transactions into core accounting and financial
+                  reporting processes
+                </p>
+
+                <h5 class="f-14">Achieve faster results</h5>
+                <p>
+                  You can streamline accounting, consolidation, process scheduling, workflow and
+                  collaboration
+                </p>
+
+                <h5 class="f-14">Improve financial and managerial reporting.</h5>
+                <p>
+                  Flexible many advanced reporting on performance by business unit, organization, or
+                  cost center
+                </p>
+
+                <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
+                <p>
+                  The Finance & Accounts Module's Group Reports and Dashboards assist businesses in
+                  making data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Improve cash flow and liquidity</h5>
+                <p>
+                  ESAT Finance Management Solution automates dispute, credit and collections
+                  management; provides electronic invoicing and payment capabilities that supplement
+                  traditional accounts receivables; and accounts payable functions to accelerate and
+                  manage cash flow of your business
+                </p>
+
+                <h5 class="f-14">Recurring Journals</h5>
+                <h5 class="f-14">Multiple Company data consolidation</h5>
+                <h5 class="f-14">Fixed and Variable allocation</h5>
+                <h5 class="f-14">Auto Intercompany & Intracompany Transaction</h5>
+                <h5 class="f-14">Reports, dashboards, and business intelligence</h5>
+                <P>
+                  The Finance Module's Group Reports and Dashboards assist businesses in making
+                  data-driven decisions by gathering, analyzing, and presenting data.
+                </P>
+              </div>
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center color-red">View enlarged image</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': !component }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="!component">
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> GENERAL ACCOUNT</li>
+                <li><i class="icon-esatform"></i> ACCOUNTS RECEIVABLE</li>
+                <li><i class="icon-esatform"></i> ACCOUNTS PAYABLE</li>
+                <li><i class="icon-esatform"></i> BILLING</li>
+                <li><i class="icon-esatform"></i> CHEQUE CONTROL</li>
+                <li><i class="icon-esatform"></i> CASH CONTROL</li>
+                <li><i class="icon-esatform"></i> LETTER OF CREDIT</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> SECURITY CHEQUE</li>
+                <li><i class="icon-esatform"></i> PRE-PAYMENT CONTRACT</li>
+                <li><i class="icon-esatform"></i> LETTER OF GUARANTEE</li>
+                <li><i class="icon-esatform"></i> REVENUE AND EXPENSE RECOGNITION</li>
+                <li><i class="icon-esatform"></i> INPUT VAT, OUTPUT VAT & VAT CLEARANCE</li>
+                <li><i class="icon-esatform"></i> FINANCIAL DATA IMPORT FACILITY</li>
+                <li><i class="icon-esatform"></i> FINANCIAL BUDGET MANAGEMENT</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-h3">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-h3" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-h3" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

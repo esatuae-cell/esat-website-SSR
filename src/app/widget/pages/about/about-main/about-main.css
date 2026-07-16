@@ -1,0 +1,64 @@
+
+.custom-padding{
+    padding-top:100px;
+}
+.aboutMainImage {
+    min-height: 550px;
+    background-repeat: no-repeat;
+    background-size: cover;
+   background-image: url('/assets/images/OBDL960.jpg');
+}
+.aboutMainImage .container {
+    margin-top: 0px;
+    margin-bottom: 58px;
+}
+img.image-responsive.logoImg {
+    max-width: 200px;
+    margin: 30px 10%;
+}
+.aboutMainImage p {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.3;
+    text-align: justify;
+}
+
+.about-title span{
+    display:inline-block;
+    font-weight: 300;
+}
+
+
+section#MainAbout {
+    padding: 0;
+    margin: -50px 0 0;
+}
+.about-blog {
+    border: 1px solid #eee;
+    background-color: #ffffff80;
+    min-height: 200px;
+    height: 100%;
+}
+#MainAbout .Heading {
+    text-align: center;
+}
+.about-blog-down {
+    border: 1px solid #eee;
+    margin: 0 5px 0 0;
+    background-color: #ffffff80;
+    min-height: 200px;
+    height: 100%;
+}
+
+#MainAbout .secRow .Heading {
+    background: #122a4f;
+    color: #fff;
+    min-height: 45px;
+}
+
+
+#footerLastAbout h3 {
+    text-transform: uppercase;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 15px;
+}

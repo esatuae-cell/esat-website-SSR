@@ -1,0 +1,146 @@
+
+
+ul.sideBar li {
+    display: block;
+    background: #eee;
+    padding: 34.5px 25px;
+    margin: 2px;
+    cursor:pointer;
+}
+ul.sideBar img.img-responsive {
+    position: absolute;
+}
+ul.sideBar p {
+    padding-top: 7px;
+    font-size: 16px;
+    color: #11294d;
+    text-align: center;
+}
+.content p{
+    text-align: justify;
+}
+.sideBar{
+    margin: 0;
+    padding: 0;
+}
+.toplist{
+    margin: 0;
+    padding: 0;
+}
+.rotate{
+    padding: 2px;
+}
+.mainConternt{
+    min-height: 300px;
+}
+.header p {
+    margin-left: 50px;
+    margin-top: 8px;
+    font-size: 22px;
+    color: #11294d;
+}
+.header img.img-responsive {
+    position: absolute;
+}
+.header {
+    padding: 10px;
+    border-bottom: 2px solid #fff;
+    background: #eee;
+position:relative;
+
+}
+.content.text-center {
+    padding: 10px;
+    background: #eee;
+    min-height: 270px;
+}
+i.arrow-down:before {
+    border-left: 1px solid;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+i.arrow-down {
+    position: absolute;
+    right: 0;
+    top: 25px;
+}
+.rotate.active{
+    transform: scale(1.1);
+    z-index: 99;
+    box-shadow: 0 0 10px #404040d9;
+    transition-delay: 500ms;
+    transition-duration: 1000ms;
+}
+section#footerLastAbout h3 {
+    text-transform: uppercase;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 15px;
+}
+section#footerLastAbout a {
+    color: #081636;
+    font-weight: 800;
+}
+#footerLastAbout p {
+    font-size: 16px;
+    line-height: 14px;
+}
+
+/* lg */
+@media (min-width: 1200px) {
+
+}
+@media (max-width: 1024px) {
+
+}
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+
+	 .sideBar {
+        display:none
+    }
+    .rotate {
+        padding: 5px 25px;
+    }
+    i.arrow-down {
+        display: none;
+    }
+    .col-sm-6, .col-sm-9 {
+        width: 100%;
+    }
+    .rotate.active{
+        transform: scale(1) !important;
+        box-shadow: none;
+    }
+}
+
+/* xs */
+@media (max-width: 767px) {
+
+    .sideBar {
+        display:none
+    }
+    .rotate {
+        padding: 5px 25px;
+    }
+    i.arrow-down {
+        display: none;
+    }
+
+ 
+    .rotate.active{
+        transform: scale(1) !important;
+        box-shadow: none;
+    }
+
+}
+
+/* XS Portrait */
+@media (max-width: 479px) {
+
+
+}

@@ -1,0 +1,224 @@
+<section class="Suportimg" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-7">
+        <h2 class="styleHeader f-30">
+          Customer <br />
+          <span>Support</span>
+        </h2>
+
+        <div class="supportsideText">
+          <h4>
+            <span>Please Sign In to</span><br />
+            access this service
+          </h4>
+
+          <h3>or</h3>
+
+          <h4>
+            <span>Register </span>
+            <a routerLink="registor" class="c-theme">New User</a>
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-sm-5">
+        <div class="login-form-design text-center">
+          <h3>Sign In</h3>
+          <h4>WITH YOUR ESAT ACCOUNT</h4>
+
+          <div class="userImage-big"></div>
+
+          <form [formGroup]="angForm" class="row ps-4 pe-4" (ngSubmit)="onSubmit()" novalidate>
+            <!-- Username -->
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control input-lg"
+                formControlName="uname"
+                placeholder="Username"
+                [class.errorwrapper]="
+                  angForm.get('uname')?.invalid &&
+                  (angForm.get('uname')?.dirty || angForm.get('uname')?.touched)
+                "
+              />
+
+              @if (
+                angForm.get('uname')?.invalid &&
+                (angForm.get('uname')?.dirty || angForm.get('uname')?.touched)
+              ) {
+                <div class="error">
+                  @if (angForm.get('uname')?.errors?.['required']) {
+                    <div>Please enter your username</div>
+                  }
+
+                  @if (angForm.get('uname')?.errors?.['minlength']) {
+                    <div>Username needs at least 5 characters</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Password -->
+            <div class="form-group has-feedback">
+              <input
+                type="password"
+                class="form-control input-lg text-left m-0"
+                formControlName="pword"
+                placeholder="Password"
+                [class.errorwrapper]="
+                  angForm.get('pword')?.invalid &&
+                  (angForm.get('pword')?.dirty || angForm.get('pword')?.touched)
+                "
+              />
+
+              @if (
+                angForm.get('pword')?.invalid &&
+                (angForm.get('pword')?.dirty || angForm.get('pword')?.touched)
+              ) {
+                <div class="error">
+                  @if (angForm.get('pword')?.errors?.['required']) {
+                    <div>Please enter your password</div>
+                  }
+
+                  @if (angForm.get('pword')?.errors?.['minlength']) {
+                    <div>Password needs at least 8 characters</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="form-group rememberME m-0 d-flex justify-content-left c-theme pt-2 pb-2">
+              <input type="checkbox" /> &nbsp; <span>Remember Me</span>
+            </div>
+
+            <div class="form-group succes-btn m-0">
+              <button
+                type="submit"
+                class="btn btn-block btn-primary w-100 border-0 bg-theme"
+                [disabled]="angForm.pristine || angForm.invalid"
+              >
+                SIGN IN
+              </button>
+
+              <p class="d-flex justify-content-left c-theme f-14 pt-2 pb-2">
+                <b>
+                  <a (click)="createForm()" data-bs-toggle="modal" data-bs-target="#myModalfrg"
+                    >Forgot username or password?
+                  </a>
+                </b>
+              </p>
+            </div>
+          </form>
+
+          <h5 class="f-14 mt-5">
+            Don’t have an account?
+            <a routerLink="registor"> Sign up </a>
+          </h5>
+        </div>
+
+        <!-- <div class="support-home text-center">
+
+          <img
+            src="assets/images/suprt.png"
+            class="img-responsive"
+            alt="Support">
+
+          <h3>We're here to</h3>
+          <h1>solve your problems</h1>
+
+          <p>
+            <b>
+              We offer strategic guidance and intelligent technology solutions
+              that give you an edge over your competitors. Talk to an ESAT
+              specialist today or visit our support page to learn how we can
+              help your business run smarter.
+            </b>
+          </p>
+
+    
+
+          <ul class="spl-button d-flex w-100 justify-content-center">
+
+            <li class="list_login p-2" routerLink="support-sw">
+              Software Support
+            </li>
+
+            <li class="list_login p-2" routerLink="support-hw">
+              Hardware Support
+            </li>
+
+          </ul>
+
+         
+
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Forgot Password Modal -->
+
+<div class="modal fade" id="myModalfrg" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Having trouble signing in?</h4>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="container-free">
+          <form [formGroup]="angFormtwo" (ngSubmit)="onSubmitreset()" class="row">
+            <p>
+              To reset your password and username, please provide the email address associated with
+              your ESAT account.
+            </p>
+
+            <p>We'll send you instructions to reset your credentials.</p>
+
+            <div class="col-sm-12 form-default">
+              <div class="form-group">
+                <label>Email Address</label>
+
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="address"
+                  placeholder="Please enter your email address"
+                />
+              </div>
+
+              @if (
+                angFormtwo.get('address')?.invalid &&
+                (angFormtwo.get('address')?.dirty || angFormtwo.get('address')?.touched)
+              ) {
+                <div class="error">
+                  @if (angFormtwo.get('address')?.errors?.['required']) {
+                    <div>Please enter your email address</div>
+                  }
+
+                  @if (angFormtwo.get('address')?.errors?.['pattern']) {
+                    <div>Please enter a valid email address</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="col-sm-12 form-default">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="angFormtwo.pristine || angFormtwo.invalid"
+              >
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

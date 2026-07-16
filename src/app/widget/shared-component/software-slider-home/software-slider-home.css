@@ -1,0 +1,206 @@
+/* =========================
+   RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:focus {
+  outline: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  color: #f60;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  border: none;
+  display: block;
+  border-radius: 8px;
+}
+
+/* =========================
+   WRAPPER
+========================= */
+.poster-wrapper {
+  perspective: 1200px;
+}
+
+/* =========================
+   MAIN CAROUSEL
+========================= */
+.poster-main {
+  position: relative;
+  margin: 30px auto;
+  max-width: 80%;
+  height: 600px;
+  overflow: visible;
+}
+
+/* =========================
+   LIST
+========================= */
+.poster-list {
+  position: relative;
+  height: 100%;
+}
+
+/* =========================
+   ITEM
+========================= */
+.poster-item {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 320px;
+  transform-origin: center;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  border:0px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+    position: relative;
+  overflow: visible;
+}
+
+/* =========================
+   IMAGE
+========================= */
+.img-box img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* =========================
+   TEXT
+========================= */
+.poster-item h3 {
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+.poster-item p {
+  font-size: 14px;
+  padding: 0 15px;
+  color: #555;
+}
+
+.poster-item a {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* =========================
+   ACTIVE CONTENT ONLY
+   (IMPORTANT FIX)
+========================= */
+.poster-item .content {
+  text-align: center;
+   position: relative;
+  z-index: 9999;
+}
+
+/* This ensures ONLY active (ngIf) shows content */
+.poster-item:not(.active) .content {
+  display: block;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.poster-btn {
+  position: absolute;
+  top: 30%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: rgba(231, 231, 231, 0.4);
+  color: #888888;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 999;
+  border-radius: 50%;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .poster-main {
+    height: 500px;
+  }
+
+  .poster-item {
+    width: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .poster-main {
+    height: 420px;
+  }
+
+  .poster-item {
+    width: 220px;
+  }
+}
+
+
+/* active content full width */
+.active-content {
+  position: absolute;
+  bottom: -12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  max-width: 100%;
+  text-align: center;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+/* enable interaction for button */
+.active-content a {
+  pointer-events: auto;
+  display: inline-block;
+  margin-top: 15px;
+  color: #122a4f;
+font-weight:500;
+}
+
+.divider{
+  border-bottom:1px solid #adadad; 
+  display:block;
+  padding-top:10px;
+  padding-bottom:10px;
+}

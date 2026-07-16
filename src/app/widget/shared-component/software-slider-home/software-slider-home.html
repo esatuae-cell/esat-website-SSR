@@ -1,0 +1,33 @@
+<div class="poster-wrapper" data-aos="fade-up">
+  <div class="header-sec text-center mb-5">
+    <h2 class="home-title">Software Solutions</h2>
+    <p>We develop software packages to help you boost your business</p>
+  </div>
+
+  <div class="poster-main">
+    <!-- Left Arrow -->
+    <button class="poster-btn prev" (click)="prev()">‹</button>
+
+    <ul class="poster-list position-relative">
+      <li class="poster-item" *ngFor="let item of items; let i = index" [ngStyle]="getStyle(i)">
+        <div class="card">
+          <div class="img-box">
+            <img [src]="item.image" [alt]="item.title" />
+          </div>
+        </div>
+      </li>
+
+      <!-- GLOBAL ACTIVE CONTENT (OUTSIDE LOOP EFFECT) -->
+      <div class="active-content" *ngIf="items[activeIndex] as active">
+        <h4 class="sub-title pb-3">{{ active.title }}</h4>
+
+        <p>{{ active.description }}</p>
+        <!-- <span class="divider"></span> -->
+        <a [routerLink]="active.link">Read More</a>
+      </div>
+    </ul>
+
+    <!-- Right Arrow -->
+    <button class="poster-btn next" (click)="next()">›</button>
+  </div>
+</div>

@@ -1,0 +1,839 @@
+<!-- <app-software></app-software> -->
+<app-sw-common></app-sw-common>
+<div
+  id="carouselExampleIndicators"
+  class="carousel carousel-dark carousel-fade margin-md pad-50"
+  data-bs-ride="carousel"
+  data-aos="fade-up"
+>
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="3"
+      aria-label="Slide 4"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <section class="slide splImage p-0 sm-scroll" id="benifit">
+        <div class="container-fluid">
+          <div class="">
+            <div class="container">
+              <div class="row">
+                <h2 class="styleHeader f-h2">
+                  ESAT Features<br /><span> Other Modules & Benefits</span>
+                </h2>
+              </div>
+
+              <div class="col-sm-12 text-center">
+                <h4 class="uline f-18">Here’s what you get</h4>
+                <p class="top">Get everything you need to manage your business.</p>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
+                  <h3 class="contntico f-h3">
+                    <i class="icon-machine f-h3"></i><span>Other Modules</span>
+                  </h3>
+                  <ul style="list-style-type: none; padding-left: 10px !important">
+                    <li><i class="icon icon-handtarget"></i> &nbsp; KPI Dashboards</li>
+                    <li>
+                      <i class="icon icon-handtarget"></i> &nbsp; ESAT Workflow Designer and Engine
+                      System
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal-1">
+                        (Read More)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handtarget"></i> &nbsp; ESAT Energy Dashboard System
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal-2"
+                        >(Read More)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handtarget"></i>&nbsp; Advanced Dynamic Reporting Writer
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal4"
+                        >(Read More)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handtarget"></i>&nbsp; Administration & User Control
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModa25"
+                        >(Read More)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handtarget"></i>&nbsp; Drawing Management
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal3"
+                        >(Read More)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handtarget"></i> &nbsp; Workflow & Time Frame - Life Cycle
+                      Analysis-KPI
+                    </li>
+                    <li>
+                      <i class="icon icon-handtarget"></i> &nbsp; Electronic Approval and Alerts
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal5"
+                        >(Read More)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handtarget"></i>&nbsp; Document Management System/Scanning
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal6"
+                        >(Read More)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handtarget"></i>&nbsp; Electronic Chatting System
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModa26"
+                        >(Read More)</a
+                      >
+                    </li>
+                  </ul>
+
+                  <h3 class="contntico f-h3">
+                    <i class="icon-machine pt-3"></i><span>Additional Benefits</span>
+                  </h3>
+                  <ul style="list-style-type: none; padding-left: 10px !important">
+                    <li
+                      *ngFor="let list of dataValue.acf.features_middle_copy2; let $index = index"
+                    >
+                      <i class="icon icon-handLeaf"></i>{{ list.name }}
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Get more done, faster &nbsp;
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal8"
+                        >(Read more)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Go where your business takes you &nbsp;
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal9"
+                        >(Read more)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Take back control over your processes &nbsp;
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal1a"
+                        >(Read more)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Get the insight you need, when you need it
+                      &nbsp;
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal2a"
+                        >(Read more)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Serve your customers better &nbsp;
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal3a"
+                        >(Read more)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Expand to new markets or regions &nbsp;
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal4a"
+                        >(Read more)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Gain agility and focus on your business
+                      &nbsp;
+                      <a class="readmoretxt" data-bs-toggle="modal" data-bs-target="#myModal5a"
+                        >(Read more)</a
+                      >
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Experience effortless platform integration
+                      with ESAT ERP, enabling smooth compatibility and maximizing efficiency across
+                      your business ecosystem.
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4" style="padding: 0">
+                  <h3 class="contntico f-h3">
+                    <i class="icon-machine"></i><span>Additional Features</span>
+                  </h3>
+                  <ul style="list-style-type: none; padding-left: 10px !important">
+                    <li><i class="icon icon-handLeaf"></i>Automatic Data Back-ups</li>
+                    <li><i class="icon icon-handLeaf"></i>Business Intelligence Tools</li>
+                    <li><i class="icon icon-handLeaf"></i>Document Expiry Notification</li>
+                    <li><i class="icon icon-handLeaf"></i>Country Specific Functionalities</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>User-defined Powerful Reporting Templates
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Documents Attachment/Importing Multiple File
+                      Type Facility
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Creating One Common Platform to Provide
+                      Seamless Collaboration
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Internet Communication (Chat Facility) &
+                      Team Collaboration
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Proactive Assistance Customer Support (24/7)
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>User Role Specified</li>
+                    <li><i class="icon icon-handLeaf"></i>Attendance Machine Integration</li>
+                    <li><i class="icon icon-handLeaf"></i>Full Admin & User-defined Features</li>
+                    <li><i class="icon icon-handLeaf"></i>Module Process Define Industry</li>
+                    <li><i class="icon icon-handLeaf"></i>Data Exporting/Importing Facility</li>
+                    <li><i class="icon icon-handLeaf"></i>Financial and Operational Reports</li>
+                    <li><i class="icon icon-handLeaf"></i>Dynamic Workflow Management</li>
+                    <li><i class="icon icon-handLeaf"></i>Email/SMS/Mobile App Integration</li>
+                    <li><i class="icon icon-handLeaf"></i>System Audit Trail and Access Control</li>
+                    <li><i class="icon icon-handLeaf"></i>Multi-dimensional Analytics</li>
+                    <li><i class="icon icon-handLeaf"></i>Employee Self-Service System</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Calendar (Appointment Scheduling & Alarm)
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Mobile Computing</li>
+                    <li><i class="icon icon-handLeaf"></i>Transaction Search Engine</li>
+                    <li><i class="icon icon-handLeaf"></i>Build-in Support</li>
+                    <li><i class="icon icon-handLeaf"></i>Barcoding, RFID, and GPS</li>
+                    <li><i class="icon icon-handLeaf"></i>Tracking Reports with Graphs</li>
+                    <li><i class="icon icon-handLeaf"></i>To-do Lists</li>
+                    <li><i class="icon icon-handLeaf"></i>Task Manager</li>
+                    <li><i class="icon icon-handLeaf"></i>SMS Gateway</li>
+                    <li><i class="icon icon-handLeaf"></i>Advanced Security</li>
+                    <li><i class="icon icon-handLeaf"></i>Multi Dashboard</li>
+                    <li><i class="icon icon-handLeaf"></i>Approval Monitoring</li>
+                    <li><i class="icon icon-handLeaf"></i>Drill Down, Drill Around</li>
+                  </ul>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4" style="padding: 0">
+                  <h3 class="contntico f-h3">
+                    <i class="icon-machine"></i><span>Additional Benefits</span>
+                  </h3>
+                  <ul style="list-style-type: none; padding-left: 10px !important">
+                    <li *ngFor="let list of dataValue.acf.features_middle_copy; let $index = index">
+                      <i class="icon icon-handLeaf"></i>{{ list.name }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="carousel-item">
+      <section class="slide splImage" style="padding: 0">
+        <div class="container">
+          <div class="row">
+            <h2 class="styleHeader">Advantages<br /><span> and Benefits</span></h2>
+            <img style="width: 100%" src="assets/images/benifits-01.svg" alt="ESAT UAE" />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="carousel-item">
+      <section class="slide splImage" style="padding: 0">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h2 class="styleHeader">
+                Personalized web &<br /><span> mobile user experience</span>
+              </h2>
+              <ul style="list-style-type: none; padding: 0">
+                <p>
+                  ESAT Mobile Management System enables service technicians, managers and other
+                  users to have on-the-go access to ESAT-ERP Use Mobile Services desk application
+                  for iOs & android via devices such as Windows Phone, Apple IPhone, Apple IPad,
+                  Android Phone, Android Tablet, Blackberry, etc.
+                </p>
+                <p>
+                  ESAT introduces a better and more personal user experience with secure web and
+                  mobile technology at its core. Whether in the ofﬁce or on the go, users can access
+                  the data they need, using an intuitive interface personalized to match their roles
+                  and preferences.
+                </p>
+
+                <p><b>Key features</b></p>
+                <li>
+                  <i class="icon icon-handLeaf"></i>&nbsp; Mobile and web deployment enables access
+                  to common enterprise data from anywhere and on any device
+                </li>
+                <li>
+                  <i class="icon icon-handLeaf"></i>&nbsp; HTML5 interface ensures intuitive browser
+                  experience and allows for extensive personalization by users
+                </li>
+                <li><i class="icon icon-handLeaf"></i>&nbsp; Asset tracking</li>
+                <li><i class="icon icon-handLeaf"></i>&nbsp; Work order processing</li>
+                <li><i class="icon icon-handLeaf"></i>&nbsp; Inspection and audits</li>
+                <li>
+                  <i class="icon icon-handLeaf"></i>&nbsp; Helpdesk calls recording and processing
+                </li>
+                <li><i class="icon icon-handLeaf"></i>&nbsp; Record meter readings</li>
+                <li><i class="icon icon-handLeaf"></i>&nbsp; Facility reservation</li>
+                <li><i class="icon icon-handLeaf"></i>&nbsp; Visitor pre-registration</li>
+
+                <img class="w-100" src="assets/images/mobile_mockup-01.jpg" alt="ESAT UAE" />
+
+                <p>
+                  The ability to dispatch service calls and work orders with complete
+                  information—for instance, about an asset, the location of such asset, the issue
+                  and details of the work to be carried out, the tools required, the spares to be
+                  used, etc.,—directly to technicians’ mobile devices, signiﬁcantly enhances the
+                  efﬁciency, quality of work and the speed at which the service is offered to end
+                  users.
+                </p>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="carousel-item">
+      <section class="slide splImage" style="padding: 0">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h2 class="styleHeader">
+                Customised web-based<br /><span> Portal user experience</span>
+              </h2>
+              <ul style="list-style-type: none; padding: 0">
+                <p>
+                  ESAT Application Portal is a web UI allows you to deliver a personalised, service
+                  application to your most important customers, vendors & employees
+                </p>
+                <p>
+                  Highly customizable Portals an integrated, adaptable business management software
+                  solution that helps you manage and coordinate all the key processes in your
+                  business with greater confidence. ESAT Application portal provides user-friendly
+                  functions with Real-time reports, dashboards, Full-scale Cloud, Web & On-premise
+                </p>
+
+                <img class="w-75" src="assets/images/portals-01.jpg" alt="ESAT UAE" />
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- end-carousel -->
+
+<section class="mt-5 pad-50" style="padding-bottom: 20px" id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div class="row">
+      <div
+        class="col-sm-12 col-sm-offset-3 spl"
+        style="cursor: pointer"
+        onclick="
+          $('iframe[title|=\'chat widget\']')
+            .contents()
+            .find('#tawkchat-minified-container')
+            .click()
+        "
+      >
+        <h3 class="f-h3">How to get started</h3>
+
+        <p>
+          Talk to one of our team experts to consult which solutions are best for your business.
+        </p>
+      </div>
+    </div>
+    <div class="row pad-50">
+      <div class="col-sm-6">
+        <h3 class="f-h3" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-h3" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal-1" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="icon icon-handtarget"></i> ESAT Workflow Designer and Engine System
+        </h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          ESAT Workflow Designer and Engine System is a full-fledged workflow management tool that
+          allows administrators to implement complex workflows involving multi-level approvals,
+          rule-based branching, etc., to all ESAT functions. This extends the customization and
+          expansion capabilities of ESAT-ERP without affecting the main software.
+        </p>
+
+        Offers an extensive workflow system used to trigger notification perform system action &
+        manage content approve in ESAT
+        <br />
+        <p><b>Key features</b></p>
+        <ul style="list-style-type: none" class="modelul">
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Set-up and manage complex workflow rules and
+            logistics. This feature will allow you to easily handle complex and diverse business
+            processes for every function of your organization
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Routing of workflows based on user actions
+            such as approvals, rejections and update of core information
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Easily conﬁgurable approval requests email
+            messages
+          </li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Reminders on pending approvals</li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Inside/outside network approvals: enabling
+            remote approvals on implementations within network
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Supports web service calls, WCF calls, stored
+            procedure calls, SQL query builder, etc.
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Detailed tracking of all operations and
+            maintaining audit log/history
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal-2" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="icon icon-handtarget"></i> ESAT Energy Dashboard System
+        </h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          ESAT Energy Dashboard System provides a highly detailed picture of energy utilization,
+          water consumption, green power generations and monetary savings and leverages drill down
+          process to provide detailed analysis.
+        </p>
+
+        <p>
+          Intuitive Management Dashboards are developed using Microsoft Silverlight technology which
+          provides excellent user-experience and are a must-have tool for each individual user group
+          & the top management and managers of green buildings and large facilities.
+        </p>
+
+        <p><b>Key features</b></p>
+        <ul style="list-style-type: none; padding: 0" class="modelul">
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Resource-wise consumption trends</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Alerts on consumption beyond set limits</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Bar/trend/pie charts for easy analysis</li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; View detailed consumption date with comparison
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Records history of increase or decrease in
+            consumption, with relevant reasons which are entered into a knowledge base for future
+            analysis
+          </li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Greenhouse gas/carbon accounting</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Reports on green building certiﬁcation</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Monetary savings reports</li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Energy utilization threshold conﬁguration
+            alerts in case of excess utilization
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Easy integration with popular BMS/BAS systems
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Custom integration with meters/devices that
+            support popular protocols
+          </li>
+        </ul>
+
+        <p><b>Role-based workspace</b></p>
+        <ul class="modelul">
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Personal home page</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Personalized by user or administrator</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Multi-level access to relevant data</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal3" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="icon icon-handtarget"></i> Drawing Management</h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          ESAT Drawing and Document Management System is a digital ﬁles management tool designed to
+          store, track and manage information of all the drawings, documents, manuals, software,
+          etc., associated with the facility/building system and equipment.
+        </p>
+
+        <p>
+          The floor plans, equipment drawings, building plans, technical drawings, wiring diagrams,
+          network diagrams, etc., can be securely stored, maintained and managed through this
+          system. The extensive search option helps identify and retrieve information or documents
+          quickly.
+        </p>
+
+        <p>The supported ﬁle types include AUTOCAD, DWG, BMP, JPG, PDF, DOC and many more.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal4" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="icon icon-handtarget"></i> Dynamic Reporting</h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          ESAT-ERP comes with integrated solutions that enable organizations to provide dynamic
+          reporting, providing end users with exactly what they want to see, when they want to see
+          it.
+        </p>
+
+        <p>
+          Once you create a report, you can save it and it will automatically appear on your
+          business analyzer dashboard, giving you an instant and updated view of your information.
+          With a click of a button, you can access the up-to-date details of such report without
+          having to ask for additional information.
+        </p>
+
+        <p>
+          Another beneﬁt of the advanced reporting options is the ability to share information
+          effortlessly with other members of your team.
+        </p>
+
+        <p><b>Reporting and business analytics</b></p>
+        <ul style="list-style-type: none; padding: 0" class="modelul">
+          <li><i class="icon icon-handLeaf"></i> &nbsp; User-deﬁned dashboards</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Conﬁgurable inquiries</li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Audit trail from cumulative total to detail
+          </li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Library with over 400 reports</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Automatic printout triggering</li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Generation of Word®, Excel®, text, HTML or PDF
+            ﬁles
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal5" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="icon icon-handtarget"></i> Electronic Approval and Alerts
+        </h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul style="list-style-type: none; padding: 0" class="modelul">
+          <li><i class="icon icon-handLeaf"></i> &nbsp;Conﬁgurable workflow triggers</li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp;Alerts with contextual links to trigger further
+            actions
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp;Information stored for accessibility and audits
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp;Messaging alert system (SMS, web and e-mails)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal6" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="icon icon-handtarget"></i> Document Management System</h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul class="modelul">
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp;Document and revision management Tracking
+          </li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp;Sharing by user, role, and project teams</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp;Document saving</li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp;Microsoft Ofﬁce® integration with synchronized
+            data
+          </li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp;Microsoft Outlook® integration</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp;Full-text search</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Upload & Manage PDF & many file types</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal7" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="icon icon-handLeaf"></i> Technology</h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          ESAT ERP adopts a multi-tier architecture ensuring highly reliable, flexible and scalable
+          operations.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal8" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="icon icon-handLeaf"></i> Get more done, faster</h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Increase user productivity and accelerate adoption with an intuitive web-based user
+          interface that users can easily personalize to work the way they like
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal9" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="icon icon-handLeaf"></i> Go where your business takes you
+        </h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Access your data on mobile devices, check your inventory, take customer orders, approve
+          purchases, and view key performance indicators on the go
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal1a" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="icon icon-handLeaf"></i> Take back control over your processes
+        </h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Eliminate inefﬁciencies, ensure compliance, and streamline operations with end-to-end
+          integration of your business processes to keep costs under control and increase proﬁts
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal2a" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="icon icon-handLeaf"></i> Get the insight you need, when you need it
+        </h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Evaluate risks and monitor performance in real-time with user dashboards, self-service
+          business intelligence, and reporting tools
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal3a" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="icon icon-handLeaf"></i> Serve your customers better</h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Accelerate dispute resolution and increase employee responsiveness with faster and simpler
+          access to the information they need
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal4a" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="icon icon-handLeaf"></i> Expand to new markets or regions
+        </h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Increase capacity, implement new processes, manage new business units, or expand to new
+          regions with a flexible business management solution designed for growth & international
+          trade
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal5a" role="dialog">
+  <div class="modal-dialog" style="width: 75vw">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="icon icon-handLeaf"></i> Gain agility and focus on your business
+        </h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Take advantage of enterprise-class business management functionality, security, and
+          scalability at a fraction of the cost and complexity of typical ERP systems. Simplify IT
+          management and free up resources to focus on more important projects
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModa25" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="icon icon-handLeaf"></i>Administration & User Control</h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul style="list-style-type: none">
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Creates User & Privileges</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Track User Segment Action</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Understand User Behavior</li>
+          <li><i class="icon icon-handLeaf"></i> &nbsp; Automated Audits Log</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModa26" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="icon icon-handLeaf"></i> Electronic Chatting system</h4>
+        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul style="list-style-type: none">
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Create Customer support ticket that drive by
+            chat option
+          </li>
+          <li>
+            <i class="icon icon-handLeaf"></i> &nbsp; Personalize conversation & Keeping Chat
+            history
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

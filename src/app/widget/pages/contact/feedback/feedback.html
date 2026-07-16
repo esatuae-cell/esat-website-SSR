@@ -1,0 +1,224 @@
+<section class="pad-50">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <h2 class="text-center f-2 text-dblue">
+        Please give us your feedback. <br />
+        Your opinion is very important to us.
+      </h2>
+
+      <div class="contactForm d-flex justify-content-center">
+        <div class="col-8 mt-5">
+          <!-- PROGRESS -->
+          <div class="progress" style="height: 4px">
+            <div class="progress-bar" [style.width.%]="(currentStep / 5) * 100"></div>
+          </div>
+
+          <!-- STEPS -->
+          <div class="d-flex justify-content-between mt-3">
+            <div [class.active]="currentStep === 1">Step 1</div>
+            <div [class.active]="currentStep === 2">Step 2</div>
+            <div [class.active]="currentStep === 3">Step 3</div>
+            <div [class.active]="currentStep === 4">Step 4</div>
+            <div [class.active]="currentStep === 5">Step 5</div>
+          </div>
+
+          <form class="feed-form" [formGroup]="feedbackForm">
+            <!-- STEP 1 -->
+            <div class="step-1" *ngIf="currentStep === 1">
+              <input class="form-control" placeholder="Name" formControlName="name" />
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('name')?.touched && feedbackForm.get('name')?.invalid"
+              >
+                Name required
+              </small>
+
+              <input class="form-control mt-2" placeholder="Mobile" formControlName="mobile" />
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('mobile')?.touched && feedbackForm.get('mobile')?.invalid"
+              >
+                Valid mobile required
+              </small>
+
+              <input class="form-control mt-2" placeholder="Email" formControlName="email" />
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('email')?.touched && feedbackForm.get('email')?.invalid"
+              >
+                Valid email required
+              </small>
+
+              <input class="form-control mt-2" placeholder="Company" formControlName="company" />
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('company')?.touched && feedbackForm.get('company')?.invalid"
+              >
+                Company required
+              </small>
+
+              <div class="mt-2">
+                <label>
+                  <input type="radio" formControlName="about" value="Software" />
+                  Software
+                </label>
+
+                <label class="ms-3">
+                  <input type="radio" formControlName="about" value="Hardware" />
+                  Hardware
+                </label>
+              </div>
+
+              <button type="button" class="btn btn-primary mt-3" (click)="nextStep()">Next</button>
+            </div>
+
+            <!-- STEP 2 -->
+            <div *ngIf="currentStep === 2">
+              <h5>
+                Hi <span class="text-success">{{ feedbackForm.get('name')?.value }}</span> ! Rate
+                Your Experience
+              </h5>
+
+              <input
+                class="form-control"
+                type="number"
+                formControlName="qusone"
+                placeholder="Years of usage"
+              />
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('qusone')?.touched && feedbackForm.get('qusone')?.invalid"
+              >
+                Years of usage required
+              </small>
+
+              <div class="mt-2 step-2">
+                <label
+                  *ngFor="
+                    let opt of [
+                      'Very Satisfied',
+                      'Satisfied',
+                      'Neutral',
+                      'Unsatisfied',
+                      'Very Unsatisfied',
+                    ]
+                  "
+                >
+                  <input type="radio" formControlName="qustwo" [value]="opt" />
+                  {{ opt }}
+                </label>
+              </div>
+
+              <div class="mt-2 step-2">
+                <label
+                  *ngFor="
+                    let opt of [
+                      'Very Satisfied',
+                      'Satisfied',
+                      'Neutral',
+                      'Unsatisfied',
+                      'Very Unsatisfied',
+                    ]
+                  "
+                >
+                  <input type="radio" formControlName="qusthree" [value]="opt" />
+                  {{ opt }}
+                </label>
+              </div>
+              <div class="divider"></div>
+              <button type="button" class="btn btn-secondary me-2" (click)="previousStep()">
+                Previous
+              </button>
+
+              <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+            </div>
+
+            <!-- STEP 3 -->
+            <div *ngIf="currentStep === 3">
+              <h3 class="f-2 text-dblue">Comments & Suggestions</h3>
+              <h5 class="text-lblue f-1">
+                Give us your comments/suggestions that will help us improve our products and
+                services.
+              </h5>
+              <div class="divider"></div>
+              <textarea class="form-control" rows="5" formControlName="message"></textarea>
+
+              <div class="divider"></div>
+
+              <button type="button" class="btn btn-secondary me-2 mt-2" (click)="previousStep()">
+                Previous
+              </button>
+
+              <button type="button" class="btn btn-primary mt-2" (click)="nextStep()">Next</button>
+            </div>
+
+            <!-- STEP 4 -->
+            <!-- STEP 4 - CLEAN REVIEW UI -->
+            <div *ngIf="currentStep === 4" class="review-step">
+              <h4 class="mb-3 text-info">Review Your Information</h4>
+
+              <div class="review-card">
+                <div class="review-item">
+                  <span class="label">Name :</span>
+                  <span class="value">{{ feedbackForm.value.name }}</span>
+                </div>
+
+                <div class="review-item">
+                  <span class="label">Email :</span>
+                  <span class="value">{{ feedbackForm.value.email }}</span>
+                </div>
+
+                <div class="review-item">
+                  <span class="label">Mobile :</span>
+                  <span class="value">{{ feedbackForm.value.mobile }}</span>
+                </div>
+
+                <div class="review-item">
+                  <span class="label">Company :</span>
+                  <span class="value">{{ feedbackForm.value.company }}</span>
+                </div>
+
+                <hr />
+
+                <div class="review-item">
+                  <span class="label">Usage Duration :</span>
+                  <span class="value">{{ feedbackForm.value.qusone }}</span>
+                </div>
+
+                <div class="review-item">
+                  <span class="label">First Impression :</span>
+                  <span class="value">{{ feedbackForm.value.qustwo }}</span>
+                </div>
+
+                <div class="review-item">
+                  <span class="label">Overall Satisfaction :</span>
+                  <span class="value">{{ feedbackForm.value.qusthree }}</span>
+                </div>
+
+                <div class="review-item">
+                  <span class="label">Comments : </span>
+                  <span class="value">{{ feedbackForm.value.message }}</span>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <button type="button" class="btn btn-secondary me-2" (click)="previousStep()">
+                  Previous
+                </button>
+
+                <button type="button" class="btn btn-success" (click)="submit()">Submit</button>
+              </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div *ngIf="currentStep === 5">
+              <h4>Thank you!</h4>
+
+              <p>We received your feedback successfully.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<div class="swiper mySwiper pad-50" *ngIf="isBrowser" data-aos="fade-up">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngFor="let slide of slides">
+      <div class="logo-grid">
+        <div class="logo-item" *ngFor="let logo of slide">
+          <img [src]="logo" alt="Client Logo" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- arrows -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <br /><br />
+  <!-- dots -->
+  <div class="swiper-pagination"></div>
+</div>

@@ -1,0 +1,186 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product procurement" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              Our Procurement Solution uses the best modern practices and data-driven procurement.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'> 
+
+
+                    </div> -->
+          <div class="bottom">
+            Procurement Management Solution enables you to effectively manage and handle your entire
+            procurement process. This solution can both enhance your ordering process as well as
+            expanding supplier. Having detailed supplier information helps you analyze the past
+            performance of the supplier at hand, their previous proposals, and the number of orders
+            placed. You can also control the purchase of high-value items by setting price
+            comparisons to help you make the right decisions.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Simplifying order process</h5>
+                <p>Simplify the order process and shorten the purchase cycle length</p>
+                <h5 class="f-14">Compare and evaluate supplier performance</h5>
+                <p>
+                  Helps you come up with better procurement decisions based on previous supplier
+                  performance and information
+                </p>
+                <h5 class="f-14">Tracking of schedules and deliveries</h5>
+                <p>Tracking of order schedules and deliveries made easy</p>
+                <h5 class="f-14">Supplier and product category management</h5>
+                <h5 class="f-14">Pricing and Discounts Management</h5>
+                <h5 class="f-14">Purchase planning</h5>
+                <h5 class="f-14">Purchase orders, delivery, and scheduling</h5>
+                <h5 class="f-14">Requests for proposals</h5>
+                <h5 class="f-14">Requests for proposals</h5>
+                <h5 class="f-14">Open orders, budget accounting</h5>
+                <h5 class="f-14">Multi-level signature management</h5>
+                <h5 class="f-14">Receiving of orders</h5>
+                <h5 class="f-14">Efficient approval methods</h5>
+                <p>
+                  Save time and energy, and avoid delays in approving purchase requisitions and
+                  orders
+                </p>
+                <h5 class="f-14">Supplier invoice entry and purchase returns</h5>
+                <h5 class="f-14">Contracting and sub-contracting</h5>
+                <h5 class="f-14">Inter-company/inter-site transactions</h5>
+                <h5 class="f-14">Import declarations and cost reports</h5>
+                <h5 class="f-14">Mobile apps</h5>
+                <h5 class="f-14">Purchase order analysis</h5>
+                <h5 class="f-14">Pricing and Discounts Management</h5>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">
+                  Supplier Invoice Entry, Manage advance payment, purchase return, and replacement
+                  management.
+                </h5>
+                <h5 class="f-14">Pricing, Contracting, and Sub-contracting management</h5>
+                <h5 class="f-14">Maximize storage area and minimize storage costs.</h5>
+                <p>
+                  The effective tracking of inventory items and activities helps maximize storage
+                  area while minimizing storage cost by managing batch and expiry date.
+                </p>
+
+                <h5 class="f-14">Supplier documents management</h5>
+                <h5 class="f-14">Supplier Self-Service portal</h5>
+                <h5 class="f-14">Supplier quotations and Comparative Analysis.</h5>
+                <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
+                <p>
+                  The Procurement Module's Group Reports and Dashboards assist businesses in making
+                  data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+              </div>
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red" (click)="openLightbox(i)">
+                  View enlarged image
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Business Partner</li>
+                <li><i class="icon-esatform"></i> Business Partner Evaluation</li>
+                <li><i class="icon-esatform"></i> Purchase Requisition</li>
+                <li><i class="icon-esatform"></i> Purchase Inquiry</li>
+                <li><i class="icon-esatform"></i> Quotation From the Supplier</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Comparison Sheet and Tender</li>
+                <li><i class="icon-esatform"></i> Purchase order</li>
+                <li><i class="icon-esatform"></i> Price History</li>
+                <li><i class="icon-esatform"></i> Delivery Schedule</li>
+                <li><i class="icon-esatform"></i> Purchase Return & Replacement Management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

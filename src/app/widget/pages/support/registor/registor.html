@@ -1,0 +1,218 @@
+<section>
+  <div class="container pad-50" data-aos="fade-up">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-3 col-xxl-3"></div>
+
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xxl-6">
+        <div class="login-form-design ps-4 pe-4 pad-50">
+          <h3 class="text-center">Create your account</h3>
+          <h4 class="text-center">
+            By submitting this registration, you can access all services and support.
+          </h4>
+
+          <!-- FORM -->
+          <form
+            class="pt-5"
+            *ngIf="angForm"
+            [formGroup]="angForm"
+            (ngSubmit)="onSubmit()"
+            novalidate
+          >
+            <!-- FIRST NAME -->
+            <div class="form-group">
+              <label class="textlbl">First Name</label>
+
+              <input
+                formControlName="fname"
+                class="form-control input-lg"
+                type="text"
+                placeholder="Enter your first name"
+                [class.errorwrapper]="
+                  angForm.get('fname')?.invalid &&
+                  (angForm.get('fname')?.touched || angForm.get('fname')?.dirty)
+                "
+              />
+
+              <div
+                class="error"
+                *ngIf="angForm.get('fname')?.touched && angForm.get('fname')?.invalid"
+              >
+                Please enter your first name
+              </div>
+            </div>
+
+            <!-- LAST NAME -->
+            <div class="form-group">
+              <label class="textlbl">Last Name</label>
+
+              <input
+                formControlName="lastname"
+                class="form-control input-lg"
+                type="text"
+                placeholder="Enter your last name"
+                [class.errorwrapper]="
+                  angForm.get('lastname')?.invalid &&
+                  (angForm.get('lastname')?.touched || angForm.get('lastname')?.dirty)
+                "
+              />
+
+              <div
+                class="error"
+                *ngIf="angForm.get('lastname')?.touched && angForm.get('lastname')?.invalid"
+              >
+                Please enter your last name
+              </div>
+            </div>
+
+            <!-- USERNAME -->
+            <div class="form-group">
+              <label class="textlbl">Username</label>
+
+              <input
+                formControlName="uname"
+                class="form-control input-lg"
+                type="text"
+                placeholder="Enter your username"
+                [class.errorwrapper]="
+                  angForm.get('uname')?.invalid && angForm.get('uname')?.touched
+                "
+              />
+
+              <div
+                class="error"
+                *ngIf="angForm.get('uname')?.touched && angForm.get('uname')?.invalid"
+              >
+                Username must be at least 5 characters
+              </div>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="form-group">
+              <label class="textlbl">Email</label>
+
+              <input
+                formControlName="email"
+                class="form-control input-lg"
+                type="email"
+                placeholder="Enter your email"
+                [class.errorwrapper]="
+                  angForm.get('email')?.invalid && angForm.get('email')?.touched
+                "
+              />
+
+              <div
+                class="error"
+                *ngIf="angForm.get('email')?.touched && angForm.get('email')?.invalid"
+              >
+                Enter a valid email address
+              </div>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="form-group">
+              <label class="textlbl">Password</label>
+
+              <input
+                formControlName="pword"
+                class="form-control input-lg"
+                type="password"
+                placeholder="Enter password"
+                [class.errorwrapper]="
+                  angForm.get('pword')?.invalid && angForm.get('pword')?.touched
+                "
+              />
+
+              <div
+                class="error"
+                *ngIf="angForm.get('pword')?.touched && angForm.get('pword')?.invalid"
+              >
+                Password must be at least 8 characters
+              </div>
+            </div>
+
+            <!-- CONFIRM PASSWORD -->
+            <div class="form-group">
+              <label class="textlbl">Confirm Password</label>
+
+              <input
+                formControlName="confirmPassword"
+                class="form-control input-lg"
+                type="password"
+                placeholder="Retype password"
+              />
+
+              <div
+                class="error"
+                *ngIf="angForm.hasError('notSame') && angForm.get('confirmPassword')?.touched"
+              >
+                Passwords do not match
+              </div>
+            </div>
+
+            <!-- CLIENT CHECK -->
+            <div class="form-group rememberME">
+              <input type="checkbox" (change)="changeValidation()" />
+              <span style="color: #860404">
+                Register as client
+                <a data-bs-toggle="modal" data-bs-target="#myModal9"> (Learn More)</a>
+              </span>
+            </div>
+
+            <!-- CSI SECTION -->
+            <div *ngIf="client">
+              <div class="form-group">
+                <label class="textlbl">CSI No</label>
+
+                <input
+                  formControlName="csi"
+                  class="form-control input-lg"
+                  type="text"
+                  placeholder="Customer Support ID"
+                  (keyup)="changeCsi()"
+                />
+
+                <div class="error" *ngIf="!csiValidation">CSI number not matched</div>
+              </div>
+
+              <div class="form-group">
+                <label class="textlbl">Company Name</label>
+
+                <input
+                  formControlName="cname"
+                  class="form-control input-lg"
+                  type="text"
+                  placeholder="Company name"
+                />
+              </div>
+            </div>
+
+            <!-- TERMS -->
+            <div class="form-group rememberME">
+              <input type="checkbox" (change)="accept = !accept" />
+              <span>
+                I accept
+                <a data-bs-toggle="modal" data-bs-target="#myModal8"> Terms & Conditions </a>
+              </span>
+            </div>
+
+            <!-- SUBMIT -->
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary w-100"
+                [disabled]="!angForm || angForm.invalid || !accept || !csiValidation"
+              >
+                SIGN UP
+              </button>
+            </div>
+          </form>
+
+          <h5 class="text-center mt-5">
+            Already have an account?
+            <a routerLink="/support">Login</a>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

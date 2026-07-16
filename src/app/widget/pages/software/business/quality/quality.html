@@ -1,0 +1,150 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product" data-aos="fade-up">
+  <div class="container">
+    <div class="row" style="padding-top: 1vh">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+          />
+          <div class="modiconinside text-center">
+            <!-- <i class="modIcon icon-{{module.icon}}"></i> -->
+            <i style="display: flex; justify-content: center">
+              <img
+                style="width: 66px; padding: 10px; display: block; text-align: center"
+                src="assets/images/quality.svg"
+                alt=""
+              />
+            </i>
+
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <p>
+              provides the procedures & processes needed to streamline manufacturing and ERP
+              operations while cost-effectively managing quality issues.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <div class="bottom">
+            <p>
+              Quality Management Module enable manufacturers to electronically monitor, manage and
+              document their quality processes to help ensure that products are manufactured within
+              tolerance, comply with all applicable standards, and do not contain defects. Quality
+              Management Module provides the procedures, processes, structure, and resources needed
+              to streamline the Supply Chain and other ERP operations while cost-effectively
+              managing quality issues. As part of a closed-loop quality process proactively
+              monitoring events across any enterprise source, effectively integrated Quality
+              Management Module can identify potential problems before quality issues occur. Events
+              may include supplier issues, manufacturing nonconformances, complaints, services, and
+              audits – both local and global.
+            </p>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 pt-3">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6 menu-h5">
+              <h5>QC Requisition</h5>
+              <h5>Quantity Breakups for sampling</h5>
+              <h5>Rule definition for testing</h5>
+              <h5>Sample and Total Test</h5>
+              <h5>Test Approval</h5>
+              <h5>User Defined Test Definition</h5>
+              <h5>Reports, dashboards, and business intelligence.</h5>
+              <p>
+                The Quality Module's Group Reports and Dashboards assist businesses in making
+                data-driven decisions by gathering, analyzing, and presenting data.
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red" (click)="openLightbox(i)">
+                  View enlarged image
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-12 margintop">
+              <ul>
+                <li><i class="icon-esatform"></i>Quality Rules Settings</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i>Quality Control Request</li>
+                <li><i class="icon-esatform"></i>Quality Test</li>
+                <li><i class="icon-esatform"></i>Quality Result( PASS / FAIL )</li>
+              </ul>
+            </div>
+            <div class="col-sm-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

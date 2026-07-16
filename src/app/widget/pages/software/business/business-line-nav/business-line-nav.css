@@ -1,0 +1,43 @@
+.bus-line-sub {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  li {
+    background: #eee;
+    padding: 1px 0;
+    margin: 5px 0;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    gap: 0px;
+    margin-right: 6px;
+    padding: 5px;
+    border-radius: 15px;
+    text-align: center;
+    width: 15.66%;
+    font-size: 15px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 55px;
+    flex-direction: row;
+    a {
+      color: #000;
+    }
+  }
+}
+
+.bus-line-sub li.active {
+  background: #7a9edb;
+  color: #fff;
+}
+.bus-line-sub li.active a {
+  color: #fff;
+}

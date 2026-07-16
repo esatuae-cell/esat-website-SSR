@@ -1,0 +1,418 @@
+<section id="banner" class="banner-section">
+  <div class="slider-container">
+    <div class="slickk-prev"></div>
+    <app-home-carousel></app-home-carousel>
+  </div>
+  <div class="form-section">
+    <div class="intro rounded text-black" id="contact-form-section">
+      <form
+        id="contact-form"
+        class="contact-form bg-white banner-contact rounded bord-bttm text-black needs-validation"
+        novalidate
+      >
+        <h6 class="font-weight-bold text-black text-center f-18">Unlock Your Business Potential</h6>
+        <p class="text-black text-center f-14">
+          Complete the Form & Experience<span class="hide-on-mobile"><br /> </span
+          ><strong>ESAT's</strong> Free Product Demo
+        </p>
+        <div class="divider"></div>
+        <div class="above-md-screens">
+          <div class="form-group mb-2">
+            <input
+              type="text"
+              class="form-control brd-bttm"
+              id="full_name"
+              placeholder="Full Name *"
+              required
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+
+          <div class="form-group mb-2">
+            <input
+              type="tel"
+              class="form-control brd-bttm phone-custom"
+              id="phone"
+              placeholder="Phone *"
+              required
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+
+          <div class="form-group mb-2">
+            <input
+              type="email"
+              class="form-control brd-bttm"
+              id="email"
+              placeholder="Work Email ID *"
+              required
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+
+          <div class="form-group mb-2">
+            <input
+              type="text"
+              class="form-control brd-bttm"
+              id="com_name"
+              placeholder="Company Name *"
+              required
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+
+          <div class="form-group mb-2 comomts">
+            <textarea
+              class="form-control brd-bttm text-area-h"
+              id="comments"
+              placeholder="Your Comments"
+              required
+            ></textarea>
+            <div class="invalid-feedback"></div>
+          </div>
+        </div>
+        <p class="text-center custom-p-text">
+          By submitting this form, you agree to the <a>Terms</a> and <a>Privacy Policy</a>.
+        </p>
+
+        <input type="hidden" id="software_modules" value="" />
+        <input type="hidden" id="business_type" value="" />
+        <input type="hidden" id="message" value="" />
+
+        <div class="divider mb-1"></div>
+
+        <div class="text-center">
+          <button type="submit" class="radius-btn" id="submit_bt">Request FREE Demo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- welcome-section -->
+
+<section class="welcome section-padding" data-aos="fade-up">
+  <div class="container text-center welcome-text pb-0">
+    <div class="home-title d-flex justify-content-center">
+      <h1><span>Leading Software Company </span> in UAE – ESAT</h1>
+    </div>
+    <p class="f-16">
+      If you're looking for a reliable software company in UAE that understands how local businesses
+      operate, ESAT is here to help. We specialise in crafting practical, contemporary software
+      designed to simplify your operations. Our goal is to streamline everything, from communication
+      between departments to automating time consuming tasks that can tire your team. Whether you're
+      a growing SME or a large enterprise, we give you the tools to work smarter and scale with
+      confidence.
+    </p>
+  </div>
+</section>
+
+<!-- what we do section -->
+
+<section class="what-we-do-section pt-0" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xxl-12">
+        <div class="home-title justify-content-center d-flex">
+          <h2 class="header-titile">What we do</h2>
+        </div>
+        <div class="home-content">
+          <p class="text-center custom-line-h f-16">
+            We have invested in a state-of-the-art development center to cater to the businesses
+            growing demand for world class IT solutions. As a trusted business software company in
+            UAE, we develop solutions that solve real operational problems. Our clients come to us
+            when they're tired of:
+          </p>
+
+          <div class="d-flex listing_home justify-content-center">
+            <ul>
+              <li class="f-16">Chasing down information across disconnected tools</li>
+              <li class="f-16">Spending hours on reports that should take minutes</li>
+            </ul>
+            <ul>
+              <li class="f-16">Not knowing what's happening in their business in real time</li>
+              <li class="f-16">Managing teams that struggle to collaborate or share data</li>
+            </ul>
+          </div>
+
+          <p class="text-center f-16 custom-line-h">
+            We fix that. Our software connects your departments, automates the repetitive work, and
+            gives you a clearer picture of your operations all in one place. <br />ESAT is committed
+            to delivering quality solutions to businesses varying demands for information technology
+            solutions. We have invested in a state-of-the-art development center to cater to the
+            businesses growing demand for world class IT solutions.
+          </p>
+
+          <div class="go-green d-flex justify-content-center">
+            <img
+              class="w-25 sm-w-100"
+              src="/assets/images/icons/Save_planet-03.svg"
+              alt="ESAT UAE"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- youtube videos section -->
+
+<app-yut-hone data-aos="fade-down"></app-yut-hone>
+
+<!-- youtube videos section end-->
+
+<section class="prodect-slide-home" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xxl-6">
+        <app-software-slider-home></app-software-slider-home>
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xxl-6">
+        <app-infrastructure-slider-home></app-infrastructure-slider-home>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="erp_section section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="outer-brd">
+          <div class="home-title d-flex">
+            <h2><span> </span>ERP Software</h2>
+          </div>
+          <p class=" ">
+            Our ERP system is built for businesses that need everything under one roof. Finance, HR,
+            inventory, sales, procurement it all connects, so your teams stop working in isolation
+            and you always have the full picture.
+          </p>
+          <p class="">
+            It runs in the cloud, so whether you're at the office, on site, or traveling, your data
+            comes with you
+          </p>
+          <div class="">
+            <ul>
+              <li>Financial and accounting management</li>
+              <li>Inventory and warehouse tracking</li>
+              <li>HR and payroll</li>
+              <li>Customer relationship management (CRM)</li>
+              <li>Procurement and supply chain</li>
+              <li>Reporting and business analytics</li>
+            </ul>
+          </div>
+
+          <p>
+            No more jumping between systems. No more waiting on month end reports to understand how
+            things are going.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="outer-brd">
+          <div class="home-title d-flex">
+            <h2><span> </span>Custom Software Development</h2>
+          </div>
+          <p class=" ">
+            As an experienced software development company in UAE, we also build fully custom
+            applications for businesses with specific workflows that standard tools simply can't
+            handle.
+          </p>
+          <p class="">
+            We start by understanding how your business actually works not just handing you a
+            features list. Then we build something that fits your team, integrates with your
+            existing systems, and scales as you grow.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="outer-brd">
+          <div class="home-title d-flex">
+            <h2><span> </span>Industries We Work With</h2>
+          </div>
+          <p class=" ">
+            We've built software for companies across a wide range of sectors, so we understand the
+            day-to-day challenges that come with each one:
+          </p>
+          <div class="">
+            <ul>
+              <li>Construction and contracting</li>
+              <li>Manufacturing and production</li>
+              <li>Real estate and property management</li>
+              <li>Trading and distribution</li>
+              <li>Service and maintenance companies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="outer-brd">
+          <div class="home-title d-flex">
+            <h2>Cloud-Based <span>and</span> Built to Scale</h2>
+          </div>
+          <p class=" ">
+            As a forward thinking enterprise software provider in UAE, all our solutions run on the
+            cloud giving you lower infrastructure costs and easy access for your team from anywhere.
+            As your business grows, your system grows with it. No painful overhauls, no expensive
+            upgrades.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="talk-sec pt-0 pb-0">
+  <div class="container">
+    <div class="inr-brd-talk">
+      <div class="home-title d-flex">
+        <h3><span>Let's </span> Talk</h3>
+      </div>
+      <p>
+        If you're looking for a software company in UAE that builds around your business , we'd love
+        to help. Whether you need a full ERP rollout, a custom built solution, or just want to
+        understand your options, ESAT is ready to walk you through it.
+      </p>
+      <div class="d-flex justify-content-end">
+        <a class="talk-bttn">lets's talk</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="touch-sec section-padding">
+  <div class="container slide-bg">
+    <div class="row h-100">
+      <div class="col-sm-12 col-md-5 col-lg-3 col-xl-3 col-xxl-3 h-100 h-sm-auo">
+        <div
+          class="social-sec h-100 d-flex justify-content-center flex-column ps-2 sm-align-center"
+        >
+          <div>
+            <h1 class="text-white"><span class="fw-3 d-block"> Stay in</span> Touch</h1>
+          </div>
+          <div class="social-icons text-left mt-4">
+            <ul>
+              <li>
+                <a
+                  class="linkedin"
+                  href="https://www.linkedin.com/company/esatsolution/"
+                  target="_blank"
+                  ><i class="fa fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a class="facebook" href="https://www.facebook.com/EsatSolution/" target="_blank"
+                  ><i class="fa fa-facebook"></i
+                ></a>
+              </li>
+              <li>
+                <a class="twitter" href="https://twitter.com/EsatSolution" target="_blank"
+                  ><i class="fa fa-twitter"></i
+                ></a>
+              </li>
+              <li>
+                <a class="youtube" href="https://www.youtube.com/@EsatSolution" target="_blank"
+                  ><i class="fa fa-youtube"></i
+                ></a>
+              </li>
+              <li>
+                <a class="instagram" href="https://www.instagram.com/EsatSolution/" target="_blank"
+                  ><i class="fa fa-instagram"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="text-white f-24 mt-5">
+            <span class="fw-3 d-block sm-d-inline mt-5 mt-sm-0">Feel Free to</span> Reach Us
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-3 col-lg-5 col-xl-5 col-xxl-5"></div>
+
+      <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 h-100">
+        <div class="bttn-sec text-center d-flex align-items-center h-100 justify-content-center">
+          <div id="carouselExampleDark" class="carousel carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleDark"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleDark"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleDark"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                <div class="text-center py-3 px-2">
+                  <div class="card-title-sec">
+                    <h2 class="text-white"><span> Software</span> solutions</h2>
+                  </div>
+                  <div class="card-content-sec">
+                    <p class="text-white">
+                      Enterprise Systems | Web Applications | E-commerce Websites | Hybrid
+                      Applications
+                    </p>
+                  </div>
+                  <div class="red-more-bttn py-2">
+                    <a class="red-bttn text-white" routerLink="../software/swservice">Read More </a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <div class="text-center py-3 px-2">
+                  <div class="card-title-sec">
+                    <h2 class="text-white"><span>Complete</span> IT Solutions</h2>
+                  </div>
+                  <div class="card-content-sec">
+                    <p class="text-white">
+                      Software Solutions | Architecture Solutions | Technology Consulting
+                    </p>
+                  </div>
+                  <div class="red-more-bttn py-2">
+                    <a class="red-bttn text-white" routerLink="../about">Read More </a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center py-3 px-2">
+                  <div class="card-title-sec">
+                    <h2 class="text-white"><span> IT Infrastructure</span>Solutions</h2>
+                  </div>
+                  <div class="card-content-sec">
+                    <p class="text-white">
+                      Server and Database Management | Hardware and Network Management | Security
+                      Solutions
+                    </p>
+                  </div>
+                  <div class="red-more-bttn py-2">
+                    <a class="red-bttn text-white" routerLink="../hardware">Read More </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

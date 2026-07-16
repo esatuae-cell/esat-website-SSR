@@ -1,0 +1,151 @@
+.hwMainImage {
+  min-height: 450px;
+  /* background: url(../../../assets/images/hwhome.jpg);  */
+  background: url(../../../../../assets/images/hwhome.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hwMainImage .container {
+  padding-top: 75px;
+  margin-bottom: 95px;
+  text-align: center;
+}
+.hwMainImage h2 {
+  color: #fff;
+  font-size: 50px;
+  font-weight: 400;
+}
+.hwMainImage h2 span {
+  font-weight: 600;
+}
+.hwMainImage h4 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 25px 0;
+}
+.hwMainImage p {
+  color: #fff;
+  width: 540px;
+  margin: 0 auto;
+  font-size: 16px;
+}
+.container-fluid.hwlist ul {
+  margin: 0;
+  padding: 0;
+}
+.container-fluid.hwlist li {
+  height: 200px;
+  display: inline-flex;
+  width: 16.2%;
+  margin: 0 0.23%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px 0px #71717194;
+}
+.container-fluid.hwlist li:hover {
+  transform: scale(1.2);
+  transition-duration: 1000ms;
+  transition-delay: 100ms;
+  box-shadow: 0px 0px 6px 2px #71717194;
+}
+.container-fluid.hwlist {
+  padding: 0;
+}
+.hwlist p {
+  background: #112b50e6;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 400;
+  padding: 5px 0px;
+  margin: 25% 0;
+  height: 60px;
+  cursor: pointer;
+}
+.hwlist p span {
+  font-weight: 400;
+}
+section#footerLastAbout h3 {
+  text-transform: uppercase;
+  border-bottom: 3px solid #eee;
+  padding-bottom: 15px;
+}
+section#footerLastAbout a {
+  color: #081636;
+  font-weight: 800;
+}
+#footerLastAbout p {
+  font-size: 16px;
+  line-height: 14px;
+}
+ul.partner li img {
+  max-width: 100px;
+  /* filter: grayscale(100%);*/
+}
+ul.partner li img:hover {
+  filter: grayscale(0%);
+}
+ul.partner li {
+  display: inline-block;
+  margin: 25px 30px;
+}
+section#footerLastAbout {
+  padding-top: 0;
+}
+hr {
+  margin: 20px auto;
+  border: 2px solid #000;
+  width: 150px;
+}
+
+/* lg */
+@media (min-width: 1200px) {
+}
+@media (max-width: 1024px) {
+}
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/* xs */
+@media (max-width: 767px) {
+  .hwMainImage p {
+    width: 100% !important;
+    font-size: 14px;
+  }
+  .hwMainImage h2 {
+    font-size: 40px;
+  }
+  .hwMainImage h4 {
+    font-size: 16px;
+  }
+
+  ul.partner {
+    padding: 0;
+  }
+  ul.partner li {
+    width: 30%;
+    margin: 0px 0px;
+  }
+  ul.partner li img {
+    width: 50%;
+  }
+}
+
+/* XS Portrait */
+
+.navbar-sub li a {
+  display: inline-block;
+  margin: 0 10px 0 0;
+  padding-left: 0;
+  color: #fff !important;
+  font-size: 15.2px;
+}

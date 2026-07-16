@@ -1,0 +1,74 @@
+section#TeamSprit {
+    padding: 50px 0;
+}
+#Awards .listing{
+  margin-bottom: 30px;
+}
+.btn-primary{
+    background-color: #e0e0e0;
+    color:#071535;
+    font-weight: 500;
+}
+.btn-primary:hover{
+    background-color: #e0e0e0;
+    box-shadow: 0 0 1px #000000b8;
+}
+
+.cirti-points{
+   
+    li{
+        line-height: 25px;
+        text-transform: capitalize;
+    }
+}
+
+.listing h3{
+    font-size: 1.3rem;
+}
+
+/* lg */
+@media (min-width: 1200px) {
+
+}
+@media (max-width: 1024px) {
+
+}
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* sm */
+@media (min-width: 769px) and (max-width: 991px) {
+
+
+}
+
+/* xs */
+@media (max-width: 769px) {
+
+    #TeamSprit p {
+        font-size: 14px;
+    }
+    #TeamSprit h5 {
+        font-size: 16px;
+        line-height: 25px;
+    }
+
+}
+
+/* XS Portrait */
+@media (max-width: 479px) {
+    .sm-pt-3{
+        padding-top:20px;
+    }
+
+
+}
+
+/* xs */
+@media (max-width: 769px) {
+    section#TeamSprit {
+        padding: 80px 0;
+    }
+}

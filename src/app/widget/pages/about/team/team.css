@@ -1,0 +1,13 @@
+.btn-primary{
+    background-color: #e0e0e0;
+    color: #071535;
+    font-weight: 500;
+}
+
+#TeamSprit p {
+    text-align: justify;
+    font-size: 16px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 25px;
+}

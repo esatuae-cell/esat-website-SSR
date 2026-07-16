@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23.998" height="24" viewBox="0 0 23.998 24">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.828" y1="0.877" x2="0.172" y2="0.123" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#5d3fd2"/>
+      <stop offset="0.424" stop-color="#b829a9"/>
+      <stop offset="0.501" stop-color="#be289d"/>
+      <stop offset="0.638" stop-color="#d0257e"/>
+      <stop offset="0.785" stop-color="#e62256"/>
+      <stop offset="0.815" stop-color="#e83156"/>
+      <stop offset="0.872" stop-color="#ee5755"/>
+      <stop offset="0.95" stop-color="#f89554"/>
+      <stop offset="1" stop-color="#ffc153"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_10073" data-name="Group 10073" transform="translate(-500 -7516)">
+    <g id="Group_10068" data-name="Group 10068">
+      <g id="Group_10061" data-name="Group 10061" transform="translate(-3.001 35)">
+        <g id="Instagram" transform="translate(503.001 7481)">
+          <rect id="Instagram_Background_" data-name="Instagram (Background)" width="23.998" height="24" fill="none"/>
+          <g id="Instagram-2" data-name="Instagram">
+            <path id="Vector" d="M0,12A12,12,0,1,0,12,0,12,12,0,0,0,0,12Z" fill="url(#linear-gradient)"/>
+            <g id="Group" transform="translate(4.816 4.883)">
+              <g id="Group-2" data-name="Group" transform="translate(2.898 2.833)">
+                <path id="Vector-2" data-name="Vector" d="M4.285,8.569A4.284,4.284,0,1,1,8.57,4.286,4.289,4.289,0,0,1,4.285,8.569Zm0-7.531A3.247,3.247,0,1,0,7.531,4.286,3.25,3.25,0,0,0,4.285,1.038Z" fill="#fff"/>
+              </g>
+              <path id="Vector-3" data-name="Vector" d="M11.456,14.235H2.909A2.913,2.913,0,0,1,0,11.326V2.909A2.912,2.912,0,0,1,2.909,0h8.547a2.913,2.913,0,0,1,2.91,2.909v8.417A2.913,2.913,0,0,1,11.456,14.235ZM2.909,1.061A1.85,1.85,0,0,0,1.061,2.909v8.417a1.85,1.85,0,0,0,1.848,1.848h8.547A1.85,1.85,0,0,0,13.3,11.326V2.909a1.85,1.85,0,0,0-1.848-1.848Z" fill="#fff"/>
+            </g>
+            <path id="Vector-4" data-name="Vector" d="M0,.677A.677.677,0,1,0,.676,0,.674.674,0,0,0,0,.677Z" transform="translate(15.666 7.227)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

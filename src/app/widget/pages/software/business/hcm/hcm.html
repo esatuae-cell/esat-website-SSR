@@ -1,0 +1,258 @@
+<app-business-line-nav></app-business-line-nav>
+
+<!-- <app-software></app-software> -->
+
+<section class="product facilityy" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 class="reduce" [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              ESAT Human Capital Management Solution (HCM) offers a complete, compliant and modern
+              solution to manage workforce more efficiently.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>
+
+                    </div>  -->
+          <div class="bottom">
+            Human Capital Management (HCM) Solution handles the workforce management processes and
+            employee data. It helps you give to the suitable employees, an access, to the right
+            information, at the right time, and via the right processes. Integrated, scalable HR
+            applications and processes can promote a consistent culture throughout your company, and
+            facilitate planning and strategizing processes without compromising on local nuances and
+            overall effectiveness.<br />
+
+            HCM Solution can help your organization engage employees directly and hold them
+            accountable for their actions and this may have a direct impact on the organization’s
+            success. By the means of our HCM Solution, you can automatically engage your employees
+            in various tasks without overburdening HR staff which can, meanwhile, work on other
+            non-automated tasks.
+            <br />
+            HCM Solution helps you expand the value of your Human Capital Management (HCM)
+            investment by combining HCM applications with tools created for Customer Relationship
+            Management (CRM) systems. Users can leverage information from HR systems and content
+            sources such as policies, benefits summaries, employee competency and demographic data.
+            By giving users access to these information, you will support best practices and other
+            processes in your company, which will translate into more efficient management of the
+            workforce, while helping your HR department focus on other tasks and be more productive
+            using the time that our HCM solution—can save.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <!-- <div *ngFor="let ovrleft of dataValue.acf.features_left; let $index = index;">
+                                  <h5 class="f-14">{{ovrleft.title}}</h5> 
+                              <p>{{ovrleft.description}}</p>  
+                            </div> -->
+              <div>
+                <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
+
+                <p>
+                  The HCM Module's Group Reports and Dashboards assist businesses in making
+                  data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+                <h5 class="f-14" style="text-align: left">
+                  Online Comprehensive Employee Self-Service Module.
+                </h5>
+                <p>Self-Service Portal & Mobile App</p>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <!-- <div *ngFor="let ovrleft of dataValue.acf.features_right; let $index = index;">
+                                <h5 class="f-14">{{ovrleft.title}}</h5>
+                                <p>{{ovrleft.description}}</p>
+                            </div> -->
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red">View enlarged image</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-12 margintop">
+              <h4 class="f-14"><i class="icon-esatform"></i>EMPLOYEE SELF SERVICE</h4>
+
+              <p>
+                ESAT Travel Request Management System helps travel desk to track and manage all
+                travel-related requests such as: air ticket reservation, visa processing, foreign
+                currency purchases, hotel reservations, car rentals, etc. This system also handles
+                cost-approval workflow, chargeback across departments, vendor invoices, and
+                reconciliation, and provides extensive reporting capabilities.
+              </p>
+              <p><b>Key features</b></p>
+
+              <ul>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Registration of travel requests along with
+                  individual preferences
+                </li>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Combination of requests for ticketing, visas,
+                  hotel and cab reservations, foreign currency purchases, etc.
+                </li>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Cost estimates for approval
+                </li>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Multi-level/multi-department approval workflow
+                  management
+                </li>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Raising of work orders to vendors
+                </li>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Service fulfillment option
+                </li>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Booking, canceling, and re-issuing options
+                </li>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Chargeback across departments from centralized
+                  sources, cross account/project
+                </li>
+                <li style="padding-left: 10px">
+                  <i class="icon icon-handLeaf"></i> Extensive reporting and integration with
+                  financial applications
+                </li>
+              </ul>
+
+              <div class="row">
+                <div class="col-sm-12 col-md-6 col-xl-6 col-xxl-6">
+                  <ul>
+                    <li><i class="icon-esatform"></i> Manpower Budgeting Allocation Management</li>
+                    <li><i class="icon-esatform"></i> Organization Structure</li>
+                    <li><i class="icon-esatform"></i> Employee Profile</li>
+                    <li><i class="icon-esatform"></i> Compensation Info</li>
+                    <li><i class="icon-esatform"></i> Compensation Revision Request</li>
+                    <li><i class="icon-esatform"></i> Compensation Revision (Single & Bulk)</li>
+                    <li><i class="icon-esatform"></i> Bulk Revision</li>
+                    <li><i class="icon-esatform"></i> Employee Documents</li>
+                    <li><i class="icon-esatform"></i> Medical Insurance</li>
+                    <li><i class="icon-esatform"></i> Orientation</li>
+                    <li><i class="icon-esatform"></i> Employee Entitlement</li>
+                    <li><i class="icon-esatform"></i> Correspondence & Benefits</li>
+                    <li><i class="icon-esatform"></i> Employee Self Service & Dashboarding</li>
+                    <li><i class="icon-esatform"></i> Leave Plan</li>
+                    <li><i class="icon-esatform"></i> Disciplinary Letter</li>
+                    <li><i class="icon-esatform"></i> Release Report</li>
+                    <li><i class="icon-esatform"></i> Clearance Certificate</li>
+                    <li><i class="icon-esatform"></i> Nationality Percentage</li>
+                    <li><i class="icon-esatform"></i> Pro Visa Process Entry & Visa Management</li>
+                    <li><i class="icon-esatform"></i> Visa Renewal Funds</li>
+                    <li><i class="icon-esatform"></i> Employee Document History</li>
+                    <li><i class="icon-esatform"></i> Employee Transaction History</li>
+                    <li><i class="icon-esatform"></i> Forecast</li>
+                    <li><i class="icon-esatform"></i> Air Ticket Management</li>
+                  </ul>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-xl-6 col-xxl-6">
+                  <ul>
+                    <li><i class="icon-esatform"></i> Manpower Requirement</li>
+                    <li><i class="icon-esatform"></i> Staff Monthly Savings</li>
+                    <li><i class="icon-esatform"></i> Employee Of the Month</li>
+                    <li><i class="icon-esatform"></i> Release</li>
+                    <li><i class="icon-esatform"></i> Evaluation Task</li>
+                    <li><i class="icon-esatform"></i> Evaluation Plan</li>
+                    <li><i class="icon-esatform"></i> Evaluation</li>
+                    <li><i class="icon-esatform"></i> Employee Survey</li>
+                    <li><i class="icon-esatform"></i> Employee Survey Settings</li>
+                    <li><i class="icon-esatform"></i> Performance Appraisal Management</li>
+                    <li><i class="icon-esatform"></i> Monthly Appraisal</li>
+                    <li><i class="icon-esatform"></i> Yearly Appraisal</li>
+                    <li><i class="icon-esatform"></i> Appraisal Target Types</li>
+                    <li><i class="icon-esatform"></i> Appraisal Settings</li>
+                    <li><i class="icon-esatform"></i> Company Document</li>
+                    <li><i class="icon-esatform"></i> Company Memorandum</li>
+                    <li><i class="icon-esatform"></i> Grade Management</li>
+                    <li><i class="icon-esatform"></i> Grade Settings</li>
+                    <li><i class="icon-esatform"></i> Section Setting</li>
+                    <li><i class="icon-esatform"></i> Departments</li>
+                    <li><i class="icon-esatform"></i> Shift Master</li>
+                    <li><i class="icon-esatform"></i> Shift Allocation</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

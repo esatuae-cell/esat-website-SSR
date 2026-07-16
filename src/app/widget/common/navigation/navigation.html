@@ -1,0 +1,1507 @@
+<!-- TOP BAR -->
+<section class="nav">
+  <div class="container">
+    <!-- top-bar -->
+
+    <div class="top-bar text-light py-2 small">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="made-section">
+          <p class="text-white">
+            Made in UAE
+            <img class="had-flag" src="../../assets/images/uae_logo_png.png" alt="esat" />
+          </p>
+        </div>
+        <div class="md-screen">
+          <ul class="top-bar-right">
+            <li>
+              <div class="Gtranslate me-3">
+                <a
+                  href="javascript:void(0);"
+                  onclick="
+                    doGTranslate('en|ar');
+                    return false;
+                  "
+                  class="glink notranslate"
+                  style="font-weight: bold; font-size: 13px"
+                  >ع &nbsp;|&nbsp;</a
+                >
+                <a
+                  href="javascript:void(0);"
+                  onclick="
+                    doGTranslate('en|en');
+                    return false;
+                  "
+                  class="glink notranslate"
+                  style="font-weight: bold"
+                >
+                  EN</a
+                >
+
+                <div id="google_translate_element2"></div>
+              </div>
+            </li>
+
+            <li class="bro-bttn">
+              <a routerLink="contact" class="text-light me-3"
+                ><i class="fa fa-file-pdf-o"></i> &nbsp;Download Brochure</a
+              >
+            </li>
+
+            <li class="vision-text">
+              <span class="text-light me-sm-2 me-3">Vision of simplicity</span>
+            </li>
+
+            <li class="scroll shopBag me-2 me-s-1">
+              <a class="" type="button" role="button" aria-expanded="false"
+                ><img
+                  src="assets/images/cart_bag.svg"
+                  alt="ESAT UAE"
+                  style="width: 2vh; height: 2.2vh; filter: invert(1)"
+                />
+              </a>
+            </li>
+            <li class="me-2 me-s-1 search-top-bar" routerLinkActive="active">
+              <i class="fa fa-search text-white"></i>
+            </li>
+            <li routerLinkActive="active" routerLink="free-trail" class="try_bttn">
+              <a>Try Now</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- top-bar end-->
+
+    <!-- mobile-top-bar-start -->
+    <div class="top-bar-mobile">
+      <div class="container-fluid">
+        <div class="mobile-top">
+          <ul class="">
+            <li>
+              <div class="Gtranslate">
+                <a
+                  href="javascript:void(0);"
+                  onclick="
+                    doGTranslate('en|ar');
+                    return false;
+                  "
+                  class="glink notranslate"
+                  >ع &nbsp;|&nbsp;</a
+                >
+                <a
+                  href="javascript:void(0);"
+                  onclick="
+                    doGTranslate('en|en');
+                    return false;
+                  "
+                  class="glink notranslate"
+                  style="font-weight: bold"
+                >
+                  EN</a
+                >
+
+                <div id="google_translate_element2"></div>
+              </div>
+            </li>
+          </ul>
+          <ul class="text-center">
+            <li class="bro-bttn">
+              <a routerLink="contact" class="text-light"
+                ><i class="fa fa-file-pdf-o"></i> &nbsp;Download Brochure</a
+              >
+            </li>
+            <li class="vision-text">
+              <span class="text-light me-sm-2">Vision of simplicity</span>
+            </li>
+          </ul>
+
+          <ul class="">
+            <li routerLinkActive="active" routerLink="free-trail" class="try_bttn">
+              <a>Try Now</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- mobile-top-bar-end -->
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="container">
+    <!-- NAVBAR -->
+    <nav id="mainNavbar" class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#"
+          ><img src="../../assets/images/logo.png" /><span class="logo-desc"
+            >Makes Business Easier</span
+          ></a
+        >
+
+        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#mob-navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="home">Home</a>
+            </li>
+
+            <li class="nav-item dropdown position-static">
+              <a class="nav-link" routerLink="about">About</a>
+              <div
+                class="dropdown-menu vh-50 w-60 position-abt border-0 shadow-lg mega-menu ps-3 pe-3 shadow-lg mega-menu"
+              >
+                <div class="hard-h-65 d-flex align-items-start" id="software-menu">
+                  <ul
+                    class="nav flex-column me-3 align-items-center col-2"
+                    id="pills-tab"
+                    role="tablist"
+                  >
+                    <li class="nav-item p-0" role="presentation">
+                      <button
+                        class="nav-link-drop fw-semibold active position-relative"
+                        id="pills-home-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-Company"
+                        type="button"
+                        role="tab"
+                        aria-controls="pills-home"
+                        aria-selected="true"
+                      >
+                        Company
+                      </button>
+                    </li>
+                    <li class="nav-item p-0" role="presentation">
+                      <button
+                        class="nav-link-drop fw-semibold position-relative"
+                        id="pills-profile-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-Experience"
+                        type="button"
+                        role="tab"
+                        aria-controls="pills-profile"
+                        aria-selected="false"
+                      >
+                        Experience
+                      </button>
+                    </li>
+                    <li class="nav-item p-0" role="presentation">
+                      <button
+                        class="nav-link-drop fw-semibold position-relative"
+                        id="pills-profile-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-Legal"
+                        type="button"
+                        role="tab"
+                        aria-controls="pills-profile"
+                        aria-selected="false"
+                      >
+                        Legal
+                      </button>
+                    </li>
+                  </ul>
+
+                  <div class="tab-content about-tab-sub" id="pills-tabContent">
+                    <div
+                      class="tab-pane fade show active"
+                      id="pills-Company"
+                      role="tabpanel"
+                      aria-labelledby="pills-home-tab"
+                    >
+                      <div class="soft-indust col-12">
+                        <ul class="me-3">
+                          <li class="ps-3">
+                            <a
+                              class="nav_link title-f"
+                              routerLinkActive="active"
+                              routerLink="about/founder-msg"
+                            >
+                              <h3>Founder's Message</h3>
+                              <p>
+                                ESAT Business Enterprise Edition is powerful, flexible and
+                                easy-to-use.
+                              </p>
+                            </a>
+                          </li>
+
+                          <li class="ps-3">
+                            <a class="title-f" routerLinkActive="active" routerLink="about/team">
+                              <h3>Our Team</h3>
+                              <p>
+                                ESAT's Facility Management Solution simplifies complex operations,
+                                aids in cost reduction and improves efficiencies.
+                              </p>
+                            </a>
+                          </li>
+                          <li class="ps-3">
+                            <a
+                              class="title-f"
+                              routerLinkActive="active"
+                              routerLink="about/environment"
+                            >
+                              <h3>Environment</h3>
+                              <p>
+                                This solution maintains and manages the entire business process of a
+                                real estate developer or a broker from end to end.
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+
+                        <ul class="me-3">
+                          <li class="ps-3">
+                            <a
+                              class="title-f"
+                              routerLinkActive="active"
+                              routerLink="about/philosophy"
+                            >
+                              <h3>Our Philosophy & Responsibility</h3>
+                              <p>
+                                You will have better control over your employees, assets, materials,
+                                subcontracts, equipment and devices, etc., helping your business
+                                become more efficient and profitable.
+                              </p>
+                            </a>
+                          </li>
+                          <li class="ps-3">
+                            <a class="title-f" routerLinkActive="active" routerLink="about/social">
+                              <h3>Corporate Social Responsibility</h3>
+                              <p>
+                                ESAT Manufacturing Management System recognizes the manufacturers’
+                                need to operate seamlessly across multiple manufacturing modes.
+                              </p>
+                            </a>
+                          </li>
+                          <li class="ps-3">
+                            <a class="title-f" routerLinkActive="active" routerLink="about/story">
+                              <h3>Our Stories</h3>
+                              <p>
+                                A Fleet Management System (FMS) is used to handle all the Fleet
+                                activities easily.
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div
+                      class="tab-pane fade row"
+                      id="pills-Experience"
+                      role="tabpanel"
+                      aria-labelledby="pills-profile-tab"
+                    >
+                      <div class="soft-indust col-12">
+                        <ul class="me-3">
+                          <li class="ps-3">
+                            <a
+                              class="title-f"
+                              routerLinkActive="active"
+                              routerLink="about/experience"
+                            >
+                              <h3>Our Industry Experience</h3>
+                              <p>
+                                ESAT Business Enterprise Edition is powerful, flexible and
+                                easy-to-use.
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+
+                        <ul class="me-3">
+                          <li class="ps-3">
+                            <a class="title-f" routerLinkActive="active" routerLink="about/awards">
+                              <h3>Awards & Accreditations</h3>
+                              <p>
+                                You will have better control over your employees, assets, materials,
+                                subcontracts, equipment and devices, etc., helping your business
+                                become more efficient and profitable.
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div
+                      class="tab-pane fade row"
+                      id="pills-Legal"
+                      role="tabpanel"
+                      aria-labelledby="pills-profile-tab"
+                    >
+                      <div class="soft-indust col-12">
+                        <ul class="me-3">
+                          <li class="ps-3">
+                            <a class="title-f" routerLinkActive="active" routerLink="about/news">
+                              <h3>News</h3>
+                              <p>
+                                ESAT Business Enterprise Edition is powerful, flexible and
+                                easy-to-use.
+                              </p>
+                            </a>
+                          </li>
+                          <li class="ps-3">
+                            <a
+                              class="title-f"
+                              routerLinkActive="active"
+                              routerLink="about/qualitypolicy"
+                            >
+                              <h3>Quality Policy</h3>
+                              <p>
+                                You will have better control over your employees, assets, materials,
+                                subcontracts, equipment and devices, etc., helping your business
+                                become more efficient and profitable.
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+
+                        <ul class="me-3">
+                          <li class="ps-3">
+                            <a
+                              class="title-f"
+                              routerLinkActive="active"
+                              routerLink="about/privacypolicy"
+                            >
+                              <h3>Privacy Policy</h3>
+                              <p>
+                                You will have better control over your employees, assets, materials,
+                                subcontracts, equipment and devices, etc., helping your business
+                                become more efficient and profitable.
+                              </p>
+                            </a>
+                          </li>
+                          <li class="ps-3">
+                            <a class="title-f" routerLinkActive="active" routerLink="about/terms">
+                              <h3>Terms & Conditions</h3>
+                              <p>
+                                You will have better control over your employees, assets, materials,
+                                subcontracts, equipment and devices, etc., helping your business
+                                become more efficient and profitable.
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown position-static">
+              <a class="nav-link" routerLink="software">Software</a>
+              <div
+                class="dropdown-menu dropdown-content vh-75 w-60 position-abt px-3 pt-0 border-0 bg-none sm-software shadow-lg mega-menu"
+              >
+                <div class="container container-sm p-sm-0 bg-white">
+                  <div class="row mob-mnu bg-white bg-shadow">
+                    <div class="col-12">
+                      <div class="hard-h-65 d-flex align-items-start" id="software-menu">
+                        <ul
+                          class="nav flex-column me-3 align-items-center col-2 col-lg-3 col-xl-2 col-xxl-2"
+                          id="pills-tab"
+                          role="tablist"
+                        >
+                          <li class="nav-item p-0" role="presentation">
+                            <button
+                              class="nav-link fw-semibold active position-relative"
+                              id="pills-profile-tab"
+                              data-bs-toggle="pill"
+                              data-bs-target="#pills-profile"
+                              type="button"
+                              role="tab"
+                              aria-controls="pills-profile"
+                              aria-selected="false"
+                            >
+                              By Modules
+                            </button>
+                          </li>
+
+                          <li class="nav-item p-0" role="presentation">
+                            <button
+                              class="nav-link fw-semibold position-relative"
+                              id="pills-home-tab"
+                              data-bs-toggle="pill"
+                              data-bs-target="#pills-home"
+                              type="button"
+                              role="tab"
+                              aria-controls="pills-home"
+                              aria-selected="true"
+                            >
+                              By Industries
+                            </button>
+                          </li>
+
+                          <div class="menu-sec w-100">
+                            <div class="menu-head">
+                              <h5>Products</h5>
+                            </div>
+                            <div class="menu-item">
+                              <ul>
+                                <li>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="../software/erp-software-solutions-uae"
+                                    >ESAT Secure ERP</a
+                                  >
+                                </li>
+                                <li>
+                                  <a routerLinkActive="active" routerLink="../software/erp-feature"
+                                    >ESAT Secure ERP Features</a
+                                  >
+                                </li>
+                                <li>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="../software/erp-benifites"
+                                    >ESAT Features & Benefits</a
+                                  >
+                                </li>
+                                <li>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="../software/solution-business"
+                                    >Solutions by Business Line</a
+                                  >
+                                </li>
+                                <li>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="../software/solution-industry"
+                                    >Solutions by Business Industry</a
+                                  >
+                                </li>
+                                <li>
+                                  <a routerLinkActive="active" routerLink="../software/package"
+                                    >ESAT ERP Package List
+                                  </a>
+                                </li>
+                                <li>
+                                  <a routerLinkActive="active" routerLink="../software/training"
+                                    >ESAT ERP Training
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="menu-sec w-100 mt-1">
+                            <div class="menu-head">
+                              <h5>Services</h5>
+                            </div>
+                            <div class="menu-item">
+                              <ul>
+                                <li>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="../software/software-services"
+                                  >
+                                    Software Services</a
+                                  >
+                                </li>
+                                <li>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="../software/software-services"
+                                  >
+                                    Other Services</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="menu-sec w-100 mt-1">
+                            <div class="menu-head">
+                              <h5>Clients & Projects</h5>
+                            </div>
+                            <div class="menu-item">
+                              <ul>
+                                <li>
+                                  <a routerLinkActive="active" routerLink="our-clients">
+                                    Our Clients</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="menu-sec w-100 mt-1">
+                            <div class="menu-head">
+                              <h5>Support</h5>
+                            </div>
+                            <div class="menu-item">
+                              <ul>
+                                <li>
+                                  <a routerLinkActive="active" routerLink="support"> Sign In</a>
+                                </li>
+                                <li>
+                                  <a routerLinkActive="active" routerLink="support/registor">
+                                    Sign Up</a
+                                  >
+                                </li>
+                                <li>
+                                  <a
+                                    target="_blank"
+                                    href="https://api.whatsapp.com/send/?phone=971566842328&text&type=phone_number&app_absent=0"
+                                  >
+                                    whats's App
+                                  </a>
+                                </li>
+                                <li>
+                                  <a routerLinkActive="active" routerLink="contact"> Contact Us </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </ul>
+
+                        <div
+                          class="tab-content col-10 col-lg-9 col-xl-10 col-xxl-10"
+                          id="pills-tabContent"
+                        >
+                          <div
+                            class="tab-pane fade row"
+                            id="pills-home"
+                            role="tabpanel"
+                            aria-labelledby="pills-home-tab"
+                          >
+                            <div class="soft-indust col-12">
+                              <ul class="me-3">
+                                <li>
+                                  <span><i class="icon-ind-complete modIcon"></i></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/complete-mng"
+                                  >
+                                    <h3>Complete Management</h3>
+                                    <p>
+                                      ESAT Business Enterprise Edition is powerful, flexible and
+                                      easy-to-use.
+                                    </p>
+                                  </a>
+                                </li>
+
+                                <li>
+                                  <span><i class="icon-ind-facilituy modIcon"></i></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/facility-mng"
+                                  >
+                                    <h3>Facility Management</h3>
+                                    <p>
+                                      ESAT's Facility Management Solution simplifies complex
+                                      operations, aids in cost reduction..
+                                    </p>
+                                  </a>
+                                </li>
+                                <li>
+                                  <span><i class="icon-ind-realestate modIcon"></i></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/real-estate"
+                                  >
+                                    <h3>Real Estate Management</h3>
+                                    <p>
+                                      This solution maintains and manages the entire business
+                                      process of a real estate developer or a broker from end to
+                                      end.
+                                    </p>
+                                  </a>
+                                </li>
+
+                                <li>
+                                  <span><i class="icon-ind-construction modIcon"></i></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/constrution-mng"
+                                  >
+                                    <h3>Construction Management</h3>
+                                    <p>
+                                      You will have better control over your employees, assets,
+                                      materials, subcontracts, equipment and devices, etc., helping
+                                      your business become more efficient and profitable.
+                                    </p>
+                                  </a>
+                                </li>
+                                <li>
+                                  <span><i class="icon-moduleicontask_icon modIcon"></i></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/manufacturing-mng"
+                                  >
+                                    <h3>Manufacturing Management</h3>
+                                    <p>
+                                      ESAT Manufacturing Management System recognizes the
+                                      manufacturers’ need to operate seamlessly across multiple
+                                      manufacturing modes.
+                                    </p>
+                                  </a>
+                                </li>
+                              </ul>
+
+                              <ul class="me-3">
+                                <li>
+                                  <span
+                                    ><img class="box-icon" src="assets/images/fleet-nav.svg"
+                                  /></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/fleet-mng"
+                                  >
+                                    <h3>Fleet Management</h3>
+                                    <p>
+                                      A Fleet Management System (FMS) is used to handle all the
+                                      Fleet activities easily.
+                                    </p>
+                                  </a>
+                                </li>
+                                <li>
+                                  <span
+                                    ><img class="box-icon" src="assets/images/shipment-nav.svg"
+                                  /></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/shipping"
+                                  >
+                                    <h3>Shipment Management</h3>
+                                    <p>
+                                      It helps easily access; businesses plan, organize each stage
+                                      of shipment & distribution cycle reliably & effectively.
+                                    </p>
+                                  </a>
+                                </li>
+                                <li>
+                                  <span
+                                    ><img class="box-icon" src="assets/images/retail-nav.svg"
+                                  /></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/retail"
+                                  >
+                                    <h3>Retail & POS Management</h3>
+                                    <p>
+                                      ESAT Retail & POS Management system provides integrated
+                                      solutions that offer a complete end to end solution to manage
+                                      your Fashion ...
+                                    </p>
+                                  </a>
+                                </li>
+                                <li>
+                                  <span
+                                    ><img class="box-icon" src="assets/images/warehouse-nav.svg"
+                                  /></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/warehouse"
+                                  >
+                                    <h3>Warehouse Management</h3>
+                                    <p>
+                                      A Warehouse Management System (WMS) is used to easily handle
+                                      all the Warehouse activities.
+                                    </p>
+                                  </a>
+                                </li>
+                                <li>
+                                  <span
+                                    ><img class="box-icon" src="assets/images/cmms-nav.svg"
+                                  /></span>
+                                  <a
+                                    routerLinkActive="active"
+                                    routerLink="software/solution-industry/cmms"
+                                  >
+                                    <h3>CMMS Management</h3>
+                                    <p>
+                                      A Computerized Maintenance Management System (CMMS) is used to
+                                      manage the maintenance activities in organizations easily.
+                                    </p>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div
+                            class="tab-pane fade active show row ms-3"
+                            id="pills-profile"
+                            role="tabpanel"
+                            aria-labelledby="pills-profile-tab"
+                          >
+                            <div class="soft-modules col-12">
+                              <h3 class="border-btm module-title">ERP Modules</h3>
+                              <div class="comp-listing d-flex">
+                                <ul class="me-4 w-50">
+                                  <li>
+                                    <span class="icon-moduleiconassets_icon modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/asset-management"
+                                    >
+                                      Fixed Asset Management
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleiconcrm_icon modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/crm"
+                                      >CRM</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span
+                                      class="icon-moduleiconfacilitymanagement_icon modIcon"
+                                    ></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/facility"
+                                      >Facility and Service Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleiconfinancemanagement modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/finance-management"
+                                      >Finance & Accounts Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleiconhrm_icon modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/hrm"
+                                      >Human Resource Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleiconhcm_icon modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/hcm"
+                                      >Human Capital Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleicon_payrollicon modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/payroll"
+                                      >Payroll Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleiconcont_icon modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/contract-management"
+                                      >Subcontract Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleiconlogistic_icon modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/Inventory"
+                                      >Inventory Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleiconprocurement_icon modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/procurement"
+                                      >Procurement Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-font-20 modIcon"></span>
+                                    <a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/sales"
+                                      >Sales Management</a
+                                    >
+                                  </li>
+                                </ul>
+
+                                <ul class="w-50">
+                                  <li>
+                                    <span class="icon-icon-project modIcon"></span
+                                    ><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/budject-management"
+                                      >Budget & Project Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleiconrealestate_icon modIcon"></span
+                                    ><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/real-estate"
+                                      >Real Estate Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-moduleicontask_icon modIcon"></span
+                                    ><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/manufacturing"
+                                      >Manufacturing Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="icon-odesatodmodicon modIcon"></span
+                                    ><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/organization"
+                                      >Organization Development</a
+                                    >
+                                  </li>
+
+                                  <li>
+                                    <img class="menu-icon" src="assets/images/retail-nav.svg" /><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/retail"
+                                      >Retail & POS Management</a
+                                    >
+                                  </li>
+
+                                  <li>
+                                    <img
+                                      class="menu-icon"
+                                      src="assets/images/warehouse-nav.svg"
+                                    /><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/warehouse"
+                                      >Warehouse Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <img class="menu-icon" src="assets/images/fleet-nav.svg" /><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/fleet-management"
+                                      >Fleet Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <img class="menu-icon" src="assets/images/cmms-nav.svg" /><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/cmms"
+                                      >CMMS Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <img class="menu-icon" src="assets/images/shipment-nav.svg" /><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/shipmemt"
+                                      >Shipment Management</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <img class="menu-icon" src="assets/images/quality-nav.svg" /><a
+                                      routerLinkActive="active"
+                                      routerLink="software/solution-business/quality"
+                                      >Quality Management
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown position-static">
+              <a class="nav-link" routerLink="hardware">Hardware</a>
+              <div
+                class="dropdown-menu dropdown-content vh-75 w-60 px-3 border-0 bg-none sm-software shadow-lg mega-menu"
+              >
+                <div class="container container-sm bg-white">
+                  <div class="row mob-mnu bg-white bg-shadow">
+                    <div class="col-12 p-0">
+                      <div class="hard-h-65 d-flex align-items-start me-4" id="software-menu">
+                        <ul
+                          class="nav flex-column me-3 align-items-center col-2"
+                          id="pills-tab"
+                          role="tablist"
+                        >
+                          <li class="nav-item p-0" role="presentation">
+                            <button
+                              class="nav-link fw-semibold active position-relative"
+                              id="pills-home-tab"
+                              data-bs-toggle="pill"
+                              data-bs-target="#pills-Services"
+                              type="button"
+                              role="tab"
+                              aria-controls="pills-home"
+                              aria-selected="true"
+                            >
+                              Services
+                            </button>
+                          </li>
+                          <li class="nav-item p-0" role="presentation">
+                            <button
+                              class="nav-link fw-semibold position-relative"
+                              id="pills-profile-tab"
+                              data-bs-toggle="pill"
+                              data-bs-target="#pills-Consulting"
+                              type="button"
+                              role="tab"
+                              aria-controls="pills-profile"
+                              aria-selected="false"
+                            >
+                              IT Consulting
+                            </button>
+                          </li>
+                        </ul>
+
+                        <div class="tab-content p-0 w-100" id="pills-tabContent">
+                          <div
+                            class="tab-pane fade show active"
+                            id="pills-Services"
+                            role="tabpanel"
+                            aria-labelledby="pills-home-tab"
+                          >
+                            <div class="soft-indust col-12">
+                              <ul class="me-3">
+                                <li
+                                  class="ps-3"
+                                  routerLinkActive="active"
+                                  routerLink="hardware/it-networking-solutions-in-uae"
+                                >
+                                  <a>
+                                    <h3>IT Hardware and Networking</h3>
+                                    <p>
+                                      ESAT Business Enterprise Edition is powerful, flexible and
+                                      easy-to-use.
+                                    </p>
+                                  </a>
+                                </li>
+
+                                <li
+                                  class="ps-3"
+                                  routerLinkActive="active"
+                                  routerLink="hardware/physical-survilance"
+                                >
+                                  <a>
+                                    <h3>Physical Surveillance Security</h3>
+                                    <p>
+                                      ESAT's Facility Management Solution simplifies complex
+                                      operations, aids in cost reduction and improves efficiencies.
+                                    </p>
+                                  </a>
+                                </li>
+                                <li
+                                  class="ps-3"
+                                  routerLinkActive="active"
+                                  routerLink="hardware/security-audit"
+                                >
+                                  <a>
+                                    <h3>Security Audit</h3>
+                                    <p>
+                                      This solution maintains and manages the entire business
+                                      process of a real estate developer or a broker from end to
+                                      end.
+                                    </p>
+                                  </a>
+                                </li>
+                              </ul>
+
+                              <ul>
+                                <li
+                                  class="ps-3"
+                                  routerLinkActive="active"
+                                  routerLink="hardware/audio-visual"
+                                >
+                                  <a>
+                                    <h3>Audio Visual Systems</h3>
+                                    <p>
+                                      You will have better control over your employees, assets,
+                                      materials, subcontracts, equipment and devices, etc., helping
+                                      your business become more efficient and profitable.
+                                    </p>
+                                  </a>
+                                </li>
+                                <li
+                                  class="ps-3"
+                                  routerLinkActive="active"
+                                  routerLink="hardware/elv-solution"
+                                >
+                                  <a>
+                                    <h3>ELV Solutions</h3>
+                                    <p>
+                                      ESAT Manufacturing Management System recognizes the
+                                      manufacturers’ need to operate seamlessly across multiple
+                                      manufacturing modes.
+                                    </p>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div
+                            class="tab-pane fade row"
+                            id="pills-Consulting"
+                            role="tabpanel"
+                            aria-labelledby="pills-profile-tab"
+                          >
+                            <div class="soft-indust col-12">
+                              <ul class="me-3">
+                                <li class="ps-3" routerLink="hardware/technology-consulting">
+                                  <a>
+                                    <h3>Technology Consulting</h3>
+                                    <p>
+                                      ESAT Business Enterprise Edition is powerful, flexible and
+                                      easy-to-use.
+                                    </p>
+                                  </a>
+                                </li>
+                              </ul>
+
+                              <ul></ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown position-static">
+              <a class="nav-link" routerLink="partnership">Partnership Program</a>
+              <div
+                class="dropdown-menu partnership-drop vh-30 w-20 position-partner border-0 shadow-lg mega-menu"
+              >
+                <div class="container py-4">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6>Partnership Program</h6>
+                      <a class="dropdown-item" href="partnership"> Reseller Program</a>
+                      <a class="dropdown-item" href="partnership"> Referral Program </a>
+                      <a class="dropdown-item" href="partnership"> Affiliate Program </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- MEGA MENU -->
+            <li class="nav-item dropdown position-static">
+              <a class="nav-link" routerLink="careers"> Careers</a>
+
+              <div
+                class="dropdown-menu careers-drop vh-30 w-20 position-career border-0 shadow-lg mega-menu"
+              >
+                <div class="container py-4">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6>Careers</h6>
+                      <a class="dropdown-item" routerLink="careers"> Software Careers</a>
+                      <a class="dropdown-item" routerLink="careers"> Hardware Careers </a>
+                      <a class="dropdown-item" routerLink="careers"> Administrative Careers</a>
+                      <a class="dropdown-item" routerLink="careers"> Sales & Marketing Careers</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" routerLink="our-clients">Clients</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="support">Support</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="contact">Contact</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link demo-bttn" href="https://erp.esat.ae/" target="_blank"
+                >Free Demo</a
+              >
+            </li>
+
+            <li class="nav-item"><a class="nav-link" routerLink="support"> Sign in</a></li>
+          </ul>
+        </div>
+
+        <!-- mobile-menu -popup-->
+
+        <div
+          class="modal fade above-md-hide"
+          id="mob-navigation"
+          tabindex="-1"
+          aria-labelledby="nav-modal"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Menu</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body mob-menu">
+                <div class="navbar navbar-expand-lg w-100">
+                  <ul class="navbar-nav-mob w-100">
+                    <li class="nav-item">
+                      <a data-bs-dismiss="modal" class="nav-link" [routerLink]="['home']"> Home</a>
+                    </li>
+                    <li class="nav-item" [class.show]="activeMenu === 'about'">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        (click)="toggleMenu('about')"
+                        href="javascript:void(0)"
+                      >
+                        About</a
+                      >
+                      <ul class="dropdown" [class.show]="activeMenu === 'about'">
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about"> About</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/founder-msg">
+                            Founder's Message</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/team">Our Team</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/environment">Environment</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/philosophy"
+                            >Our Philosophy & Responsibility</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/social"
+                            >Corporate Social Responsibility</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/story">Our Stories</a>
+                        </li>
+                        <span class="sub-mob-heading"> Experience </span>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/experience"
+                            >Our Industry Experience</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/awards"
+                            >Awards & Accreditations</a
+                          >
+                        </li>
+                        <span class="sub-mob-heading"> Legal </span>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/news">News</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/qualitypolicy"
+                            >Quality Policy</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/privacypolicy"
+                            >Privacy Policy</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="about/terms">Terms & Conditions</a>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="nav-item" [class.show]="activeMenu === 'software'">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        (click)="toggleMenu('software')"
+                        href="javascript:void(0)"
+                        id="dropdownMenu2"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Software
+                      </a>
+                      <ul
+                        class="dropdown"
+                        aria-labelledby="dropdownMenu2"
+                        [class.show]="activeMenu === 'software'"
+                      >
+                        <span class="sub-mob-heading"> Products</span>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="software">Software</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="software/erp-software-solutions-uae"
+                            >ESAT Secure ERP</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="software/erp-feature"
+                            >ESAT Secure ERP Features
+                          </a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="software/erp-benifites"
+                            >ESAT Features & Benefits</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="software/solution-business"
+                            >Solutions by Business Line</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="software/solution-industry"
+                            >Solutions by Business Industry</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="software/package"
+                            >ESAT ERP Package List</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="software/training"
+                            >ESAT ERP Training</a
+                          >
+                        </li>
+                        <span class="sub-mob-heading"> Services</span>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="../software/software-services"
+                            >Software Services</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="../software/software-services"
+                            >Other Services</a
+                          >
+                        </li>
+
+                        <span class="sub-mob-heading"> Clients & Projects</span>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="our-clients">Our Clients</a>
+                        </li>
+                        <span class="sub-mob-heading"> Support</span>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="support">Sign In</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a
+                            target="_blank"
+                            class="dropdown-item"
+                            href="https://api.whatsapp.com/send/?phone=971566842328&text&type=phone_number&app_absent=0"
+                            >Whats's App</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="contact">Contact Us</a>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="nav-item" [class.show]="activeMenu === 'Hardware'">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        (click)="toggleMenu('Hardware')"
+                        href="javascript:void(0)"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Hardware
+                      </a>
+                      <ul
+                        class="dropdown"
+                        aria-labelledby="dropdownMenu2"
+                        [class.show]="activeMenu === 'Hardware'"
+                      >
+                        <span class="sub-mob-heading"> Services</span>
+
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="hardware">Hardware</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a
+                            class="dropdown-item"
+                            routerLink="hardware/it-networking-solutions-in-uae"
+                            >IT Hardware and Networking</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="hardware/physical-survilance"
+                            >Physical Surveillance Security</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="hardware/security-audit"
+                            >Security Audit</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="hardware/audio-visual"
+                            >Audio Visual Systems</a
+                          >
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="hardware/elv-solution"
+                            >ELV Solutions</a
+                          >
+                        </li>
+
+                        <span class="sub-mob-heading"> IT Consulting</span>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="hardware/technology-consulting"
+                            >Technology Consulting</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="nav-item" [class.show]="activeMenu === 'Partnership'">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        (click)="toggleMenu('Partnership')"
+                        href="javascript:void(0)"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        routerLink="partnership"
+                      >
+                        Partnership Program
+                      </a>
+                      <ul
+                        class="dropdown"
+                        aria-labelledby="dropdownMenu2"
+                        [class.show]="activeMenu === 'Partnership'"
+                      >
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" [routerLink]="['partnership']">
+                            Reseller Program
+                          </a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" [routerLink]="['partnership']">
+                            Referral Program
+                          </a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" [routerLink]="['partnership']">
+                            Affiliate Program
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="nav-item" [class.show]="activeMenu === 'Clients'">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        (click)="toggleMenu('Clients')"
+                        href="javascript:void(0)"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Clients
+                      </a>
+                      <ul
+                        class="dropdown"
+                        aria-labelledby="dropdownMenu2"
+                        [class.show]="activeMenu === 'Clients'"
+                      >
+                        <span class="sub-mob-heading"> Our Clients</span>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" [routerLink]="['our-clients']">Our Clients</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" [routerLink]="['our-clients']"
+                            >Client Testimonials</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="nav-item" [class.show]="activeMenu === 'Careers'">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        (click)="toggleMenu('Careers')"
+                        href="javascript:void(0)"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Careers
+                      </a>
+                      <ul
+                        class="dropdown"
+                        aria-labelledby="dropdownMenu2"
+                        [class.show]="activeMenu === 'Careers'"
+                      >
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="careers">Our Careers</a>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="nav-item" [class.show]="activeMenu === 'Contact'">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        (click)="toggleMenu('Contact')"
+                        href="javascript:void(0)"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Contact
+                      </a>
+                      <ul
+                        class="dropdown"
+                        aria-labelledby="dropdownMenu2"
+                        [class.show]="activeMenu === 'Contact'"
+                      >
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="contact">Inquiry</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a class="dropdown-item" routerLink="contact/feedback">Feedback</a>
+                        </li>
+                        <li data-bs-dismiss="modal">
+                          <a
+                            target="_blank"
+                            href="https://api.whatsapp.com/send/?phone=971566842328&text&type=phone_number&app_absent=0"
+                            class="dropdown-item"
+                            [routerLink]="['/contact']"
+                            >Whats's App</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>

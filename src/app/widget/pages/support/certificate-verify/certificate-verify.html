@@ -1,0 +1,58 @@
+<!-- certificate-verify.html -->
+<section id="certiver" style="padding: 75px 0px" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="styleHeader">
+          Certificate<br />
+          <span>Verification</span>
+        </h2>
+
+        <form *ngIf="angForm" [formGroup]="angForm" class="row" novalidate (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <input
+              formControlName="uname"
+              class="form-control input-lg"
+              type="text"
+              placeholder="ESAT-XX-TR-00X"
+            />
+
+            <small><b>Example:</b> ESAT-XX-TR-XXX</small>
+
+            <!-- Validation -->
+            <div
+              class="error"
+              *ngIf="
+                angForm.get('uname')?.invalid &&
+                (angForm.get('uname')?.dirty || angForm.get('uname')?.touched)
+              "
+            >
+              <div *ngIf="angForm.get('uname')?.hasError('required')">
+                Please enter valid ESAT Certificate number
+              </div>
+
+              <div *ngIf="angForm.get('uname')?.hasError('minlength')">
+                Please enter valid ESAT Certificate number
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group succes-btn">
+            <button type="submit" class="btn btn-primary pull-right" [disabled]="angForm.invalid">
+              Verify
+            </button>
+          </div>
+        </form>
+
+        <!-- Result -->
+        <div class="resultsec" *ngIf="cerurl">
+          <a class="download" (click)="forceDownload()" style="cursor: pointer">
+            <i class="fa fa-download"></i>
+          </a>
+
+          <img [src]="cerurl" class="img-responsive" alt="Certificate" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

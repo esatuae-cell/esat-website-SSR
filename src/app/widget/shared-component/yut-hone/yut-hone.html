@@ -1,0 +1,47 @@
+<section class="youtube-section section-padding" data-aos="fade-up">
+  <div class="container">
+    <div id="carouselExampleIndicators_ut" class="carousel slide our-theme" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active video-section">
+          <div class="d-flex justify-content-between res-dev">
+            <div *ngFor="let video of displayedVideos; let i = index" class="home-ut-sec">
+              <div class="video-thumb position-relative">
+                <img class="w-100" [src]="video.thumbnail" [alt]="video.alt" />
+                <div class="read-sec">
+                  <a (click)="openModal(video.id)" class="play-icon">
+                    <i class="fa fa-play"> </i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showModal" class="modal-backdrop" (click)="closeModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <span class="close-button" (click)="closeModal()">×</span>
+        <div class="video-container">
+          <iframe
+            [src]="videoUrl"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+            "
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-more-sec d-flex justify-content-center py-4">
+      <a (click)="youtubeMain()" class="f-18 text-dark title-f">View More</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,488 @@
+<app-sw-common></app-sw-common>
+
+<section id="ithwnet" class="sm-mt" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <h2 class="styleHeader">Software <br /><span>Services</span></h2>
+      <div class="boxpanel"></div>
+      <div class="col-sm-3 toplist" exclude=".rotate" (clickOutside)="ChangeHover($event)">
+        <ul class="sideBar">
+          <li (click)="changeCircle('ser1')">
+            <img
+              src="assets/images/ser1.png?v={{ $rootScope.version }}"
+              alt="ESAT UAE"
+              class="img-responsive"
+            />
+            <p>DEVELOP</p>
+          </li>
+          <li (click)="changeCircle('ser2')">
+            <img
+              src="assets/images/ser2.png?v={{ $rootScope.version }}"
+              alt="ESAT UAE"
+              class="img-responsive"
+            />
+            <p>CONSULT</p>
+          </li>
+          <li (click)="changeCircle('ser3')">
+            <img
+              src="assets/images/ser3.png?v={{ $rootScope.version }}"
+              alt="ESAT UAE"
+              class="img-responsive"
+            />
+            <p>SUPPORT</p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-9 rotate" ngClass="{'active':textValue == 'ser1' && queone == false }">
+        <div class="mainConternt">
+          <div class="header">
+            <img
+              src="assets/images/ser1.png?v={{ $rootScope.version }}"
+              alt="ESAT UAE"
+              class="img-responsive"
+            />
+            <p>DEVELOP</p>
+            <i
+              (click)="queone = !queone"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':queone == false }"
+            ></i>
+          </div>
+          <div class="content text-center" [hidden]="queone">
+            <h3 class="f-18">
+              Web Development | Enterprise Systems | Web Applications<br />
+              E-commerce Websites | Hybrid Applications
+            </h3>
+            <p>
+              These services are related to customization of application design and development. We
+              combine technology expertise with program management skills to develop e-commerce
+              applications for your business. This requires a specialized e-commerce optimization
+              for online market transactions, shopping cart coding and general security encryption
+              for businesses. <br /><br />
+              It also includes a process of maintaining a source code that involves the
+              conceptualization of desired application, research, modiﬁcation, re-engineering and
+              any other development activities to create new solutions to meet your needs and
+              requirements.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 rotate" ngClass="{'active':textValue == 'ser2' && quetwo == false }">
+        <div class="mainConternt">
+          <div class="header">
+            <img
+              src="assets/images/ser2.png?v={{ $rootScope.version }}"
+              class="img-responsive"
+              alt="ESAT UAE"
+            />
+            <p>CONSULT</p>
+            <i
+              (click)="quetwo = !quetwo"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':quetwo == false }"
+            ></i>
+          </div>
+          <div class="content text-center" [hidden]="quetwo">
+            <h3 class="f-18">
+              We provide effective consultation for Project Scoping and<br />
+              Planning | Business Process and System Design | Domain Management
+            </h3>
+            <p>
+              Relying on our domain and development experience, we can support you to ﬁll the gaps
+              between data, ideas and results, thus translating your needs into solutions. We use
+              our programming expertise to give you the right tools that enable you to simplify your
+              business’ workflow and provide your internal teams with recommendations.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 rotate" ngClass="{'active':textValue == 'ser3' && quethree == false }">
+        <div class="mainConternt">
+          <div class="header">
+            <img
+              src="assets/images/ser3.png?v={{ $rootScope.version }}"
+              class="img-responsive"
+              alt="ESAT UAE"
+            />
+            <p>SUPPORT</p>
+            <i
+              (click)="quethree = !quethree"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':quethree == false }"
+            ></i>
+          </div>
+          <div class="content text-center" [hidden]="quethree">
+            <h3 class="f-18">
+              Our support service includes<br />
+              System Maintenance | System Training
+            </h3>
+            <p>
+              ESAT aims to preserve the value and worth of the software as time goes by. Having this
+              in mind, our support service monitors a wide range of activities which include error
+              correction, software updates and upgrades, optimization, and deletion of obsolete
+              capabilities. <br /><br />
+              Our dedicated support specialists monitor and analyze each request, in order to come
+              up with viable solutions and work with you to obtain all the authorizations needed for
+              the application of the required modiﬁcations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- other services -->
+
+  <div class="container">
+    <h2 class="styleHeader">Other <br /><span>Services</span></h2>
+    <div class="NoPadding otherServices">
+      <div class="row mt-3">
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div class="modal-header border-bottom" style="padding-left: 0; padding-bottom: 6px">
+              <h4
+                class="modal-title"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 512"
+                  >
+                    <path
+                      d="M192 0H48C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H162.7c6.6-18.6 24.4-32 45.3-32V272c0-44.2 35.8-80 80-80h32V128H224c-17.7 0-32-14.3-32-32V0zm96 224c-26.5 0-48 21.5-48 48v16 96 32H208c-8.8 0-16 7.2-16 16v16c0 35.3 28.7 64 64 64H576c35.3 0 64-28.7 64-64V432c0-8.8-7.2-16-16-16H592V288c0-35.3-28.7-64-64-64H320 304 288zm32 64H528V416H304V288h16zM224 0V96h96L224 0z"
+                    />
+                  </svg>
+                </i>
+                &nbsp; Mobility
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Native Android App</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Native IOS App</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Hybrid Mobile App</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Third party Integration</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div class="modal-header border-bottom" style="padding-left: 0; padding-bottom: 6px">
+              <h4
+                class="modal-title"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 512"
+                  >
+                    <path
+                      d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"
+                    />
+                  </svg>
+                </i>
+                &nbsp; Cloud
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Web Development</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Application Development</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Managed Services</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div class="modal-header border-bottom" style="padding-left: 0; padding-bottom: 6px">
+              <h4
+                class="modal-title"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 576 512"
+                  >
+                    <path
+                      d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V288H64V64H512z"
+                    />
+                  </svg>
+                </i>
+                &nbsp; Application
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; SaaS</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Enterprise Resource Planing (ERP)</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Software</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Dashboards & Portals</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div class="modal-header border-bottom" style="padding-left: 0; padding-bottom: 6px">
+              <h4
+                class="modal-title"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 512"
+                  >
+                    <path
+                      d="M64 96c0-35.3 28.7-64 64-64H512c35.3 0 64 28.7 64 64V352H512V96H128V352H64V96zM0 403.2C0 392.6 8.6 384 19.2 384H620.8c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8H76.8C34.4 480 0 445.6 0 403.2zM281 209l-31 31 31 31c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-48-48c-9.4-9.4-9.4-24.6 0-33.9l48-48c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM393 175l48 48c9.4 9.4 9.4 24.6 0 33.9l-48 48c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"
+                    />
+                  </svg>
+                </i>
+                &nbsp; UI / UX
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Mobile App UI</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Website Enhancement</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; UX Research & Strategy</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Product Redesign</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="NoPadding otherServices row mt-3">
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div class="modal-header border-bottom" style="padding-left: 0; padding-bottom: 6px">
+              <h4
+                class="modal-title"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M480 32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9L381.7 53c-48 48-113.1 75-181 75H192 160 64c-35.3 0-64 28.7-64 64v96c0 35.3 28.7 64 64 64l0 128c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V352l8.7 0c67.9 0 133 27 181 75l43.6 43.6c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V300.4c18.6-8.8 32-32.5 32-60.4s-13.4-51.6-32-60.4V32zm-64 76.7V240 371.3C357.2 317.8 280.5 288 200.7 288H192V192h8.7c79.8 0 156.5-29.8 215.3-83.3z"
+                    />
+                  </svg>
+                </i>
+                &nbsp; Digital Marketing
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Search Engine Optimisation (SEO)</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Social Media Marketing</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Paid Advertisments</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div
+              class="modal-header border-bottom me-2"
+              style="padding-left: 0; padding-bottom: 6px"
+            >
+              <h4
+                class="modal-title"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"
+                    />
+                  </svg> </i
+                >&nbsp; Videos
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Tutorial / Explainer Videos</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Social Media Ads</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div class="modal-header border-bottom" style="padding-left: 0; padding-bottom: 6px">
+              <h4
+                class="modal-title me-3"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M78.6 5C69.1-2.4 55.6-1.5 47 7L7 47c-8.5 8.5-9.4 22-2.1 31.6l80 104c4.5 5.9 11.6 9.4 19 9.4h54.1l109 109c-14.7 29-10 65.4 14.3 89.6l112 112c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-112-112c-24.2-24.2-60.6-29-89.6-14.3l-109-109V104c0-7.5-3.5-14.5-9.4-19L78.6 5zM19.9 396.1C7.2 408.8 0 426.1 0 444.1C0 481.6 30.4 512 67.9 512c18 0 35.3-7.2 48-19.9L233.7 374.3c-7.8-20.9-9-43.6-3.6-65.1l-61.7-61.7L19.9 396.1zM512 144c0-10.5-1.1-20.7-3.2-30.5c-2.4-11.2-16.1-14.1-24.2-6l-63.9 63.9c-3 3-7.1 4.7-11.3 4.7H352c-8.8 0-16-7.2-16-16V102.6c0-4.2 1.7-8.3 4.7-11.3l63.9-63.9c8.1-8.1 5.2-21.8-6-24.2C388.7 1.1 378.5 0 368 0C288.5 0 224 64.5 224 144l0 .8 85.3 85.3c36-9.1 75.8 .5 104 28.7L429 274.5c49-23 83-72.8 83-130.5zM104 432c0 13.3-10.7 24-24 24s-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24z"
+                    />
+                  </svg>
+                </i>
+                &nbsp; Maintenance & Support
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Website / App Maintenance</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Application Maintenance</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Server / Cloud Maintenance</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Website / Email Hosting</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div class="modal-header border-bottom" style="padding-left: 0; padding-bottom: 6px">
+              <h4
+                class="modal-title"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 80C149.9 80 62.4 159.4 49.6 262c9.4-3.8 19.6-6 30.4-6c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48c-44.2 0-80-35.8-80-80V384 336 288C0 146.6 114.6 32 256 32s256 114.6 256 256v48 48 16c0 44.2-35.8 80-80 80c-26.5 0-48-21.5-48-48V304c0-26.5 21.5-48 48-48c10.8 0 21 2.1 30.4 6C449.6 159.4 362.1 80 256 80z"
+                    />
+                  </svg> </i
+                >&nbsp; IT Consulting
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Technology Consulting</li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Quality Assurance & Testing</li>
+                <li>
+                  <i class="icon icon-handLeaf"></i> &nbsp; Business / IT / Digital Transformation
+                </li>
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Digital Asset Management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="NoPadding otherServices row mt-3">
+        <div class="col-sm-3 service-box">
+          <div class="modal-contentxx">
+            <div class="modal-header border-bottom" style="padding-left: 0; padding-bottom: 6px">
+              <h4
+                class="modal-title"
+                style="
+                  margin: 0;
+                  line-height: 1.42857143;
+                  font-size: 17px !important;
+                  display: flex;
+                "
+              >
+                <i>
+                  <svg
+                    style="width: 21px; height: auto; fill: #0045a5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 80C149.9 80 62.4 159.4 49.6 262c9.4-3.8 19.6-6 30.4-6c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48c-44.2 0-80-35.8-80-80V384 336 288C0 146.6 114.6 32 256 32s256 114.6 256 256v48 48 16c0 44.2-35.8 80-80 80c-26.5 0-48-21.5-48-48V304c0-26.5 21.5-48 48-48c10.8 0 21 2.1 30.4 6C449.6 159.4 362.1 80 256 80z"
+                    />
+                  </svg> </i
+                >&nbsp; IOT / Automation
+              </h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important; padding-top: 15px">
+              <ul class="modelul" style="list-style: none; padding: 0">
+                <li><i class="icon icon-handLeaf"></i> &nbsp; Intelligent Infrastructure</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,192 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>Accelerate productivity and sales performance with our Sales Management Solution.</p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <div class="bottom">
+            Sales Management Solution is designed to help you manage the entire sales flow of your
+            business. It enables your business to be more accurate in stocking, and product
+            management, helps you to get a better insight into your most popular products and why
+            they are so demanded. This solution enables businesses to save time by speeding up
+            transactions and improving accuracy. You can now store data efﬁciently and make
+            information readily available to sales representatives and managers that might need it
+            to design plans and forecast sales accurately.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <h5 class="f-14">Efficient monitoring system</h5>
+              <p>
+                This enables you to monitor product availability and track orders and shipments
+                efﬁciently. It will help you cut down on your expenses, reduce risks and save time
+                that you would have otherwise spent in manual tasks.
+              </p>
+
+              <h5 class="f-14">Easily retrieve the information needed</h5>
+              <p>
+                Sales representatives can easily access information stored in the centralized
+                database from anywhere, whenever they need it, and can focus their energy on core
+                activities rather than on administrative tasks.
+              </p>
+
+              <h5 class="f-14">Improved order follow-ups</h5>
+              <p>
+                This will assist you in improving the shipment of orders. Prioritizing customer
+                orders and arranging detailed plans for shipment will lead to customer satisfaction.
+              </p>
+
+              <h5 class="f-14">
+                Product configuration, options, and variants with full attachment
+              </h5>
+              <h5 class="f-14">Pricing and discounts data management</h5>
+              <h5 class="f-14">Sales commissions</h5>
+              <h5 class="f-14">Quotes, contracts and open orders</h5>
+              <h5 class="f-14">Multi-level credit checking and order entry</h5>
+              <h5 class="f-14">Order preparation, delivery, packing and shipping</h5>
+              <h5 class="f-14">Easy way to analyze business growth</h5>
+              <p>
+                The real-time detailed sales reports used by management assist in the analysis and
+                decision-making process for your company’s benefit and growth.
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <h5 class="f-14">Customer returns</h5>
+              <h5 class="f-14">Invoicing and reminders</h5>
+              <h5 class="f-14">Inventory inquiries and allocations</h5>
+              <h5 class="f-14">Inter-company/inter-site sales</h5>
+              <h5 class="f-14">Bills of lading and export declarations</h5>
+              <h5 class="f-14">Mobile apps</h5>
+              <h5 class="f-14">Managing consignment Sales</h5>
+              <h5 class="f-14">Attachment of multiple documents by items</h5>
+              <h5 class="f-14">Pricing Management</h5>
+              <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
+              <p>
+                The Sales Module's Group Reports and Dashboards assist businesses in making
+                data-driven decisions by gathering, analyzing, and presenting data.
+              </p>
+
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red" (click)="openLightbox(i)">
+                  View enlarged image
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6">
+              <!-- <ul>
+                                <li *ngFor="let components of dataValue.acf.components; let $index = index;">
+                                    <div *ngIf="$index < 5">
+                                        <i class="icon-esatform"></i>{{components.name}}
+                                    </div>
+                                </li>
+                            </ul> -->
+              <ul>
+                <li><i class="icon-esatform"></i> Sales Inquiry</li>
+                <li><i class="icon-esatform"></i> Sales Quotation</li>
+                <li><i class="icon-esatform"></i> Sales Order & SPA</li>
+                <li><i class="icon-esatform"></i> Sales Service Agreement</li>
+                <li><i class="icon-esatform"></i> Sales Service Inspection</li>
+                <li><i class="icon-esatform"></i> Internal Request</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <!-- <ul>
+                                <li *ngFor="let components of dataValue.acf.components; let $index = index;">
+                                    <div *ngIf="$index > 4">
+                                        <i class="icon-esatform"></i>{{components.name}}
+                                    </div>
+                                </li>
+                            </ul> -->
+              <ul>
+                <li><i class="icon-esatform"></i> Stock Issue Voucher</li>
+                <li><i class="icon-esatform"></i> Sales Invoice & Payment Plan</li>
+                <li><i class="icon-esatform"></i> Sales Payment Certificate</li>
+                <li><i class="icon-esatform"></i> Sales Return</li>
+                <li><i class="icon-esatform"></i> Project Completion Certificate</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

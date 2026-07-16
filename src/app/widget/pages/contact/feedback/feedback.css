@@ -1,0 +1,23 @@
+.feed-form{padding:60px 0;}
+.step-2{
+    padding:10px 0;
+    display:flex;
+    justify-content:space-between;
+}
+
+.divider{margin:20px;}
+
+.step-1 input{
+    margin-bottom:20px;
+}
+
+.review-card {
+    .review-item{
+        .label{
+            font-weight: 600;
+            width:10vw;
+            display:inline-block;
+            margin-bottom:15px;
+        }
+    }
+}

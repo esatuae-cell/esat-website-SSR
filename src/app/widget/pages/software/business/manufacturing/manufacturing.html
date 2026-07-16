@@ -1,0 +1,165 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product manufa" data-aos="fade-up">
+  <div class="container">
+    <div class="row" style="padding-top: 1vh">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <p>
+              ESAT Manufacturing Management System recognizes the manufacturers’ need to operate
+              seamlessly across multiple manufacturing modes.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <div class="bottom">
+            <p>
+              ESAT has long offered manufacturers an agile solution for Enterprise Resource Planning
+              (ERP). Right from the outset, ESAT recognized the manufacturers’ need to operate
+              seamlessly across multiple manufacturing modes. Manufacturing has become more complex,
+              and today, ESAT-ERP helps more and more manufacturers operate in any product
+              combination such as: make-to-stock, make-to-order, conﬁgure-to-order,
+              engineer-to-order, batch process and engineer-procure-construct.
+            </p>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6 menu-h5">
+              <h5>Multiple manufacturing modes</h5>
+              <h5>Product configuration, options and variants</h5>
+              <h5>Bills of material, formulas and recipes</h5>
+              <h5>Work and cost center management</h5>
+              <h5>Forward/backward scheduling</h5>
+              <h5>Replenishment and inter-sites transfers</h5>
+              <h5>Production cost accounting</h5>
+              <h5>Order release</h5>
+              <h5>Quality control and analysis</h5>
+              <h5>Master production scheduling</h5>
+              <h5>Batchwise Analysis</h5>
+              <h5>Capacity Utilization Vs Production Target Analysis</h5>
+              <h5>Define Calendar, Capacities, Work Center, BOM & Routers</h5>
+              <h5>Graphical interface for view work centers and Schedules</h5>
+              <h5>Standard Cost Vs. Actual Consumption Analysis</h5>
+              <h5>Man, Machine, and Material Analysis</h5>
+              <h5>Production Planning and scheduling based on Orders/Forecast</h5>
+            </div>
+            <div class="col-sm-6 menu-h5">
+              <h5>Planning Independent orders</h5>
+              <h5>Production Status and WIP Tracking</h5>
+              <h5>Reports, dashboards, and business intelligence.</h5>
+              <p>
+                The Manufacturing Module's Group Reports and Dashboards assist businesses in making
+                data-driven decisions by gathering, analyzing, and presenting data.
+              </p>
+              <div *ngFor="let image of _albums; let i = index">
+                <!-- <h5>{{image.caption}}</h5> -->
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center color-red" (click)="openLightbox(i)">View enlarged image</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-12 col-md-6 col-xl-6 col-xxl-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Work Center</li>
+                <li><i class="icon-esatform"></i> Bill of Material ( BOM )</li>
+                <li><i class="icon-esatform"></i> Routing</li>
+                <li><i class="icon-esatform"></i>Production Plan</li>
+                <li><i class="icon-esatform"></i>MRP</li>
+                <li><i class="icon-esatform"></i>Job Order</li>
+                <li><i class="icon-esatform"></i>Work In Progress</li>
+                <li><i class="icon-esatform"></i>Assembling Management</li>
+                <li><i class="icon-esatform"></i>Repacking</li>
+                <li><i class="icon-esatform"></i>Easy Manufacturing Process</li>
+              </ul>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-xl-6 col-xxl-6">
+              <ul>
+                <li><i class="icon-esatform"></i>Manufacture to order</li>
+                <li><i class="icon-esatform"></i>Manufacture to Stock</li>
+                <li><i class="icon-esatform"></i>Finished goods Stocking</li>
+                <li><i class="icon-esatform"></i>Daily Resource Planner</li>
+                <li><i class="icon-esatform"></i>Daily Job Card</li>
+                <li><i class="icon-esatform"></i>Production Receive</li>
+                <li><i class="icon-esatform"></i>Production Wastage</li>
+                <li><i class="icon-esatform"></i> Routing Master</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

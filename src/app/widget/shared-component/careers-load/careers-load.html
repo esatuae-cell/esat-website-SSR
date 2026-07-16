@@ -1,0 +1,178 @@
+<div class="container sm-size mt-5">
+  <!-- <div *ngIf="jobData.length === 0" class="text-center p-5">
+    Loading job listings...
+  </div> -->
+
+  <!-- <div *ngFor="let category of jobData; let i = index" class="accordion-item">
+    <div class="accordion-header" (click)="toggleAccordion(i)">
+      {{ category.categoryName }}
+      <span>{{ selectedCategoryIndex === i ? '▲' : '▼' }}</span>
+    </div>
+
+    <div *ngIf="selectedCategoryIndex === i" class="accordion-content">
+      <ul class="job-list">
+        <li *ngFor="let job of category.jobs" (click)="openJobPopup(job)">
+          {{ job.title }}
+        </li>
+      </ul>
+    </div>
+  </div> -->
+
+  <ng-container *ngIf="jobDataLoaded">
+    <div *ngFor="let jobitem of jobCategory; let $index = index">
+      <div class="qone accordion-item">
+        <div class="que accordion-header" (click)="jobitem.show = !jobitem.show">
+          <h4 class="p-0 m-0">{{ jobitem.category }}</h4>
+          <i
+            class="arrow-down fa fa-angle-double-up"
+            [ngClass]="{ 'fa-angle-double-down': jobitem.show == true }"
+          ></i>
+        </div>
+        <div class="ans" [hidden]="!jobitem.show">
+          <ul class="job-list" *ngIf="jobitem.available">
+            <li *ngFor="let jobs of jobitem.joblist; let $index = index">
+              <span class="job-listing" (click)="openJobPopup(jobs); swcbody = false">
+                <!-- <a class="d-block f-12">{{jobs.department}}</a>  -->
+                <a>{{ jobs?.title }}</a></span
+              >
+            </li>
+          </ul>
+
+          <span *ngIf="!jobitem.available">
+            <p>
+              <b><span> No Openings.</span></b>
+            </p>
+            <p>
+              We currently have no vacancies for IT Solutions, but don't let that stop you sending
+              in your CV. We're always on the look out for people with a strong passion for the
+              industry.
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf="showPopup" class="popup-overlay">
+  <div class="popup-card">
+    <div class="popup-header">
+      <h2 class="popup-title">{{ selectedJob?.title }}</h2>
+      <button class="close-btn" (click)="closePopup()">&times;</button>
+    </div>
+
+    <div class="popup-body">
+      <div *ngIf="!showForm">
+        <h3>Job Description</h3>
+        <div
+          [innerHTML]="selectedJob?.job_desc"
+          class="prose max-w-none text-gray-700 leading-relaxed"
+        ></div>
+      </div>
+
+      <div *ngIf="showForm" class="application-form">
+        <form [formGroup]="applicationForm" (ngSubmit)="submitApplication()" class="row">
+          <div class="form-group col-6">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              [class.is-invalid]="
+                applicationForm.get('name')?.invalid && applicationForm.get('name')?.touched
+              "
+            />
+            <div
+              *ngIf="applicationForm.get('name')?.invalid && applicationForm.get('name')?.touched"
+              class="error-message"
+            >
+              Full Name is required.
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="address"
+              formControlName="address"
+              [class.is-invalid]="
+                applicationForm.get('address')?.invalid && applicationForm.get('address')?.touched
+              "
+            />
+            <div
+              *ngIf="
+                applicationForm.get('address')?.invalid && applicationForm.get('address')?.touched
+              "
+              class="error-message"
+            >
+              <span *ngIf="applicationForm.get('address')?.errors?.['required']"
+                >Email is required.</span
+              >
+              <span *ngIf="applicationForm.get('address')?.errors?.['address']"
+                >Please enter a valid email.</span
+              >
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="phoneNumber">Phone Number</label>
+            <input
+              type="tel"
+              id="phone_no"
+              formControlName="phone_no"
+              [class.is-invalid]="
+                applicationForm.get('phone_no')?.invalid && applicationForm.get('phone_no')?.touched
+              "
+            />
+            <div
+              *ngIf="
+                applicationForm.get('phone_no')?.invalid && applicationForm.get('phone_no')?.touched
+              "
+              class="error-message"
+            >
+              Phone Number is required.
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" formControlName="subject" readonly />
+          </div>
+
+          <div class="form-group">
+            <label for="comments">Comments</label>
+            <textarea id="textarea" formControlName="textarea" rows="4"></textarea>
+          </div>
+
+          <div class="form-group col-4 border-0">
+            <label for="resume">Resume/CV</label>
+            <input type="file" id="resume" (change)="onFileChange($event)" />
+            <div
+              *ngIf="
+                applicationForm.get('resume')?.invalid && applicationForm.get('resume')?.touched
+              "
+              class="error-message"
+            >
+              Resume is required.
+            </div>
+          </div>
+
+          <div class="popup-footer">
+            <button type="submit" class="btn btn-primary me-2" [disabled]="applicationForm.invalid">
+              Submit Application
+            </button>
+
+            <button type="button" class="btn btn-secondary" (click)="showForm = false">
+              View Job
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="!showForm" class="popup-footer">
+      <button class="btn btn-primary" (click)="showApplicationForm()">Apply Now</button>
+    </div>
+  </div>
+</div>

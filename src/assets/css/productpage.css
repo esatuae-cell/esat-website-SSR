@@ -1,0 +1,384 @@
+.product h2.styleHeader{
+    font-size:22px;
+    background-position-y: 16px;
+    width: 100%;
+}
+.logodiv {
+    background: #a7a9ac;
+    margin: 0 auto;
+    width: 100%;
+    padding: 3px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.logodiv img.img-responsive {
+    border-right: 1px solid #fff;
+}
+.logodiv i.menuIcon:before {
+    top: 20px;
+    right: 22px;
+}
+h3.netval {
+    padding-bottom: 14px;
+}
+.logodiv i.CloseIcon:before {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+.logodiv i.CloseIcon{
+    top: 10px;
+    right: 20px;
+    position: absolute;
+}
+
+ul.modList li {
+    background: #eee;
+    padding: 1px 0px 1px 0px;
+    margin: 5px 0px;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+ul.modList li:hover{
+    transform: scale(1.2);
+    transition-delay: 100ms;
+    transition-duration: 500ms;
+    box-shadow: 0 0 3px #adadad;
+    z-index: 99;
+}
+
+ul.modList{
+padding: 0 !important;}
+
+ul.modList li.Final-li {
+    background: none;
+}
+ul.modList li.Final-li:hover{
+    transform: scale(1);
+}
+.footdata p span {
+    font-size: 12px;
+    padding: 0;
+    margin: 0px;
+    color: #112a4f;
+    font-weight: 400;
+}
+section#footerLastAbout h3 {
+    text-transform: uppercase;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 15px;
+    font-size: 1rem;
+}
+section#footerLastAbout.lastbefore h3 {
+    text-transform: uppercase;
+    border: none;
+    padding-bottom: 0px;
+}
+section#footerLastAbout a {
+    color: #081636;
+    font-weight: 800;
+}
+#footerLastAbout p {
+    font-size: 16px;
+    line-height: 14px;
+}
+section#footerLastAbout {
+    padding-top: 0;
+}
+.background-clo {
+    width: 100%;
+    min-height: 250px;
+    background: #112b50;
+    margin: 15px 0 0 0;
+    padding: 63px 15px;
+    position: relative;
+    border-radius: 9px 9px 0px 0px !important;
+}
+.background-clo .bgImg{
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0.3;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.background-clo img.img-responsive {
+    position: absolute;
+    width: 260px;
+    top: 50px;
+    right: 15px;
+    z-index: 99;
+    border-radius: 9px;
+}
+.modiconinside {
+    color: #fff;
+    background: #000;
+    border: 1px solid #fff;
+    width: 133px;
+    height: 133px;
+    position: relative;
+    z-index: 99;
+    border-radius: 5px;
+}
+.modiconinside i.modIcon:before {
+    color: #fff;
+    font-size: 50px;
+    float: none;
+    position: absolute;
+    right: 34%;
+    top: 10%;
+
+}
+.modiconinside h6 {
+    color: #fff;
+    position: absolute;
+    bottom: -5px;
+    padding: 5px;
+    width: 100%;
+}
+.tagPrara {
+    background: #0000007d;
+    width: 64%;
+    min-height: 100px;
+    position: absolute;
+    top: 69px;
+    left: 140px;
+    z-index: 9;
+    padding: 15px;
+    color: #fff;
+    font-size: 1em;
+    text-align: justify;
+}
+.overview {
+    margin: -5px 0px;
+}
+.overview .head {
+    background: #eee;
+    padding: 1px 15px;
+}
+.overview .bottom {
+    text-align: justify;
+    padding: 5px 15px;
+}
+.featureandbenif {
+    margin: 5px 0px;
+    position: relative;
+}
+.featureandbenif .head {
+    background: #eee;
+    padding: 10px 15px;
+}
+.featureandbenif .bottom {
+    text-align: justify;
+    padding: 5px 15px;
+}
+i.arrow-down:before {
+    border-left: 1px solid;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+i.arrow-down {
+    position: absolute;
+    right: 0;
+    top: 13px;
+}
+.featureandbenif ul {
+    padding: 15px 0px;
+}
+.featureandbenif li {
+    display: block;
+    font-size: 14px;
+    color: #5D5D5D;
+    margin: 10px 0px;
+    text-align: left;
+}
+.featureandbenif li i {
+    font-size: 22px;
+    padding: 0px 15px 0px 0px;
+    color:#000;
+}
+.featureandbenif.industry li {
+    position: relative;
+}
+.featureandbenif.industry li i {
+    font-size: 22px;
+    padding: 0px 15px 0px 10px;
+    color: #000;
+    line-height: 33px;
+}
+/* .industryul ul {
+    padding: 0px 20px !important;
+}*/
+.industryul ul li {
+    margin: 1px 0px !important;
+    text-indent: -2em;
+    padding-left: 2em;
+    text-transform: uppercase;
+}
+.featureandbenif.industry li i.arrow-down {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    font-size: 13px !important;
+    padding: 0;
+}
+.featureandbenif.industry ul li span {
+    line-height: 33px;
+    left: 70px;
+    width: 235px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+}
+ul.modList li.active {
+    background: #c3c3c3;
+    overflow: visible !important;
+}
+.urhere {
+    text-align: center;
+    display:-ms-grid;
+
+    display: grid;
+    background: #eee;
+    position: absolute;
+    left: -51px;
+    top: 9px;
+    padding: 5px 4px 0 4px;
+    line-height: 16px;
+}
+.urhere i {
+    font-size: 16px;
+    color: green;
+}
+.urhere span {
+    font-size: 8px;
+}
+.featureandbenif .bottom.row .col-sm-6 div {
+    padding-bottom: 5px;
+    min-height: 40px;
+}
+li.Final-li:hover {
+    box-shadow: none !important;
+}
+ul.subind{
+    column-count: 2;
+    column-gap: 0px;
+    padding: 0px 5px !important;
+}
+.subind li {
+    font-size: 12px !important;
+}
+ul.subind li i {
+    font-size: 16px !important;
+    padding: 0px 5px !important;
+    line-height: 20px !important;
+}
+
+.tagPrara p{
+    color:#fff;
+}
+.boyyom{
+    padding:20px 0;
+}
+
+#footerLastAbout{
+    padding:50px 0!important;
+}
+
+#footerLastAbout .container .row{
+    padding-top:50px;
+}
+
+.Divmagnification img{
+    width:100%;
+}
+
+.bottom h5{
+    font-size: 1rem;
+}
+
+
+/* lg */
+@media (min-width: 1200px) {
+
+}
+@media (max-width: 1024px) {
+    .background-clo img.img-responsive {
+        position: absolute;
+        width: 185px;
+        top: 73px;
+        right: 15px;
+        z-index: 99;
+    }
+}
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+    .featureandbenif ul {
+        padding: 0px 0px;
+    }
+    .featureandbenif.industry ul li span {
+        line-height: 33px;
+        left: 51px;
+        width: 105px !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+    }
+    ul.subind {
+        column-count: 1;
+        column-gap: 0px;
+        padding: 0px 5px !important;
+    }
+
+}
+
+/* xs */
+@media (max-width: 767px) {
+    .featureandbenif ul {
+        padding: 0px 0px;
+    }
+    .featureandbenif.industry ul li span {
+        line-height: 33px;
+        left: 51px;
+        width: 165px !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+    }
+    ul.subind {
+        column-count: 1;
+        column-gap: 0px;
+        padding: 0px 5px !important;
+    }
+}
+
+/* XS Portrait */
+@media (max-width: 320px) {
+       ul.modList.app-header.dflex li h6 span {
+        color: #51679b !important;
+        font-size: 12.5px!important;
+        font-weight: 700;
+    }
+
+}

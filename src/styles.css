@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('assets/css/simeon-style.css');
+@import url('assets/css/responsive.css');
+ @import url('assets/css/icomoon.css'); 
+@import url('assets/css/productpage.css');
+@import url('assets/css/training-page.css');
+
+
+
+
+
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('assets/fonts/NeoSansPro-Bold.woff') format('woff');
+  font-display: swap;
+  font-weight: 700;
+
+}
+
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('assets/fonts/NeoSansPro-BoldItalic.woff') format('woff');
+  font-display: swap;
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('assets/fonts/NeoSansPro-Italic.woff') format('woff');
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('assets/fonts/NeoSansPro-Light.woff') format('woff');
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('assets/fonts/NeoSansPro-LightItalic.woff') format('woff');
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('assets/fonts/NeoSansPro-Medium.woff') format('woff');
+  font-display: swap;
+   font-weight: 500;
+}
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('assets/fonts/NeoSansPro-Regular.woff') format('woff');
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('assets/fonts/NeoSansPro-Regular.woff') format('woff');
+  font-display: swap;
+  font-weight: 400;
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_10067" data-name="Group 10067" transform="translate(-455 -7516)">
+    <g id="Group_10060" data-name="Group 10060" transform="translate(-0.001 16)">
+      <g id="Group_10054" data-name="Group 10054" transform="translate(-6 -5)">
+        <g id="Facebook" transform="translate(461.001 7505)">
+          <path id="Facebook_Background_" data-name="Facebook (Background)" d="M0,0H24V24H0Z" fill="none"/>
+          <g id="Facebook-2" data-name="Facebook">
+            <path id="XMLID_21" data-name="XMLID 21" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0Z" fill="#395196"/>
+            <path id="XMLID_19" data-name="XMLID 19" d="M4.374,3.127A.6.6,0,0,1,5,2.444H6.6V.01L4.4,0A2.773,2.773,0,0,0,1.409,2.979V4.263H0V7.107H1.422v7.107H4.264V7.107h2.11l.26-2.843H4.374Z" transform="translate(8.683 4.894)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

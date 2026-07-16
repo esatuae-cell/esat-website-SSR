@@ -1,0 +1,137 @@
+<section id="carrrer" class="pad-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center" data-aos="fade-up">
+        <h2 class="styleHeader"><br /><span>Careers</span></h2>
+        <h3>We are always on the lookout for</h3>
+        <h1>Great Talent</h1>
+        <p>
+          We have put together a dedicated team of professionals coming from different parts of the
+          world. We offer an environment that encourages work performance and supports industry
+          leaders. Our sense of unity and passion pushes us to overcome obstacles, conquer seemingly
+          impossible boundaries, and envision the future of technology. If this sounds appealing to
+          you and you’d like to join us, we would be happy to hear from you.
+        </p>
+        <p>
+          <b
+            >Send us your portfolio and your resume at below email. If you have the skills we
+            require, we’ll be in touch with you.
+          </b>
+        </p>
+        <h2><a href="#">Career&#64;esat.ae</a></h2>
+        <img src="assets/images/carier_mockup.png" class="img-responsive" alt="ESAT UAE" />
+      </div>
+      <div class="col-sm-12 carSite qndans">
+        <h4>HAVE A LOOK AT OUR CURRENT VACANCIES.</h4>
+
+        <app-careers-load></app-careers-load>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="myModal8" role="dialog">
+  <div class="modal-dialog" style="width: 75vw">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <h4 class="modal-title">{{ SCSingle?.title }}</h4>
+
+        <button class="btn btn-primary" (click)="openForm()">
+          {{ swcbody ? 'View Job' : 'Apply Now' }}
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Loader (SSR SAFE) -->
+        <div *ngIf="loading" class="loading-overlay">Loading...</div>
+
+        <!-- Job Description -->
+        <div *ngIf="!swcbody">
+          <div [innerHTML]="SCSingle?.job_desc"></div>
+
+          <p *ngIf="SCSingle?.title === 'UI GRAPHIC DESIGNER'">
+            <strong> *** Strong portfolio to be presented and defended during interview. </strong>
+          </p>
+
+          <p>
+            Suitable candidates may submit updated profile to
+            <strong>career@esat.ae</strong>
+          </p>
+        </div>
+
+        <!-- Apply Form -->
+        <div *ngIf="swcbody" class="container">
+          <form [formGroup]="angForm" (ngSubmit)="onSubmit()" class="row">
+            <!-- Name -->
+            <div class="col-sm-6">
+              <label>Full Name</label>
+              <input class="form-control" formControlName="name" />
+
+              <small
+                class="error"
+                *ngIf="angForm.get('name')?.touched && angForm.get('name')?.invalid"
+              >
+                Required field
+              </small>
+            </div>
+
+            <!-- Email -->
+            <div class="col-sm-6">
+              <label>Email</label>
+              <input class="form-control" formControlName="address" />
+
+              <small
+                class="error"
+                *ngIf="angForm.get('address')?.touched && angForm.get('address')?.invalid"
+              >
+                Valid email required
+              </small>
+            </div>
+
+            <!-- Phone -->
+            <div class="col-sm-6">
+              <label>Phone</label>
+              <input class="form-control" formControlName="phone_no" />
+            </div>
+
+            <!-- Subject (FIXED - NO disabled conflict) -->
+            <div class="col-sm-6">
+              <label>Subject</label>
+              <input class="form-control" formControlName="Subject" [readonly]="true" />
+            </div>
+
+            <!-- Message -->
+            <div class="col-sm-12">
+              <label>Message</label>
+              <textarea class="form-control" formControlName="textarea"> </textarea>
+            </div>
+
+            <!-- File Upload -->
+            <div class="col-sm-12">
+              <label>Upload CV</label>
+              <input type="file" (change)="onFileChange($event)" />
+              <small>{{ filename }}</small>
+            </div>
+
+            <!-- Submit -->
+            <div class="col-sm-12">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="angForm.invalid || !selectedFile || loading"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

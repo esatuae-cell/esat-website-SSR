@@ -1,0 +1,31 @@
+<section class="solution-business pad-50" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 app-header">
+        <div class="honeycomb-wrapper">
+          @for (row of rows; track $index; let rowIndex = $index) {
+            <ul
+              class="honeycomb-row"
+              [class.odd-row]="rowIndex % 2 === 0"
+              [class.even-row]="rowIndex % 2 === 1"
+            >
+              @for (item of row; track item.route) {
+                <li class="honeycomb-cell">
+                  <a class="honeycomb-link" [routerLink]="[item.route]">
+                    <img class="honeycomb-cell_img" [src]="item.image" />
+
+                    <div class="honeycomb-cell_title">
+                      {{ item.title }}
+                    </div>
+                  </a>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Child route renders here -->

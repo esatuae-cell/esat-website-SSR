@@ -1,0 +1,195 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product budjer">
+  <div class="container">
+    <div class="row" style="padding-top: 1vh">
+      <div class="col-sm-12">
+        <div class="background-clo" data-aos="fade-up">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              Find out how to easily track time and accurately calculate the overall costs for
+              project tasks.
+            </p>
+          </div>
+        </div>
+        <div class="overview" data-aos="fade-up">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <!-- [innerHtml]='dataValue.acf.overview' -->
+          <div class="bottom">
+            Budget and Project Management Solution manages all aspects of your business. It provides
+            you with the tools to allocate project resources accurately and efficiently. It also
+            enables you to generate a project-wise profitability report via cost centers associated
+            with projects/sub-projects. This solution enables you to effectively plan your project
+            so that you can specify multiple tasks that are to be performed and other works that are
+            to be done during the execution of a project. It also provides you with the option to
+            record the details of resources involved in project implementation. Budget and Project
+            Management Solution allows you to define material requirements and resources for the
+            project, based on the specific task at hand.
+          </div>
+        </div>
+        <div class="featureandbenif" data-aos="fade-up">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Increased productivity</h5>
+                <p>
+                  This will lead to increased productivity by allowing you to plan ahead of the
+                  project. By using this option, you will be able to organize the steps by priority
+                  and create a sequence of steps for working even faster.
+                </p>
+
+                <h5 class="f-14">Accurate project estimation</h5>
+                <p>
+                  This option helps you estimate job costs, budget, and billing processes related to
+                  the project, and accurately calculate the overall project costs.
+                </p>
+
+                <h5 class="f-14">Target budget (BOQ Vs Actual)</h5>
+                <p>
+                  This option enables you to consolidate project revenues and expenses that will
+                  help ensure that projects are on target.
+                </p>
+
+                <h5 class="f-14">Easy risk management</h5>
+                <p>
+                  This feature allows you to easily track resources and performance of individuals
+                  involved in the implementation of a project so that you can identify issues and
+                  possible risks involved in the project.
+                </p>
+
+                <h5 class="f-14">Estimation & Budgeting</h5>
+                <h5 class="f-14">
+                  Budgeting Analysis by Labour, Material, Equipment, Service and Overhead
+                </h5>
+                <h5 class="f-14">Creation of phase for each project</h5>
+                <h5 class="f-14">Option to Capture project-related Costs</h5>
+              </div>
+              <div></div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Profit Analysis by Projects</h5>
+                <h5 class="f-14">Project Budgeting, Actual & Variance Reporting</h5>
+                <h5 class="f-14">Project Progress/status tracking</h5>
+                <h5 class="f-14">Project profit calculation</h5>
+                <p>
+                  Generate an overall project performance report by comparing actual revenue and
+                  expenses with estimated revenue and expenses so that you can calculate the actual
+                  profit derived from the project.
+                </p>
+                <h5 class="f-14">Item expense - Costcode wise</h5>
+
+                <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
+                <p>
+                  The Budget & Project Module's Group Reports and Dashboards assist businesses in
+                  making data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+              </div>
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red" (click)="openLightbox(i)">
+                  View enlarged image
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif" data-aos="fade-up">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Projects & Projects Phase plans.</li>
+                <li><i class="icon-esatform"></i> Contracts Handling</li>
+                <li><i class="icon-esatform"></i> Cost Codes</li>
+                <li><i class="icon-esatform"></i> Cost Code (Budgeted)</li>
+                <li><i class="icon-esatform"></i> Bill Of Quantity (BOQ)</li>
+                <li>
+                  <i class="icon-esatform"></i> Budget and Estimation (Labour, Material,
+                  Subcontract, Overhead etc.)
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Workload</li>
+                <li><i class="icon-esatform"></i> Project Planning & Progress</li>
+                <li><i class="icon-esatform"></i> Project Streaming</li>
+                <li><i class="icon-esatform"></i> Work Order Progress</li>
+                <li><i class="icon-esatform"></i> WBS (Work Breakdown Structure)</li>
+                <li><i class="icon-esatform"></i> Process Tracking (WBS %) and Billing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

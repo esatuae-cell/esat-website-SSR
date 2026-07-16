@@ -1,0 +1,182 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product realestate" data-aos="fade-up">
+  <div class="container">
+    <div class="row" style="padding-top: 1vh">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              This solution maintains and manages the entire business process of a real estate
+              developer or a broker from end to end.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'> -->
+          <div class="bottom">
+            Real Estate Management Solution is a comprehensive solution for the real estate
+            industry. The entire business process of either a real estate developer or a broker is
+            managed and maintained from start to end by using this solution. It automatically
+            integrates data about billing, payments, collections, vacancies, and transfers. Real
+            Estate Management Solution involves processes, systems and the manpower required to
+            manage the life cycle of all acquired property, including acquisition, control,
+            accountability, maintenance, utilization and disposition. It enables local property
+            managers and maintenance personnel to manage day-to-day operations related to their
+            properties.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 pt-3">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Perform routine tasks easily</h5>
+                <p>
+                  This solution is designed to help you easily perform routine tasks, such as
+                  collecting rent payments and handling maintenance requests.
+                </p>
+
+                <h5 class="f-14">Complete financial reports</h5>
+                <p>
+                  You can have the complete key financial reports of your business along with income
+                  and expenses.
+                </p>
+
+                <h5 class="f-14">Real-time reports</h5>
+                <p>Generate real-time reports whenever you need and maintain records.</p>
+                <h5 class="f-14">An easy way to respond to clients’ requests</h5>
+                <p>
+                  Customer Support is available to help you out along the way and make sure that you
+                  are able to respond to your clients’ requests.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
+                <p>
+                  The Real Estate Module's Group Reports and Dashboards assist businesses in making
+                  data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+              </div>
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red" (click)="openLightbox(i)">
+                  View enlarged image
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Property Owner</li>
+                <li><i class="icon-esatform"></i> Main Property</li>
+                <li><i class="icon-esatform"></i> Property Master</li>
+                <li><i class="icon-esatform"></i> Property Unit</li>
+                <li><i class="icon-esatform"></i> Property Tree</li>
+                <li><i class="icon-esatform"></i> Business Partner</li>
+                <li><i class="icon-esatform"></i> Property Inquiry (CAF)</li>
+                <li><i class="icon-esatform"></i> Property Reservation (Offer Letter)</li>
+                <li><i class="icon-esatform"></i> Memorandum of Understanding (MOU)</li>
+                <li><i class="icon-esatform"></i> Property Contract</li>
+                <li><i class="icon-esatform"></i> Property Amendment & Renewals</li>
+                <li><i class="icon-esatform"></i> Assignment</li>
+                <li><i class="icon-esatform"></i> Customer Complaint Registration</li>
+                <li><i class="icon-esatform"></i> Legal Case</li>
+                <li><i class="icon-esatform"></i> Lead and Potential Management</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Contract Renewal Followup</li>
+                <li><i class="icon-esatform"></i> Resident Master</li>
+                <li><i class="icon-esatform"></i> Consumption Reading</li>
+                <li><i class="icon-esatform"></i> Monthly Turnover</li>
+                <li><i class="icon-esatform"></i> Rental Billing</li>
+                <li><i class="icon-esatform"></i> Penalty Operation</li>
+                <li><i class="icon-esatform"></i> Charge Invoice</li>
+                <li><i class="icon-esatform"></i> Work Order Subjects</li>
+                <li><i class="icon-esatform"></i> Check List</li>
+                <li><i class="icon-esatform"></i> Unit Inspection</li>
+                <li><i class="icon-esatform"></i> Preventive Maintenance Schedule</li>
+                <li><i class="icon-esatform"></i> Safety and Security Inspection</li>
+                <li><i class="icon-esatform"></i> General Repairs</li>
+                <li><i class="icon-esatform"></i> Work Order</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_10074" data-name="Group 10074" transform="translate(-545 -7516)">
+    <g id="Group_10069" data-name="Group 10069" transform="translate(1)">
+      <g id="Group_10062" data-name="Group 10062" transform="translate(33)">
+        <g id="Group_10056" data-name="Group 10056">
+          <path id="XMLID_108" data-name="XMLID 108" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0Z" transform="translate(511 7516)" fill="#3d83d9"/>
+          <g id="Group_10055" data-name="Group 10055" transform="translate(-38.285 15.898)">
+            <path id="Vector" d="M2.778,0V7.939H0V0Z" transform="translate(555.285 7509.071)" fill="#fff"/>
+            <path id="Vector-2" data-name="Vector" d="M.034,1.7A1.39,1.39,0,1,0,1.389,0,1.382,1.382,0,0,0,.034,1.7Z" transform="translate(555.285 7505.102)" fill="#fff"/>
+            <path id="Vector-3" data-name="Vector" d="M4.584,0C3.149,0,2.578.224,2.249.851V0H0V7.939H2.314V3.783c0-1.037.2-1.821,1.479-1.821,1.264,0,1.366.964,1.366,1.888V7.939H7.543s.044-5.15,0-5.5C7.356.942,6.607,0,4.584,0Z" transform="translate(559.65 7509.071)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

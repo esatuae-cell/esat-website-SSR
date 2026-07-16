@@ -1,0 +1,166 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product" data-aos="fade-up">
+  <div class="container">
+    <div class="row" style="padding-top: 1vh">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              Contract Management Solution is used to easily handle the contract details of all
+              types.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>
+
+                    </div> -->
+          <div class="bottom">
+            Contract Management Solution is used to solicit and analyze competitive bids. It’s an
+            easy-to-use tool to handle the details of all types of contracts. The Change Order
+            Management feature can track all adjustments to contract scope and control expenditures.
+            It also provides an option of progress payments, which automatically calculates retain
+            age, and real-time integration to Project Management and Financial Management features,
+            which helps ensure compliance with quality and safety standards.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Create agreements</h5>
+                <p>
+                  Create and manage subcontractor agreements, including Statement of Works (SoW) for
+                  work status
+                </p>
+
+                <h5 class="f-14">History of agreements</h5>
+                <p>
+                  Easily track the records of all agreements and compare them with other related
+                  agreements
+                </p>
+
+                <h5 class="f-14">Estimating Subcontractor</h5>
+                <p>Retain subcontract data for future reference and allow price comparison</p>
+
+                <h5 class="f-14">Automated reports</h5>
+                <p>
+                  Managers can easily generate up-to-date reports, agreements, and all other
+                  documents relating to contracts
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
+                <p>
+                  The Contract Module's Group Reports and Dashboards assist businesses in making
+                  data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+              </div>
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red" (click)="openLightbox(i)">
+                  View enlarged image
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Business Partners</li>
+                <li><i class="icon-esatform"></i> Service Master Request</li>
+                <li><i class="icon-esatform"></i> Subcontract Services</li>
+                <li><i class="icon-esatform"></i> Service Request</li>
+                <li><i class="icon-esatform"></i> Service Inquiry</li>
+                <li><i class="icon-esatform"></i> Quotation from Subcontractor</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Comparison Sheet & Tender</li>
+                <li><i class="icon-esatform"></i> Service Agreement & SLA</li>
+                <li><i class="icon-esatform"></i> Deduction Details</li>
+                <li><i class="icon-esatform"></i> Service Inspection</li>
+                <li><i class="icon-esatform"></i> Payment Certificate</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

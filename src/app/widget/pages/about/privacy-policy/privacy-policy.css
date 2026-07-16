@@ -1,0 +1,36 @@
+.down-link{
+    display:flex;
+    a{
+        color: #757575; 
+        padding-right:25px;
+        span{
+            display:block;
+            i{
+                padding-right:10px;
+            }
+        }
+    }
+    a:hover{
+        color:#122a4f;
+    }
+}
+
+.border-btm{
+    border-bottom:1px solid #000;
+    padding-bottom:20px;
+    margin-bottom:20px;
+}
+
+.env{
+    display:block;
+    i{
+        color:#122a4f;
+        font-size: 1.5rem;
+        padding-right:10px;
+    }
+    a{
+        color:#757575;
+        font-size: 1.5rem;
+    }
+
+}

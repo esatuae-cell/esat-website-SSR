@@ -1,0 +1,208 @@
+<!-- =========================
+STEP 1: MODULE SELECTION
+========================= -->
+<section class="bg-gray pad-50" *ngIf="step() === 1" data-aos="fade-up">
+  <div class="container">
+    <h1 class="text-center">Choose Your Module</h1>
+
+    <div class="common-selection mt-5">
+      <!-- MODULE LIST -->
+      <div class="module-selection" [class.module-width]="selectedModules().length > 0">
+        <ul class="select-option">
+          <li
+            *ngFor="let module of modules"
+            (click)="toggleModule(module)"
+            [class.active]="isSelected(module)"
+          >
+            <i *ngIf="module.icon; else imgTpl" [class]="module.icon + ' modIcon'"></i>
+
+            <div class="">
+              <ng-template #imgTpl>
+                <img *ngIf="module.image" [src]="module.image" class="modImg" [alt]="module.name" />
+              </ng-template>
+            </div>
+            <span>{{ module.name }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SELECTED PREVIEW -->
+      <div class="selected-preview" *ngIf="selectedModules().length > 0">
+        <h4 class="text-center">Selected Modules</h4>
+        <span class="divider"></span>
+        <div
+          class="selected-item"
+          *ngFor="let module of selectedModules()"
+          (click)="removeModule(module)"
+        >
+          <i *ngIf="module.icon; else prevImg" [class]="module.icon + ' modIcon'"></i>
+
+          <ng-template #prevImg>
+            <img *ngIf="module.image" [src]="module.image" class="modImg" />
+          </ng-template>
+
+          <span>{{ module.name }}</span>
+        </div>
+
+        <p class="text-center mt-3">15 days free with unlimited users</p>
+
+        <button
+          class="btn btn-primary w-100"
+          (click)="goToForm()"
+          [disabled]="selectedModules().length === 0"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+STEP 2: FORM
+========================= -->
+<section class="pad-50 bg-gray" *ngIf="step() === 2">
+  <div class="container">
+    <div class="boxed">
+      <h1 class="text-center mb-4">Get Started</h1>
+
+      <!-- HEADER -->
+      <div class="d-flex justify-content-between mb-3">
+        <p>
+          <b>{{ selectedModules().length }}</b> module selected
+        </p>
+
+        <button class="btn btn-link bg-danger" (click)="goBack()">
+          <i class="fa fa-long-arrow-left pe-3"></i> Back
+        </button>
+      </div>
+
+      <!-- REACTIVE FORM -->
+      <form [formGroup]="form" (ngSubmit)="goToReview()">
+        <div class="row g-3">
+          <!-- FULL NAME -->
+          <div class="col-md-6">
+            <label>Full Name</label>
+            <input type="text" class="form-control" formControlName="fullName" />
+
+            <small
+              class="text-danger"
+              *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched"
+            >
+              Name is required (min 3 chars)
+            </small>
+          </div>
+
+          <!-- COMPANY -->
+          <div class="col-md-6">
+            <label>Company Name</label>
+            <input type="text" class="form-control" formControlName="companyName" />
+          </div>
+
+          <!-- EMAIL -->
+          <div class="col-md-6">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email" />
+
+            <small
+              class="text-danger"
+              *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+            >
+              Enter valid email
+            </small>
+          </div>
+
+          <!-- PHONE -->
+          <div class="col-md-6">
+            <label>Phone</label>
+            <input type="tel" class="form-control" formControlName="phone" />
+          </div>
+
+          <!-- COUNTRY -->
+          <div class="col-md-4">
+            <label>Country</label>
+            <select class="form-select" formControlName="country">
+              <option value="">Select Country</option>
+              <option>UAE</option>
+              <option>Saudi Arabia</option>
+              <option>India</option>
+              <option>Qatar</option>
+            </select>
+          </div>
+
+          <!-- LANGUAGE -->
+          <div class="col-md-4">
+            <label>Language</label>
+            <select class="form-select" formControlName="language">
+              <option value="">Select Language</option>
+              <option>English</option>
+              <option>Arabic</option>
+            </select>
+          </div>
+
+          <!-- COMPANY SIZE -->
+          <div class="col-md-4">
+            <label>Company Size</label>
+            <select class="form-select" formControlName="companySize">
+              <option value="">Select Size</option>
+              <option>1–10</option>
+              <option>11–50</option>
+              <option>51–200</option>
+              <option>200+</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- BUTTON -->
+        <div class="mt-4">
+          <button class="btn btn-primary w-100" type="submit" [disabled]="form.invalid">
+            Review
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+STEP 3: REVIEW
+========================= -->
+<section class="pad-50 bg-gray" *ngIf="step() === 3">
+  <div class="container">
+    <div class="boxed">
+      <h1 class="text-center mb-4">Review Details</h1>
+
+      <div class="review-box">
+        <!-- USER INFO -->
+        <h4>Personal Info</h4>
+
+        <p><b>Name:</b> {{ form.value.fullName }}</p>
+        <p><b>Email:</b> {{ form.value.email }}</p>
+        <p><b>Phone:</b> {{ form.value.phone }}</p>
+        <p><b>Country:</b> {{ form.value.country }}</p>
+        <p><b>Company:</b> {{ form.value.companyName }}</p>
+
+        <hr />
+
+        <!-- MODULES -->
+        <h4>Selected Modules</h4>
+
+        <div class="d-flex flex-wrap gap-2 review-sec">
+          <span class="badge" *ngFor="let m of selectedModules()">
+            {{ m.name }}
+          </span>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="mt-4 d-flex gap-2">
+          <button class="btn btn-danger" (click)="editForm()">Edit</button>
+
+          <button class="btn btn-success" (click)="submit()" [disabled]="loading()">
+            <span *ngIf="!loading()">Confirm & Submit</span>
+            <span *ngIf="loading()">Submitting...</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

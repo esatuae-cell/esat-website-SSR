@@ -1,0 +1,175 @@
+
+
+
+.align-custom{
+    width:25%;
+    font-family: neo-sans, sans-serif;
+    color:#262f3c;
+}
+.align-custom-1{
+    width:30%;
+    font-family: neo-sans, sans-serif;
+    color:#262f3c;
+}
+.header-content{
+    font-weight:300;
+    font-size: clamp(16px, 3vw, 52px);
+    border-top:1px solid #262f3c;
+    border-bottom:1px solid #262f3c;
+padding:20px 0;
+}
+.header-content span{
+    font-weight:500;
+    display:block;
+   font-size: clamp(16px, 3vw, 52px);
+}
+.carousel-item .carousel-caption{
+    position: absolute;
+    bottom: 2.25rem;
+    left: 10%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+.read-bttn{
+    background:#122a4f;
+    color:#fff;
+    border: none;
+}
+.hrms{
+    position: relative;
+    font-family: icomoon1 !important;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+.hrms:before{
+    position: absolute;
+    content: "\e900";
+    color: #364356;
+    font-size: 120px;
+    margin: 0 auto;
+    left: 0px;
+    right: 0px;
+    top: -150px;
+}
+.it-solutions .carousel-caption{
+    position: absolute;
+    bottom: 12rem;
+    left: 10%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+.Infrastructure .carousel-caption{
+    position: absolute;
+    bottom: 1.25rem;
+    left: 5%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+.our-theme .carousel-indicators [data-bs-target]{
+    background-color: #92929e;
+}
+.it-solution-sli{
+    border-bottom:1px solid #dfdfdf;
+}
+
+
+/* responsive */
+
+@media (min-width: 2560px)  {
+
+     .mrh-slide{ width: 30%; position: absolute;    bottom: 10rem!important;} 
+.esat-cloud-slide{ width: 30%;    bottom: 10rem!important;}
+.vat-slider{width: 30%;    bottom: 10rem!important;}
+.it-solution-slider{  bottom: 20rem!important;}
+.soft-package-slide{ bottom: 17rem!important;}
+.it-infra-slider{bottom: 4rem!important;}
+}
+
+
+@media (min-width: 1441px) and (max-width: 1920px) {
+
+.mrh-slide{ width: 35%; position: absolute; bottom: 5rem!important;} 
+.esat-cloud-slide{ bottom:5rem!important;}
+.vat-slider{width: 37%;    bottom: 8.25rem!important;}
+.it-solution-slider{  bottom: 11rem!important;}
+.soft-package-slide{ bottom: 7rem!important;}
+.it-infra-slider{bottom: 0rem!important;}
+}
+
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+
+ .mrh-slide{ width: 37%; position: absolute;bottom: 0.25rem!important;}   
+.esat-cloud-slide{    width: 48%;    left: 3%!important; bottom: 4.25rem!important;}
+.vat-slider{width: 37%;}
+.it-solution-slider{ width:45%!important; bottom: 5rem!important;}
+.it-infra-slider{
+    p{display:none}
+}
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+ .mrh-slide {  width: 47%!important;}    
+.esat-cloud-slide {
+bottom: 3.25rem!important;
+    left: 4%!important;
+    width: 43%;
+p{ display:none;}
+
+}
+.vat-slider{  width: 36%!important;
+    p{display:none;}
+}
+.it-solution-slider{ width:52%!important;  bottom: 2rem!important;
+p{display:none;}
+}
+
+.soft-package-slide{width: 38%!important;
+p{display:none;}
+
+}
+.it-infra-slider{
+    p{display:none}
+}
+}
+
+
+
+@media (max-width: 768px) {
+.header-content{    top:10%;    display:none;}
+.mrh-slide{   top: 49%;    width: 48% !important;}
+.esat-cloud-slide{    display:none!important;}
+.vat-slider{display: none !important;}
+.it-solution-slider{ display:none!important}
+.soft-package-slide{ display:none!important;}
+.it-infra-slider{display:none!important;}
+}
+
+@media (max-width: 479px) {    
+    .carousel-indicators {  position: absolute;        right: 0;        bottom: -45px;    }
+
+
+
+}
+
+
+.carousel-fade .carousel-item {
+    transition-property: opacity;
+    transition-duration: 1.2s; /* Increase for slower, smoother fade */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* Professional easing */
+}
+
+/* Ensure the active item stays smooth during the swap */
+.carousel-fade .active.carousel-item-start,
+.carousel-fade .active.carousel-item-end {
+    transition: opacity 1.2s ease-in-out;
+}

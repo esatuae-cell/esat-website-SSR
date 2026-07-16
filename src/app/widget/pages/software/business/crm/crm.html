@@ -1,0 +1,250 @@
+<app-business-line-nav></app-business-line-nav>
+
+<!-- <app-software></app-software> -->
+
+<section class="product crm" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 class="reduce" [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara" style="top: 63px; padding: 10px 15px">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              Customer Relationship Management (CRM) Solution provides professional services to all
+              sectors with complete customer intelligence to manage relationships and
+              customer-related processes.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>
+
+                    </div> -->
+          <div class="bottom">
+            Customer Relationship Management (CRM) Solution is designed to support your company or
+            organization in managing customer data and customer interaction. It provides easy access
+            to business information by automating sales, marketing and customer support, while
+            managing employee, vendor and partner relationships. It is a valuable tool that allows
+            you, as a company leader, to better anticipate customer needs and improve the services
+            that you are offering. CRM Solution helps provide services or products to customers as
+            per their requirements. It also enables better customer service by supporting the sales
+            teams to sell more effectively and close accounts faster. CRM Solution facilitates data
+            storage and access to all your company data from a single location, thus making it
+            possible for your company to develop efficient automated processes to improve business
+            practices.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <!-- <h5>{{ovrleft.title}}</h5>
+                                <p>{{ovrleft.description}}</p> -->
+
+                <h5 style="text-align: left">
+                  Customer Service Experience and Self-Service Customer Portal
+                </h5>
+                <p>
+                  Understand and retain customers by providing them with better service experiences
+                  by tracking cases efficiently.
+                </p>
+
+                <h5>Increased Revenue</h5>
+                <p>Close new contracts and increase your revenue</p>
+
+                <h5>Easy-to-Access & Automate WorkFlow</h5>
+                <p>
+                  To keep customer information organized and easily retrievable, Create workflow
+                  automation that operates your needs.
+                </p>
+
+                <h5>Contact Management</h5>
+                <br />
+                <h5>Sales Force automation</h5>
+                <p>
+                  Know which sales lead and lead scoring to prioritize your follow-ups & rich your
+                  data by social media account.
+                </p>
+                <h5>Call Center Support for Customers</h5>
+                <br />
+                <h5>Centralized data storage</h5>
+                <p>
+                  All data are stored in a single location and can be instantly accessed by
+                  management and employees whenever needed & connected to social media.
+                </p>
+
+                <h5>Contract Management ( SLA )</h5>
+                <p>Call, SMS & send Emails to get in touch with prospects.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <!-- <h5>Customer Feedback</h5>
+                                <p>Attract new customers through positive feedback and referrals</p> -->
+                <h5>Time-Saving and Greater Productivity</h5>
+                <p>
+                  Inefficient practices are eliminated to give you more valuable time to focus on
+                  your overall business strategy
+                </p>
+
+                <h5>Warranty/Service Orders Management</h5>
+                <br />
+                <h5>Solution Knowledge Base</h5>
+                <br />
+                <h5>Marketing campaigns & Reporting</h5>
+                <br />
+                <h5>Client by Conversion & Survey</h5>
+                <br />
+                <h5>Reports, dashboards, and business intelligence.</h5>
+                <p>
+                  The CRM Module's Group Reports and Dashboards assist businesses in making
+                  data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+                <br />
+              </div>
+              <div *ngFor="let image of _albums; let i = index">
+                <h5>{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center color-red">View enlarged image</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6">
+              <!-- <ul>
+                                <li *ngFor="let components of dataValue.acf.components; let $index = index;">
+                                    <div *ngIf="$index < 9">
+                                       <i class="icon-esatform"></i>{{components.name}} 
+
+                                        
+                                        
+                                    </div>
+                                </li>
+                            </ul> -->
+              <ul>
+                <li><i class="icon-esatform"></i> Campaign Contacts & Marketing Activities</li>
+                <li><i class="icon-esatform"></i> Leads Management</li>
+                <li><i class="icon-esatform"></i> Potential</li>
+                <li><i class="icon-esatform"></i> Business Partner & Social Media</li>
+                <li><i class="icon-esatform"></i> Business Partner Group</li>
+                <li><i class="icon-esatform"></i> Cases (Customer Care Process)</li>
+                <li><i class="icon-esatform"></i> Cheque Collection Log</li>
+                <li><i class="icon-esatform"></i> CRM Attachment</li>
+                <li><i class="icon-esatform"></i> Facility Inquiry</li>
+                <li><i class="icon-esatform"></i> Property Inquiry</li>
+                <li><i class="icon-esatform"></i> Sales Inquiry</li>
+                <li><i class="icon-esatform"></i> Meeting Schedule</li>
+                <li><i class="icon-esatform"></i> Meeting</li>
+                <li><i class="icon-esatform"></i> Matter to Discuss</li>
+                <li><i class="icon-esatform"></i> Visitor Log</li>
+                <li><i class="icon-esatform"></i> Customer Survey</li>
+                <li><i class="icon-esatform"></i> Customer Survey Settings</li>
+                <li><i class="icon-esatform"></i> Facility Quotation</li>
+                <li><i class="icon-esatform"></i> Property Quotation</li>
+                <li><i class="icon-esatform"></i> Sales Quotation</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <!-- <ul>
+                                <li *ngFor="let components of dataValue.acf.components; let $index = index;">
+                                    <div *ngIf="$index > 8">
+                                        <i class="icon-esatform"></i>{{components.name}}
+                                    </div>
+                                </li>
+                            </ul> -->
+
+              <ul>
+                <li><i class="icon-esatform"></i> Facility Contract</li>
+                <li><i class="icon-esatform"></i> Property Contract</li>
+                <li><i class="icon-esatform"></i> Sales Agreement</li>
+                <li><i class="icon-esatform"></i> Sales Order</li>
+                <li><i class="icon-esatform"></i> Facility Amendment</li>
+                <li><i class="icon-esatform"></i> Property Amendment</li>
+                <li><i class="icon-esatform"></i> Client Evaluation</li>
+                <li><i class="icon-esatform"></i> Contract Renewal Followup</li>
+                <li><i class="icon-esatform"></i> Contract Clearance</li>
+                <li><i class="icon-esatform"></i> Client Account Analysis</li>
+                <li><i class="icon-esatform"></i> Document Registration</li>
+                <li><i class="icon-esatform"></i> Facility Availability</li>
+                <li><i class="icon-esatform"></i> Property Availability</li>
+                <li><i class="icon-esatform"></i> Service Availability</li>
+                <li><i class="icon-esatform"></i> Products Availability</li>
+                <li><i class="icon-esatform"></i> Work Permit</li>
+                <li><i class="icon-esatform"></i> Help Desk for Call Center</li>
+                <li><i class="icon-esatform"></i> Customer Feedback</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-h3">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-h3" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-h3" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

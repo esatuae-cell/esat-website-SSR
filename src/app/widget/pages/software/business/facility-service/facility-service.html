@@ -1,0 +1,579 @@
+<app-business-line-nav></app-business-line-nav>
+
+<!-- <app-software></app-software> -->
+<section class="product" data-aos="fade-up">
+  <div class="container">
+    <div class="row" style="padding-top: 1vh">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              ESAT Facility Management Solution simplifies complex operations, aids in cost
+              reduction and increases efficiency.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>
+                    </div> -->
+          <div class="bottom">
+            Facility Management Solution is designed to help with operating and maintaining
+            commercial/industrial properties. It maintains, manages and tracks assets, properties,
+            facilities and equipment to achieve optimal performance. This solution allows for
+            effective management and tracking of trends for facility usage in centralized
+            applications. Facility Management Solution manages registrations and sorts job requests.
+            It can also help your organization to effectively enhance its reservation system and
+            operations, and to manage and maximize space in the facility by using AutoCAD floor
+            plans.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Customer Service and Experience</h5>
+                <p>
+                  Deeply understand and retain your customers through better customer services and
+                  experiences
+                </p>
+
+                <h5 class="f-14">Efficient Control System</h5>
+                <p>
+                  Enhances productivity, safety, and operations through integration and effective
+                  coordination of all control systems
+                </p>
+
+                <h5 class="f-14">Automatic Billing and Information Tracking</h5>
+                <p>Automatic generation of bills and easy tracking of tenant payment information</p>
+
+                <h5 class="f-14">Advanced Helpdesk System</h5>
+                <p>
+                  Improved helpdesk support functions by maintaining a complete record of messages,
+                  events, and actions taken
+                </p>
+
+                <h5 class="f-14">Simple Operating System</h5>
+                <p>Simplifies facility operations and building systems</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <h5>Advanced Space Utility</h5>
+                <p>
+                  Option for managing, allocating, and utilizing occupancy and free space in an
+                  efficient manner
+                </p>
+
+                <h5>Reports, dashboards, and business intelligence.</h5>
+                <p>
+                  The Facility & Service Module's Group Reports and Dashboards assist businesses in
+                  making data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+              </div>
+              <div *ngFor="let image of _albums; let i = index">
+                <h5>{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center color-red" (click)="openLightbox(i)">View enlarged image</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
+            ></i>
+          </div>
+          <div class="bottom row facilityy" [hidden]="component">
+            <div class="col-sm-12">
+              <h4 class="f-18"><i class="icon-esatform"></i> ADMINISTRATION</h4>
+              <p>
+                ESAT Helpdesk System manages the registration and assignment of requests, and keeps
+                track of the resolved cases opened with your organization/company. This system will
+                enable you to view any information including actions taken, events, follow-ups,
+                messages exchanged, response times and user feedbacks at any time. This information,
+                which is easily accessible and presented in a user-friendly format, will enable you
+                to analyze and improve the helpdesk service and dispute resolution functions in your
+                company.
+              </p>
+              <p><b>Key features</b></p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i> Booking via phone, email,
+                      self-registration, telephone calls and BMS/BAS alarms
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i> Option for registering issues, job
+                      requests, etc.
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i> Priority assignment based on nature of
+                      errors, distribution, monitoring, and task
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i> Escalation based on the SLAs deﬁned</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i> Option for recording all events throughout
+                      the life cycle of a call
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i> Raising, tracking and closing work orders
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i> Option for recording solutions and post in
+                      the knowledge-based service-level analysis section
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i> Call response analysis, faults and
+                      solutions history
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i> FAQs and links</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i> Exchange of information between job
+                      requestor and operator via message option
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <h4 class="f-18"><i class="icon-esatform"></i> VISITOR MANAGEMENT</h4>
+              <p>
+                Security requirements for large organizations and infrastructures are challenging
+                and becoming tougher day by day. Visitors should be screened, registered, signed-in
+                quickly and allowed to visit only the relevant areas via integration with access
+                control devices— all these functions are provided and manage efficiently by ESAT
+                Visitor Management System.
+              </p>
+              <p><b>Key features</b></p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li><i class="icon icon-handLeaf"></i>Online requests for appointment</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Pre-registration of groups and individuals
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Email/SMS notiﬁcations</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Today’s appointments and expected visitors
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Visitor self-sign-in using touch screen
+                      kiosks
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Visitor sign-out</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Business card scanning for speedy
+                      registrations
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Visitor history tracking</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Access control system/Turnstile gates
+                      integration
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li><i class="icon icon-handLeaf"></i>Blacklisting of visitors</li>
+                    <li><i class="icon icon-handLeaf"></i>Visitor photo and signature capture</li>
+                    <li><i class="icon icon-handLeaf"></i>Smartcards/E-Passports integration</li>
+                    <li><i class="icon icon-handLeaf"></i>Items carried into/out of scanning</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Printing of visitor/contractor badges/passes
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Visitor/contractor badge designer</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Gate pass printing & returnable items
+                      tracking
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>MS Exchange/MS Outlook integration for
+                      appointments calendar
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <h4 class="f-18"><i class="icon-esatform"></i> FACILITY BOOKING</h4>
+              <p>
+                ESAT Facility Booking System helps streamline reservations and usage of common and
+                individual facilities by businesses in a building complex. The
+                internet/intranet-enabled facility booking, approval and billing across the
+                organization to enhance operation efficiency. Meeting rooms, conference halls, desk
+                space, ofﬁce space auditoriums, high-cost equipment, training facilities, etc. can
+                be booked via this system.
+              </p>
+              <p><b>Key features</b></p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li><i class="icon icon-handLeaf"></i>Facility directory</li>
+                    <li><i class="icon icon-handLeaf"></i>Online/offline booking requests</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Visual booking using graphical interface
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Re-allocation, cancellation</li>
+                    <li><i class="icon icon-handLeaf"></i>Email/SMS notiﬁcations</li>
+                    <li><i class="icon icon-handLeaf"></i>Utilization analysis</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Conﬁrmation, rejection, suggestion of
+                      alternative facilities
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li><i class="icon icon-handLeaf"></i>Car park booking</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Billing for reservations & cancellations
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Scheduling of refreshment orders for
+                      catering service providers
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Inviting internal & external attendees for
+                      meetings
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Pre-registration of attendees with visitor
+                      management
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Option to switch on/off the HVAC and
+                      lighting automatically with BAS/BMS integration
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <h4 class="f-18">
+                <i class="icon-esatform"></i> ROOM MANAGEMENT AND ADMINISTRATION FUNCTION
+              </h4>
+              <p>
+                ESAT Room Management System assists in room operations of large ofﬁce complexes to
+                track the outgoing and incoming consignments until their delivery. Room Management
+                is also used by companies such as hotel, real estate, etc. to manage facilities.
+              </p>
+              <p>
+                This system monitors and records the delivery status, analyses the service
+                providers’ performance, and reports SLA violations, if any. Additionally, Room
+                Management System comes with an invoice generation feature that you can used for the
+                consignments delivered.
+              </p>
+              <p>
+                ESAT has comprehensive administration functions to manage various conﬁguration
+                parameters, system integration settings, look-up lists, etc.
+              </p>
+              <p><b>Key features</b></p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>The powerful audit trail conﬁgurator allows
+                      administrators to enable/disable audit trails at each table level and column
+                      level. Through this way, the company can completely leverage the traceability
+                      that this system provides.
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Being a large application that it is, ESAT
+                      ERP contains all the information that is common to various modules. To avoid
+                      duplication, information is controlled from a centralized point.
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>The security policy management features
+                      ensure the highest level of data security
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>The application is generally globalized;
+                      however, localized applications are also available in several languages
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>The system is seamlessly integrated into
+                      Microsoft active directory, Oracle Single Sign-on, LDAP, etc. to provide
+                      integrated security control
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <h4 class="f-18"><i class="icon-esatform"></i> SPACE MANAGEMENT</h4>
+              <p>
+                ESAT Space Management System assists in tracking the availability of rooms in a
+                facility and allocating space to the departments in an efﬁcient manner. It also
+                tracks occupancy for utilization analysis and reports. This system helps with
+                chargeback and accounting whether it concerns a department, project or account
+                leading to an efficiently managed space.
+              </p>
+              <p>
+                This system is fitted with an option that relies on floor plans imported from
+                AutoCAD, in order to manage and visually allocate spaces. The display of utilization
+                analysis dashboard augments creates user-friendly manifolds.
+              </p>
+              <p><b>Key features</b></p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Creation and management of inventory relying
+                      on AutoCAD floor plans
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Allocation of seats to employees based on
+                      department, accounts or project
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Allocation of speciﬁc time-slots, shifts and
+                      timeframes
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Extensive reporting capability</li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Assignment of space ownership to
+                      departments, accounts or projects
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Cross-utilization of space across
+                      departments, accounts or projects
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Visual display of utilization, occupancy,
+                      free space, and visual allocation of space using AutoCAD-based floor plans
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <h4 class="f-18"><i class="icon-esatform"></i> RESIDENTS</h4>
+              <p>
+                ESAT Card Management System assists in managing the creation, issuance and tracking
+                of badges and passes of employees, contractors and daily visitors.
+              </p>
+              <p><b>Key features</b></p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Registration of employees, contractors,
+                      temporary staff and drivers
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Issuance of badges/passes to employees,
+                      contractors, temporary staff and drivers
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Badge/pass printing</li>
+                    <li><i class="icon icon-handLeaf"></i>Temporary badge issuance</li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Setting and tracking of expiry dates on the
+                      issued badges/passes
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Registry of badges issued, badges expired
+                      and badges nearing their expiry date
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Email alerts to users of badges/passes that
+                      are nearing their expiry date
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <h4 class="f-18"><i class="icon-esatform"></i> BILLING</h4>
+              <p>
+                ESAT Tenant Billing System captures the resources utilization data of tenants
+                directly from the corresponding meters via BMS/BAS systems and generates bills
+                automatically, based on the predeﬁned billing rates for utilities. The ﬁxed service
+                charges, monthly rentals, maintenance fees, etc. can also be conﬁgured as needed
+                depending on the type tenant/property.
+              </p>
+              <p><b>Key features</b></p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Management of property, tenant, owner, lease
+                      and contract information
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Tenant move-in, subscriptions, and move-out
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Setting rates for card services, group of
+                      properties, etc. for normal/peak/after/override/holiday/ weekend hours
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Automatic bill generation and mass
+                      emailing/printing
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Tenant payments and credit notes tracking
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Automatic meter readings or manual input
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Bill-wise matching of payments and credit
+                      notes
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Bill registers, tenant ledgers, statements
+                      on receivables
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Occupancy/vacancy analysis</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Reminders for lease contracts nearing expiry
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Integration with other ﬁnancial applications
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <h4 class="f-18"><i class="icon-esatform"></i> OTHER SERVICES</h4>
+              <p>
+                ESAT Maintenance Management System is fitted with Enterprise Asset Management (EAM),
+                Property Management and Computerized Maintenance Management (CMMS) features that
+                assist asset managers in tracking, maintaining and managing their assets,
+                properties, facilities and equipment, thus ensuring that these assets are
+                consistently at its best performance throughout its life cycle.
+              </p>
+              <p><b>Key features</b></p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul>
+                    <li><i class="icon icon-handLeaf"></i>Asset management</li>
+                    <li><i class="icon icon-handLeaf"></i>Preventive maintenance scheduling</li>
+                    <li><i class="icon icon-handLeaf"></i>Corrective maintenance</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Service & Work order Management via
+                      self-service portal
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Resource management</li>
+                    <li><i class="icon icon-handLeaf"></i>Procurement management</li>
+                    <li><i class="icon icon-handLeaf"></i>Asset tracking with RFID, barcodes</li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li><i class="icon icon-handLeaf"></i>Contract management</li>
+                    <li><i class="icon icon-handLeaf"></i>Service Level (SLA) management</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Stores/Inventory Management Integration
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Property management</li>
+                    <li><i class="icon icon-handLeaf"></i>Key management</li>
+                    <li><i class="icon icon-handLeaf"></i>Fuel management</li>
+                  </ul>
+                </div>
+              </div>
+              <p>
+                The in-built Planned Preventive Maintenance (PPM) Library and the easy-to-use asset
+                import tool make it possible to start the implementation right away.
+              </p>
+            </div>
+            <div class="col-sm-12">
+              <ul class="last">
+                <li>
+                  <h4 class="f-18"><i class="icon-esatform"></i> FACILITY</h4>
+                </li>
+                <li>
+                  <h4 class="f-18"><i class="icon-esatform"></i> SERVICE SALES</h4>
+                </li>
+                <li>
+                  <h4 class="f-18"><i class="icon-esatform"></i> WORK ORDER</h4>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

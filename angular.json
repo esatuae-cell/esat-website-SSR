@@ -1,0 +1,114 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": "efd2f671-9416-44f6-89a6-0f0db869e1c5"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "ESATWEBSITE": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "outputMode": "server",
+
+            "ssr": {
+              "entry": "src/server.ts"
+            },
+            "tsConfig": "tsconfig.app.json",
+
+            "allowedCommonJsDependencies": ["aos", "jquery"],
+
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+              }
+            ],
+
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/aos/dist/aos.css",
+              "src/styles.css"
+            ],
+
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/aos/dist/aos.js",
+              "src/assets/js/custom.js"
+            ],
+
+            "security": {
+              "allowedHosts": ["localhost"]
+            }
+          },
+
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3MB",
+                  "maximumError": "3MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "10kB",
+                  "maximumError": "15kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+
+          "defaultConfiguration": "production"
+        },
+
+        "prerender": {
+          "builder": "@angular/build:prerender",
+          "options": {
+            "routes": ["/", "/about", "/contact", "/services"]
+          }
+        },
+
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ESATWEBSITE:build:production"
+            },
+            "development": {
+              "buildTarget": "ESATWEBSITE:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    }
+  }
+}

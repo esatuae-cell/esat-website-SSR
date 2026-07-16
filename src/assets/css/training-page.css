@@ -1,0 +1,13 @@
+.cardtraining{
+    box-shadow: 4px 5px 17px 4px #0000001f;
+    border-radius: 7px;
+    padding: 1.5vh;
+    margin-top: 4vh;
+    border: 1px solid #b0d1f3;
+}
+
+.training-detls li {
+   
+    font-size: 14px;
+    color: #5d5d5d;
+}

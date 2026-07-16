@@ -1,0 +1,174 @@
+
+.contactForm{
+background: #f7f7f7;
+height:100%;
+}
+
+.i-frame{
+    height:100%;
+    display:flex;
+}
+.text-lblue{
+    color: #456e9b;
+}
+
+.text-dblue{
+    color: #122a4f;
+}
+.vw-90{
+    display:block;
+    width:90vw;
+}
+
+
+/* .contactForm .col-sm-6{
+    min-height: 110px;
+} */
+#map{
+    padding: 0px;
+}
+agm-map{
+    height: 72vh;
+}
+#contmain {
+    padding: 25px 0;
+}
+
+ul.side-contact {
+    position: absolute;
+    top: 150px;
+    right: -150px;
+    list-style: none;
+    border-left: 1px solid #eee;
+    padding-left: 0px;
+    min-height: 300px;
+}
+ul.side-contact li{
+    padding: 15px 8px;
+    border: 1px solid #eee;
+    border-left: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+ul.side-contact li:hover{
+    background: #eee;
+}
+ul.side-contact li.active {
+    background: #112a4f;
+    color:#FFF;
+}
+
+/* lg */ 
+@media (min-width: 1200px) {
+
+}
+@media (max-width: 1024px) {
+    .textlbl {
+    font-size: 12px !important;
+}
+
+}
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* sm */
+@media (min-width: 769px) and (max-width: 991px) {
+
+	
+}
+
+/* xs */
+@media (max-width: 769px) {
+    .col-sm-6.contactForm {
+        padding: 25px 25px !important;
+    }
+}
+
+/* XS Portrait */
+@media (max-width: 479px) {
+  
+
+}
+
+.lets{
+    font-size: 21px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    color: #1b447d;
+}
+
+textarea {
+    resize: none;
+  }
+  
+
+
+
+
+
+
+
+  .textlbl {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 0 !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+}
+
+
+
+
+input.form-control {
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background: #ffffff;
+    height: 4vh;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    margin-bottom: 21px;
+    font-size: 13px;
+}
+
+
+.contactForm {
+    padding-bottom: 40px;
+}
+
+.contact-form{
+    padding-top:20px;
+}
+
+.find-section{
+    display: flex;
+     justify-content: center;
+      flex-direction: column;
+       align-content: center;
+        align-items: center;
+         position: relative; 
+         top: -2vh !important;
+}
+
+.txtesat{
+        font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    text-align: center;
+    color: #122a4f;
+}
+.oneerp{
+        font-size: 21px;
+    font-weight: normal;
+    margin: 0;
+    color: #787878;
+    text-align: center;
+}
+
+.contect-num i{
+color:#000;
+}

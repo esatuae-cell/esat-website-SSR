@@ -1,0 +1,189 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product hrm" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <!-- <p>{{dataValue.acf.description}}</p> -->
+            <p>
+              ESAT HR Management Solution is an integrated solution designed to facilitate HR
+              operations by reducing time-intensive administrative tasks.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="pt-3 f-18">Overview</h4>
+          </div>
+          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>
+
+                    </div> -->
+          <div class="bottom">
+            HR Management Solution is an integrated solution designed to facilitate HR operations by
+            reducing time-intensive administrative task. Empower and manage your workforce by
+            automating, streamlining, and extending your HR processes with the core HR
+            functionalities of ESAT-ERP on-premises software. The linkage of Financial and Human
+            Resource modules with one common database is the most important for each proprietary
+            developed predecessor. This feature makes ESAT-ERP both rigid and flexible.
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Automated processes that free up the management</h5>
+                <p>
+                  This makes it easier to enter and compile data into reports. And because a large
+                  number of daily tasks can be automated, you can rest assured that what you need to
+                  accomplish will actually get accomplished.
+                </p>
+
+                <h5 class="f-14">Effortless interview scheduling and feedback</h5>
+                <p>
+                  Integrate your external calendar to simplify interview scheduling. Use interview
+                  kits to tackle hiring bias and create a more effective and structured interview
+                  process.
+                </p>
+
+                <h5 class="f-14">Plan your recruiting strategy</h5>
+                <p>
+                  Use recruiting reports and analytics to review your current hiring plan and build
+                  a recruiting strategy for the future. Make data-driven decisions when hiring new
+                  staff.
+                </p>
+
+                <h5 class="f-14">Schedule training sessions</h5>
+                <p>
+                  Defining job descriptions means defining performance criteria to which both
+                  employees and management will refer. A dedicated HR application has even more
+                  features related to performance management, planning training courses for
+                  employees, and career evaluations.
+                </p>
+
+                <h5 class="f-14">Offer letter creation and approvals</h5>
+                <p>
+                  Create offer letter templates to get offers out there faster and improve your
+                  acceptance rate. Use a workable and trackable approval process to help management
+                  perform faster.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                <h5 class="f-14">Candidate</h5>
+                <p>All data needed to know about the candidate & resume filled out online.</p>
+
+                <h5 class="f-14">Online Candidate Portal Management</h5>
+
+                <h5 class="f-14">Reports, dashboards, and business intelligence</h5>
+                <p>
+                  The HR Module's Group Reports and Dashboards assist businesses in making
+                  data-driven decisions by gathering, analyzing, and presenting data.
+                </p>
+              </div>
+
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red">View enlarged image</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Shortage / Excess</li>
+                <li><i class="icon-esatform"></i> Recruitment Requisition</li>
+                <li><i class="icon-esatform"></i> Interview Invitation</li>
+                <li><i class="icon-esatform"></i> Employment Application</li>
+                <li><i class="icon-esatform"></i> CV Collection Against Requisition</li>
+                <li><i class="icon-esatform"></i> Processing Steps</li>
+                <li><i class="icon-esatform"></i> Evaluate & Review Applicant</li>
+                <li><i class="icon-esatform"></i> Shortlisted Applicant</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i> Interview</li>
+                <li><i class="icon-esatform"></i> Interview Summary List</li>
+                <li><i class="icon-esatform"></i> Offer Letter</li>
+                <li><i class="icon-esatform"></i> Transfer Request</li>
+                <li><i class="icon-esatform"></i> Document Collection</li>
+                <li><i class="icon-esatform"></i> Training & Resource Planning</li>
+                <li><i class="icon-esatform"></i> Actual Training</li>
+                <li><i class="icon-esatform"></i> Course Evaluation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

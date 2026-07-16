@@ -1,0 +1,239 @@
+<app-business-line-nav></app-business-line-nav>
+
+<section class="product" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img
+            src="assets/images/{{ module.thumblink }}?v={{ $rootScope.version }}"
+            class="img-responsive"
+            alt="ESAT UAE"
+          />
+          <div class="modiconinside text-center">
+            <i class="modIcon icon-{{ module.icon }}"></i>
+            <h6 [innerHtml]="module.name"></h6>
+          </div>
+          <div class="tagPrara">
+            <p>
+              Payroll Management Solution is designed to be an effective tool to remunerate each
+              employee for the services they provide to your company.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <div class="bottom">
+            <p>
+              Human Resources are fundamental for any organization. Our Payroll Management Solution
+              helps in each and every decision taken, work done and result accomplished. Employees
+              will be managed properly and motivated well, with compensation as per industry
+              standards. Payroll processing is the backbone of an organization's employee
+              operational performance and satisfaction.<br /><br />
+              The process includes calculation of salaries and tax deductions for employees, their
+              retirement beneﬁts and disbursements of salaries. This process can also be called
+              “accounts activity”, because it takes on the duty of administering employees’ salaries
+              in the organization. Dealing with the employees' salaries is not an easy task, because
+              both HR and Accounts Department have to work together. To accommodate this need,
+              Payroll Management Solution can be further divided into two sub-processes: Payroll
+              Accounting and Payroll Administration.
+            </p>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6">
+              <h5 class="f-14">Payroll accounting</h5>
+              <p>
+                Payroll accounting in ESAT Payroll Management Solution involves calculations of
+                employees' salaries and deductions
+              </p>
+
+              <h5 class="f-14">Payslip generation</h5>
+              <p>
+                ESAT Payroll Management Solution allows you to quickly and easily generate payslips
+                with different templates for your entire workforce, with minimum statutory
+                information included
+              </p>
+
+              <h5 class="f-14">Attendance</h5>
+              <p>
+                ESAT Payroll Management Solution integrates each employee of the company, providing
+                them with the facility to check their monthly and daily attendance, and an
+                attendance summary with all log details
+              </p>
+              <h5>Payroll administration</h5>
+              <p>
+                Payroll administration includes managerial activities such as maintaining employees'
+                records and referring to employment laws
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <h5 class="f-14">Added security</h5>
+              <p>
+                Rest assured that the ESAT Payroll Management Solution will adhere to the highest IT
+                security standards
+              </p>
+
+              <h5 class="f-14">Shift Management</h5>
+              <h5 class="f-14">Leave & Salary Accrual Payment</h5>
+              <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
+              <p>
+                The Payroll Module's Group Reports and Dashboards assist businesses in making
+                data-driven decisions by gathering, analyzing, and presenting data.
+              </p>
+
+              <div *ngFor="let image of _albums; let i = index">
+                <h5 class="f-14">{{ image.caption }}</h5>
+                <div class="Divmagnification">
+                  <img
+                    class="img-responsive magnification"
+                    src="{{ image.thumb }}?v={{ $rootScope.version }}"
+                    alt="ESAT UAE"
+                  />
+                  <div class="overlay" (click)="openLightbox(i)">
+                    <div class="text"><i class="Symbol-magnifying-glassset"></i></div>
+                  </div>
+                </div>
+                <h5 class="text-center f-14 color-red" (click)="openLightbox(i)">
+                  View enlarged image
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':component == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="component">
+            <div class="col-sm-6 margintop">
+              <ul>
+                <li class="">
+                  <i class="icon-esatform"></i>TIME AND ATTENDANCE
+                  <p style="text-align: justify">
+                    ESAT-ERP Time and Attendance System provides improved efﬁciency, accuracy and
+                    productivity to the resource management and payroll process of organizations.
+                    This system has an in-built roster management module; it integrates with the
+                    Time & Attendance, and accesses control hardware systems in order to provide HR,
+                    Payroll and other relevant departments with data on employees’ attendance, late
+                    clocking-in exceptions, and overtime information.
+                  </p>
+                  <p><b>Key features</b></p>
+                  <ul style="padding: 0px">
+                    <li><i class="icon icon-handLeaf"></i>Employee proﬁle</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Shift management and roster generation
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Roster approval and re-assignment</li>
+                    <li><i class="icon icon-handLeaf"></i>Overtime calculation and reporting</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Integration with other HR/Financial
+                      Accounting
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Employee tracking</li>
+                    <li><i class="icon icon-handLeaf"></i>Employee/department shift calendar</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Track time-in and time-out of every staff
+                      member
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Late clock-in, early clock-out and other
+                      exception list
+                    </li>
+                    <li><i class="icon icon-handLeaf"></i>Leave requests, workflow of approval</li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Integration with multiple access control
+                      systems
+                    </li>
+                    <li>
+                      <i class="icon icon-handLeaf"></i>Mobile SMS-based clock-in/out and leave
+                      requests
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <ul>
+                  <li><i class="icon-esatform"></i> Employee Loan Details</li>
+                  <li><i class="icon-esatform"></i> Addition / Deduction</li>
+                  <li><i class="icon-esatform"></i> Bulk Addition / Deduction</li>
+                  <li><i class="icon-esatform"></i> Shift Allocation and Rostering System</li>
+                  <li><i class="icon-esatform"></i> Daily Time Sheet</li>
+                  <li><i class="icon-esatform"></i> Monthly Time Sheet</li>
+                  <li><i class="icon-esatform"></i> Weekly Time Sheet</li>
+                  <li><i class="icon-esatform"></i> Attendance Importing and Details</li>
+                  <li><i class="icon-esatform"></i> Attendance Details</li>
+                  <li><i class="icon-esatform"></i> Monthly Attendance Summary</li>
+                  <li><i class="icon-esatform"></i> Overtime Prior Approval</li>
+                </ul>
+              </div>
+
+              <div class="col-sm-6">
+                <ul>
+                  <li><i class="icon-esatform"></i> Holiday Updation</li>
+                  <li><i class="icon-esatform"></i> Payroll Process</li>
+                  <li><i class="icon-esatform"></i> Paid/Unpaid Employee List</li>
+                  <li><i class="icon-esatform"></i> SIF File Generation</li>
+                  <li><i class="icon-esatform"></i> Wage Protection System ( WPS )</li>
+                  <li><i class="icon-esatform"></i> Payroll Project Wise</li>
+                  <li><i class="icon-esatform"></i> Leave Settlement</li>
+                  <li><i class="icon-esatform"></i> Duty Resume</li>
+                  <li><i class="icon-esatform"></i> Final Settlement & Gratuity</li>
+                  <li><i class="icon-esatform"></i> Change Status/Flight Booking</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,271 @@
+
+.bg-gray{
+background:#F2F2F2;
+height:100%;
+min-height: 100vh;
+width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxed{
+    padding:50px 25px;
+    background:#fff;
+    box-shadow: 0px 0px 13px #b7b7b7;
+}
+
+.btn-link{
+    text-decoration: none;
+    color:#fff;
+
+}
+
+.divider{
+    display:inline-block;
+    border-bottom:1px solid #000;
+
+    margin-bottom:10px;
+    width:100%;
+}
+.f-12{font-size: 12px;}
+.common-selection{
+    justify-content: space-between;
+    align-items: flex-start;
+    width:100%;
+    display:flex;
+}
+
+.module-selection.module-width {
+    width: 80%;
+    transition: 0.3s ease;
+}
+.text-theme{
+    color:#122a4f;
+    padding-right:5px;
+}
+
+.select-option{
+    text-decoration: none;
+    list-style: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display:flex;
+    width:100%;
+    max-width:100%;
+    margin: 0px;
+    padding: 0px;
+li{
+    width:24%;
+    background:#fff;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius:10px;
+    margin-bottom:30px;
+    margin-right: 10px;
+    transition-duration: 500ms;
+    cursor: pointer;
+line-height: 70px;
+    padding: 0px 10px;
+.icon-img{
+    height:50px;
+    width:50px;
+    text-align: center;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+ img{
+        width:70%; 
+    }
+}
+
+
+img.modImg {
+    width: 12%;
+    margin-right: 15px;
+}
+
+.modIcon{
+    font-size: 35px;
+    color:#15294e;
+    padding-right: 15px;
+}
+
+.Module-text{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    padding-left: 5%;
+}
+}
+
+li:hover{
+    background:#dfdfdf;
+    transition-duration: 500ms;
+}
+
+}
+
+
+.active {
+    border: 1px solid #8c8c8f;
+    background: #f0f8ff;
+    position:relative;
+}
+.active ::after{
+position:absolute;
+content:"";
+/* background-image: url(../../../assets/images/select.png); */
+background-image: url(../../../../assets/images/select.png);
+width:26px;
+height:26px;
+color:#000;
+right: -6px;
+top: -8px;
+
+}
+
+
+.selected-preview {
+   background:#fff;
+    display: flex;
+    flex-wrap: wrap;
+   width:20%;
+   padding:10px;
+}
+
+.selected-item {
+    transition-duration: 500ms;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    gap: 10px;
+    padding: 5px 5px;
+    border-radius: 8px;
+    background: #fff;
+    width:100%;
+    border-bottom:1px dotted #e7e7e7;
+    position: relative;
+    .modImg{
+      height: 30px;
+    width: 40px;
+    object-fit: contain;
+    padding: 2px 9px;
+    }
+
+    i.modIcon:before {
+    float: left;
+    padding: 10px;
+    font-size: 20px;
+    color: #112b50;
+}
+
+
+}
+
+
+
+.selected-item:hover::after{
+    position: absolute;
+    content:"";
+    right:0px;
+    background-image: url(../../../../assets/images/delete-icon.png);
+    width:20px;
+   height:20px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+   
+}
+
+
+.selected-preview.selected-width {
+    width: 19%;
+    transition: 0.3s ease;
+    border: 1px solid #e5e5e5;
+    padding:10px;
+    background:#fff;
+    
+}
+.continue-bttn{
+    text-align: center;
+    background:#8c8c8f;
+    border-radius:15px;
+    width:100%;
+    padding:10px 15px;
+    color:#fff;
+    font-size: 17px;
+}
+
+
+/* form-style */
+
+
+.form-section{
+    min-height:100vh;
+    height:100%;
+
+}
+
+.form-details{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    .form-outer{
+         width:80%;
+         .form-top{
+            display:flex;
+            justify-content: space-between;
+            width:100%;
+            padding-bottom:10px;
+            .back-to-select{
+                cursor: pointer;
+                font-size: 20px;
+               font-weight: 300;
+                transition-duration: 500ms;
+                i{
+                    font-size: 15px;
+                    padding-right:5px;
+                    font-weight: 300;
+                     transition-duration: 500ms;
+                      
+                }
+            }
+
+            .back-to-select:hover{
+                color:#122a4f;
+                i{
+                    padding-right:10px;
+                    transition-duration: 500ms;
+                
+                }
+            }
+            
+         }
+        form{
+             box-shadow: 0px 0px 5px #c9c9c9;
+        .iti{
+            width:100%;
+        }
+        .submit-bttn{
+            display:flex;
+            justify-content: flex-end;
+        }
+    }
+    }
+    
+}
+
+.review-sec{
+    span{
+        display: inline-block;
+    background: #8c8c8f;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 300;
+
+    }
+}
