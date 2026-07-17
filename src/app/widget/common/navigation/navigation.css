@@ -530,6 +530,9 @@ body {
   .comp-listing ul li a {
     font-size: 13px !important;
   }
+  .menu-item ul li {
+    white-space: nowrap;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -577,5 +580,9 @@ body {
         }
       }
     }
+  }
+
+  .menu-item ul li {
+    white-space: nowrap;
   }
 }
