@@ -239,46 +239,57 @@
   }
 }
 
-@media (min-width: 1200px) {
-  .honeycomb-cell {
-    width: 100%;
-    height: 20vh;
-    list-style: none;
-    position: relative;
-  }
-}
-
-@media (max-width: 1200px) {
-  .honeycomb-row {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .honeycomb-row {
-    grid-template-columns: repeat(5, 1fr) !important;
-  }
-  .honeycomb-cell {
-    width: 100%;
-    height: 20vh;
-    list-style: none;
-    position: relative;
-  }
-}
-
-@media (max-width: 768px) {
-  .honeycomb-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* Mobile */
+@media (max-width: 767px) {
   .solution-business {
     height: 100vh;
     display: flex;
     align-items: center;
   }
+  .honeycomb-row {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .honeycomb-cell {
+    width: 14.22%;
+    height: 5vh;
+  }
+  .honeycomb-cell_title {
+    font-size: 13px;
+  }
 }
 
-@media (max-width: 480px) {
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
   .honeycomb-row {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(7, 1fr);
   }
+  .honeycomb-cell {
+    width: 14.22%;
+    height: 5vh;
+  }
+  .honeycomb-cell_title {
+    font-size: 13px;
+  }
+}
+
+/* Laptop */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .honeycomb-row {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .honeycomb-cell {
+    width: 14.22%;
+    height: 20vh;
+  }
+  .honeycomb-cell_title {
+    font-size: 15px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) and (max-width: 1535px) {
+}
+
+/* Large Desktop */
+@media (min-width: 1536px) {
 }
