@@ -278,7 +278,7 @@
     grid-template-columns: repeat(7, 1fr);
   }
   .honeycomb-cell {
-    width: 14.22%;
+    width: 19.22%;
     height: 20vh;
   }
   .honeycomb-cell_title {

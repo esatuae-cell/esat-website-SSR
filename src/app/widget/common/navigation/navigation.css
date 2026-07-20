@@ -586,3 +586,32 @@ body {
     white-space: nowrap;
   }
 }
+
+/* Large Desktop */
+@media (min-width: 1536px) {
+}
+
+/* Desktop */
+@media (min-width: 1280px) and (max-width: 1535px) {
+}
+
+/* Laptop */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .soft-indust {
+    ul {
+      li {
+        h3 {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+}
+
+/* mobile */
+@media (max-width: 767px) {
+}
