@@ -218,7 +218,7 @@
   }
   .honeycomb-cell {
     width: 14.22%;
-    height: 5vh;
+    height: 7vh;
   }
   .honeycomb-cell_title {
     font-size: 13px;
@@ -232,10 +232,10 @@
   }
   .honeycomb-cell {
     width: 14.22%;
-    height: 5vh;
+    height: 8vh;
   }
   .honeycomb-cell_title {
-    font-size: 13px;
+    font-size: 10px;
   }
 }
 
@@ -246,7 +246,7 @@
   }
   .honeycomb-cell {
     width: 14.22%;
-    height: 20vh;
+    height: 10vh;
   }
   .honeycomb-cell_title {
     font-size: 15px;
