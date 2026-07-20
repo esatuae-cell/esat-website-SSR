@@ -815,6 +815,27 @@
   .banner-contact {
     padding: 8px 15px !important;
   }
+  .banner-section {
+    flex-wrap: nowrap;
+    height: 100% !important;
+  }
+
+  .banner-contact {
+    padding: 10px 10px !important;
+  }
+  .larg-padd {
+    margin-bottom: 0px;
+  }
+
+  #contact-form {
+    .above-md-screens {
+      .form-group {
+        .brd-bttm {
+          height: 36px;
+        }
+      }
+    }
+  }
 }
 
 /* Laptop */
