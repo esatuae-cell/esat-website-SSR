@@ -13,7 +13,7 @@
 }
 
 .honeycomb-cell {
-  width: 14.22%;
+  width: 20.22%;
   height: 20vh;
   list-style: none;
   position: relative;
@@ -242,39 +242,6 @@
   }
 } */
 
-/* Mobile */
-@media (max-width: 767px) {
-  .solution-business {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-  .honeycomb-row {
-    grid-template-columns: repeat(7, 1fr);
-  }
-  .honeycomb-cell {
-    width: 14.22%;
-    height: 20vh;
-  }
-  .honeycomb-cell_title {
-    font-size: 13px;
-  }
-}
-
-/* Tablet */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .honeycomb-row {
-    grid-template-columns: repeat(7, 1fr);
-  }
-  .honeycomb-cell {
-    width: 14.22%;
-    height: 5vh;
-  }
-  .honeycomb-cell_title {
-    font-size: 13px;
-  }
-}
-
 /* Laptop */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .honeycomb-row {
@@ -295,4 +262,38 @@
 
 /* Large Desktop */
 @media (min-width: 1536px) {
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .honeycomb-row {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .honeycomb-cell {
+    width: 20.22%;
+    height: 10vh;
+  }
+  .honeycomb-cell_title {
+    font-size: 10px;
+    padding: 10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .solution-business {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  .honeycomb-row {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .honeycomb-cell {
+    width: 14.22%;
+    height: 20vh;
+  }
+  .honeycomb-cell_title {
+    font-size: 13px;
+  }
 }

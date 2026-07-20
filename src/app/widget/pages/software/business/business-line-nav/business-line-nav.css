@@ -41,3 +41,19 @@
 .bus-line-sub li.active a {
   color: #fff;
 }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bus-line-sub {
+    li {
+      font-size: 10px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .bus-line-sub {
+    li {
+      font-size: 10px;
+    }
+  }
+}
