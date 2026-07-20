@@ -138,9 +138,10 @@
 							<a class="nav-link" routerLink="home">Home</a>
 						</li>
 
-						<li class="nav-item dropdown position-static">
-							<a class="nav-link" routerLink="about">About</a>
-							<div class="dropdown-menu vh-50 w-60 position-abt border-0 shadow-lg mega-menu ps-3 pe-3 shadow-lg mega-menu">
+						<li class="nav-item dropdown position-static" (mouseenter)="showDropdown()" (mouseleave)="hideDropdown()">
+							<a class="nav-link  " routerLink="about"  aria-expanded="false"  (click)="toggleClickDropdown($event)" >About</a>
+
+							<div class="dropdown-menu vh-50 w-60 position-abt border-0 shadow-lg mega-menu ps-3 pe-3" [class.show]="isDropdownOpen" >
 								<div class="hard-h-65 d-flex align-items-start" id="software-menu">
 									<ul class="nav flex-column me-3 align-items-center col-2" id="pills-tab" role="tablist">
 										<li class="nav-item p-0" role="presentation">
@@ -192,14 +193,13 @@
 											<div class="soft-indust col-12">
 												<ul class="me-3">
 													<li class="ps-3">
-														<a class="nav_link title-f" routerLinkActive="active" routerLink="about/founder-msg">
+														<a class="nav_link title-f " routerLinkActive="active" routerLink="about/founder-msg" (click)="closeDropdown()" >
 															<h3>Founder's Message</h3>
 															<p>ESAT Business Enterprise Edition is powerful, flexible and easy-to-use.</p>
 														</a>
 													</li>
-
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/team">
+														<a class="title-f" routerLinkActive="active" routerLink="about/team" (click)="closeDropdown()">
 															<h3>Our Team</h3>
 															<p>
 																ESAT's Facility Management Solution simplifies complex operations, aids in cost reduction and improves efficiencies.
@@ -207,7 +207,7 @@
 														</a>
 													</li>
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/environment">
+														<a class="title-f" routerLinkActive="active" routerLink="about/environment" (click)="closeDropdown()">
 															<h3>Environment</h3>
 															<p>
 																This solution maintains and manages the entire business process of a real estate developer or a broker from end to
@@ -219,7 +219,7 @@
 
 												<ul class="me-3">
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/philosophy">
+														<a class="title-f" routerLinkActive="active" routerLink="about/philosophy" (click)="closeDropdown()">
 															<h3>Our Philosophy & Responsibility</h3>
 															<p>
 																You will have better control over your employees, assets, materials, subcontracts, equipment and devices, etc.,
@@ -228,7 +228,7 @@
 														</a>
 													</li>
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/social">
+														<a class="title-f" routerLinkActive="active" routerLink="about/social" (click)="closeDropdown()">
 															<h3>Corporate Social Responsibility</h3>
 															<p>
 																ESAT Manufacturing Management System recognizes the manufacturers’ need to operate seamlessly across multiple
@@ -237,7 +237,7 @@
 														</a>
 													</li>
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/story">
+														<a class="title-f" routerLinkActive="active" routerLink="about/story" (click)="closeDropdown()">
 															<h3>Our Stories</h3>
 															<p>A Fleet Management System (FMS) is used to handle all the Fleet activities easily.</p>
 														</a>
@@ -250,7 +250,7 @@
 											<div class="soft-indust col-12">
 												<ul class="me-3">
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/experience">
+														<a class="title-f" routerLinkActive="active" routerLink="about/experience" (click)="closeDropdown()">
 															<h3>Our Industry Experience</h3>
 															<p>ESAT Business Enterprise Edition is powerful, flexible and easy-to-use.</p>
 														</a>
@@ -259,7 +259,7 @@
 
 												<ul class="me-3">
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/awards">
+														<a class="title-f" routerLinkActive="active" routerLink="about/awards" (click)="closeDropdown()">
 															<h3>Awards & Accreditations</h3>
 															<p>
 																You will have better control over your employees, assets, materials, subcontracts, equipment and devices, etc.,
@@ -275,13 +275,13 @@
 											<div class="soft-indust col-12">
 												<ul class="me-3">
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/news">
+														<a class="title-f" routerLinkActive="active" routerLink="about/news" (click)="closeDropdown()">
 															<h3>News</h3>
 															<p>ESAT Business Enterprise Edition is powerful, flexible and easy-to-use.</p>
 														</a>
 													</li>
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/qualitypolicy">
+														<a class="title-f" routerLinkActive="active" routerLink="about/qualitypolicy" (click)="closeDropdown()">
 															<h3>Quality Policy</h3>
 															<p>
 																You will have better control over your employees, assets, materials, subcontracts, equipment and devices, etc.,
@@ -293,7 +293,7 @@
 
 												<ul class="me-3">
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/privacypolicy">
+														<a class="title-f" routerLinkActive="active" routerLink="about/privacypolicy" (click)="closeDropdown()">
 															<h3>Privacy Policy</h3>
 															<p>
 																You will have better control over your employees, assets, materials, subcontracts, equipment and devices, etc.,
@@ -302,7 +302,7 @@
 														</a>
 													</li>
 													<li class="ps-3">
-														<a class="title-f" routerLinkActive="active" routerLink="about/terms">
+														<a class="title-f" routerLinkActive="active" routerLink="about/terms" (click)="closeDropdown()">
 															<h3>Terms & Conditions</h3>
 															<p>
 																You will have better control over your employees, assets, materials, subcontracts, equipment and devices, etc.,
@@ -318,9 +318,9 @@
 							</div>
 						</li>
 
-						<li class="nav-item dropdown position-static">
-							<a class="nav-link" routerLink="software">Software</a>
-							<div class="dropdown-menu dropdown-content vh-75 w-60 position-abt px-3 pt-0 border-0 bg-none sm-software shadow-lg mega-menu">
+						<li class="nav-item dropdown position-static" (mouseenter)="showDropdown()" (mouseleave)="hideDropdown()">
+							<a class="nav-link" routerLink="software" (click)="toggleClickDropdown($event)">Software</a>
+							<div class="dropdown-menu dropdown-content vh-75 w-60 position-abt px-3 pt-0 border-0 bg-none sm-software shadow-lg mega-menu" [class.show]="isDropdownOpen">
 								<div class="container container-sm p-sm-0 bg-white">
 									<div class="row mob-mnu bg-white bg-shadow">
 										<div class="col-12">
@@ -363,25 +363,25 @@
 														<div class="menu-item">
 															<ul>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/erp-software-solutions-uae">ESAT Secure ERP</a>
+																	<a routerLinkActive="active" routerLink="../software/erp-software-solutions-uae"(click)="closeDropdown()">ESAT Secure ERP</a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/erp-feature">ESAT Secure ERP Features</a>
+																	<a routerLinkActive="active" routerLink="../software/erp-feature"(click)="closeDropdown()">ESAT Secure ERP Features</a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/erp-benifites">ESAT Features & Benefits</a>
+																	<a routerLinkActive="active" routerLink="../software/erp-benifites"(click)="closeDropdown()">ESAT Features & Benefits</a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/solution-business">Solutions by Business Line</a>
+																	<a routerLinkActive="active" routerLink="../software/solution-business"(click)="closeDropdown()">Solutions by Business Line</a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/solution-industry">Solutions by Business Industry</a>
+																	<a routerLinkActive="active" routerLink="../software/solution-industry"(click)="closeDropdown()">Solutions by Business Industry</a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/package">ESAT ERP Package List </a>
+																	<a routerLinkActive="active" routerLink="../software/package"(click)="closeDropdown()">ESAT ERP Package List </a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/training">ESAT ERP Training </a>
+																	<a routerLinkActive="active" routerLink="../software/training"(click)="closeDropdown()">ESAT ERP Training </a>
 																</li>
 															</ul>
 														</div>
@@ -393,10 +393,10 @@
 														<div class="menu-item">
 															<ul>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/software-services"> Software Services</a>
+																	<a routerLinkActive="active" routerLink="../software/software-services"(click)="closeDropdown()"> Software Services</a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="../software/software-services"> Other Services</a>
+																	<a routerLinkActive="active" routerLink="../software/software-services"(click)="closeDropdown()"> Other Services</a>
 																</li>
 															</ul>
 														</div>
@@ -408,7 +408,7 @@
 														<div class="menu-item">
 															<ul>
 																<li>
-																	<a routerLinkActive="active" routerLink="our-clients"> Our Clients</a>
+																	<a routerLinkActive="active" routerLink="our-clients"(click)="closeDropdown()"> Our Clients</a>
 																</li>
 															</ul>
 														</div>
@@ -420,10 +420,10 @@
 														<div class="menu-item">
 															<ul>
 																<li>
-																	<a routerLinkActive="active" routerLink="support"> Sign In</a>
+																	<a routerLinkActive="active" routerLink="support"(click)="closeDropdown()"> Sign In</a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="support/registor"> Sign Up</a>
+																	<a routerLinkActive="active" routerLink="support/registor"(click)="closeDropdown()"> Sign Up</a>
 																</li>
 																<li>
 																	<a target="_blank" href="https://api.whatsapp.com/send/?phone=971566842328&text&type=phone_number&app_absent=0">
@@ -431,7 +431,7 @@
 																	</a>
 																</li>
 																<li>
-																	<a routerLinkActive="active" routerLink="contact"> Contact Us </a>
+																	<a routerLinkActive="active" routerLink="contact"(click)="closeDropdown()"> Contact Us </a>
 																</li>
 															</ul>
 														</div>
@@ -444,7 +444,7 @@
 															<ul class="me-3">
 																<li>
 																	<span><i class="icon-ind-complete modIcon"></i></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/complete-mng">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/complete-mng" (click)="closeDropdown()">
 																		<h3>Complete Management</h3>
 																		<p>ESAT Business Enterprise Edition is powerful, flexible and easy-to-use.</p>
 																	</a>
@@ -452,14 +452,14 @@
 
 																<li>
 																	<span><i class="icon-ind-facilituy modIcon"></i></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/facility-mng">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/facility-mng" (click)="closeDropdown()">
 																		<h3>Facility Management</h3>
 																		<p>ESAT's Facility Management Solution simplifies complex operations, aids in cost reduction..</p>
 																	</a>
 																</li>
 																<li>
 																	<span><i class="icon-ind-realestate modIcon"></i></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/real-estate">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/real-estate" (click)="closeDropdown()">
 																		<h3>Real Estate Management</h3>
 																		<p>
 																			This solution maintains and manages the entire business process of a real estate developer or a broker from end
@@ -470,7 +470,7 @@
 
 																<li>
 																	<span><i class="icon-ind-construction modIcon"></i></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/constrution-mng">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/constrution-mng" (click)="closeDropdown()">
 																		<h3>Construction Management</h3>
 																		<p>
 																			You will have better control over your employees, assets, materials, subcontracts, equipment and devices, etc.,
@@ -480,7 +480,7 @@
 																</li>
 																<li>
 																	<span><i class="icon-moduleicontask_icon modIcon"></i></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/manufacturing-mng">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/manufacturing-mng" (click)="closeDropdown()">
 																		<h3>Manufacturing Management</h3>
 																		<p>
 																			ESAT Manufacturing Management System recognizes the manufacturers’ need to operate seamlessly across multiple
@@ -493,14 +493,14 @@
 															<ul class="me-3">
 																<li>
 																	<span><img class="box-icon" src="assets/images/fleet-nav.svg" /></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/fleet-mng">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/fleet-mng" (click)="closeDropdown()">
 																		<h3>Fleet Management</h3>
 																		<p>A Fleet Management System (FMS) is used to handle all the Fleet activities easily.</p>
 																	</a>
 																</li>
 																<li>
 																	<span><img class="box-icon" src="assets/images/shipment-nav.svg" /></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/shipping">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/shipping" (click)="closeDropdown()">
 																		<h3>Shipment Management</h3>
 																		<p>
 																			It helps easily access; businesses plan, organize each stage of shipment & distribution cycle reliably &
@@ -510,7 +510,7 @@
 																</li>
 																<li>
 																	<span><img class="box-icon" src="assets/images/retail-nav.svg" /></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/retail">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/retail" (click)="closeDropdown()">
 																		<h3>Retail & POS Management</h3>
 																		<p>
 																			ESAT Retail & POS Management system provides integrated solutions that offer a complete end to end solution to
@@ -520,14 +520,14 @@
 																</li>
 																<li>
 																	<span><img class="box-icon" src="assets/images/warehouse-nav.svg" /></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/warehouse">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/warehouse" (click)="closeDropdown()">
 																		<h3>Warehouse Management</h3>
 																		<p>A Warehouse Management System (WMS) is used to easily handle all the Warehouse activities.</p>
 																	</a>
 																</li>
 																<li>
 																	<span><img class="box-icon" src="assets/images/cmms-nav.svg" /></span>
-																	<a routerLinkActive="active" routerLink="software/solution-industry/cmms">
+																	<a routerLinkActive="active" routerLink="software/solution-industry/cmms" (click)="closeDropdown()">
 																		<h3>CMMS Management</h3>
 																		<p>
 																			A Computerized Maintenance Management System (CMMS) is used to manage the maintenance activities in
@@ -546,78 +546,78 @@
 																<ul class="me-4 w-50">
 																	<li>
 																		<span class="icon-moduleiconassets_icon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/asset-management"> Fixed Asset Management </a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/asset-management" (click)="closeDropdown()"> Fixed Asset Management </a>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconcrm_icon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/crm">CRM</a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/crm" (click)="closeDropdown()">CRM</a>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconfacilitymanagement_icon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/facility">Facility and Service Management</a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/facility" (click)="closeDropdown()">Facility and Service Management</a>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconfinancemanagement modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/finance-management"
+																		<a routerLinkActive="active" routerLink="software/solution-business/finance-management"(click)="closeDropdown()"
 																			>Finance & Accounts Management</a
 																		>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconhrm_icon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/hrm">Human Resource Management</a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/hrm" (click)="closeDropdown()">Human Resource Management</a>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconhcm_icon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/hcm">Human Capital Management</a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/hcm"(click)="closeDropdown()">Human Capital Management</a>
 																	</li>
 																	<li>
 																		<span class="icon-moduleicon_payrollicon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/payroll">Payroll Management</a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/payroll"(click)="closeDropdown()">Payroll Management</a>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconcont_icon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/contract-management"
+																		<a routerLinkActive="active" routerLink="software/solution-business/contract-management"(click)="closeDropdown()"
 																			>Subcontract Management</a
 																		>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconlogistic_icon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/Inventory">Inventory Management</a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/Inventory"(click)="closeDropdown()">Inventory Management</a>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconprocurement_icon modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/procurement">Procurement Management</a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/procurement"(click)="closeDropdown()">Procurement Management</a>
 																	</li>
 																	<li>
 																		<span class="icon-font-20 modIcon"></span>
-																		<a routerLinkActive="active" routerLink="software/solution-business/sales">Sales Management</a>
+																		<a routerLinkActive="active" routerLink="software/solution-business/sales"(click)="closeDropdown()">Sales Management</a>
 																	</li>
 																</ul>
 
 																<ul class="w-50">
 																	<li>
 																		<span class="icon-icon-project modIcon"></span
-																		><a routerLinkActive="active" routerLink="software/solution-business/budject-management"
+																		><a routerLinkActive="active" routerLink="software/solution-business/budject-management"(click)="closeDropdown()"
 																			>Budget & Project Management</a
 																		>
 																	</li>
 																	<li>
 																		<span class="icon-moduleiconrealestate_icon modIcon"></span
-																		><a routerLinkActive="active" routerLink="software/solution-business/real-estate">Real Estate Management</a>
+																		><a routerLinkActive="active" routerLink="software/solution-business/real-estate"(click)="closeDropdown()">Real Estate Management</a>
 																	</li>
 																	<li>
 																		<span class="icon-moduleicontask_icon modIcon"></span
-																		><a routerLinkActive="active" routerLink="software/solution-business/manufacturing">Manufacturing Management</a>
+																		><a routerLinkActive="active" routerLink="software/solution-business/manufacturing"(click)="closeDropdown()">Manufacturing Management</a>
 																	</li>
 																	<li>
 																		<span class="icon-odesatodmodicon modIcon"></span
-																		><a routerLinkActive="active" routerLink="software/solution-business/organization">Organization Development</a>
+																		><a routerLinkActive="active" routerLink="software/solution-business/organization"(click)="closeDropdown()">Organization Development</a>
 																	</li>
 
 																	<li>
 																		<img class="menu-icon" src="assets/images/retail-nav.svg" /><a
 																			routerLinkActive="active"
-																			routerLink="software/solution-business/retail"
+																			routerLink="software/solution-business/retail"(click)="closeDropdown()"
 																			>Retail & POS Management</a
 																		>
 																	</li>
@@ -625,7 +625,7 @@
 																	<li>
 																		<img class="menu-icon" src="assets/images/warehouse-nav.svg" /><a
 																			routerLinkActive="active"
-																			routerLink="software/solution-business/warehouse"
+																			routerLink="software/solution-business/warehouse"(click)="closeDropdown()"
 																			>Warehouse Management</a
 																		>
 																	</li>
@@ -639,21 +639,21 @@
 																	<li>
 																		<img class="menu-icon" src="assets/images/cmms-nav.svg" /><a
 																			routerLinkActive="active"
-																			routerLink="software/solution-business/cmms"
+																			routerLink="software/solution-business/cmms"(click)="closeDropdown()"
 																			>CMMS Management</a
 																		>
 																	</li>
 																	<li>
 																		<img class="menu-icon" src="assets/images/shipment-nav.svg" /><a
 																			routerLinkActive="active"
-																			routerLink="software/solution-business/shipmemt"
+																			routerLink="software/solution-business/shipmemt"(click)="closeDropdown()"
 																			>Shipment Management</a
 																		>
 																	</li>
 																	<li>
 																		<img class="menu-icon" src="assets/images/quality-nav.svg" /><a
 																			routerLinkActive="active"
-																			routerLink="software/solution-business/quality"
+																			routerLink="software/solution-business/quality"(click)="closeDropdown()"
 																			>Quality Management
 																		</a>
 																	</li>
@@ -669,9 +669,9 @@
 							</div>
 						</li>
 
-						<li class="nav-item dropdown position-static">
-							<a class="nav-link" routerLink="hardware">Hardware</a>
-							<div class="dropdown-menu dropdown-content vh-75 w-60 px-3 border-0 bg-none sm-software shadow-lg mega-menu">
+						<li class="nav-item dropdown position-static" (mouseenter)="showDropdown()" (mouseleave)="hideDropdown()">
+							<a class="nav-link" routerLink="hardware" (click)="toggleClickDropdown($event)">Hardware</a>
+							<div class="dropdown-menu dropdown-content vh-75 w-60 px-3 border-0 bg-none sm-software shadow-lg mega-menu" [class.show]="isDropdownOpen">
 								<div class="container container-sm bg-white">
 									<div class="row mob-mnu bg-white bg-shadow">
 										<div class="col-12 p-0">
@@ -711,14 +711,14 @@
 													<div class="tab-pane fade show active" id="pills-Services" role="tabpanel" aria-labelledby="pills-home-tab">
 														<div class="soft-indust col-12">
 															<ul class="me-3">
-																<li class="ps-3" routerLinkActive="active" routerLink="hardware/it-networking-solutions-in-uae">
+																<li class="ps-3" routerLinkActive="active" routerLink="hardware/it-networking-solutions-in-uae" (click)="closeDropdown()">
 																	<a>
 																		<h3>IT Hardware and Networking</h3>
 																		<p>ESAT Business Enterprise Edition is powerful, flexible and easy-to-use.</p>
 																	</a>
 																</li>
 
-																<li class="ps-3" routerLinkActive="active" routerLink="hardware/physical-survilance">
+																<li class="ps-3" routerLinkActive="active" routerLink="hardware/physical-survilance" (click)="closeDropdown()">
 																	<a>
 																		<h3>Physical Surveillance Security</h3>
 																		<p>
@@ -727,7 +727,7 @@
 																		</p>
 																	</a>
 																</li>
-																<li class="ps-3" routerLinkActive="active" routerLink="hardware/security-audit">
+																<li class="ps-3" routerLinkActive="active" routerLink="hardware/security-audit" (click)="closeDropdown()">
 																	<a>
 																		<h3>Security Audit</h3>
 																		<p>
@@ -739,7 +739,7 @@
 															</ul>
 
 															<ul>
-																<li class="ps-3" routerLinkActive="active" routerLink="hardware/audio-visual">
+																<li class="ps-3" routerLinkActive="active" routerLink="hardware/audio-visual" (click)="closeDropdown()">
 																	<a>
 																		<h3>Audio Visual Systems</h3>
 																		<p>
@@ -748,7 +748,7 @@
 																		</p>
 																	</a>
 																</li>
-																<li class="ps-3" routerLinkActive="active" routerLink="hardware/elv-solution">
+																<li class="ps-3" routerLinkActive="active" routerLink="hardware/elv-solution" (click)="closeDropdown()">
 																	<a>
 																		<h3>ELV Solutions</h3>
 																		<p>
@@ -764,7 +764,7 @@
 													<div class="tab-pane fade row" id="pills-Consulting" role="tabpanel" aria-labelledby="pills-profile-tab">
 														<div class="soft-indust col-12">
 															<ul class="me-3">
-																<li class="ps-3" routerLink="hardware/technology-consulting">
+																<li class="ps-3" routerLink="hardware/technology-consulting" (click)="closeDropdown()">
 																	<a>
 																		<h3>Technology Consulting</h3>
 																		<p>ESAT Business Enterprise Edition is powerful, flexible and easy-to-use.</p>
@@ -783,16 +783,16 @@
 							</div>
 						</li>
 
-						<li class="nav-item dropdown position-static">
-							<a class="nav-link" routerLink="partnership">Partnership Program</a>
-							<div class="dropdown-menu partnership-drop vh-30 w-20 position-partner border-0 shadow-lg mega-menu">
+						<li class="nav-item dropdown position-static" (mouseenter)="showDropdown()" (mouseleave)="hideDropdown()">
+							<a class="nav-link" routerLink="partnership"(click)="toggleClickDropdown($event)">Partnership Program</a>
+							<div class="dropdown-menu partnership-drop vh-30 w-20 position-partner border-0 shadow-lg mega-menu"[class.show]="isDropdownOpen">
 								<div class="container py-4">
 									<div class="row">
 										<div class="col-lg-12">
 											<h6>Partnership Program</h6>
-											<a class="dropdown-item" href="partnership"> Reseller Program</a>
-											<a class="dropdown-item" href="partnership"> Referral Program </a>
-											<a class="dropdown-item" href="partnership"> Affiliate Program </a>
+											<a class="dropdown-item" href="partnership" (click)="closeDropdown()"> Reseller Program</a>
+											<a class="dropdown-item" href="partnership" (click)="closeDropdown()"> Referral Program </a>
+											<a class="dropdown-item" href="partnership" (click)="closeDropdown()"> Affiliate Program </a>
 										</div>
 									</div>
 								</div>
@@ -800,18 +800,18 @@
 						</li>
 
 						<!-- MEGA MENU -->
-						<li class="nav-item dropdown position-static">
-							<a class="nav-link" routerLink="careers"> Careers</a>
+						<li class="nav-item dropdown position-static"(mouseenter)="showDropdown()" (mouseleave)="hideDropdown()">
+							<a class="nav-link" routerLink="careers" (click)="toggleClickDropdown($event)"> Careers</a>
 
-							<div class="dropdown-menu careers-drop vh-30 w-20 position-career border-0 shadow-lg mega-menu">
+							<div class="dropdown-menu careers-drop vh-30 w-20 position-career border-0 shadow-lg mega-menu" [class.show]="isDropdownOpen">
 								<div class="container py-4">
 									<div class="row">
 										<div class="col-lg-12">
 											<h6>Careers</h6>
-											<a class="dropdown-item" routerLink="careers"> Software Careers</a>
-											<a class="dropdown-item" routerLink="careers"> Hardware Careers </a>
-											<a class="dropdown-item" routerLink="careers"> Administrative Careers</a>
-											<a class="dropdown-item" routerLink="careers"> Sales & Marketing Careers</a>
+											<a class="dropdown-item" routerLink="careers"(click)="closeDropdown()"> Software Careers</a>
+											<a class="dropdown-item" routerLink="careers"(click)="closeDropdown()"> Hardware Careers </a>
+											<a class="dropdown-item" routerLink="careers"(click)="closeDropdown()"> Administrative Careers</a>
+											<a class="dropdown-item" routerLink="careers"(click)="closeDropdown()"> Sales & Marketing Careers</a>
 										</div>
 									</div>
 								</div>
