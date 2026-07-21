@@ -582,7 +582,6 @@ polygon.f.modulelink:hover{
 	}
 }
 
-
-
-
-
+.modal-backdrop{
+	position:static!important;
+}

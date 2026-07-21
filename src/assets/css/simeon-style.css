@@ -178,9 +178,7 @@ a {
 	color: #b3b3b3;
 }
 
-.modal-backdrop {
-	z-index: 0;
-}
+
 #mob-navigation .modal-content {
 	background: #8c8c8f;
 	height: 50vh;
@@ -188,4 +186,10 @@ a {
 	overflow-x: scroll;
 	z-index: 9999;
 	position: fixed;
+}
+
+
+
+.modal-backdrop{
+	position:static!important;
 }

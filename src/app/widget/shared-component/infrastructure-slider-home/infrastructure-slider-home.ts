@@ -4,14 +4,13 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-infrastructure-slider-home',
-   standalone: true,
+  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './infrastructure-slider-home.html',
   styleUrl: './infrastructure-slider-home.css',
 })
-export class InfrastructureSliderHome implements OnInit, OnDestroy{
-
- activeIndex = 0;
+export class InfrastructureSliderHome implements OnInit, OnDestroy {
+  activeIndex = 0;
   interval: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
@@ -19,47 +18,54 @@ export class InfrastructureSliderHome implements OnInit, OnDestroy{
   items = [
     {
       title: 'ELV Solutions',
-      description: 'ESAT ELV technology solutions aim to improve your business or organizational quality of life (QoL) standards in the most cost-effective way....',
+      description:
+        'ESAT ELV technology solutions aim to improve your business or organizational quality of life (QoL) standards in the most cost-effective way....',
       image: 'assets/images/portfolio/6.jpg',
-      link: '/software/swservice'
+      link: '/hardware/elv-solution',
     },
     {
       title: 'IT Consulting',
-      description: 'With ESAT IT Consulting Services, you will get the latest software and optimized updates to make sure you have the information technology resources ...',
+      description:
+        'With ESAT IT Consulting Services, you will get the latest software and optimized updates to make sure you have the information technology resources ...',
       image: 'assets/images/portfolio/7.jpg',
-      link: '/software/swservice'
+      link: '/hardware/technology-consulting',
     },
     {
       title: 'IT Hardware and Networking',
-      description: 'ESAT is your one-stop shop for hardware. Our service and multi-product offerings remove the weight of dealing with multiple vendors ...',
+      description:
+        'ESAT is your one-stop shop for hardware. Our service and multi-product offerings remove the weight of dealing with multiple vendors ...',
       image: 'assets/images/portfolio/8.jpg',
-      link: '/software/swservice'
+      link: '/hardware/it-networking-solutions-in-uae',
     },
     {
       title: 'Audio Visual Systems',
-      description: 'Integrate our AV Technology into your Physical Infrastructure. Presentations, video conferences, group collaborations ...',
+      description:
+        'Integrate our AV Technology into your Physical Infrastructure. Presentations, video conferences, group collaborations ...',
       image: 'assets/images/portfolio/11.jpg',
-      link: '/software/swprodcont-erp'
+      link: '/hardware/audio-visual',
     },
     {
       title: 'Physical Surveillance Security',
-      description: 'Whether it is a home, a small store or a business infrastructure worth millions of dollars, efﬁcient security measures are necessary to achieve ....',
+      description:
+        'Whether it is a home, a small store or a business infrastructure worth millions of dollars, efﬁcient security measures are necessary to achieve ....',
       image: 'assets/images/portfolio/9.jpg',
-      link: '/software/swservice'
+      link: '/hardware/physical-survilance',
     },
 
-     {
+    {
       title: 'Security Audit',
-      description: 'The ultimate security for an enterprise. We use targeted approach to find & eliminate all the security threats. ESAT approach is focused on eliminating....',
+      description:
+        'The ultimate security for an enterprise. We use targeted approach to find & eliminate all the security threats. ESAT approach is focused on eliminating....',
       image: 'assets/images/portfolio/10.jpg',
-      link: '/software/swservice'
+      link: '/hardware/security-audit',
     },
-     {
+    {
       title: 'Audio Visual Systems',
-      description: 'Integrate our AV Technology into your Physical Infrastructure. Presentations, video conferences, group collaborations, and work areas....',
+      description:
+        'Integrate our AV Technology into your Physical Infrastructure. Presentations, video conferences, group collaborations, and work areas....',
       image: 'assets/images/portfolio/11.jpg',
-      link: '/software/swservice'
-    }
+      link: '/hardware/audio-visual',
+    },
   ];
 
   ngOnInit() {
@@ -79,8 +85,7 @@ export class InfrastructureSliderHome implements OnInit, OnDestroy{
   }
 
   prev() {
-    this.activeIndex =
-      (this.activeIndex - 1 + this.items.length) % this.items.length;
+    this.activeIndex = (this.activeIndex - 1 + this.items.length) % this.items.length;
   }
 
   startAutoPlay() {
@@ -90,81 +95,80 @@ export class InfrastructureSliderHome implements OnInit, OnDestroy{
   }
 
   getStyle(i: number) {
+    const total = this.items.length;
 
-  const total = this.items.length;
+    let offset = i - this.activeIndex;
 
-  let offset = i - this.activeIndex;
+    // Circular correction
+    if (offset > total / 2) offset -= total;
+    if (offset < -total / 2) offset += total;
 
-  // Circular correction
-  if (offset > total / 2) offset -= total;
-  if (offset < -total / 2) offset += total;
+    const abs = Math.abs(offset);
 
-  const abs = Math.abs(offset);
+    // Tighter spacing
+    const baseGap = 55;
+    const translateX = offset * baseGap;
 
-  // Tighter spacing
-  const baseGap = 55;
-  const translateX = offset * baseGap;
+    const rotateY = offset * -8;
 
-  const rotateY = offset * -8;
+    let scale = 1;
+    let opacity = 1;
+    let zIndex = 1000;
+    let blur = 0;
 
-  let scale = 1;
-  let opacity = 1;
-  let zIndex = 1000;
-  let blur = 0;
+    // Active slide
+    if (abs === 0) {
+      scale = 1;
+      opacity = 1;
+      zIndex = 9999;
+      blur = 0;
+    }
 
-  // Active slide
-  if (abs === 0) {
-    scale = 1;
-    opacity = 1;
-    zIndex = 9999;
-    blur = 0;
-  }
+    // First side layer
+    else if (abs === 1) {
+      scale = 0.75;
+      opacity = 0.7;
+      zIndex = 500;
+      blur = 0;
+    }
 
-  // First side layer
-  else if (abs === 1) {
-    scale = 0.75;
-    opacity = 0.7;
-    zIndex = 500;
-    blur = 0;
-  }
+    // Second side layer
+    else if (abs === 2) {
+      scale = 0.58;
+      opacity = 0.45;
+      zIndex = 250;
+      blur = 1;
+    }
 
-  // Second side layer
-  else if (abs === 2) {
-    scale = 0.58;
-    opacity = 0.45;
-    zIndex = 250;
-    blur = 1;
-  }
+    // Third side layer
+    else if (abs === 3) {
+      scale = 0.45;
+      opacity = 0.2;
+      zIndex = 100;
+      blur = 2;
+    }
 
-  // Third side layer
-  else if (abs === 3) {
-    scale = 0.45;
-    opacity = 0.2;
-    zIndex = 100;
-    blur = 2;
-  }
+    // Hidden
+    else {
+      scale = 0.35;
+      opacity = 0;
+      zIndex = 0;
+      blur = 3;
+    }
 
-  // Hidden
-  else {
-    scale = 0.35;
-    opacity = 0;
-    zIndex = 0;
-    blur = 3;
-  }
-
-  return {
-    position: 'absolute',
-    left: '50%',
-    top: '0',
-    transform: `
+    return {
+      position: 'absolute',
+      left: '50%',
+      top: '0',
+      transform: `
       translateX(calc(-50% + ${translateX}px))
       scale(${scale})
       rotateY(${rotateY}deg)
     `,
-    opacity,
-    zIndex,
-    filter: `blur(${blur}px)`,
-    transition: 'all 0.7s ease'
-  };
-}
+      opacity,
+      zIndex,
+      filter: `blur(${blur}px)`,
+      transition: 'all 0.7s ease',
+    };
+  }
 }

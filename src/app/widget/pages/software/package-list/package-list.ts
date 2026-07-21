@@ -4,13 +4,15 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 import { RootServices } from '../../../../services/root-services';
 import { SwCommon } from '../sw-common/sw-common';
+import { AboutRoutingModule } from "../../about/about-routing-module";
+import { RouterLink } from '@angular/router';
 
 declare var WOW: any;
 
 @Component({
   selector: 'app-package-list',
   standalone: true,
-  imports: [CommonModule, SwCommon],
+  imports: [CommonModule, SwCommon, AboutRoutingModule, RouterLink],
   templateUrl: './package-list.html',
   styleUrl: './package-list.css',
 })

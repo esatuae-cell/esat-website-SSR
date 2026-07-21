@@ -21,19 +21,19 @@ export class SoftwareSliderHome implements OnInit, OnDestroy {
       title: 'Software Consulting',
       description: 'Relying on our domain and development experience, we can support you to ﬁll the gaps between data, ideas and results...',
       image: 'assets/images/portfolio/1.jpg',
-      link: '/software/swservice'
+      link: '/software/software-services'
     },
     {
       title: 'Application Development',
       description: 'These services are related to customization of application design and development. We combine technology expertise ...',
       image: 'assets/images/portfolio/2.jpg',
-      link: '/software/swservice'
+      link: '/software/software-services'
     },
     {
       title: 'Software Development',
       description: 'These services are related to customization of application design and development. We combine technology expertise...',
       image: 'assets/images/portfolio/3.jpg',
-      link: '/software/swservice'
+      link: '/software/software-services'
     },
     {
       title: 'ERP Solutions',
@@ -45,19 +45,19 @@ export class SoftwareSliderHome implements OnInit, OnDestroy {
       title: 'Support & Maintenance',
       description: 'ESAT aims to preserve the value and worth of the software as time goes by. Having this in mind, our support service...',
       image: 'assets/images/portfolio/5.jpg',
-      link: '/software/swservice'
+      link: '/software/software-services'
     },
     {
       title: 'Software Development',
       description: 'These services are related to customization of application design and development. We combine technology expertise...',
       image: 'assets/images/portfolio/3.jpg',
-      link: '/software/swservice'
+      link: '/software/software-services'
     },
     {
       title: 'Application Development',
       description: 'These services are related to customization of application design and development. We combine technology expertise ...',
       image: 'assets/images/portfolio/2.jpg',
-      link: '/software/swservice'
+      link: '/software/software-services'
     }
   ];
 

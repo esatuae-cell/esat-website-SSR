@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
 import { RootServices } from '../../../../services/root-services';
 import { SchemaService } from '../../../../seo/schema.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-about-main',
   standalone: true,
   templateUrl: './about-main.html',
   styleUrl: './about-main.css',
-  imports: [],
+  imports: [RouterLink],
 })
 export class AboutMain {
   constructor(
