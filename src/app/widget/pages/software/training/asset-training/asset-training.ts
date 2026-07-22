@@ -11,11 +11,12 @@ import { Title, Meta } from '@angular/platform-browser';
 
 import { RootServices } from "../../../../../services/root-services";
 import { TrainingSubMenu } from '../training-sub-menu/training-sub-menu';
+import {  RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-asset-training',
   standalone: true,
-  imports: [TrainingSubMenu],
+  imports: [TrainingSubMenu,RouterLink],
   templateUrl: './asset-training.html',
   styleUrl: './asset-training.css',
 })

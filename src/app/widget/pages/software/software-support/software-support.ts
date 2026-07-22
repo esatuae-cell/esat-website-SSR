@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RootServices } from '../../../../services/root-services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SwCommon } from "../sw-common/sw-common";
 
 @Component({
   selector: 'app-software-support',
-  imports: [SwCommon],
+  imports: [SwCommon,RouterLink],
   templateUrl: './software-support.html',
   styleUrl: './software-support.css',
 })

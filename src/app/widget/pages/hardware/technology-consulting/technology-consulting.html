@@ -34,22 +34,16 @@
   </div>
 </section>
 
-<section id="footerLastAbout " data-aos="fade-up">
+<section id="footerLastAbout " class="pad-50" data-aos="fade-up">
   <div class="container text-center">
     <div class="row">
-      <div
-        class="footdata text-center"
-        style="cursor: pointer"
-        onclick="
-          $('iframe[title|=\'chat widget\']')
-            .contents()
-            .find('#tawkchat-minified-container')
-            .click()
-        "
-      >
+      <div class="footdata text-center"  style="cursor: pointer" onclick="
+          $('iframe[title|=\'chat widget\']')  .contents() .find('#tawkchat-minified-container').click() ">
         <h3 class="f-18">How to get started</h3>
         <p><span>Talk to ESAT IT Consultant.</span></p>
       </div>
+      </div>
+      <div class="row pt-5">
       <div class="col-sm-6">
         <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
         <p>Find out how ESAT can help you and your business.</p>

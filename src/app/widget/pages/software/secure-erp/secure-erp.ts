@@ -3,14 +3,14 @@ import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, Title, Meta } from '@angular/platform-browser';
 import { SwCommon } from '../sw-common/sw-common';
-
 import 'aos/dist/aos.css';
 import { SchemaService } from '../../../../seo/schema.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-secure-erp',
   standalone: true,
-  imports: [SwCommon],
+  imports: [SwCommon,RouterLink],
   templateUrl: './secure-erp.html',
   styleUrls: ['./secure-erp.css'],
 })
