@@ -34,3 +34,12 @@
         width: 75%!important;
         overflow: hidden;
     }
+
+  @media (max-width: 992px) {
+
+  .home-style {
+        width: 75%!important;
+        overflow: scroll;
+    }
+
+  }
