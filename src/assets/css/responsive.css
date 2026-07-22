@@ -39,7 +39,7 @@
 @media (min-width: 1024px) and (max-width: 1279px) {
   .about-submenu {
     width: 89% !important;
-    overflow-x: scroll;
+    overflow: scroll;
   }
 }
 
@@ -321,14 +321,14 @@
 
   .about-submenu {
     width: 100%;
-    overflow-y: scroll;
+    overflow: scroll!important;
     a {
       white-space: nowrap;
     }
   }
   .home-style {
-    width: 85%;
-    overflow-y: scroll;
+    width: 95%!important;
+    overflow: scroll!important;
     a {
       white-space: nowrap;
     }
@@ -375,12 +375,22 @@
     width: 34vw !important;
   }
   .list-pack li {
-    white-space: nowrap;
-  }
+        white-space: nowrap;
+        height: 3vh!important;
+        font-size: 15px!important;
+    }
+
+    .card ul li { height: 3vh !important; }
   .fix-width {
     width: 100% !important;
     margin: 0px !important;
   }
+
+
+.read-sec a {
+    padding: 3px 12px!important;
+    font-size: 14px!important;
+}
 
   .fix-width-sub {
     width: 100% !important;
@@ -451,6 +461,15 @@
   .sm-screen {
     flex-wrap: wrap;
   }
+
+p{font-size: 18px;}
+
+.container{
+  max-width:990px;
+  width:100%;
+  padding:0 25px;
+}
+
 }
 
 /* Medium */
@@ -531,7 +550,7 @@
     margin: 0px;
   }
   .about-submenu {
-    width: 95%;
+    width: 100%;
     overflow-y: scroll;
     a {
       white-space: nowrap;
@@ -575,8 +594,13 @@
     width: 39vw !important;
   }
   .list-pack li {
-    white-space: nowrap;
-  }
+        white-space: nowrap;
+        height: 3vh;
+        font-size: 15px;
+    }
+
+    .card ul li { height: 3vh ; }
+
   .fix-width {
     width: 100% !important;
     margin: 0px !important;
@@ -672,13 +696,6 @@
 /* Mobile */
 @media (max-width: 575px)  {
   /*------------ top-bar-mobile -------------*/
-
-
-   .list-pack li {
-        white-space: nowrap;
-        height:3vh!important;
-    }
-
   .top-bar {
     display: none;
   }
@@ -887,6 +904,17 @@
       font-size: 15px!important;
     }
   }
+.read-sec a {
+    padding: 3px 8px;
+    font-size: 11px;
+}
 
-     
+  .list-pack li {
+        white-space: nowrap;
+        height: 3vh;
+        font-size: 15px;
+    }
+
+    .card ul li { height: 3vh ; }
+
 }

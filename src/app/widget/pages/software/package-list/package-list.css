@@ -620,24 +620,7 @@
 
 
 
-@media (min-width: 767px) {
-    .list-pack li {
-        white-space: nowrap;
-        height: 6vh ;
-    }
-     .card ul li { height: 6vh ; }
 
-}
-
-@media (max-width: 766px)  {
-    .list-pack li {
-        white-space: nowrap;
-        height: 3vh;
-        font-size: 15px;
-    }
-
-    .card ul li { height: 3vh ; }
-}
 
 
 
