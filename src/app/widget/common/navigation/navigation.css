@@ -477,6 +477,10 @@ body {
   }
 }
 
+.btn-close {
+  font-size: 2rem;
+}
+
 /* Mega menu hover (desktop) */
 @media (min-width: 992px) {
   .navbar .dropdown-menu {
