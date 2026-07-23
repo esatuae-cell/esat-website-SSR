@@ -521,7 +521,7 @@
 
   .navbar-nav-mob .nav-item .nav-link {
     font-size: 2rem !important;
-    margin-bottom: 25px !important;
+    margin-bottom: 45px !important;
   }
 
   .navbar-nav-mob .nav-item {
@@ -530,6 +530,10 @@
         font-size: 1.7rem !important;
       }
     }
+  }
+  .dropdown-toggle:after {
+    position: absolute;
+    right: 10%;
   }
 }
 
@@ -596,7 +600,7 @@
 
   #mob-navigation .modal-content {
     background: #8c8c8f;
-    height: 50vh;
+    height: 80vh;
     width: 100%;
     left: 0px;
     right: 0px;
