@@ -103,32 +103,32 @@
 
 @media (max-width: 992px) {
   .vw-20 {
-    width: 14vw;
+    width: 30.877vw;
   }
 
   .content-sec {
     a {
-      font-size: 0.6rem;
+      font-size: 1rem;
 
       span {
         display: block;
-        font-size: 1rem;
+        font-size: 1.3rem;
       }
     }
   }
 }
 @media (min-width: 992px) {
   .vw-20 {
-    width: 14vw;
+    width: 30.877vw;
   }
 
   .content-sec {
     a {
-      font-size: 0.6rem;
+      font-size: 1rem;
 
       span {
         display: block;
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
     }
   }
