@@ -509,6 +509,28 @@
   .honeycomb-row {
     padding: 0px !important;
   }
+
+  .navbar-toggler-icon {
+    display: inline-block;
+    width: 3.5em !important;
+    height: 3.5em !important;
+  }
+  #mainNavbar {
+    padding: 10px 0 !important;
+  }
+
+  .navbar-nav-mob .nav-item .nav-link {
+    font-size: 2rem !important;
+    margin-bottom: 25px !important;
+  }
+
+  .navbar-nav-mob .nav-item {
+    .dropdown {
+      li .dropdown-item {
+        font-size: 1.7rem !important;
+      }
+    }
+  }
 }
 
 /* Medium */

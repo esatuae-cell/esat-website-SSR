@@ -514,6 +514,7 @@ body {
 
   .dropdown.show {
     display: block;
+    margin-bottom: 25px;
   }
 }
 @media (min-width: 992px) {
@@ -614,30 +615,19 @@ body {
 
 /* mobile */
 @media (max-width: 767px) {
-
   .navbar-nav-mob {
-.nav-item {
-.nav-link {
-    font-size: 1.5rem;
-}
-}
+    .nav-item {
+      .nav-link {
+        font-size: 1.5rem;
+      }
+    }
   }
 
-
-
-
-.dropdown{
- li{
-  a{
- font-size: 15px;
+  .dropdown {
+    li {
+      a {
+        font-size: 15px;
+      }
+    }
   }
- } 
 }
-
-
-    
-}
-
-
-
-
