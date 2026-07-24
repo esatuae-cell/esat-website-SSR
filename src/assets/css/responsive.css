@@ -186,6 +186,11 @@
   .top-bar-mobile {
     display: none;
   }
+  .banner-section {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100% !important;
+  }
   .navbar-nav .nav-item .nav-link {
     padding: 20px 5px !important;
     font-size: 0.8rem !important;
@@ -202,7 +207,32 @@
     width: 100% !important;
   }
   .banner-section .form-section {
-    width: 1000% !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .hide-on-mobile {
+    display: none;
+  }
+  .above-md-screens {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contact-form-section {
+    width: 100%;
+  }
+
+  #contact-form-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  #contact-form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    padding: 25px 0;
   }
 }
 
