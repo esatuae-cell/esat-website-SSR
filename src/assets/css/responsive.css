@@ -19,10 +19,17 @@
     padding: 8px 15px !important;
   }
   .banner-section {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     height: 100% !important;
   }
-
+  .hide-on-mobile {
+    display: none;
+  }
+  .above-md-screens {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
   .banner-contact {
     padding: 10px 10px !important;
   }
@@ -45,8 +52,12 @@
     }
   }
 
+  .navbar-nav .nav-item .nav-link {
+    padding: 20px 5px !important;
+    font-size: 0.8rem !important;
+  }
   .banner-contact {
-    padding: 12px 10px !important;
+    padding: 25px 10px !important;
   }
   .form-section {
     width: 20%;
@@ -177,7 +188,7 @@
   }
   .navbar-nav .nav-item .nav-link {
     padding: 20px 5px !important;
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
   }
   .list-pack li {
     font-size: 15px !important;
