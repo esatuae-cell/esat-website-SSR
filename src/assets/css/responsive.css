@@ -23,6 +23,22 @@
       }
     }
   }
+  #contact-form {
+    .f-18 {
+      font-size: 1rem;
+    }
+  }
+
+  .banner-contact {
+    padding: 12px 10px !important;
+  }
+  .form-section {
+    width: 20%;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 /* Laptop */
@@ -38,10 +54,6 @@
   .top-bar-mobile {
     display: none;
   }
-  .banner-section {
-    flex-wrap: nowrap;
-    height: 65vh !important;
-  }
 
   .navbar-nav .nav-item .nav-link {
     padding: 20px 5px !important;
@@ -50,13 +62,7 @@
   .banner-section .slider-container {
     width: 80%;
   }
-  .banner-section .form-section {
-    width: 20%;
-    height: 65vh;
-  }
-  .banner-contact {
-    padding: 57px 31px !important ;
-  }
+
   .above-md-screens {
     display: block !important;
   }
