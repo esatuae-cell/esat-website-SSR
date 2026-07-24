@@ -15,6 +15,10 @@
   .bord-bttm {
     border-bottom: none !important;
   }
+
+  .home-style {
+    width: 65% !important;
+  }
 }
 
 @media (min-width: 1280px) and (max-width: 1535px) {
