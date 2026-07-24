@@ -188,11 +188,10 @@
   }
 
   .banner-section .slider-container {
-    width: 80%;
+    width: 100%;
   }
   .banner-section .form-section {
-    width: 20%;
-    height: 65vh;
+    width: 1000%;
   }
 }
 
