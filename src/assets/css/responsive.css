@@ -12,11 +12,14 @@
     display: flex;
     height: 62vh;
   }
+  .bord-bttm {
+    border-bottom: none !important;
+  }
 }
 
 @media (min-width: 1280px) and (max-width: 1535px) {
   .bord-bttm {
-    border-bottom: none;
+    border-bottom: none !important;
   }
   .banner-contact {
     padding: 8px 15px !important;
@@ -76,6 +79,10 @@
   .about-submenu {
     width: 89% !important;
     overflow: scroll;
+  }
+
+  .bord-bttm {
+    border-bottom: none !important;
   }
 }
 
