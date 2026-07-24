@@ -171,7 +171,7 @@
 }
 
 /* X-Large */
-@media (min-width: 1200px) and (max-width: 1399.98px) {
+@media (min-width: 1200px) and (max-width: 1400px) {
   .top-bar-mobile {
     display: none;
   }
@@ -188,10 +188,10 @@
   }
 
   .banner-section .slider-container {
-    width: 100%;
+    width: 100% !important;
   }
   .banner-section .form-section {
-    width: 1000%;
+    width: 1000% !important;
   }
 }
 
