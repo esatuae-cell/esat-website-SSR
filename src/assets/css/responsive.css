@@ -77,7 +77,7 @@
 }
 
 /* XX-Large */
-@media (min-width: 1400px) {
+@media (min-width: 1401px) {
   .top-bar-mobile {
     display: none;
   }
@@ -186,6 +186,14 @@
   .top-bar-mobile {
     display: none;
   }
+  .navbar-sub-sub li a {
+    color: #5d5d5d;
+    white-space: nowrap;
+  }
+  #mobile-circle-move {
+    display: none;
+  }
+
   .banner-section {
     display: flex;
     flex-wrap: wrap;
