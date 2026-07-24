@@ -30,9 +30,8 @@
   white-space: nowrap;
 }
 
-    .home-style {
-      max-width: 1320px;
-        width: 100%!important;
-        overflow: hidden;
-    }
-
+.home-style {
+  /* max-width: 1320px; */
+  width: 85% !important;
+  overflow: hidden;
+}

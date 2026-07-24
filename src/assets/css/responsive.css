@@ -246,6 +246,15 @@
     width: 100%;
     overflow-x: scroll;
   }
+  .about-layout {
+    .home-style {
+      width: 85% !important;
+      overflow-x: scroll !important;
+    }
+  }
+  .about-submenu {
+    overflow-x: scroll !important;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
