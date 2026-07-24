@@ -4,6 +4,16 @@
   } */
 }
 
+@media (min-width: 1535px) and (max-width: 1600px) {
+  .banner-contact {
+    padding: 10px 10px !important;
+  }
+  .banner-section {
+    display: flex;
+    height: 62vh;
+  }
+}
+
 @media (min-width: 1280px) and (max-width: 1535px) {
   .banner-contact {
     padding: 8px 15px !important;
