@@ -32,6 +32,6 @@
 
 .home-style {
   /* max-width: 1320px; */
-  width: 85% !important;
-  overflow: hidden;
+  width: 100% !important;
+  overflow-x: scroll;
 }
