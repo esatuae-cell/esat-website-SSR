@@ -242,6 +242,10 @@
     flex-direction: column;
     padding: 25px 0;
   }
+  .navbar-sub-sub {
+    width: 100%;
+    overflow-x: scroll;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -293,6 +297,7 @@
   }
   .navbar-sub-sub {
     width: 100%;
+    overflow-x: scroll;
 
     li {
       a {
