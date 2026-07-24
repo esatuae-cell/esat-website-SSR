@@ -271,12 +271,37 @@
   .about-submenu {
     overflow-x: scroll !important;
   }
+  .w-60 {
+    width: 75vw !important;
+  }
+
+  .vh-75 {
+    height: 75vh;
+    overflow-y: scroll;
+  }
+  .position-partner {
+    right: 34% !important;
+  }
+  .position-career {
+    position: absolute;
+    right: 21% !important;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .top-bar-mobile {
     display: none;
   }
+
+  .w-60 {
+    width: 75vw !important;
+  }
+
+  .vh-75 {
+    height: 75vh;
+    overflow-y: scroll;
+  }
+
   .navbar-nav .nav-item .nav-link {
     padding: 20px 5px !important;
     font-size: 1rem !important;
