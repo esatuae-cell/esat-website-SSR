@@ -290,6 +290,31 @@
     position: absolute;
     right: 21% !important;
   }
+
+  .list-pack {
+    padding-left: 0 !important;
+    width: 23vw;
+  }
+  .packagelist {
+    width: 100%;
+    overflow: scroll;
+  }
+
+  .wrapper .card {
+    width: 8vw;
+  }
+  .packagelist {
+    .card h3 {
+      height: 48px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .fix-width-sub {
+    width: 71% !important;
+    margin-right: 10%;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
