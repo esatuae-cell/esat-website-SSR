@@ -186,6 +186,7 @@
                         role="tab"
                         aria-controls="pills-home"
                         aria-selected="true"
+                        (dblclick)="goTocompany()"
                       >
                         Company
                       </button>
@@ -200,6 +201,7 @@
                         role="tab"
                         aria-controls="pills-profile"
                         aria-selected="false"
+                        (dblclick)="goToExperience()"
                       >
                         Experience
                       </button>
@@ -214,6 +216,7 @@
                         role="tab"
                         aria-controls="pills-profile"
                         aria-selected="false"
+                        (dblclick)="goToLegal()"
                       >
                         Legal
                       </button>
@@ -474,6 +477,7 @@
                               role="tab"
                               aria-controls="pills-profile"
                               aria-selected="false"
+                              (dblclick)="goToSoftwareSolution()"
                             >
                               By Modules
                             </button>
@@ -489,6 +493,7 @@
                               role="tab"
                               aria-controls="pills-home"
                               aria-selected="true"
+                              (dblclick)="goToBusinessSolution()"
                             >
                               By Industries
                             </button>
@@ -1071,6 +1076,7 @@
                               role="tab"
                               aria-controls="pills-home"
                               aria-selected="true"
+                              (dblclick)="goToServices()"
                             >
                               Services
                             </button>
@@ -1085,6 +1091,7 @@
                               role="tab"
                               aria-controls="pills-profile"
                               aria-selected="false"
+                              (dblclick)="goToConsulting()"
                             >
                               IT Consulting
                             </button>

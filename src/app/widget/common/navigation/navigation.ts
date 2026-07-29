@@ -13,6 +13,30 @@ export class Navigation {
   isDropdownOpen = false;
   clicked = false;
 
+  constructor(private router: Router) {}
+
+  goToBusinessSolution() {
+    this.router.navigate(['/software/solution-industry']);
+  }
+  goToSoftwareSolution() {
+    this.router.navigate(['/software/solution-business']);
+  }
+  goTocompany() {
+    this.router.navigate(['/about/story']);
+  }
+  goToExperience() {
+    this.router.navigate(['/about/experience']);
+  }
+  goToLegal() {
+    this.router.navigate(['/about/news']);
+  }
+
+  goToServices() {
+    this.router.navigate(['hardware/it-networking-solutions-in-uae']);
+  }
+  goToConsulting() {
+    this.router.navigate(['/hardware/technology-consulting']);
+  }
 
   closeDropdown() {
     this.isDropdownOpen = false;
