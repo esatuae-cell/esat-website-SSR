@@ -1,13 +1,16 @@
 import { Component, computed, signal, HostListener } from '@angular/core';
-import { STORIES } from './our-stories.data';
 import { CommonModule } from '@angular/common';
-import { About } from '../about/about';
+import { STORIES } from './our-stories.data';
 
-interface Story {
-  year: number;
+interface Achievement {
   title: string;
   description: string;
   image?: string;
+}
+
+interface Story {
+  year: number;
+  achievements: Achievement[];
 }
 
 @Component({
@@ -20,11 +23,10 @@ interface Story {
 export class OurStories {
   stories: Story[] = STORIES;
 
-  // active index
   activeIndex = signal(0);
 
-  // visible window (first 10 years initially)
   startIndex = signal(0);
+
   windowSize = 10;
 
   visibleStories = computed(() =>
@@ -39,32 +41,31 @@ export class OurStories {
   }
 
   next() {
-    // Move active year forward
     if (this.activeIndex() < this.stories.length - 1) {
-      this.activeIndex.update((v) => v + 1);
+      this.activeIndex.update((index) => index + 1);
     }
 
-    // Move visible window forward if active year reaches the end
     if (this.activeIndex() >= this.startIndex() + this.windowSize) {
-      this.startIndex.update((v) => v + 1);
+      this.startIndex.update((index) => index + 1);
     }
   }
 
   prev() {
-    // Move active year backward
     if (this.activeIndex() > 0) {
-      this.activeIndex.update((v) => v - 1);
+      this.activeIndex.update((index) => index - 1);
     }
 
-    // Move visible window backward if active year reaches the beginning
     if (this.activeIndex() < this.startIndex()) {
-      this.startIndex.update((v) => v - 1);
+      this.startIndex.update((index) => index - 1);
     }
   }
 
   @HostListener('wheel', ['$event'])
   onScroll(event: WheelEvent) {
-    if (event.deltaY > 0) this.next();
-    else this.prev();
+    if (event.deltaY > 0) {
+      this.next();
+    } else if (event.deltaY < 0) {
+      this.prev();
+    }
   }
 }

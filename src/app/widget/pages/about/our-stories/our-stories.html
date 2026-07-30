@@ -1,43 +1,50 @@
-
-
-
-<section class="stories-section" >
-
-  <div class="container"> 
+<section class="stories-section">
+  <div class="container">
     <div class="our-story-sec">
-  <!-- TOP CONTENT -->
-  <div class="story-content d-block" key="activeStory">
-    <div class="image-box">
-      <img [src]="activeStory()?.image" alt="story" />
-    </div>
+      <!-- TOP CONTENT -->
 
-    <div class="text-box" data-aos="fade-up">
-      <h2 class="titlt-f">{{ activeStory()?.year }}</h2>
-      <h3>{{ activeStory()?.title }}</h3>
-      <p>{{ activeStory()?.description }}</p>
-    </div>
-  </div>
+      <div class="story-content d-block">
+        <h2 class="titlt-f">
+          {{ activeStory()?.year }}
+        </h2>
 
-  <!-- TIMELINE -->
-  <div class="timeline-wrapper" data-aos="fade-up">
+        <div
+          class="achievements-wrapper"
+          [class.two-achievements]="activeStory()?.achievements?.length === 2"
+        >
+          <div class="achievement-box" *ngFor="let achievement of activeStory()?.achievements">
+            <div class="image-box">
+              <img [src]="achievement.image" [alt]="achievement.title" />
+            </div>
 
-    <button class="nav-btn left" (click)="prev()">‹</button>
+            <div class="text-box" data-aos="fade-up">
+              <h3>{{ achievement.title }}</h3>
 
-    <div class="timeline">
-      <div
-        class="year-item"
-        *ngFor="let story of visibleStories(); let i = index"
-        [class.active]="activeIndex() === (startIndex() + i)"
-        (click)="selectYear(i)"
-      >
-        <span>{{ story.year }}</span>
+              <p>
+                {{ achievement.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline-wrapper" data-aos="fade-up">
+        <button class="nav-btn left" (click)="prev()">‹</button>
+
+        <div class="timeline">
+          <div
+            class="year-item"
+            *ngFor="let story of visibleStories(); let i = index"
+            [class.active]="activeIndex() === startIndex() + i"
+            (click)="selectYear(i)"
+          >
+            <span>{{ story.year }}</span>
+          </div>
+        </div>
+
+        <button class="nav-btn right" (click)="next()">›</button>
       </div>
     </div>
-
-    <button class="nav-btn right" (click)="next()">›</button>
-
   </div>
-
-  </div>
-</div>
 </section>
