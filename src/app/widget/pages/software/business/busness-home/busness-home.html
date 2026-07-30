@@ -12,9 +12,19 @@
               @for (item of row; track item.route) {
                 <li class="honeycomb-cell">
                   <a class="honeycomb-link" [routerLink]="[item.route]">
-                    <img class="honeycomb-cell_img" [src]="item.image" />
+                    <img class="honeycomb-cell_img" [src]="item.image" alt="" />
 
                     <div class="honeycomb-cell_title">
+                      <!-- Image icon -->
+                      <span class="d-block" *ngIf="item.iconType === 'image'">
+                        <img [src]="item.icon" alt="" />
+                      </span>
+
+                      <!-- CSS class icon -->
+                      <span class="d-block" *ngIf="item.iconType === 'class'">
+                        <i [class]="item.icon"></i>
+                      </span>
+
                       {{ item.title }}
                     </div>
                   </a>

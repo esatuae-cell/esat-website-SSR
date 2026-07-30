@@ -64,15 +64,32 @@
 .honeycomb-cell_title {
   position: absolute;
   inset: 0;
-  /* background: rgba(0, 0, 0, 0.45);*/
-  color: #000;
+  color: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
   text-align: center;
   padding: 15px;
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 16px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.honeycomb-cell_title span img {
+  width: 40px;
+  filter: brightness(0) invert(1%) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+}
+
+.honeycomb-cell_title:hover span img {
+  width: 40px;
+  filter: brightness(100%) invert(0%) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+}
+
+.modIcon {
+  font-size: 30px;
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
 }
 
 .honeycomb-cell:hover .honeycomb-cell_title {
