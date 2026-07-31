@@ -1,6 +1,9 @@
-import { Service } from '@angular/core';
+// import { Service } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-@Service()
+@Injectable({
+  providedIn: 'root',
+})
 export class RootServices {
   public httpLink: string = 'https://esat.ae/wp-content/themes/ESAT/api/serverfile.php?a='; //'http:/localhost/esat/wp-content/themes/ESAT/api/serverfile.php?a=';
   public joblink: string = 'https://esat.ae/wp-content/themes/ESAT/api/jobs.php'; //'http:/localhost/esat/wp-content/themes/ESAT/api/jobs.php';
