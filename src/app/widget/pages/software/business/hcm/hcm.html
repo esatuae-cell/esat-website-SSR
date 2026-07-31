@@ -21,7 +21,6 @@
             <h6 class="reduce" [innerHtml]="module.name"></h6>
           </div>
           <div class="tagPrara">
-            <!-- <p>{{dataValue.acf.description}}</p> -->
             <p>
               ESAT Human Capital Management Solution (HCM) offers a complete, compliant and modern
               solution to manage workforce more efficiently.
@@ -32,9 +31,7 @@
           <div class="head">
             <h4 class="f-18 pt-3">Overview</h4>
           </div>
-          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>
 
-                    </div>  -->
           <div class="bottom">
             Human Capital Management (HCM) Solution handles the workforce management processes and
             employee data. It helps you give to the suitable employees, an access, to the right
@@ -70,10 +67,6 @@
           </div>
           <div class="bottom row" [hidden]="featureandbenifit">
             <div class="col-sm-6">
-              <!-- <div *ngFor="let ovrleft of dataValue.acf.features_left; let $index = index;">
-                                  <h5 class="f-14">{{ovrleft.title}}</h5> 
-                              <p>{{ovrleft.description}}</p>  
-                            </div> -->
               <div>
                 <h5 class="f-14">Reports, dashboards, and business intelligence.</h5>
 
@@ -89,10 +82,6 @@
             </div>
 
             <div class="col-sm-6">
-              <!-- <div *ngFor="let ovrleft of dataValue.acf.features_right; let $index = index;">
-                                <h5 class="f-14">{{ovrleft.title}}</h5>
-                                <p>{{ovrleft.description}}</p>
-                            </div> -->
               <div *ngFor="let image of _albums; let i = index">
                 <h5 class="f-14">{{ image.caption }}</h5>
                 <div class="Divmagnification">

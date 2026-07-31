@@ -1,17 +1,11 @@
 import { Component, PLATFORM_ID, inject, OnInit } from '@angular/core';
-
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { HttpClient } from '@angular/common/http';
-
 import { Title, Meta } from '@angular/platform-browser';
-
 import { catchError, of } from 'rxjs';
 
 import { RootServices } from '../../../services/root-services';
-
 import { CareersLoad } from '../../shared-component/careers-load/careers-load';
 
 @Component({
@@ -22,25 +16,27 @@ import { CareersLoad } from '../../shared-component/careers-load/careers-load';
   styleUrl: './careers.css',
 })
 export class Careers implements OnInit {
-  // ---------- Inject ----------
+  // ============================================================
+  // Inject
+  // ============================================================
 
   private http = inject(HttpClient);
-
   private fb = inject(FormBuilder);
-
   private titleService = inject(Title);
-
   private metaService = inject(Meta);
-
   private platformId = inject(PLATFORM_ID);
 
   public root = inject(RootServices);
 
-  // ---------- SSR Browser Check ----------
+  // ============================================================
+  // SSR / Browser
+  // ============================================================
 
-  isBrowser = isPlatformBrowser(this.platformId);
+  readonly isBrowser = isPlatformBrowser(this.platformId);
 
-  // ---------- State ----------
+  // ============================================================
+  // State
+  // ============================================================
 
   queone = true;
   quetwo = true;
@@ -50,7 +46,6 @@ export class Careers implements OnInit {
   swcbody = true;
 
   dataValue: any = null;
-
   SCSingle: any = null;
 
   subjectvalue = 'Job Application';
@@ -61,7 +56,7 @@ export class Careers implements OnInit {
 
   infoblocks: Record<number, boolean> = {};
 
-  httpDirectLink = 'https://esat.ae/wp-json/wp/v2/pages/';
+  readonly httpDirectLink = 'https://esat.ae/wp-json/wp/v2/pages/';
 
   angForm!: FormGroup;
 
@@ -69,7 +64,9 @@ export class Careers implements OnInit {
 
   loading = false;
 
-  // ---------- Init ----------
+  // ============================================================
+  // Init
+  // ============================================================
 
   ngOnInit(): void {
     this.titleService.setTitle('Job Vacancies and Careers | UAE | ESAT');
@@ -81,11 +78,15 @@ export class Careers implements OnInit {
 
     this.root.contactoption = 0;
 
+    /*
+     * Try to use already loaded WordPress data first.
+     * This avoids an unnecessary API request during SSR
+     * when RootServices already contains page 203.
+     */
     const careerData = this.root.webData?.['203'];
 
     if (careerData?.acf) {
-      this.dataValue = careerData;
-      this.preparejobcategory(careerData);
+      this.setCareerData(careerData);
     } else {
       this.loadCareerData();
     }
@@ -93,61 +94,112 @@ export class Careers implements OnInit {
     this.createForm();
   }
 
-  // ---------- API ----------
+  // ============================================================
+  // Career Data
+  // ============================================================
+
+  private setCareerData(data: any): void {
+    if (!data || typeof data !== 'object') {
+      return;
+    }
+
+    if (!data.acf || typeof data.acf !== 'object') {
+      return;
+    }
+
+    this.dataValue = data;
+
+    this.preparejobcategory(data);
+  }
+
+  // ============================================================
+  // API
+  // ============================================================
 
   loadCareerData(): void {
+    /*
+     * During SSR/prerendering, the WordPress endpoint may return
+     * the Angular HTML page instead of JSON.
+     *
+     * We therefore handle the request safely and never assume
+     * that the response contains ACF data.
+     */
+
     this.http
-      .get(this.httpDirectLink + '203')
+      .get<any>(`${this.httpDirectLink}203`)
       .pipe(
         catchError((error) => {
-          console.error('Career API Error', error);
+          console.error('Career API request failed:', error?.status, error?.url);
 
           return of(null);
         }),
       )
       .subscribe((data: any) => {
-        if (data) {
-          this.dataValue = data;
-
-          this.preparejobcategory(data);
+        if (!data || typeof data !== 'object') {
+          return;
         }
+
+        if (!data.acf || typeof data.acf !== 'object') {
+          console.warn('Career API returned data without ACF information.');
+
+          return;
+        }
+
+        this.setCareerData(data);
       });
   }
 
-  // ---------- Jobs ----------
+  // ============================================================
+  // Jobs
+  // ============================================================
 
-  preparejobcategory(_dataValue: any): void {
+  preparejobcategory(dataValue: any): void {
     this.jobCategory = [];
 
-    if (!_dataValue || !_dataValue.acf) {
+    if (
+      !dataValue ||
+      typeof dataValue !== 'object' ||
+      !dataValue.acf ||
+      typeof dataValue.acf !== 'object'
+    ) {
       return;
     }
 
-    for (const key in _dataValue.acf) {
-      if (key !== 'content' && key !== 'main_image' && key !== 'inner_image' && key !== 'quotes') {
-        const label =
-          key === 'software_jobs'
-            ? 'Software Careers'
-            : key === 'hardware_jobs'
-              ? 'Hardware Careers'
-              : key === 'sales_marketing'
-                ? 'Sales & Marketing Careers'
-                : key === 'admin_jobs'
-                  ? 'Administrative Careers'
-                  : 'Other Careers';
+    const acf = dataValue.acf;
 
-        const list = _dataValue.acf[key] || [];
-
-        this.jobCategory.push({
-          category: label,
-
-          joblist: list,
-
-          show: false,
-
-          available: list.length > 0,
-        });
+    for (const key of Object.keys(acf)) {
+      if (key === 'content' || key === 'main_image' || key === 'inner_image' || key === 'quotes') {
+        continue;
       }
+
+      let label = 'Other Careers';
+
+      switch (key) {
+        case 'software_jobs':
+          label = 'Software Careers';
+          break;
+
+        case 'hardware_jobs':
+          label = 'Hardware Careers';
+          break;
+
+        case 'sales_marketing':
+          label = 'Sales & Marketing Careers';
+          break;
+
+        case 'admin_jobs':
+          label = 'Administrative Careers';
+          break;
+      }
+
+      const list = Array.isArray(acf[key]) ? acf[key] : [];
+
+      this.jobCategory.push({
+        category: label,
+        joblist: list,
+        show: false,
+        available: list.length > 0,
+      });
     }
   }
 
@@ -155,7 +207,9 @@ export class Careers implements OnInit {
     this.infoblocks[index] = !this.infoblocks[index];
   }
 
-  // ---------- Form ----------
+  // ============================================================
+  // Form
+  // ============================================================
 
   createForm(): void {
     this.angForm = this.fb.group({
@@ -171,32 +225,50 @@ export class Careers implements OnInit {
     });
   }
 
-  // ---------- Job Selection ----------
+  // ============================================================
+  // Job Selection
+  // ============================================================
 
   openSCarrer(id: number): void {
-    this.SCSingle = this.dataValue?.acf?.software_jobs?.[id];
+    const jobs = this.dataValue?.acf?.software_jobs;
+
+    if (!Array.isArray(jobs)) {
+      return;
+    }
+
+    this.SCSingle = jobs[id] ?? null;
 
     if (this.SCSingle) {
-      this.subjectvalue = this.SCSingle.title;
+      this.subjectvalue = this.SCSingle?.title ?? 'Job Application';
 
       this.resetForm();
     }
   }
 
   openACarrer(id: number): void {
-    this.SCSingle = this.dataValue?.acf?.admin_jobs?.[id];
+    const jobs = this.dataValue?.acf?.admin_jobs;
+
+    if (!Array.isArray(jobs)) {
+      return;
+    }
+
+    this.SCSingle = jobs[id] ?? null;
 
     if (this.SCSingle) {
-      this.subjectvalue = this.SCSingle.title;
+      this.subjectvalue = this.SCSingle?.title ?? 'Job Application';
 
       this.resetForm();
     }
   }
 
   openCarrerPopup(_id: number, job: any): void {
+    if (!job) {
+      return;
+    }
+
     this.SCSingle = job;
 
-    this.subjectvalue = job.title;
+    this.subjectvalue = job?.title ?? 'Job Application';
 
     this.resetForm();
   }
@@ -205,7 +277,9 @@ export class Careers implements OnInit {
     this.swcbody = !this.swcbody;
   }
 
-  // ---------- File ----------
+  // ============================================================
+  // File
+  // ============================================================
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -221,37 +295,34 @@ export class Careers implements OnInit {
 
   resetFile(): void {
     this.selectedFile = null;
-
     this.filename = '';
   }
 
-  // ---------- Sweet Alert SSR Safe ----------
+  // ============================================================
+  // SweetAlert - Browser Only
+  // ============================================================
 
-  async showAlert(title: string, text: string, icon: any) {
-    if (this.isBrowser) {
-      const Swal = (await import('sweetalert2')).default;
-
-      Swal.fire({
-        title,
-
-        text,
-
-        icon,
-      });
+  async showAlert(title: string, text: string, icon: any): Promise<void> {
+    if (!this.isBrowser) {
+      return;
     }
+
+    const Swal = (await import('sweetalert2')).default;
+
+    await Swal.fire({
+      title,
+      text,
+      icon,
+    });
   }
 
-  // ---------- Submit ----------
+  // ============================================================
+  // Submit
+  // ============================================================
 
   onSubmit(): void {
-    if (!this.angForm.valid || !this.selectedFile) {
-      this.showAlert(
-        'Invalid',
-
-        'Please fill all required fields',
-
-        'error',
-      );
+    if (!this.angForm || this.angForm.invalid || !this.selectedFile) {
+      void this.showAlert('Invalid', 'Please fill all required fields', 'error');
 
       return;
     }
@@ -260,37 +331,27 @@ export class Careers implements OnInit {
 
     const formData = new FormData();
 
-    formData.append('subject', this.angForm.value.Subject);
+    formData.append('subject', this.angForm.value.Subject ?? '');
 
-    formData.append('name', this.angForm.value.name);
+    formData.append('name', this.angForm.value.name ?? '');
 
-    formData.append('phone', this.angForm.value.phone_no);
+    formData.append('phone', this.angForm.value.phone_no ?? '');
 
-    formData.append('email', this.angForm.value.address);
+    formData.append('email', this.angForm.value.address ?? '');
 
-    formData.append('message', this.angForm.value.textarea);
+    formData.append('message', this.angForm.value.textarea ?? '');
 
     formData.append('file', this.selectedFile);
 
     this.http
-      .post(
-        'https://esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php',
-
-        formData,
-      )
+      .post('https://esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php', formData)
       .pipe(
         catchError((error) => {
-          console.error('Upload Error', error);
+          console.error('Career upload error:', error);
 
           this.loading = false;
 
-          this.showAlert(
-            'Error',
-
-            'Something went wrong',
-
-            'error',
-          );
+          void this.showAlert('Error', 'Something went wrong', 'error');
 
           return of(null);
         }),
@@ -299,22 +360,22 @@ export class Careers implements OnInit {
         this.loading = false;
 
         if (res?.id === 203) {
-          this.showAlert(
-            'Thank You!',
-
-            'Your CV has been sent successfully.',
-
-            'success',
-          );
+          void this.showAlert('Thank You!', 'Your CV has been sent successfully.', 'success');
 
           this.resetForm();
         }
       });
   }
 
-  // ---------- Reset ----------
+  // ============================================================
+  // Reset
+  // ============================================================
 
   resetForm(): void {
+    if (!this.angForm) {
+      return;
+    }
+
     this.angForm.reset({
       Subject: this.subjectvalue,
     });

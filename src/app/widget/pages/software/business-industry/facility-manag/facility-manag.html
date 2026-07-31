@@ -19,7 +19,6 @@
             <h6 [innerHtml]="module.name"></h6>
           </div>
           <div class="tagPrara">
-            <!-- <p>{{dataValue.acf.description}}</p> -->
             <p>
               ESAT's Facility Management Solution simplifies complex operations, aids in cost
               reduction and improves efficiencies.
@@ -30,7 +29,7 @@
           <div class="head">
             <h4 class="f-18 pt-3">Overview</h4>
           </div>
-          <!-- <div class="bottom" [innerHtml]='dataValue.acf.overview'>  </div> -->
+
           <div class="bottom">
             Facility Management Solution is designed to help with operating and maintaining
             commercial/industrial properties. It maintains, manages and tracks assets, properties,
@@ -53,10 +52,6 @@
           </div>
           <div class="bottom row" [hidden]="featureandbenifit">
             <div class="col-sm-6">
-              <!-- <div *ngFor="let ovrleft of dataValue.acf.features_left; let $index = index;">
-                                <h5 class="f-14">{{ovrleft.title}}</h5>
-                                <p>{{ovrleft.description}}</p>
-                            </div> -->
               <div class="overleft">
                 <h5 class="f-14">Customer service and experience</h5>
                 <p>
@@ -81,10 +76,6 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <!-- <div *ngFor="let ovrleft of dataValue.acf.features_right; let $index = index;">
-                                <h5 class="f-14">{{ovrleft.title}}</h5>
-                                <p>{{ovrleft.description}}</p>
-                            </div> -->
               <div class="overleft">
                 <h5 class="f-14">Simple operating system</h5>
                 <p>Simplifies the facility operations and building systems</p>
@@ -113,71 +104,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="featureandbenif industry">
-                    <div class="head">
-                        <h4>Components</h4>
-                        <i (click)="component = !component" class="arrow-down fa fa-angle-double-up"
-                            [ngClass]="{'fa-angle-double-down':component == false }"></i>
-                    </div>
-                    <div class="bottom row" [hidden]='component'>
-                        <div class="col-sm-6">
-                            <ul class="industryul">
-                                <li *ngFor="let components of compomm; let $index = index;">
-                                    <div class="head" *ngIf="$index < 6">
-                                        <i class="icon-{{components.icon}} {{components.modcls}}"></i><span>
-                                            <a
-                                                routerLink="/software/swproduct/swproductbybuss/{{components.link}}">{{components.shortname.replace('ERP ', '')}}</a>
-                                        </span> <i (click)="components.visible = !components.visible"
-                                            *ngIf="$rootScope.webData[components.pagelink].acf.components !== false"
-                                            class="arrow-down fa fa-angle-double-up"
-                                            [ngClass]="{'fa-angle-double-down':components.visible !== false }"></i>
-                                    </div>
-                                    <div [hidden]='components.visible' *ngIf="$index < 6">
-                                        <ul class="subind">
-                                            <li
-                                                *ngFor="let compo of $rootScope.webData[components.pagelink].acf.components; let $index = index;">
-                                                <i class="icon-esatform"></i>{{compo.name}}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="col-sm-6">
-                            <ul class="industryul">
-                                <li *ngFor="let components of compomm; let $index = index;">
-                                    <div class="head" *ngIf="$index >5">
-                                        <i class="icon-{{components.icon}} {{components.modcls}}"></i><span>
-                                            <a
-                                                routerLink="/software/swproduct/swproductbybuss/{{components.link}}">{{components.shortname.replace('ERP ', '')}}</a>
-                                        </span> <i (click)="components.visible = !components.visible"
-                                            *ngIf="$rootScope.webData[components.pagelink].acf.components !== false"
-                                            class="arrow-down fa fa-angle-double-up"
-                                            [ngClass]="{'fa-angle-double-down':components.visible !== false }"></i>
-                                    </div>
-                                    <div [hidden]='components.visible' *ngIf="$index > 5">
-                                        <ul class="subind">
-                                            <li
-                                                *ngFor="let compo of $rootScope.webData[components.pagelink].acf.components; let $index = index;">
-                                                <i class="icon-esatform"></i>{{compo.name}}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="head">
-                                        <i class="icon-esatform"></i><span>
-                                            <a>Task Management</a>
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-
-                    </div>
-                </div> -->
 
         <div class="featureandbenif">
           <div class="head">
