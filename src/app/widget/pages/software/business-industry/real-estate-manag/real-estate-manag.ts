@@ -19,9 +19,9 @@ export class RealEstateManag implements OnInit {
   public dataValue: any;
   public featureandbenifit: boolean = true;
   public component: boolean = true;
-  public var: any = 2;
-  public compomm: any = [];
-  public _albums: any = [];
+  public var: number = 2;
+  public compomm: any[] = [];
+  public _albums: any[] = [];
 
   constructor(
     public http: HttpClient,
@@ -30,33 +30,46 @@ export class RealEstateManag implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.module = this.$rootScope.allModule[this.var];
-    this.next = this.$rootScope.allModule[3];
+    // Safely get module
+    this.module = this.$rootScope.allModule?.[this.var];
+    this.next = this.$rootScope.allModule?.[3];
+
+    // Prevent SSR crash if module is unavailable
+    if (!this.module) {
+      console.error('RealEstateManag: module not found at index:', this.var);
+      return;
+    }
 
     const webData = this.$rootScope.webData;
 
     const hasWebData = webData && typeof webData === 'object' && Object.keys(webData).length > 0;
 
-    if (hasWebData && webData[this.module.pagelink] !== undefined) {
+    if (hasWebData && this.module.pagelink && webData[this.module.pagelink] !== undefined) {
       this.dataValue = webData[this.module.pagelink];
     } else {
-      // SSR SAFE HTTP CALL
-      if (isPlatformBrowser(this.platformId)) {
-        this.http.get(this.$rootScope.httpLink + this.module.pagelink).subscribe((data) => {
-          this.dataValue = data;
+      // HTTP only in browser
+      if (isPlatformBrowser(this.platformId) && this.module.pagelink) {
+        this.http.get(this.$rootScope.httpLink + this.module.pagelink).subscribe({
+          next: (data) => {
+            this.dataValue = data;
+          },
+          error: (error) => {
+            console.error('Real Estate API Error:', error);
+          },
         });
       }
     }
 
-    const selected = this.module.selected;
+    // Prevent undefined.includes()
+    const selected = this.module.selected ?? [];
 
-    this.$rootScope.allmoduleList.forEach((element: { id: any }) => {
+    this.$rootScope.allmoduleList?.forEach((element: { id: any }) => {
       if (selected.includes(element.id)) {
         this.compomm.push(element);
       }
     });
 
-    // SSR SAFE UI CALL
+    // Browser-only UI logic
     if (isPlatformBrowser(this.platformId)) {
       this.$rootScope.refreshVisible();
     }

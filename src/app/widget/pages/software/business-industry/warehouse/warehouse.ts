@@ -14,14 +14,17 @@ import { BusinessInsustrySubmenu } from '../business-insustry-submenu/business-i
   styleUrl: './warehouse.css',
 })
 export class Warehouse implements OnInit {
-  public module: any;
-  public next: any;
-  public dataValue: any;
-  public featureandbenifit: boolean = true;
-  public component: boolean = true;
-  public var: any = 8;
-  public compomm: any = [];
-  public _albums: any = [];
+  public module: any = null;
+  public next: any = null;
+  public dataValue: any = null;
+
+  public featureandbenifit = true;
+  public component = true;
+
+  public var = 8;
+
+  public compomm: any[] = [];
+  public _albums: any[] = [];
 
   constructor(
     public http: HttpClient,
@@ -29,41 +32,89 @@ export class Warehouse implements OnInit {
     @Inject(PLATFORM_ID) private platformId: object,
   ) {}
 
-  ngOnInit() {
-    this.module = this.$rootScope.allModule[this.var];
-    this.next = this.$rootScope.allModule[9];
+  ngOnInit(): void {
+    /*
+     * Get current module safely
+     */
+    this.module = this.$rootScope.allModule?.[this.var];
+
+    /*
+     * Get next module safely
+     */
+    this.next = this.$rootScope.allModule?.[9];
+
+    /*
+     * Prevent SSR crash if module is unavailable
+     */
+    if (!this.module) {
+      console.warn('Warehouse module not found at index:', this.var);
+      return;
+    }
 
     const webData = this.$rootScope.webData;
 
     const hasWebData = webData && typeof webData === 'object' && Object.keys(webData).length > 0;
 
-    if (hasWebData && webData[this.module.pagelink] !== undefined) {
+    /*
+     * Use existing web data if available
+     */
+    if (hasWebData && this.module.pagelink && webData[this.module.pagelink] !== undefined) {
       this.dataValue = webData[this.module.pagelink];
-    } else {
-      // SSR SAFE HTTP CALL
-      if (isPlatformBrowser(this.platformId)) {
-        this.http.get(this.$rootScope.httpLink + this.module.pagelink).subscribe((data) => {
+    } else if (this.module.pagelink) {
+      /*
+       * Allow API request during SSR/prerendering.
+       */
+      this.http.get(this.$rootScope.httpLink + this.module.pagelink).subscribe({
+        next: (data: any) => {
           this.dataValue = data;
-        });
-      }
+        },
+
+        error: (error) => {
+          console.error('Warehouse API Error:', error);
+
+          this.dataValue = null;
+        },
+      });
     }
 
-    const selected = this.module.selected;
+    /*
+     * Safely get selected modules.
+     *
+     * Prevents:
+     * Cannot read properties of undefined
+     * (reading 'includes')
+     */
+    const selected: any[] = Array.isArray(this.module.selected) ? this.module.selected : [];
 
-    this.$rootScope.allmoduleList.forEach((element: { id: any }) => {
-      if (selected.includes(element.id)) {
+    const moduleList: any[] = Array.isArray(this.$rootScope.allmoduleList)
+      ? this.$rootScope.allmoduleList
+      : [];
+
+    this.compomm = [];
+
+    moduleList.forEach((element: { id: any }) => {
+      if (element && selected.includes(element.id)) {
         this.compomm.push(element);
       }
     });
 
-    // SSR SAFE UI CALL
+    /*
+     * Browser-only DOM logic
+     */
     if (isPlatformBrowser(this.platformId)) {
       this.$rootScope.refreshVisible();
     }
 
+    /*
+     * Warehouse dashboard image
+     */
+    const version = this.$rootScope.version ?? '';
+
     const album = {
-      src: 'assets/images/dashboard/facility.png?v=' + this.$rootScope.version,
+      src: 'assets/images/dashboard/facility.png?v=' + version,
+
       caption: 'Warehouse dashboard',
+
       thumb: 'assets/images/dashboard/facility.png',
     };
 

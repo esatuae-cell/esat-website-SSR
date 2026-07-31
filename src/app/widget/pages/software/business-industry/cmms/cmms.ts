@@ -29,8 +29,13 @@ export class Cmms implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.module = this.$rootScope.allModule[this.var];
-    this.next = this.$rootScope.allModule[0];
+    this.module = this.$rootScope.allModule?.[this.var];
+    this.next = this.$rootScope.allModule?.[0];
+
+    if (!this.module) {
+      console.error('CMMS: module not found at index:', this.var);
+      return;
+    }
 
     const webData = this.$rootScope.webData;
 
@@ -40,15 +45,20 @@ export class Cmms implements OnInit {
       webData[this.module.pagelink] !== undefined
     ) {
       this.dataValue = webData[this.module.pagelink];
-    } else {
-      this.http.get(this.$rootScope.httpLink + this.module.pagelink).subscribe((data) => {
-        this.dataValue = data;
+    } else if (this.module.pagelink) {
+      this.http.get(this.$rootScope.httpLink + this.module.pagelink).subscribe({
+        next: (data) => {
+          this.dataValue = data;
+        },
+        error: (error) => {
+          console.error('CMMS API Error:', error);
+        },
       });
     }
 
-    const selected = this.module.selected;
+    const selected = this.module.selected ?? [];
 
-    this.$rootScope.allmoduleList.forEach((element: { id: any }) => {
+    this.$rootScope.allmoduleList?.forEach((element: { id: any }) => {
       if (selected.includes(element.id)) {
         this.compomm.push(element);
       }

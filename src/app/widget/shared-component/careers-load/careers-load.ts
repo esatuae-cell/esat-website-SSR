@@ -20,7 +20,8 @@ export class CareersLoad implements OnInit {
 
   selectedCategoryIndex: number | null = null;
   selectedJob: any = null;
-  swcbody: boolean = true;
+
+  swcbody = true;
   showPopup = false;
   showForm = false;
 
@@ -29,11 +30,10 @@ export class CareersLoad implements OnInit {
 
   jobDataLoaded = false;
   dataValue: any;
-  infoblocks: any = {};
+  infoblocks: { [key: number]: boolean } = {};
 
   httpDirectLink = 'https://esat.ae/wp-json/wp/v2/pages/';
 
-  // SSR safe flag
   isBrowser: boolean;
 
   afuConfig: any;
@@ -42,7 +42,6 @@ export class CareersLoad implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private sanitizer: DomSanitizer,
-
     public root: RootServices,
     private titleService: Title,
     private meta: Meta,
@@ -64,28 +63,20 @@ export class CareersLoad implements OnInit {
   ngOnInit(): void {
     this.root.contactoption = 0;
 
-    // SSR safe DOM access
+    /*
+     * Browser-only DOM access
+     */
     if (this.isBrowser) {
       const loader = document.getElementById('loadingshield');
-      if (loader) loader.style.display = 'none';
-    }
-    this.jobDataLoaded = false;
-    this.ref.detectChanges();
-    if (this.root.webData?.['203']) {
-      this.dataValue = this.root.webData['203'];
-      this.preparejobcategory(this.dataValue);
-      this.jobDataLoaded = true;
-      this.ref.detectChanges();
-    } else {
-      this.http.get(this.root.httpLink + '203').subscribe((data: any) => {
-        this.dataValue = data;
-        this.preparejobcategory(this.dataValue);
-        this.jobDataLoaded = true;
-        this.ref.detectChanges();
-      });
+
+      if (loader) {
+        loader.style.display = 'none';
+      }
     }
 
-    // safe config init (NO this usage in property initializer)
+    /*
+     * Initialize upload configuration
+     */
     this.afuConfig = {
       multiple: false,
       formatsAllowed: '.docx,.pdf',
@@ -98,30 +89,81 @@ export class CareersLoad implements OnInit {
         uploadBtn: 'Upload your CV',
       },
     };
+
+    /*
+     * Load career data
+     */
+    this.loadCareerData();
   }
 
-  preparejobcategory(_dataValue: any): void {
+  private loadCareerData(): void {
+    this.jobDataLoaded = false;
+
+    const cachedData = this.root.webData?.['203'];
+
+    if (cachedData) {
+      this.dataValue = cachedData;
+      this.preparejobcategory(cachedData);
+      this.jobDataLoaded = true;
+      return;
+    }
+
+    this.http.get(this.root.httpLink + '203').subscribe({
+      next: (data: any) => {
+        this.dataValue = data;
+
+        this.preparejobcategory(data);
+
+        this.jobDataLoaded = true;
+
+        /*
+         * Normally Angular change detection handles this.
+         * Keep this only for cases where the component is updated
+         * outside the normal Angular lifecycle.
+         */
+        if (this.isBrowser) {
+          this.ref.markForCheck();
+        }
+      },
+
+      error: (error) => {
+        console.error('Career data loading error:', error);
+
+        this.jobDataLoaded = true;
+
+        if (this.isBrowser) {
+          this.ref.markForCheck();
+        }
+      },
+    });
+  }
+
+  preparejobcategory(dataValue: any): void {
     this.jobCategory = [];
 
-    for (const key in _dataValue.acf) {
+    if (!dataValue?.acf) {
+      return;
+    }
+
+    const labelMap: { [key: string]: string } = {
+      software_jobs: 'Software Careers',
+      hardware_jobs: 'Hardware Careers',
+      sales_marketing: 'Sales & Marketing Careers',
+      admin_jobs: 'Administrative Careers',
+    };
+
+    for (const key in dataValue.acf) {
       if (['content', 'main_image', 'inner_image', 'quotes'].includes(key)) {
         continue;
       }
 
-      const labelMap: any = {
-        software_jobs: 'Software Careers',
-        hardware_jobs: 'Hardware Careers',
-        sales_marketing: 'Sales & Marketing Careers',
-        admin_jobs: 'Administrative Careers',
-      };
-
-      const label = labelMap[key] || 'Other Careers';
+      const jobs = dataValue.acf[key] || [];
 
       this.jobCategory.push({
-        category: label,
-        joblist: _dataValue.acf[key] || [],
+        category: labelMap[key] || 'Other Careers',
+        joblist: jobs,
         show: false,
-        available: (_dataValue.acf[key] || []).length > 0,
+        available: jobs.length > 0,
       });
     }
   }
@@ -132,11 +174,12 @@ export class CareersLoad implements OnInit {
 
   openJobPopup(job: any): void {
     this.selectedJob = job;
+
     this.showPopup = true;
     this.showForm = false;
 
     this.applicationForm.patchValue({
-      subject: job.title,
+      subject: job?.title || '',
     });
   }
 
@@ -144,6 +187,8 @@ export class CareersLoad implements OnInit {
     this.showPopup = false;
     this.selectedJob = null;
     this.showForm = false;
+    this.selectedFile = null;
+
     this.applicationForm.reset();
   }
 
@@ -152,16 +197,21 @@ export class CareersLoad implements OnInit {
   }
 
   submitApplication(): void {
-    if (!this.applicationForm.valid) {
+    if (this.applicationForm.invalid) {
       this.applicationForm.markAllAsTouched();
       return;
     }
 
     const formData = new FormData();
-    formData.append('name', this.applicationForm.get('name')?.value);
-    formData.append('email', this.applicationForm.get('address')?.value);
-    formData.append('phone', this.applicationForm.get('phone_no')?.value);
+
+    formData.append('name', this.applicationForm.get('name')?.value || '');
+
+    formData.append('email', this.applicationForm.get('address')?.value || '');
+
+    formData.append('phone', this.applicationForm.get('phone_no')?.value || '');
+
     formData.append('subject', this.selectedJob?.title || 'Job Application');
+
     formData.append('message', this.applicationForm.get('textarea')?.value || '');
 
     if (this.selectedFile) {
@@ -174,23 +224,36 @@ export class CareersLoad implements OnInit {
       next: () => {
         this.closePopup();
       },
-      error: (err) => {
-        console.error('Submission error', err);
+
+      error: (error) => {
+        console.error('Submission error:', error);
       },
     });
   }
 
-  onFileChange(event: any): void {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    const file = input.files?.[0];
+
+    if (!file) {
+      return;
+    }
 
     this.selectedFile = file;
-    this.applicationForm.patchValue({ resume: file });
+
+    this.applicationForm.patchValue({
+      resume: file,
+    });
+
+    this.applicationForm.get('resume')?.updateValueAndValidity();
   }
 
-  // SSR-safe block toggle
   toggleBlock(index: number): void {
-    if (!this.isBrowser) return;
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.infoblocks[index] = !this.infoblocks[index];
   }
 }
