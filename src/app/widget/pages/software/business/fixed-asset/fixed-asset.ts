@@ -22,7 +22,6 @@ export class FixedAsset implements OnInit, AfterViewInit {
   public component = true;
   public var = 0;
   public _albums: any[] = [];
-  private _lightbox: any;
 
   constructor(
     private http: HttpClient,
@@ -65,9 +64,5 @@ export class FixedAsset implements OnInit, AfterViewInit {
         offset: 100,
       });
     }
-  }
-
-  openLightbox(index: number): void {
-    this._lightbox?.open(this._albums, index);
   }
 }

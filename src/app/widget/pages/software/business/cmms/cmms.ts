@@ -30,7 +30,6 @@ export class CMMS implements OnInit {
   public var = 18;
 
   public _albums: any[] = [];
-  private _lightbox: any;
 
   constructor(
     private http: HttpClient,
@@ -92,11 +91,5 @@ export class CMMS implements OnInit {
 
         this.transferState.set(CMMS_KEY, data);
       });
-  }
-
-  openLightbox(index: number) {
-    if (isPlatformBrowser(this.platformId)) {
-      this._lightbox?.open(this._albums, index);
-    }
   }
 }
