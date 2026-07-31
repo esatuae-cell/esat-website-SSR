@@ -1,6 +1,7 @@
 <section id="contmain" class="pad-50">
   <div class="container-fluid vw-90">
     <div class="row">
+      ```
       <!-- ================= CONTACT FORM ================= -->
       <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="contactForm ps-3 pe-3 pt-5" data-aos="fade-up">
@@ -58,6 +59,7 @@
                   <div *ngIf="angForm.get('email')?.errors?.['required']">
                     Please enter your email address
                   </div>
+
                   <div *ngIf="angForm.get('email')?.errors?.['email']">
                     Please enter a valid email address
                   </div>
@@ -70,21 +72,9 @@
               <!-- SUBJECT -->
               <div class="col-sm-6 inpzero">
                 <div class="form-group">
-                  <label class="textlbl">Subject</label>
+                  <label class="textlbl"> Subject </label>
 
-                  <select
-                    class="form-control"
-                    formControlName="subject"
-                    activate(event:
-                    Event)
-                    {
-                    const
-                    select="event.target"
-                    as
-                    HTMLSelectElement;
-                    this.activelist="select.selectedIndex;"
-                    }
-                  >
+                  <select class="form-control" formControlName="subject">
                     <option *ngFor="let item of subjectOptions" [value]="item.name">
                       {{ item.name }}
                     </option>
@@ -96,7 +86,8 @@
               <div class="col-sm-6 inpzero">
                 <div class="form-group">
                   <label class="textlbl">
-                    Type of Business <span style="color: red">*</span>
+                    Type of Business
+                    <span style="color: red">*</span>
                   </label>
 
                   <select
@@ -108,16 +99,27 @@
                     }"
                   >
                     <option value="">Select</option>
+
                     <option>Advertising & Marketing Services</option>
+
                     <option>Agriculture</option>
+
                     <option>Computer & IT Services</option>
+
                     <option>Construction & Contracting</option>
+
                     <option>Consulting Services</option>
+
                     <option>eCommerce</option>
+
                     <option>Education</option>
+
                     <option>Finance, Accounting & Insurance</option>
+
                     <option>Manufacturing</option>
+
                     <option>Real Estate</option>
+
                     <option>Retail</option>
                   </select>
                 </div>
@@ -136,7 +138,10 @@
               <!-- COMPANY -->
               <div class="col-sm-6 inpzero">
                 <div class="form-group">
-                  <label class="textlbl"> Company Name <span style="color: red">*</span> </label>
+                  <label class="textlbl">
+                    Company Name
+                    <span style="color: red">*</span>
+                  </label>
 
                   <input
                     class="form-control"
@@ -161,7 +166,7 @@
               <!-- LOCATION -->
               <div class="col-sm-6 inpzero">
                 <div class="form-group">
-                  <label class="textlbl">Location</label>
+                  <label class="textlbl"> Location </label>
 
                   <input
                     class="form-control"
@@ -178,7 +183,7 @@
               <!-- WEBSITE -->
               <div class="col-sm-6 inpzero">
                 <div class="form-group">
-                  <label class="textlbl">Website</label>
+                  <label class="textlbl"> Website </label>
 
                   <input
                     class="form-control"
@@ -192,7 +197,10 @@
               <!-- PHONE -->
               <div class="col-sm-6 inpzero">
                 <div class="form-group">
-                  <label class="textlbl"> Phone No <span style="color: red">*</span> </label>
+                  <label class="textlbl">
+                    Phone No
+                    <span style="color: red">*</span>
+                  </label>
 
                   <input
                     class="form-control"
@@ -220,7 +228,8 @@
               <div class="col-sm-12 inpzero">
                 <div class="form-group">
                   <label class="textlbl">
-                    How can we help you? <span style="color: red">*</span>
+                    How can we help you?
+                    <span style="color: red">*</span>
                   </label>
 
                   <textarea
@@ -255,16 +264,19 @@
       <!-- ================= RIGHT CONTENT ================= -->
       <div class="col-sm-12 col-md-12 col-lg-4 contactForm-address" data-aos="fade-up">
         <h2 class="text-demo text-center">Book Your Free DEMO Now</h2>
+
         <h1 class="txtesat text-center">ESAT Business ERP</h1>
+
         <h5 class="text-center oneerp">one account for all your companies</h5>
 
-        <img src="/assets/images/ERP_mockup.jpg" class="img-fluid w-100" />
+        <img src="/assets/images/ERP_mockup.jpg" class="img-fluid w-100" alt="ESAT Business ERP" />
 
         <div class="find-section">
           <div class="img-fluid d-flex row justify-content-center w-100"></div>
 
           <h5 class="lets pb-3">Let's find Our location</h5>
-          <div class="img-fluid d-flex row justify-content-center; w-25">
+
+          <div class="img-fluid d-flex row justify-content-center w-25">
             <img src="/assets/images/maps_01-01.svg" alt="ESAT UAE" />
           </div>
         </div>
@@ -278,12 +290,16 @@
 
         <p class="text-center f-1 contect-num">
           <i class="fa fa-phone"></i>
-          +971 2 553 8777 | +971 56 684 2328 | <i class="fa fa-fax"></i> +971 2 553 8773
+          +971 2 553 8777 | +971 56 684 2328 |
+          <i class="fa fa-fax"></i>
+          +971 2 553 8773
         </p>
 
         <p class="text-center">
-          <i class="fa fa-envelope"></i> info@esat.ae &nbsp;&nbsp;&nbsp;&nbsp;
-          <i class="fa fa-globe"></i> www.esat.ae
+          <i class="fa fa-envelope"></i>
+          info@esat.ae &nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fa fa-globe"></i>
+          www.esat.ae
         </p>
       </div>
 
@@ -294,10 +310,12 @@
             class="w-100 h-100"
             style="border: 0"
             loading="lazy"
+            title="ESAT Abu Dhabi Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.583406172552!2d54.519069275355065!3d24.361000278258732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e40cca53b800f%3A0xf4e0e837c6d81938!2sEnterprise%20Systems%20Analysis%20Technology%20%5BESAT%5D!5e0!3m2!1sen!2sae!4v1737548852766!5m2!1sen!2sae"
           ></iframe>
         </section>
       </div>
     </div>
+    ```
   </div>
 </section>

@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ElementRef,
-  Inject,
-  PLATFORM_ID
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -15,30 +8,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RootServices } from '../../../../services/root-services';
 
-
 @Component({
   selector: 'app-contact-main',
- standalone: true,
-  imports: [CommonModule,  ReactiveFormsModule], // ✅ REQUIRED
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './contact-main.html',
   styleUrls: ['./contact-main.css'],
 })
 export class ContactMain implements OnInit, OnDestroy {
-
   lat = 24.360952;
   lng = 54.521668;
 
   activelist = 0;
-  subjectVal = "General Inquiry";
+  subjectVal = 'General Inquiry';
 
   angForm!: FormGroup;
 
   subjectOptions = [
-    { id: 0, name: "General Inquiry" },
-    { id: 1, name: "Software Inquiry" },
-    { id: 2, name: "Hardware Inquiry" },
-    { id: 3, name: "Request For Demo" },
-    { id: 4, name: "Download Brochure" },
+    { id: 0, name: 'General Inquiry' },
+    { id: 1, name: 'Software Inquiry' },
+    { id: 2, name: 'Hardware Inquiry' },
+    { id: 3, name: 'Request For Demo' },
+    { id: 4, name: 'Download Brochure' },
   ];
 
   constructor(
@@ -50,91 +41,104 @@ export class ContactMain implements OnInit, OnDestroy {
     private router: Router,
     private el: ElementRef,
     private rootScope: RootServices,
-    @Inject(PLATFORM_ID) private platformId: object
+    @Inject(PLATFORM_ID) private platformId: object,
   ) {
-
-    this.titleService.setTitle(
-      "Contact ESAT ERP Middle East | UAE | ESAT"
-    );
+    this.titleService.setTitle('Contact ESAT ERP Middle East | UAE | ESAT');
 
     this.meta.updateTag({
-      name: "description",
-      content:
-        "Get in touch today. Let's see what ESAT can do for you."
+      name: 'description',
+      content: "Get in touch today. Let's see what ESAT can do for you.",
     });
 
     this.createForm();
-
     this.setDefaultSubject();
   }
 
-  // ✅ SSR SAFE DOM handling
-  ngOnInit() {
+  // --------------------------------------------------
+  // SSR SAFE INITIALIZATION
+  // --------------------------------------------------
+  ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const el = document.getElementById("buynow");
-      el?.style.setProperty("display", "none");
+      const element = document.getElementById('buynow');
+
+      if (element) {
+        element.style.display = 'none';
+      }
     }
   }
 
-  ngOnDestroy() {
+  // --------------------------------------------------
+  // SSR SAFE CLEANUP
+  // --------------------------------------------------
+  ngOnDestroy(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const el = document.getElementById("buynow");
-      el?.style.setProperty("display", "block");
+      const element = document.getElementById('buynow');
+
+      if (element) {
+        element.style.display = 'block';
+      }
     }
   }
 
-  // ---------------- FORM ----------------
-  createForm() {
+  // --------------------------------------------------
+  // FORM
+  // --------------------------------------------------
+  createForm(): void {
     this.angForm = this.fb.group({
-      name: ["", Validators.required],
-      email: [
-        "",
-        [
-          Validators.required,
-          Validators.email
-        ]
-      ],
-      typeofbus: ["", Validators.required],
-      subject: ["", Validators.required],
-      phone_no: [
-        "",
-        [
-          Validators.required,
-          Validators.pattern("^[0-9]{10,12}$")
-        ]
-      ],
-      comp_name: ["", Validators.required],
-      location: [""],
-      website: [""],
-      textarea: ["", [Validators.required, Validators.minLength(50)]],
+      name: ['', Validators.required],
+
+      email: ['', [Validators.required, Validators.email]],
+
+      typeofbus: ['', Validators.required],
+
+      subject: ['', Validators.required],
+
+      phone_no: ['', [Validators.required, Validators.pattern('^[0-9]{10,12}$')]],
+
+      comp_name: ['', Validators.required],
+
+      location: [''],
+
+      website: [''],
+
+      textarea: ['', [Validators.required, Validators.minLength(50)]],
     });
   }
 
-  // ---------------- SUBJECT LOGIC ----------------
-  setDefaultSubject() {
-    const val =
-      this.rootScope?.selectedLink === "Brochure"
-        ? "Download Brochure"
-        : "Request For Demo";
+  // --------------------------------------------------
+  // SUBJECT
+  // --------------------------------------------------
+  setDefaultSubject(): void {
+    const selectedLink = this.rootScope?.selectedLink;
 
-    this.angForm.patchValue({ subject: val });
-    this.activelist = 3;
+    const value = selectedLink === 'Brochure' ? 'Download Brochure' : 'Request For Demo';
+
+    this.angForm.patchValue({
+      subject: value,
+    });
+
+    this.activelist = selectedLink === 'Brochure' ? 4 : 3;
   }
 
-  activate(index: number) {
+  // Called from the subject select in HTML
+  activate(index: number): void {
     this.activelist = index;
   }
 
-  // ---------------- VALIDATION ----------------
-  validateControls() {
-    Object.values(this.angForm.controls).forEach((control: any) => {
+  // --------------------------------------------------
+  // VALIDATION
+  // --------------------------------------------------
+  validateControls(): void {
+    Object.values(this.angForm.controls).forEach((control) => {
       control.markAsTouched();
+      control.markAsDirty();
     });
   }
 
-  // ---------------- SUBMIT ----------------
-  onComplete() {
-
+  // --------------------------------------------------
+  // SUBMIT
+  // --------------------------------------------------
+  onComplete(): void {
     if (this.angForm.invalid) {
       this.validateControls();
       return;
@@ -154,40 +158,52 @@ export class ContactMain implements OnInit, OnDestroy {
       type: this.activelist,
     };
 
-    this.http.post(
-      "https://esat.ae/wp-content/themes/ESAT/api/emailapi/contact-form.php",
-      payload
-    ).subscribe();
+    this.http
+      .post('https://esat.ae/wp-content/themes/ESAT/api/emailapi/contact-form.php', payload)
+      .subscribe({
+        next: () => {
+          // Email request completed
+        },
+        error: (error) => {
+          console.error('Contact form email API error:', error);
+        },
+      });
 
     Swal.fire({
-      title: "Thank you!",
-      text: "We will contact you shortly.",
-      icon: "success",
+      title: 'Thank you!',
+      text: 'We will contact you shortly.',
+      icon: 'success',
     });
 
     this.createForm();
+
+    // Restore default subject after resetting form
+    this.setDefaultSubject();
   }
 
-  // ---------------- ERP ----------------
-  saveLeadtoERP() {
-
-    const url =
-      "https://api.esatcloud.com/api/executeCommonDBProcedureHandlerany/data";
+  // --------------------------------------------------
+  // ERP
+  // --------------------------------------------------
+  saveLeadtoERP(): void {
+    const url = 'https://api.esatcloud.com/api/executeCommonDBProcedureHandlerany/data';
 
     const params = {
-      ProcedureName: "PROC_CRM_INSERTLEADFROMWEBSITE",
-      CompanyCode: "ES",
+      ProcedureName: 'PROC_CRM_INSERTLEADFROMWEBSITE',
+
+      CompanyCode: 'ES',
+
       ParameterName: [
-        "VAR_CLIENTNAME",
-        "VAR_LOCATION",
-        "VAR_CONTACTPERSON",
-        "VAR_EMAIL",
-        "VAR_SUBJECT",
-        "VAR_TYPEOFBUSINESS",
-        "VAR_WEBSITE",
-        "VAR_PHONE",
-        "VAR_REMARKS",
+        'VAR_CLIENTNAME',
+        'VAR_LOCATION',
+        'VAR_CONTACTPERSON',
+        'VAR_EMAIL',
+        'VAR_SUBJECT',
+        'VAR_TYPEOFBUSINESS',
+        'VAR_WEBSITE',
+        'VAR_PHONE',
+        'VAR_REMARKS',
       ],
+
       parameterValue: [
         this.angForm.value.comp_name,
         this.angForm.value.location,
@@ -201,6 +217,13 @@ export class ContactMain implements OnInit, OnDestroy {
       ],
     };
 
-    this.http.post(url, params).subscribe();
+    this.http.post(url, params).subscribe({
+      next: () => {
+        // ERP request completed
+      },
+      error: (error) => {
+        console.error('ERP lead API error:', error);
+      },
+    });
   }
 }
