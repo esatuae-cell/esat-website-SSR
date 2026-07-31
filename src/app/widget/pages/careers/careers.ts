@@ -76,16 +76,16 @@ export class Careers implements OnInit {
 
     this.metaService.updateTag({
       name: 'description',
-
       content: 'Want to work with ESAT? Find out about careers with us and our current vacancies.',
     });
 
     this.root.contactoption = 0;
 
-    if (this.root.webData?.['203']) {
-      this.dataValue = this.root.webData['203'];
+    const careerData = this.root.webData?.['203'];
 
-      this.preparejobcategory(this.dataValue);
+    if (careerData?.acf) {
+      this.dataValue = careerData;
+      this.preparejobcategory(careerData);
     } else {
       this.loadCareerData();
     }

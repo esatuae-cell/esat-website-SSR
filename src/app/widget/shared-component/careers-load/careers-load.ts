@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 
+import { catchError, of } from 'rxjs';
+
 import { RootServices } from '../../../services/root-services';
 
 @Component({
@@ -15,28 +17,50 @@ import { RootServices } from '../../../services/root-services';
   styleUrl: './careers-load.css',
 })
 export class CareersLoad implements OnInit {
+  // --------------------------------------------------
+  // Data
+  // --------------------------------------------------
+
   jobData: any[] = [];
   jobCategory: any[] = [];
+
+  dataValue: any = null;
 
   selectedCategoryIndex: number | null = null;
   selectedJob: any = null;
 
+  // --------------------------------------------------
+  // UI State
+  // --------------------------------------------------
+
   swcbody = true;
   showPopup = false;
   showForm = false;
+  jobDataLoaded = false;
+
+  infoblocks: Record<number, boolean> = {};
+
+  // --------------------------------------------------
+  // Form
+  // --------------------------------------------------
 
   applicationForm: FormGroup;
+
   selectedFile: File | null = null;
 
-  jobDataLoaded = false;
-  dataValue: any;
-  infoblocks: { [key: number]: boolean } = {};
+  // --------------------------------------------------
+  // Other
+  // --------------------------------------------------
+
+  isBrowser = false;
+
+  afuConfig: any = null;
 
   httpDirectLink = 'https://esat.ae/wp-json/wp/v2/pages/';
 
-  isBrowser: boolean;
-
-  afuConfig: any;
+  // --------------------------------------------------
+  // Constructor
+  // --------------------------------------------------
 
   constructor(
     private fb: FormBuilder,
@@ -46,26 +70,37 @@ export class CareersLoad implements OnInit {
     private titleService: Title,
     private meta: Meta,
     private ref: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private platformId: object,
+
+    @Inject(PLATFORM_ID)
+    private platformId: object,
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
+    // Create form immediately so template
+    // never receives an undefined FormGroup.
     this.applicationForm = this.fb.group({
       name: ['', Validators.required],
+
       address: ['', [Validators.required, Validators.email]],
+
       phone_no: ['', Validators.required],
+
       subject: [{ value: '', disabled: true }, Validators.required],
+
       textarea: [''],
+
       resume: [null, Validators.required],
     });
   }
 
+  // --------------------------------------------------
+  // Init
+  // --------------------------------------------------
+
   ngOnInit(): void {
     this.root.contactoption = 0;
 
-    /*
-     * Browser-only DOM access
-     */
+    // Browser-only DOM operation
     if (this.isBrowser) {
       const loader = document.getElementById('loadingshield');
 
@@ -74,108 +109,205 @@ export class CareersLoad implements OnInit {
       }
     }
 
-    /*
-     * Initialize upload configuration
-     */
+    // Upload configuration
     this.afuConfig = {
       multiple: false,
+
       formatsAllowed: '.docx,.pdf',
+
       maxSize: '2',
+
       uploadAPI: {
-        url: this.root.apiLink + '/resumeFile.php',
+        url: `${this.root.apiLink}/resumeFile.php`,
       },
+
       hideResetBtn: true,
+
       replaceTexts: {
         uploadBtn: 'Upload your CV',
       },
     };
 
-    /*
-     * Load career data
-     */
+    // Load career data
     this.loadCareerData();
   }
+
+  // --------------------------------------------------
+  // Load Career Data
+  // --------------------------------------------------
 
   private loadCareerData(): void {
     this.jobDataLoaded = false;
 
+    /*
+     * First try existing data from RootServices.
+     *
+     * This is preferable during SSR because the
+     * application may already have loaded the data.
+     */
     const cachedData = this.root.webData?.['203'];
 
-    if (cachedData) {
+    if (cachedData?.acf) {
       this.dataValue = cachedData;
+
       this.preparejobcategory(cachedData);
+
       this.jobDataLoaded = true;
+
       return;
     }
 
-    this.http.get(this.root.httpLink + '203').subscribe({
-      next: (data: any) => {
-        this.dataValue = data;
+    /*
+     * Make API request only when cached data
+     * isn't available.
+     */
+    const apiUrl = `${this.root.httpLink}203`;
 
-        this.preparejobcategory(data);
+    this.http
+      .get<any>(apiUrl)
+      .pipe(
+        catchError((error) => {
+          console.error('Career API Error:', error);
 
-        this.jobDataLoaded = true;
+          /*
+           * Important for SSR:
+           * Never leave invalid/undefined data
+           * available to the template.
+           */
+          this.dataValue = null;
 
-        /*
-         * Normally Angular change detection handles this.
-         * Keep this only for cases where the component is updated
-         * outside the normal Angular lifecycle.
-         */
-        if (this.isBrowser) {
-          this.ref.markForCheck();
-        }
-      },
+          this.jobData = [];
 
-      error: (error) => {
-        console.error('Career data loading error:', error);
+          this.jobCategory = [];
 
-        this.jobDataLoaded = true;
+          return of(null);
+        }),
+      )
+      .subscribe({
+        next: (data) => {
+          /*
+           * Verify that the API actually returned
+           * the structure we expect.
+           */
+          if (data?.acf) {
+            this.dataValue = data;
 
-        if (this.isBrowser) {
-          this.ref.markForCheck();
-        }
-      },
-    });
+            this.preparejobcategory(data);
+          } else {
+            console.warn('Career API returned invalid data:', data);
+
+            this.dataValue = null;
+
+            this.jobData = [];
+
+            this.jobCategory = [];
+          }
+
+          /*
+           * Mark loading as complete even when
+           * the API fails.
+           */
+          this.jobDataLoaded = true;
+
+          /*
+           * markForCheck is only needed in browser.
+           */
+          if (this.isBrowser) {
+            this.ref.markForCheck();
+          }
+        },
+
+        error: (error) => {
+          /*
+           * Extra protection.
+           */
+          console.error('Unexpected Career API error:', error);
+
+          this.dataValue = null;
+
+          this.jobData = [];
+
+          this.jobCategory = [];
+
+          this.jobDataLoaded = true;
+
+          if (this.isBrowser) {
+            this.ref.markForCheck();
+          }
+        },
+      });
   }
+
+  // --------------------------------------------------
+  // Prepare Job Categories
+  // --------------------------------------------------
 
   preparejobcategory(dataValue: any): void {
     this.jobCategory = [];
 
+    /*
+     * SSR-safe validation.
+     */
     if (!dataValue?.acf) {
       return;
     }
 
-    const labelMap: { [key: string]: string } = {
+    const labelMap: Record<string, string> = {
       software_jobs: 'Software Careers',
+
       hardware_jobs: 'Hardware Careers',
+
       sales_marketing: 'Sales & Marketing Careers',
+
       admin_jobs: 'Administrative Careers',
     };
 
-    for (const key in dataValue.acf) {
+    /*
+     * Loop through ACF fields.
+     */
+    for (const key of Object.keys(dataValue.acf)) {
+      /*
+       * Ignore non-job fields.
+       */
       if (['content', 'main_image', 'inner_image', 'quotes'].includes(key)) {
         continue;
       }
 
-      const jobs = dataValue.acf[key] || [];
+      const jobs = Array.isArray(dataValue.acf[key]) ? dataValue.acf[key] : [];
 
       this.jobCategory.push({
         category: labelMap[key] || 'Other Careers',
+
         joblist: jobs,
+
         show: false,
+
         available: jobs.length > 0,
       });
     }
   }
 
+  // --------------------------------------------------
+  // Accordion
+  // --------------------------------------------------
+
   toggleAccordion(index: number): void {
     this.selectedCategoryIndex = this.selectedCategoryIndex === index ? null : index;
   }
 
+  // --------------------------------------------------
+  // Job Popup
+  // --------------------------------------------------
+
   openJobPopup(job: any): void {
+    if (!job) {
+      return;
+    }
+
     this.selectedJob = job;
 
     this.showPopup = true;
+
     this.showForm = false;
 
     this.applicationForm.patchValue({
@@ -183,22 +315,66 @@ export class CareersLoad implements OnInit {
     });
   }
 
+  // --------------------------------------------------
+  // Close Popup
+  // --------------------------------------------------
+
   closePopup(): void {
     this.showPopup = false;
+
     this.selectedJob = null;
+
     this.showForm = false;
+
     this.selectedFile = null;
 
-    this.applicationForm.reset();
+    this.applicationForm.reset({
+      name: '',
+      address: '',
+      phone_no: '',
+      subject: {
+        value: '',
+        disabled: true,
+      },
+      textarea: '',
+      resume: null,
+    });
   }
 
+  // --------------------------------------------------
+  // Show Application Form
+  // --------------------------------------------------
+
   showApplicationForm(): void {
+    if (!this.selectedJob) {
+      return;
+    }
+
     this.showForm = true;
   }
 
+  // --------------------------------------------------
+  // Submit Application
+  // --------------------------------------------------
+
   submitApplication(): void {
+    /*
+     * Prevent submission when form is invalid.
+     */
     if (this.applicationForm.invalid) {
       this.applicationForm.markAllAsTouched();
+
+      return;
+    }
+
+    /*
+     * File is required.
+     */
+    if (!this.selectedFile) {
+      this.applicationForm.get('resume')?.setErrors({ required: true });
+
+      this.applicationForm.markAllAsTouched();
+
       return;
     }
 
@@ -214,24 +390,48 @@ export class CareersLoad implements OnInit {
 
     formData.append('message', this.applicationForm.get('textarea')?.value || '');
 
-    if (this.selectedFile) {
-      formData.append('file', this.selectedFile, this.selectedFile.name);
-    }
+    formData.append('file', this.selectedFile, this.selectedFile.name);
 
     const backendUrl = 'https://esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php';
 
-    this.http.post(backendUrl, formData).subscribe({
-      next: () => {
-        this.closePopup();
-      },
+    /*
+     * File upload should only happen in browser.
+     */
+    if (!this.isBrowser) {
+      return;
+    }
 
-      error: (error) => {
-        console.error('Submission error:', error);
-      },
-    });
+    this.http
+      .post(backendUrl, formData)
+      .pipe(
+        catchError((error) => {
+          console.error('Career application submission error:', error);
+
+          return of(null);
+        }),
+      )
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            this.closePopup();
+          }
+        },
+
+        error: (error) => {
+          console.error('Unexpected submission error:', error);
+        },
+      });
   }
 
+  // --------------------------------------------------
+  // File Change
+  // --------------------------------------------------
+
   onFileChange(event: Event): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const input = event.target as HTMLInputElement;
 
     const file = input.files?.[0];
@@ -249,7 +449,14 @@ export class CareersLoad implements OnInit {
     this.applicationForm.get('resume')?.updateValueAndValidity();
   }
 
+  // --------------------------------------------------
+  // Toggle Information Block
+  // --------------------------------------------------
+
   toggleBlock(index: number): void {
+    /*
+     * Browser-only interaction.
+     */
     if (!this.isBrowser) {
       return;
     }
