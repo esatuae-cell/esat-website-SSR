@@ -78,16 +78,11 @@ export class Careers implements OnInit {
 
     this.root.contactoption = 0;
 
-    /*
-     * Try to use already loaded WordPress data first.
-     * This avoids an unnecessary API request during SSR
-     * when RootServices already contains page 203.
-     */
     const careerData = this.root.webData?.['203'];
 
     if (careerData?.acf) {
       this.setCareerData(careerData);
-    } else {
+    } else if (this.isBrowser) {
       this.loadCareerData();
     }
 
