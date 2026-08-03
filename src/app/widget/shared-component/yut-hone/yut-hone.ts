@@ -1,5 +1,6 @@
+import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -9,26 +10,47 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './yut-hone.html',
   styleUrl: './yut-hone.css',
 })
-export class YutHone implements AfterViewInit {
-  videoUrl!: SafeResourceUrl;
+export class YutHone implements AfterViewInit, OnDestroy {
+  videoUrl: SafeResourceUrl | null = null;
+
+  @ViewChild('youtubePlayer')
+  youtubePlayer!: ElementRef<HTMLIFrameElement>;
+
+  private modal: HTMLElement | null = null;
 
   constructor(private sanitizer: DomSanitizer) {}
 
   openVideo(videoId: string) {
-    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${videoId}?autoplay=1`,
-    );
+    const url = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+
+    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+    // Give Angular time to update iframe
+    setTimeout(() => {
+      if (this.youtubePlayer) {
+        this.youtubePlayer.nativeElement.src = url;
+      }
+    }, 100);
   }
 
   closeVideo() {
-    this.videoUrl = '';
+    // Completely stop YouTube
+    if (this.youtubePlayer) {
+      this.youtubePlayer.nativeElement.src = 'about:blank';
+    }
+
+    this.videoUrl = null;
   }
 
   ngAfterViewInit() {
-    const modal = document.getElementById('exampleModalCenter');
+    this.modal = document.getElementById('exampleModalCenter');
 
-    modal?.addEventListener('hidden.bs.modal', () => {
+    this.modal?.addEventListener('hidden.bs.modal', () => {
       this.closeVideo();
     });
+  }
+
+  ngOnDestroy() {
+    this.closeVideo();
   }
 }
