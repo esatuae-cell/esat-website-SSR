@@ -11,7 +11,10 @@
     font-size: 0.9rem;
   }
   .slider-container {
-    height: 65vh;
+    height: 62vh;
+  }
+  .form-section {
+    height: 62vh;
   }
 }
 
