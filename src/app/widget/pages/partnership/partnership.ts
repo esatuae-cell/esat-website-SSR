@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PartnershipForm } from "../../shared-component/partnership-form/partnership-form";
+import { PartnershipForm } from '../../shared-component/partnership-form/partnership-form';
 
 @Component({
   selector: 'app-partnership',
