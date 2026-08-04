@@ -177,10 +177,10 @@ export const STORIES: Story[] = [
     year: 2025,
     achievements: [
       {
-        title: 'Mobile Application lanched android and IOS ',
-        image: 'assets/images/2025-application.png',
+        title: 'Continuing the legacy ',
+        image: 'assets/images/2025-application.png?v=1',
         description:
-          'In 2025, we officially launched our mobile application for both Android and iOS, bringing our platform directly to the palm of your hand.',
+          'ESAT is continuously growing and the team is expanding.to adhere to our commitment in maintaining our lead amidst the ever-changing landscape of technology, we, thereby, providing constant enhancement through ASP.Net technology & Angular 21. We hope that you will join us in writing the next chapters of ESAT history.',
       },
     ],
   },

@@ -10,6 +10,9 @@
   .navbar-nav .nav-item .nav-link {
     font-size: 0.9rem;
   }
+  .slider-container {
+    height: 65vh;
+  }
 }
 
 @media (min-width: 1535px) and (max-width: 1600px) {
