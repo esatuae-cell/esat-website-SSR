@@ -53,12 +53,10 @@
               "node_modules/aos/dist/aos.js",
               "src/assets/js/custom.js"
             ],
-
             "security": {
               "allowedHosts": ["localhost"]
             }
           },
-
           "configurations": {
             "production": {
               "budgets": [
@@ -83,17 +81,14 @@
               "namedChunks": true
             }
           },
-
           "defaultConfiguration": "production"
         },
-
         "prerender": {
           "builder": "@angular/build:prerender",
           "options": {
             "routes": ["/", "/about", "/contact", "/services"]
           }
         },
-
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -106,7 +101,6 @@
           },
           "defaultConfiguration": "development"
         },
-
         "test": {
           "builder": "@angular/build:unit-test"
         }
