@@ -179,7 +179,7 @@ export const STORIES: Story[] = [
     achievements: [
       {
         title: 'Continuing the legacy ',
-        image: 'assets/images/2025-application.png?v=1',
+        image: 'assets/images/2025-application.png?v=2',
         description:
           'ESAT is continuously growing and the team is expanding.to adhere to our commitment in maintaining our lead amidst the ever-changing landscape of technology, we, thereby, providing constant enhancement through ASP.Net technology & Angular 20. We hope that you will join us in writing the next chapters of ESAT history.',
       },

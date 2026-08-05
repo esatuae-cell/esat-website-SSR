@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { RootServices } from "../../../../services/root-services";
+import { RootServices } from '../../../../services/root-services';
 
 @Component({
   selector: 'app-news-full',
@@ -12,13 +12,12 @@ import { RootServices } from "../../../../services/root-services";
   styleUrl: './news-full.css',
 })
 export class NewsFull implements OnInit {
-
   news: any = null;
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    public rootService: RootServices
+    public rootService: RootServices,
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +26,7 @@ export class NewsFull implements OnInit {
     if (!id) return;
 
     // ✅ FIX: removed apiUrl (not existing in your service)
-    const url = `https://esat.ae/wp-json/wp/v2/posts/${id}`;
+    const url = `http://api.esat.ae/wp-json/wp/v2/posts/${id}`;
 
     this.http.get<any>(url).subscribe({
       next: (response) => {
@@ -35,7 +34,7 @@ export class NewsFull implements OnInit {
       },
       error: (error) => {
         console.error('News API error:', error);
-      }
+      },
     });
   }
 }

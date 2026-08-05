@@ -416,6 +416,15 @@
 
 /* Large */
 @media (min-width: 768px) and (max-width: 991px) {
+  .honeycomb-wrapper {
+    position: relative;
+    height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .top-bar-mobile {
     display: none;
   }
@@ -610,8 +619,8 @@
   }
 
   .bus-line-sub li {
-    font-size: 14px;
-    width: 20% !important;
+    font-size: 16px;
+    width: 23% !important;
     padding: 5px 10px !important;
   }
 

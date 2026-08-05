@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-secure-erp',
   standalone: true,
-  imports: [SwCommon,RouterLink],
+  imports: [SwCommon, RouterLink],
   templateUrl: './secure-erp.html',
   styleUrls: ['./secure-erp.css'],
 })
@@ -68,7 +68,7 @@ export class SecureErp implements OnInit {
     this.metaService.updateTag({
       property: 'og:url',
 
-      content: 'https://esat.ae/software/secure-erp',
+      content: 'http://api.esat.ae/software/secure-erp',
     });
 
     this.metaService.updateTag({
@@ -93,7 +93,7 @@ export class SecureErp implements OnInit {
     this.metaService.updateTag({
       property: 'og:image',
 
-      content: 'https://esat.ae/assets/images/secure-erp.jpg',
+      content: 'http://api.esat.ae/assets/images/secure-erp.jpg',
     });
 
     // =========================
@@ -122,14 +122,14 @@ export class SecureErp implements OnInit {
     this.metaService.updateTag({
       name: 'twitter:image',
 
-      content: 'https://esat.ae/assets/images/secure-erp.jpg',
+      content: 'http://api.esat.ae/assets/images/secure-erp.jpg',
     });
 
     // =========================
     // CANONICAL URL
     // =========================
 
-    this.setCanonicalURL('https://esat.ae/software/secure-erp');
+    this.setCanonicalURL('http://api.esat.ae/software/secure-erp');
 
     // =========================
     // SCHEMA
@@ -161,7 +161,7 @@ export class SecureErp implements OnInit {
 
       name: 'ESAT Secure ERP',
 
-      url: 'https://esat.ae/software/secure-erp',
+      url: 'http://api.esat.ae/software/secure-erp',
 
       applicationCategory: 'BusinessApplication',
 

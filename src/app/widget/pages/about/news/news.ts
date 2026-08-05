@@ -51,7 +51,7 @@ export class News implements OnInit {
 
   private loadNews(): void {
     this.http
-      .get<any[]>('https://esat.ae/index1.php/wp-json/wp/v2/posts')
+      .get<any[]>('http://api.esat.ae/index1.php/wp-json/wp/v2/posts')
       .pipe(
         catchError((error) => {
           console.error('News API Error:', error);
