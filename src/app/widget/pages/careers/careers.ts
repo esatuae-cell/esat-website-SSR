@@ -339,7 +339,10 @@ export class Careers implements OnInit {
     formData.append('file', this.selectedFile);
 
     this.http
-      .post('https://esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php', formData)
+      .post(
+        'http://api.esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php',
+        formData,
+      )
       .pipe(
         catchError((error) => {
           console.error('Career upload error:', error);
