@@ -56,7 +56,7 @@ export class Careers implements OnInit {
 
   infoblocks: Record<number, boolean> = {};
 
-  readonly httpDirectLink = 'https://esat.ae/wp-json/wp/v2/pages/';
+  readonly httpDirectLink = 'http://api.esat.ae/wp-json/wp/v2/pages/';
 
   angForm!: FormGroup;
 

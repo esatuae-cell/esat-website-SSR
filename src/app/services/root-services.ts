@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class RootServices {
-  public httpLink: string = 'https://esat.ae/wp-content/themes/ESAT/api/serverfile.php?a='; //'http:/localhost/esat/wp-content/themes/ESAT/api/serverfile.php?a=';
-  public joblink: string = 'https://esat.ae/wp-content/themes/ESAT/api/jobs.php'; //'http:/localhost/esat/wp-content/themes/ESAT/api/jobs.php';
+  public httpLink: string = 'http://api.esat.ae/wp-content/themes/ESAT/api/serverfile.php?a='; //'http:/localhost/esat/wp-content/themes/ESAT/api/serverfile.php?a=';
+  public joblink: string = 'http://api.esat.ae/wp-content/themes/ESAT/api/jobs.php'; //'http:/localhost/esat/wp-content/themes/ESAT/api/jobs.php';
   //public httpLink: string = 'http:/localhost/esat/wp-json/wp/v2/pages/'; //-- To get Direct From Wordpress
 
-  public apiLink: string = 'https://esat.ae/wp-content/themes/ESAT/api'; //'http:/localhost/esat/wp-content/themes/ESAT/api';
+  public apiLink: string = 'http://api.esat.ae/wp-content/themes/ESAT/api'; //'http:/localhost/esat/wp-content/themes/ESAT/api';
   public contactoption: any = 0;
   public version: any = '18012024';
   public optionValues: any = [];
