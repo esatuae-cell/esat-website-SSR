@@ -418,11 +418,16 @@
 @media (min-width: 768px) and (max-width: 991px) {
   .honeycomb-wrapper {
     position: relative;
-    height: 65vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .timeline-wrapper {
+    margin-top: 0vh !important ;
   }
 
   .top-bar-mobile {
@@ -489,10 +494,10 @@
     }
   }
   .our-story-sec {
-    height: 80vh !important;
+    height: 50vh !important;
   }
   .story-content {
-    height: 60vh !important;
+    height: 40vh !important;
   }
   .navbar-sub-sub {
     width: 100%;
@@ -643,9 +648,10 @@
 
   .above-md-screens {
     flex-wrap: wrap;
+    width: 80vw;
   }
   .above-md-screens .form-group {
-    width: 48%;
+    width: 100%;
   }
   .above-md-screens .comomts {
     width: 100%;
@@ -930,7 +936,7 @@
     height: 50vh;
   }
   .our-story-sec {
-    height: 80vh !important;
+    height: 50vh !important;
   }
   .timeline {
     margin-top: 78px !important;

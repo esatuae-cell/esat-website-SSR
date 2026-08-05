@@ -11,16 +11,6 @@ import { RouterLink, RouterModule } from '@angular/router';
 })
 export class BusnessHome {
   // UI helper
-  get rows() {
-    const size = 7;
-    const result: any[] = [];
-
-    for (let i = 0; i < this.solutions.length; i += size) {
-      result.push(this.solutions.slice(i, i + size));
-    }
-
-    return result;
-  }
 
   solutions = [
     {

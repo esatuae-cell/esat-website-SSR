@@ -11,16 +11,16 @@ import { RouterLink, RouterModule } from '@angular/router';
 })
 export class TrainingHome {
   // UI helper
-  get rows() {
-    const size = 7;
-    const result: any[] = [];
+  // get rows() {
+  //   const size = 7;
+  //   const result: any[] = [];
 
-    for (let i = 0; i < this.solutions.length; i += size) {
-      result.push(this.solutions.slice(i, i + size));
-    }
+  //   for (let i = 0; i < this.solutions.length; i += size) {
+  //     result.push(this.solutions.slice(i, i + size));
+  //   }
 
-    return result;
-  }
+  //   return result;
+  // }
 
   solutions = [
     {
