@@ -25,6 +25,7 @@
 .honeycomb-cell:hover {
   scale: 1.05;
   transition-duration: 500ms;
+  z-index: 999;
 }
 
 .honeycomb-row {

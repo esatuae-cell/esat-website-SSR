@@ -1,10 +1,4 @@
-import {
-  Component,
-  AfterViewInit,
-  Inject,
-  PLATFORM_ID,
-  OnDestroy
-} from '@angular/core';
+import { Component, AfterViewInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
 
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
@@ -16,10 +10,9 @@ import 'swiper/css/bundle';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './client-slider.html',
-  styleUrls: ['./client-slider.css']
+  styleUrls: ['./client-slider.css'],
 })
 export class ClientSlider implements AfterViewInit, OnDestroy {
-
   isBrowser = false;
 
   logos: string[] = [];
@@ -27,67 +20,72 @@ export class ClientSlider implements AfterViewInit, OnDestroy {
 
   private swiper?: Swiper;
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: object
-  ) {
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
+    // Load client logos in order
     for (let i = 1; i <= 57; i++) {
       this.logos.push(`assets/images/clients/logo${i}.png`);
     }
 
-    this.slides = this.chunkArray(this.shuffle([...this.logos]), 12);
+    // Keep logos in original order
+    this.slides = this.chunkArray(this.logos, 12);
   }
 
   ngAfterViewInit(): void {
-    if (!this.isBrowser) return;
+    if (!this.isBrowser) {
+      return;
+    }
 
-    // small delay ensures DOM is fully rendered
+    // Wait for Angular to render the Swiper HTML
     setTimeout(() => {
       this.initSwiper();
     }, 50);
   }
 
   private initSwiper(): void {
+    const swiperElement = document.querySelector('.mySwiper');
 
-    // 🔥 destroy previous instance if exists (IMPORTANT FIX)
-    if (this.swiper) {
-      this.swiper.destroy(true, true);
+    if (!swiperElement) {
+      return;
     }
 
-    this.swiper = new Swiper('.mySwiper', {
+    // Destroy previous Swiper instance if it exists
+    if (this.swiper) {
+      this.swiper.destroy(true, true);
+      this.swiper = undefined;
+    }
+
+    this.swiper = new Swiper(swiperElement as HTMLElement, {
       slidesPerView: 1,
       loop: true,
 
       pagination: {
         el: '.swiper-pagination',
-        clickable: true
+        clickable: true,
       },
 
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      }
+        prevEl: '.swiper-button-prev',
+      },
     });
   }
 
   ngOnDestroy(): void {
     if (this.swiper) {
       this.swiper.destroy(true, true);
+      this.swiper = undefined;
     }
-  }
-
-  private shuffle(arr: string[]): string[] {
-    return arr.sort(() => Math.random() - 0.5);
   }
 
   private chunkArray(arr: string[], size: number): string[][] {
     const result: string[][] = [];
+
     for (let i = 0; i < arr.length; i += size) {
       result.push(arr.slice(i, i + size));
     }
+
     return result;
   }
 }
-
-

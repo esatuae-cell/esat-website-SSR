@@ -484,13 +484,15 @@
     overflow: scroll !important;
     a {
       white-space: nowrap;
+      font-size: 18px !important;
     }
   }
-  .home-style {
+  .about-layout .home-style {
     width: 95% !important;
     overflow: scroll !important;
     a {
       white-space: nowrap;
+      font-size: 18px !important;
     }
   }
   .our-story-sec {
@@ -505,8 +507,13 @@
     li {
       a {
         white-space: nowrap;
+        font-size: 18px !important;
       }
     }
+  }
+
+  .navbar-sub li a {
+    font-size: 18px !important;
   }
   #mobile-circle-move {
     display: none;
@@ -536,12 +543,12 @@
   }
   .list-pack li {
     white-space: nowrap;
-    height: 3vh !important;
+    height: 4vh !important;
     font-size: 15px !important;
   }
 
   .card ul li {
-    height: 3vh !important;
+    height: 4vh !important;
   }
   .fix-width {
     width: 100% !important;
@@ -630,7 +637,7 @@
   }
 
   .honeycomb-cell_title {
-    font-size: 16px !important;
+    font-size: 19px !important;
   }
   .bus-line-sub {
     justify-content: center !important;
@@ -641,7 +648,7 @@
   }
 
   .container {
-    max-width: 990px;
+    max-width: 900px;
     width: 100%;
     padding: 0 25px;
   }
@@ -805,6 +812,7 @@
     overflow-y: scroll;
     a {
       white-space: nowrap;
+      font-size: 18px !important;
     }
   }
   .navbar-sub-sub {
@@ -846,12 +854,12 @@
   }
   .list-pack li {
     white-space: nowrap;
-    height: 3vh;
+    height: 4vh;
     font-size: 15px;
   }
 
   .card ul li {
-    height: 3vh;
+    height: 4vh;
   }
 
   .fix-width {
