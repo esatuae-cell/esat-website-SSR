@@ -489,7 +489,6 @@
 
 .fs-7 {
   font-size: 0.9rem;
-  font-style: italic;
 }
 
 .package_det {
@@ -577,7 +576,6 @@
   box-shadow: 0 0 9px #bdbdbd;
   height: 100%;
 }
-
 .card-heading {
   text-align: center;
   font-weight: 500;

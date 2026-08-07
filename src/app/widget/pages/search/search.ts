@@ -94,7 +94,7 @@ export class Search implements AfterViewInit {
      */
     const script = document.createElement('script');
 
-    script.src = 'https://cse.google.com/cse.js?cx=30b266c2647604b54';
+    script.src = 'https://cse.google.com/cse.js?cx=92a7d0d291fd04fa1';
 
     script.async = true;
 
