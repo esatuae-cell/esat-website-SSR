@@ -6,6 +6,7 @@ import { Careers } from './widget/pages/careers/careers';
 import { Clients } from './widget/pages/clients/clients';
 import { TrailComponent } from './widget/pages/trail/trail';
 import { Advertisement } from './widget/pages/advertisement/advertisement';
+import { Search } from './widget/pages/search/search';
 
 export const routes: Routes = [
   {
@@ -71,6 +72,7 @@ export const routes: Routes = [
     path: 'advertisement',
     component: Advertisement,
   },
+  { path: 'search', component: Search },
 
   {
     path: '**',

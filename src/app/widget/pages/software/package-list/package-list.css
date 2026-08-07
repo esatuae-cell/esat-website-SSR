@@ -487,6 +487,11 @@
   border-bottom: 1px solid #d3d3d3;
 }
 
+.fs-7 {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .package_det {
   ul {
     text-align: center;

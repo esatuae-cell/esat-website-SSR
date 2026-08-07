@@ -430,6 +430,7 @@
     .top-bar-right {
       justify-content: space-between;
       width: 100%;
+      gap: 10px;
     }
   }
 
