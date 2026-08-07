@@ -133,14 +133,7 @@
   .navbar-sub-sub {
     width: 100%;
   }
-  .fix-width-sub {
-    width: 68% !important;
-    margin-right: 10%;
-  }
-  .fix-width {
-    width: 72% !important;
-    margin-right: 8%;
-  }
+
   .list-pack {
     padding-left: 0px !important;
     width: 16vw;
@@ -320,10 +313,6 @@
       justify-content: center;
       align-items: center;
     }
-  }
-  .fix-width-sub {
-    width: 71% !important;
-    margin-right: 10%;
   }
 }
 

@@ -572,3 +572,28 @@
   box-shadow: 0 0 9px #bdbdbd;
   height: 100%;
 }
+
+.card-heading {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.25rem;
+  border-bottom: 1px solid #d3d3d3;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+.price-bebifits {
+  ul {
+    padding: 0px;
+    margin-top: 15px;
+    li {
+      list-style: none;
+      line-height: 2rem;
+      font-size: 1rem;
+      i {
+        padding-right: 10px;
+        font-size: 1rem;
+        font-weight: 300;
+      }
+    }
+  }
+}

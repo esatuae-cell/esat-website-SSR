@@ -62,8 +62,8 @@ STEP 1: MODULE SELECTION
 STEP 2: FORM
 ========================= -->
 <section class="pad-50 bg-gray" *ngIf="step() === 2">
-  <div class="container">
-    <div class="boxed">
+  <div class="container d-flex justify-content-center">
+    <div class="boxed w-50">
       <h1 class="text-center mb-4">Get Started</h1>
 
       <!-- HEADER -->
@@ -81,7 +81,7 @@ STEP 2: FORM
       <form [formGroup]="form" (ngSubmit)="goToReview()">
         <div class="row g-3">
           <!-- FULL NAME -->
-          <div class="col-md-6">
+          <div class="col-md-12">
             <label>Full Name</label>
             <input type="text" class="form-control" formControlName="fullName" />
 
@@ -94,13 +94,13 @@ STEP 2: FORM
           </div>
 
           <!-- COMPANY -->
-          <div class="col-md-6">
+          <div class="col-md-12">
             <label>Company Name</label>
             <input type="text" class="form-control" formControlName="companyName" />
           </div>
 
           <!-- EMAIL -->
-          <div class="col-md-6">
+          <div class="col-md-12">
             <label>Email</label>
             <input type="email" class="form-control" formControlName="email" />
 
@@ -113,13 +113,13 @@ STEP 2: FORM
           </div>
 
           <!-- PHONE -->
-          <div class="col-md-6">
+          <div class="col-md-12">
             <label>Phone</label>
             <input type="tel" class="form-control" formControlName="phone" />
           </div>
 
           <!-- COUNTRY -->
-          <div class="col-md-4">
+          <div class="col-md-12">
             <label>Country</label>
             <select class="form-select" formControlName="country">
               <option value="">Select Country</option>
@@ -131,7 +131,7 @@ STEP 2: FORM
           </div>
 
           <!-- LANGUAGE -->
-          <div class="col-md-4">
+          <div class="col-md-12">
             <label>Language</label>
             <select class="form-select" formControlName="language">
               <option value="">Select Language</option>
@@ -141,7 +141,7 @@ STEP 2: FORM
           </div>
 
           <!-- COMPANY SIZE -->
-          <div class="col-md-4">
+          <div class="col-md-12">
             <label>Company Size</label>
             <select class="form-select" formControlName="companySize">
               <option value="">Select Size</option>

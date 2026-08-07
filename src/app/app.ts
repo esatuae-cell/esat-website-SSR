@@ -4,7 +4,7 @@ import { Footer } from '../app/widget/common/footer/footer';
 import { Header } from '../app/widget/common/header/header';
 import { routes } from './app.routes';
 import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import 'aos/dist/aos.css';
 import { isPlatformBrowser } from '@angular/common';
 
 export const appRoutes = routes;
