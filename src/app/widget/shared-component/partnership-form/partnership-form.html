@@ -1,26 +1,13 @@
-<form class="partnership-form" data-aos="fade-up">
+<form class="partnership-form" [formGroup]="contactForm" (ngSubmit)="apicall()">
   <div class="row">
     <div class="form-group col-md-6">
       <input
         type="text"
-        id="full_name"
+        id="last_name"
         class="form-control"
         formControlName="fullName"
-        placeholder="Enter your  name *"
-      />
-      <!-- <div>
-        Please enter your full name.
-      </div> -->
-    </div>
-
-    <div class="form-group col-md-6">
-      <input
-        type="text"
-        id="Last_name"
-        class="form-control"
-        formControlName="fullName"
+        (click)="showAndHideContainer()"
         placeholder="Enter your Last name *"
-        required
       />
     </div>
 
@@ -30,11 +17,14 @@
         id="phone"
         class="form-control"
         formControlName="phone"
+        (keydown)="preventSpaces($event)"
         placeholder="Enter your phone number *"
+        [class.is-invalid]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
       />
-      <!-- <div>
-        A valid phone number is required.
-      </div> -->
+
+      @if (contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched) {
+        <div class="invalid-feedback">A valid phone number is required.</div>
+      }
     </div>
 
     <div class="form-group col-md-6">
@@ -44,35 +34,49 @@
         class="form-control"
         formControlName="email"
         placeholder="Enter your email address *"
+        [class.is-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
       />
-      <!-- <div>
-        Please enter a valid email address.
-      </div> -->
+
+      @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+        <div class="invalid-feedback">Please enter a valid email address.</div>
+      }
     </div>
 
     <div class="form-group col-md-6">
       <input
         type="text"
-        id="com_name"
+        id="company_name"
         class="form-control"
         formControlName="companyName"
         placeholder="Enter your company name *"
+        [class.is-invalid]="
+          contactForm.get('companyName')?.invalid && contactForm.get('companyName')?.touched
+        "
       />
-      <!-- <div>
-        Company name is required.
-      </div> -->
+
+      @if (contactForm.get('companyName')?.invalid && contactForm.get('companyName')?.touched) {
+        <div class="invalid-feedback">Company name is required.</div>
+      }
     </div>
 
     <div class="form-group col-md-6">
-      <select class="form-control" id="business_type" formControlName="businessType">
-        <option value="" disabled selected>Partnership Type *</option>
+      <select
+        class="form-control"
+        id="business_type"
+        formControlName="businessType"
+        [class.is-invalid]="
+          contactForm.get('businessType')?.invalid && contactForm.get('businessType')?.touched
+        "
+      >
+        <option value="" disabled>Partnership Type *</option>
         <option value="Reseller Program">Reseller Program</option>
         <option value="Referral Program">Referral Program</option>
         <option value="Affiliate Program">Affiliate Program</option>
       </select>
-      <!-- <div>
-        Please select a partnership type.
-      </div> -->
+
+      @if (contactForm.get('businessType')?.invalid && contactForm.get('businessType')?.touched) {
+        <div class="invalid-feedback">Please select a partnership type.</div>
+      }
     </div>
 
     <div class="form-group col-md-12">
@@ -82,12 +86,18 @@
         formControlName="comments"
         rows="4"
         placeholder="Enter your message here..."
+        [class.is-invalid]="
+          contactForm.get('comments')?.invalid && contactForm.get('comments')?.touched
+        "
       ></textarea>
-      <!-- <div>
-        A message is required.
-      </div> -->
-    </div>
-  </div>
 
-  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+      @if (contactForm.get('comments')?.invalid && contactForm.get('comments')?.touched) {
+        <div class="invalid-feedback">A message is required.</div>
+      }
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3" [disabled]="contactForm.invalid">
+      Submit
+    </button>
+  </div>
 </form>

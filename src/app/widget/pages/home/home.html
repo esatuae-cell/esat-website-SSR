@@ -5,84 +5,134 @@
   </div>
   <div class="form-section bord-bttm">
     <div class="intro rounded text-black" id="contact-form-section">
-      <form
-        id="contact-form"
-        class="contact-form banner-contact rounded text-black needs-validation"
-        novalidate
-      >
-        <h6 class="font-weight-bold text-black text-center f-18">Unlock Your Business Potential</h6>
+      <form [formGroup]="leadForm" (ngSubmit)="apicall()" novalidate>
         <p class="text-black text-center f-14 larg-padd">
-          Complete the Form & Experience<span class="hide-on-mobile"><br /> </span
-          ><strong>ESAT's</strong> Free Product Demo
+          Complete the Form & Experience
+          <span class="hide-on-mobile"><br /></span>
+          <strong>ESAT's</strong> Free Product Demo
         </p>
+
         <div class="divider"></div>
+
         <div class="above-md-screens">
+          <!-- Full Name -->
           <div class="form-group mb-2">
             <input
               type="text"
               class="form-control brd-bttm"
               id="full_name"
+              formControlName="full_name"
               placeholder="Full Name *"
-              required
             />
-            <div class="invalid-feedback"></div>
+
+            @if (leadForm.get('full_name')?.invalid && leadForm.get('full_name')?.touched) {
+              <div class="invalid-feedback d-block">Full Name is required.</div>
+            }
           </div>
 
+          <!-- Phone -->
           <div class="form-group mb-2">
             <input
               type="tel"
               class="form-control brd-bttm phone-custom"
               id="phone"
+              formControlName="phone"
               placeholder="Phone *"
-              required
             />
-            <div class="invalid-feedback"></div>
+
+            @if (leadForm.get('phone')?.invalid && leadForm.get('phone')?.touched) {
+              <div class="invalid-feedback d-block">
+                @if (leadForm.get('phone')?.hasError('required')) {
+                  Phone is required.
+                }
+
+                @if (leadForm.get('phone')?.hasError('pattern')) {
+                  Please enter a valid phone number.
+                }
+              </div>
+            }
           </div>
 
+          <!-- Email -->
           <div class="form-group mb-2">
             <input
               type="email"
               class="form-control brd-bttm"
               id="email"
+              formControlName="email"
               placeholder="Work Email ID *"
-              required
             />
-            <div class="invalid-feedback"></div>
+
+            @if (leadForm.get('email')?.invalid && leadForm.get('email')?.touched) {
+              <div class="invalid-feedback d-block">
+                @if (leadForm.get('email')?.hasError('required')) {
+                  Work Email ID is required.
+                }
+
+                @if (leadForm.get('email')?.hasError('email')) {
+                  Please enter a valid email address.
+                }
+              </div>
+            }
           </div>
 
+          <!-- Company Name -->
           <div class="form-group mb-2">
             <input
               type="text"
               class="form-control brd-bttm"
               id="com_name"
+              formControlName="com_name"
               placeholder="Company Name *"
-              required
             />
-            <div class="invalid-feedback"></div>
+
+            @if (leadForm.get('com_name')?.invalid && leadForm.get('com_name')?.touched) {
+              <div class="invalid-feedback d-block">Company Name is required.</div>
+            }
           </div>
 
+          <!-- Comments -->
           <div class="form-group mb-2 comomts">
             <textarea
               class="form-control brd-bttm text-area-h"
               id="comments"
+              formControlName="comments"
               placeholder="Your Comments"
-              required
             ></textarea>
-            <div class="invalid-feedback"></div>
           </div>
         </div>
+
+        <!-- Terms -->
         <p class="text-center custom-p-text">
-          By submitting this form, you agree to the <a>Terms</a> and <a>Privacy Policy</a>.
+          By submitting this form, you agree to the
+          <a routerLink="/terms">Terms</a>
+          and
+          <a routerLink="/privacy-policy">Privacy Policy</a>.
         </p>
 
-        <input type="hidden" id="software_modules" value="" />
-        <input type="hidden" id="business_type" value="" />
-        <input type="hidden" id="message" value="" />
+        <!-- Hidden fields -->
+        <input type="hidden" formControlName="software_modules" />
+
+        <input type="hidden" formControlName="business_type" />
+
+        <input type="hidden" formControlName="message" />
 
         <div class="divider mb-1"></div>
 
+        <!-- Submit button -->
         <div class="text-center">
-          <button type="submit" class="radius-btn" id="submit_bt">Request FREE Demo</button>
+          <button
+            type="submit"
+            class="radius-btn"
+            id="submit_bt"
+            [disabled]="leadForm.invalid || isSubmitting"
+          >
+            @if (isSubmitting) {
+              Submitting...
+            } @else {
+              Request FREE Demo
+            }
+          </button>
         </div>
       </form>
     </div>

@@ -5,3 +5,10 @@
 .gcse-searchbox {
   width: 100%;
 }
+.gsc-input-box {
+  border-radius: 20px;
+}
+form.gsc-search-box {
+  width: 100%;
+  border-radius: 15px;
+}

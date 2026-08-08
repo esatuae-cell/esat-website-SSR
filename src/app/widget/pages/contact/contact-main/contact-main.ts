@@ -101,7 +101,7 @@ export class ContactMain implements OnInit, OnDestroy {
 
       website: [''],
 
-      textarea: ['', [Validators.required, Validators.minLength(50)]],
+      textarea: ['', [Validators.required, Validators.minLength(10)]],
     });
   }
 

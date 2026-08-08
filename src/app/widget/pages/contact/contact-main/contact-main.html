@@ -235,7 +235,7 @@
                     class="txt form-control"
                     formControlName="textarea"
                     rows="5"
-                    placeholder="Enter your message (min 50 characters)"
+                    placeholder="Enter your message"
                     [ngClass]="{
                       errorwrapper:
                         angForm.get('textarea')?.invalid && angForm.get('textarea')?.touched,
@@ -247,7 +247,7 @@
                   class="error"
                   *ngIf="angForm.get('textarea')?.invalid && angForm.get('textarea')?.touched"
                 >
-                  Please enter your message (minimum 50 characters)
+                  Please enter your message (minimum 10 characters)
                 </div>
               </div>
             </div>
