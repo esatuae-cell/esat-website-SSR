@@ -1,12 +1,23 @@
-import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  PLATFORM_ID,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
 
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+
 import { HttpClient } from '@angular/common/http';
+
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 
-import { catchError, of } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
 
+import { filter, take, catchError, of, Subject, finalize } from 'rxjs';
 import { RootServices } from '../../../services/root-services';
 
 @Component({
@@ -29,6 +40,13 @@ export class CareersLoad implements OnInit {
   selectedCategoryIndex: number | null = null;
   selectedJob: any = null;
 
+  jobDataLoaded = false;
+
+  // Prevent "No Openings" until API has really completed
+  jobApiLoading = false;
+
+  private destroy$ = new Subject<void>();
+
   // --------------------------------------------------
   // UI State
   // --------------------------------------------------
@@ -36,7 +54,6 @@ export class CareersLoad implements OnInit {
   swcbody = true;
   showPopup = false;
   showForm = false;
-  jobDataLoaded = false;
 
   infoblocks: Record<number, boolean> = {};
 
@@ -57,6 +74,7 @@ export class CareersLoad implements OnInit {
   afuConfig: any = null;
 
   httpDirectLink = 'https://esat.ae/wp-json/wp/v2/pages/';
+  router: any;
 
   // --------------------------------------------------
   // Constructor
@@ -76,8 +94,6 @@ export class CareersLoad implements OnInit {
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
-    // Create form immediately so template
-    // never receives an undefined FormGroup.
     this.applicationForm = this.fb.group({
       name: ['', Validators.required],
 
@@ -124,8 +140,26 @@ export class CareersLoad implements OnInit {
       };
     }
 
-    // ALWAYS load careers when this component is created
+    /*
+     * Load immediately when component is created.
+     */
     this.loadCareerData();
+
+    /*
+     * IMPORTANT:
+     * If Angular reuses this component during navigation,
+     * reload careers whenever NavigationEnd occurs.
+     */
+    if (this.isBrowser) {
+      this.router.events
+        .pipe(
+          filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+          take(1),
+        )
+        .subscribe(() => {
+          this.loadCareerData();
+        });
+    }
   }
 
   // --------------------------------------------------
@@ -133,62 +167,75 @@ export class CareersLoad implements OnInit {
   // --------------------------------------------------
 
   private loadCareerData(): void {
-    // Start loading
+    console.log('=================================');
+    console.log('CAREERS API START');
+    console.log('=================================');
+
+    // Show loader
     this.jobDataLoaded = false;
+    this.jobApiLoading = true;
 
-    // Clear old data
-    this.dataValue = null;
-    this.jobData = [];
+    // Clear previous data
     this.jobCategory = [];
+    this.jobData = [];
+    this.dataValue = null;
 
+    /*
+     * IMPORTANT:
+     * Directly request WordPress career page.
+     * Do NOT use root.webData here.
+     */
     const apiUrl = `${this.root.httpLink}203`;
 
-    console.log('Loading careers from:', apiUrl);
+    console.log('Career API URL:', apiUrl);
 
-    this.http.get<any>(apiUrl).subscribe({
-      next: (data) => {
-        console.log('Career API response:', data);
+    this.http
+      .get<any>(apiUrl)
+      .pipe(
+        catchError((error) => {
+          console.error('CAREER API ERROR:', error);
 
-        if (data && data.acf) {
-          this.dataValue = data;
+          return of(null);
+        }),
 
-          // IMPORTANT:
-          // Build job categories only AFTER API response arrives
-          this.preparejobcategory(data);
+        finalize(() => {
+          console.log('CAREER API FINISHED');
 
-          console.log('Prepared job categories:', this.jobCategory);
-
+          this.jobApiLoading = false;
           this.jobDataLoaded = true;
-        } else {
-          console.error('Career API returned no ACF data:', data);
 
-          this.dataValue = data;
+          if (this.isBrowser) {
+            this.ref.detectChanges();
+          }
+        }),
+      )
+      .subscribe((response) => {
+        console.log('CAREER API RESPONSE:', response);
 
-          this.jobData = [];
-          this.jobCategory = [];
-
-          this.jobDataLoaded = true;
+        if (!response) {
+          return;
         }
 
-        if (this.isBrowser) {
-          this.ref.detectChanges();
+        if (!response.acf) {
+          console.error('Career API has no ACF:', response);
+
+          return;
         }
-      },
 
-      error: (error) => {
-        console.error('Career API Error:', error);
+        this.dataValue = response;
 
-        this.dataValue = null;
-        this.jobData = [];
-        this.jobCategory = [];
+        /*
+         * Build jobs ONLY after API response
+         */
+        this.preparejobcategory(response);
 
-        this.jobDataLoaded = true;
+        console.log('JOB CATEGORY:', this.jobCategory);
 
-        if (this.isBrowser) {
-          this.ref.detectChanges();
-        }
-      },
-    });
+        console.log(
+          'JOB COUNT:',
+          this.jobCategory.reduce((total, category) => total + category.joblist.length, 0),
+        );
+      });
   }
 
   // --------------------------------------------------
@@ -199,39 +246,53 @@ export class CareersLoad implements OnInit {
     this.jobCategory = [];
 
     if (!dataValue?.acf) {
-      console.warn('No ACF data found');
       return;
     }
 
     const labelMap: Record<string, string> = {
       software_jobs: 'Software Careers',
+
       hardware_jobs: 'Hardware Careers',
+
       sales_marketing: 'Sales & Marketing Careers',
+
       admin_jobs: 'Administrative Careers',
     };
 
-    Object.keys(dataValue.acf).forEach((key) => {
-      // Ignore non-job fields
+    for (const key of Object.keys(dataValue.acf)) {
+      /*
+       * Ignore non-job fields
+       */
       if (['content', 'main_image', 'inner_image', 'quotes'].includes(key)) {
-        return;
+        continue;
       }
 
       const value = dataValue.acf[key];
 
-      // Only accept arrays as job lists
-      const jobs = Array.isArray(value) ? value : [];
+      /*
+       * Only arrays can be job lists
+       */
+      if (!Array.isArray(value)) {
+        continue;
+      }
 
-      console.log(`Career field: ${key}`, jobs);
+      /*
+       * Remove empty values
+       */
+      const jobs = value.filter((job: any) => job);
 
       this.jobCategory.push({
         category: labelMap[key] || 'Other Careers',
+
         joblist: jobs,
+
         show: false,
+
         available: jobs.length > 0,
       });
-    });
+    }
 
-    console.log('FINAL jobCategory:', this.jobCategory);
+    console.log('Prepared categories:', this.jobCategory);
   }
 
   // --------------------------------------------------
