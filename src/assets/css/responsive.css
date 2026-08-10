@@ -18,6 +18,11 @@
     height: 65vh !important;
     overflow: hidden;
   }
+
+  .custom-p-text {
+    font-size: 15px !important;
+    padding-top: 40px !important;
+  }
 }
 
 @media (min-width: 1535px) and (max-width: 1600px) {
@@ -211,6 +216,14 @@
   .top-bar-mobile {
     display: none;
   }
+
+  .inpzero {
+    width: 19%;
+  }
+  textarea.form-control {
+    height: 36px !important;
+    min-height: 36px !important;
+  }
   .navbar-sub-sub li a {
     color: #5d5d5d;
     white-space: nowrap;
@@ -352,8 +365,12 @@
     width: 100%;
     justify-content: space-between;
     .form-group {
-      width: 19%;
+      width: 98%;
     }
+  }
+
+  #contact-form {
+    padding: 20px 0;
   }
   .home-style {
     width: 90%;
@@ -719,6 +736,9 @@
   }
   .banner-contact {
     padding: 50px 10px;
+  }
+  .inpzero {
+    width: 100%;
   }
 }
 

@@ -162,3 +162,16 @@ li {
 .bg-blue {
   background-color: #15284d;
 }
+
+.w-90 {
+  width: 90%;
+}
+.inpzero {
+  position: relative;
+  .error {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+  }
+}

@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { afterNextRender } from '@angular/core';
+
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-partnership-form',
@@ -11,83 +13,84 @@ import Swal from 'sweetalert2';
   templateUrl: './partnership-form.html',
   styleUrl: './partnership-form.css',
 })
-export class PartnershipForm implements OnInit, OnDestroy {
-  contactForm: FormGroup;
+export class PartnershipForm {
+  private readonly fb = inject(NonNullableFormBuilder);
+  private readonly http = inject(HttpClient);
+  private readonly destroyRef = inject(DestroyRef);
 
   private timeoutId: ReturnType<typeof setTimeout> | null = null;
-  private isBrowser: boolean;
-  rootScope: any;
-  activelist: number | undefined;
-  angForm: any;
 
-  constructor(
-    private http: HttpClient,
-    private fb: FormBuilder,
-    @Inject(PLATFORM_ID) private platformId: object,
-  ) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
+  readonly contactForm = this.fb.group({
+    fullName: ['', [Validators.required, Validators.minLength(2)]],
+    companyName: ['', [Validators.required, Validators.minLength(2)]],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required, Validators.pattern(/^\d{10,}$/)]],
+    businessType: ['', Validators.required],
+    softwareModules: [''],
+    comments: [''],
+    message: [''],
+  });
 
-    this.contactForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(2)]],
-
-      companyName: ['', [Validators.required, Validators.minLength(2)]],
-
-      email: ['', [Validators.required, Validators.email]],
-
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10,}$/)]],
-
-      businessType: ['', Validators.required],
-
-      subject: ['', Validators.required],
-
-      softwareModules: [''],
-
-      comments: [''],
-
-      message: [''],
-    });
-  }
-
-  ngOnInit(): void {
-    /*
-     * Browser-only code should be executed only here
-     * when isBrowser === true.
+  constructor() {
+    /**
+     * Runs only in the browser.
+     * afterNextRender does not execute during SSR.
      */
-
-    if (this.isBrowser) {
-      // Example:
-      // this.insertIpOnLoad();
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.timeoutId !== null) {
-      clearTimeout(this.timeoutId);
-      this.timeoutId = null;
-    }
-  }
-
-  setDefaultSubject(): void {
-    const selectedLink = this.rootScope?.selectedLink;
-
-    const value = selectedLink === 'Brochure' ? 'Download Brochure' : 'Request For Demo';
-
-    this.angForm.patchValue({
-      subject: value,
+    afterNextRender(() => {
+      this.getClientIp();
     });
 
-    this.activelist = selectedLink === 'Brochure' ? 4 : 3;
+    this.destroyRef.onDestroy(() => {
+      if (this.timeoutId) {
+        clearTimeout(this.timeoutId);
+      }
+    });
+  }
+
+  get fullName() {
+    return this.contactForm.controls.fullName;
+  }
+
+  get companyName() {
+    return this.contactForm.controls.companyName;
+  }
+
+  get email() {
+    return this.contactForm.controls.email;
+  }
+
+  get phone() {
+    return this.contactForm.controls.phone;
+  }
+
+  get businessType() {
+    return this.contactForm.controls.businessType;
+  }
+
+  get comments() {
+    return this.contactForm.controls.comments;
   }
 
   /**
-   * Insert activity information when the page loads.
-   * Browser-only because window.location is used.
+   * Gets the client IP only in the browser.
    */
-  private insertIpOnLoad(): void {
-    if (!this.isBrowser) {
-      return;
-    }
+  private getClientIp(): void {
+    this.http
+      .get('https://api.ipify.org?format=text', {
+        responseType: 'text',
+      })
+      .subscribe({
+        next: (ip) => this.insertIpOnLoad(ip),
+        error: (error) => {
+          console.error('Failed to get IP address:', error);
+        },
+      });
+  }
 
+  /**
+   * Records campaign page load activity.
+   */
+  private insertIpOnLoad(ip: string): void {
     const query = {
       UserId: 'support',
       CompanyId: 'ES',
@@ -96,14 +99,13 @@ export class PartnershipForm implements OnInit, OnDestroy {
       methodname: 'CAMPAIGNLOAD',
       remarks: window.location.href,
       sessionid: '',
+      refno: ip,
       acttype: '',
       formid: 'CAMPAIGNLOAD',
       auditId: 0,
     };
 
-    const URL = 'https://report.esatcloud.com/api/user/updateactivity';
-
-    this.http.post(URL, query).subscribe({
+    this.http.post('https://report.esatcloud.com/api/user/updateactivity', query).subscribe({
       next: () => {
         console.log('Activity updated');
       },
@@ -114,9 +116,9 @@ export class PartnershipForm implements OnInit, OnDestroy {
   }
 
   /**
-   * Form submission
+   * Submit partnership form.
    */
-  public apicall(): void {
+  submit(): void {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       return;
@@ -142,6 +144,13 @@ export class PartnershipForm implements OnInit, OnDestroy {
       'VAR_COMMENTS',
     ];
 
+    /**
+     * IMPORTANT:
+     * Your original code has 15 parameter names but only 13 values.
+     *
+     * Do not change the backend mapping until you confirm what the
+     * missing values are supposed to be.
+     */
     const paramValues = [
       formValues.companyName,
       formValues.fullName,
@@ -160,84 +169,66 @@ export class PartnershipForm implements OnInit, OnDestroy {
 
     const resourceObj = {
       ProcedureName: 'PROC_CRM_INSERTLEADFROMWEBSITE',
-
       CompanyCode: 'ES',
-
       ParameterName: paramNames,
-
       parameterValue: paramValues,
     };
 
-    const URL = 'https://report.esatcloud.com/api/executeCommonDBProcedureHandlerany/data';
-
-    this.http.post(URL, resourceObj).subscribe({
-      next: () => {
-        /*
-         * SweetAlert uses the browser DOM,
-         * so never execute it during SSR.
-         */
-        if (this.isBrowser) {
+    this.http
+      .post('https://report.esatcloud.com/api/executeCommonDBProcedureHandlerany/data', resourceObj)
+      .subscribe({
+        next: () => {
           Swal.fire({
             title: 'Thank you!',
             text: 'We have received your request in our Partnership Program, and one of our consultants will be in touch with you shortly.',
             icon: 'success',
-            confirmButtonText: 'OK',
-          }).then(() => {
-            this.contactForm.reset();
           });
-        } else {
+
           this.contactForm.reset();
-        }
-      },
+        },
+        error: (error) => {
+          console.error('Error submitting form:', error);
 
-      error: (error) => {
-        console.error('Error submitting form:', error);
-
-        if (this.isBrowser) {
           Swal.fire({
             title: 'Something went wrong',
-            text: 'We could not submit your request. Please try again later.',
+            text: 'Unable to submit your request. Please try again.',
             icon: 'error',
-            confirmButtonText: 'OK',
           });
-        }
-      },
-    });
+        },
+      });
   }
 
   /**
-   * Prevent spaces in phone number
+   * Prevent spaces in phone number.
+   * HTML inputmode/pattern also provide validation,
+   * so this is only an additional UX restriction.
    */
-  public preventSpaces(event: KeyboardEvent): void {
+  preventSpaces(event: KeyboardEvent): void {
     if (event.key === ' ') {
       event.preventDefault();
     }
   }
 
   /**
-   * Show container temporarily.
-   * This code must only execute in the browser.
+   * Shows container-2 temporarily.
+   *
+   * This method is browser-only because it accesses the DOM.
    */
-  public showAndHideContainer(): void {
-    if (!this.isBrowser) {
+  showAndHideContainer(): void {
+    const container = document.getElementById('container-2');
+
+    if (!container) {
       return;
     }
 
-    const container2 = document.getElementById('container-2');
+    container.classList.add('show');
 
-    if (!container2) {
-      return;
-    }
-
-    container2.style.display = 'block';
-
-    if (this.timeoutId !== null) {
+    if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
 
     this.timeoutId = setTimeout(() => {
-      container2.style.display = 'none';
-      this.timeoutId = null;
+      container.classList.remove('show');
     }, 3700);
   }
 }

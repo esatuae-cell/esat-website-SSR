@@ -1,158 +1,255 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+
+import { ReactiveFormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 import { HttpClient } from '@angular/common/http';
+
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+
+import Swal from 'sweetalert2';
 
 import { HomeCarousel } from '../../shared-component/home-carousel/home-carousel';
 import { YutHone } from '../../shared-component/yut-hone/yut-hone';
 import { SoftwareSliderHome } from '../../shared-component/software-slider-home/software-slider-home';
 import { InfrastructureSliderHome } from '../../shared-component/infrastructure-slider-home/infrastructure-slider-home';
 
-import Swal from 'sweetalert2';
+import { RootServices } from '../../../services/root-services';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
   standalone: true,
+
   templateUrl: './home.html',
   styleUrl: './home.css',
+
   imports: [
+    ReactiveFormsModule,
+    RouterLink,
     HomeCarousel,
+    CommonModule,
+    ReactiveFormsModule,
     YutHone,
     SoftwareSliderHome,
     InfrastructureSliderHome,
-    RouterLink,
-    ReactiveFormsModule,
   ],
 })
-export class HomeComponent {
-  leadForm: FormGroup;
+export class HomeComponent implements OnInit, OnDestroy {
+  lat = 24.360952;
+  lng = 54.521668;
 
-  isSubmitting = false;
+  activelist = 0;
+  subjectVal = 'General Inquiry';
 
-  activelist = 3;
+  angForm!: FormGroup;
 
-  // Keep this only if you actually use selectedLink
-  rootScope: any;
+  subjectOptions = [
+    { id: 0, name: 'General Inquiry' },
+    { id: 1, name: 'Software Inquiry' },
+    { id: 2, name: 'Hardware Inquiry' },
+    { id: 3, name: 'Request For Demo' },
+    { id: 4, name: 'Download Brochure' },
+  ];
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
+    private titleService: Title,
+    private meta: Meta,
+    private route: ActivatedRoute,
+    private router: Router,
+    private el: ElementRef,
+    private rootScope: RootServices,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {
-    this.leadForm = this.fb.group({
-      full_name: ['', Validators.required],
+    this.titleService.setTitle('Contact ESAT ERP Middle East | UAE | ESAT');
 
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9+\-\s()]{7,20}$/)]],
+    this.meta.updateTag({
+      name: 'description',
+      content: "Get in touch today. Let's see what ESAT can do for you.",
+    });
+
+    this.createForm();
+    this.setDefaultSubject();
+  }
+
+  // --------------------------------------------------
+  // SSR SAFE INITIALIZATION
+  // --------------------------------------------------
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const element = document.getElementById('buynow');
+
+      if (element) {
+        element.style.display = 'none';
+      }
+    }
+  }
+
+  // --------------------------------------------------
+  // SSR SAFE CLEANUP
+  // --------------------------------------------------
+  ngOnDestroy(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const element = document.getElementById('buynow');
+
+      if (element) {
+        element.style.display = 'block';
+      }
+    }
+  }
+
+  // --------------------------------------------------
+  // FORM
+  // --------------------------------------------------
+  createForm(): void {
+    this.angForm = this.fb.group({
+      name: ['', Validators.required],
 
       email: ['', [Validators.required, Validators.email]],
 
-      com_name: ['', Validators.required],
+      typeofbus: [''],
 
-      subject: ['01'],
+      subject: [''],
 
-      comments: [''],
+      phone_no: ['', [Validators.required, Validators.pattern('^[0-9]{10,12}$')]],
 
-      software_modules: [''],
+      comp_name: ['', Validators.required],
 
-      business_type: [''],
+      location: [''],
 
-      message: [''],
+      website: [''],
+
+      textarea: ['', [Validators.required, Validators.minLength(10)]],
     });
   }
 
-  /**
-   * Set default subject
-   */
+  // --------------------------------------------------
+  // SUBJECT
+  // --------------------------------------------------
   setDefaultSubject(): void {
     const selectedLink = this.rootScope?.selectedLink;
 
     const value = selectedLink === 'Brochure' ? 'Download Brochure' : 'Request For Demo';
 
-    this.leadForm.patchValue({
+    this.angForm.patchValue({
       subject: value,
     });
 
     this.activelist = selectedLink === 'Brochure' ? 4 : 3;
   }
 
-  /**
-   * Submit form
-   */
-  apicall(): void {
-    console.log('APICALL STARTED');
+  // Called from the subject select in HTML
+  activate(index: number): void {
+    this.activelist = index;
+  }
 
-    // Prevent multiple submissions
-    if (this.isSubmitting) {
+  // --------------------------------------------------
+  // VALIDATION
+  // --------------------------------------------------
+  validateControls(): void {
+    Object.values(this.angForm.controls).forEach((control) => {
+      control.markAsTouched();
+      control.markAsDirty();
+    });
+  }
+
+  // --------------------------------------------------
+  // SUBMIT
+  // --------------------------------------------------
+  onComplete(): void {
+    if (this.angForm.invalid) {
+      this.validateControls();
       return;
     }
 
-    // Validate form
-    if (this.leadForm.invalid) {
-      console.log('FORM INVALID');
+    this.saveLeadtoERP();
 
-      this.leadForm.markAllAsTouched();
+    const payload = {
+      name: this.angForm.value.name,
+      email: this.angForm.value.email,
+      typeofb: this.angForm.value.typeofbus,
+      compname: this.angForm.value.comp_name,
+      location: this.angForm.value.location,
+      web: this.angForm.value.website,
+      phone: this.angForm.value.phone_no,
+      queries: this.angForm.value.textarea,
+      type: this.activelist,
+    };
 
-      return;
-    }
+    this.http
+      .post('https://esat.ae/wp-content/themes/ESAT/api/emailapi/contact-form.php', payload)
+      .subscribe({
+        next: () => {
+          // Email request completed
+        },
+        error: (error) => {
+          console.error('Contact form email API error:', error);
+        },
+      });
 
-    this.isSubmitting = true;
+    Swal.fire({
+      title: 'Thank you!',
+      text: 'We will contact you shortly.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = 'https://erp.esat.ae/thankyou.html';
+      }
+    });
 
-    const val = this.leadForm.getRawValue();
+    this.createForm();
 
-    console.log('FORM DATA:', val);
+    // Restore default subject after resetting form
+    this.setDefaultSubject();
+  }
 
-    const resourceObj = {
+  // --------------------------------------------------
+  // ERP
+  // --------------------------------------------------
+  saveLeadtoERP(): void {
+    const url = 'https://api.esatcloud.com/api/executeCommonDBProcedureHandlerany/data';
+
+    const params = {
       ProcedureName: 'PROC_CRM_INSERTLEADFROMWEBSITE',
 
       CompanyCode: 'ES',
 
-      ParameterName: [],
+      ParameterName: [
+        'VAR_CLIENTNAME',
+        'VAR_LOCATION',
+        'VAR_CONTACTPERSON',
+        'VAR_EMAIL',
+        'VAR_SUBJECT',
+        'VAR_TYPEOFBUSINESS',
+        'VAR_WEBSITE',
+        'VAR_PHONE',
+        'VAR_REMARKS',
+      ],
 
-      parameterValue: [val.full_name, val.email, val.phone, val.com_name, val.comments],
+      parameterValue: [
+        this.angForm.value.comp_name,
+        this.angForm.value.location,
+        this.angForm.value.name,
+        this.angForm.value.email,
+        this.activelist,
+        this.angForm.value.typeofbus,
+        this.angForm.value.website,
+        this.angForm.value.phone_no,
+        this.angForm.value.textarea,
+      ],
     };
 
-    console.log('API REQUEST:', resourceObj);
-
-    this.http
-      .post('https://report.esatcloud.com/api/executeCommonDBProcedureHandlerany/data', resourceObj)
-      .subscribe({
-        next: (response) => {
-          console.log('API SUCCESS:', response);
-
-          this.isSubmitting = false;
-
-          Swal.fire({
-            icon: 'success',
-            title: 'Thank You!',
-            text: 'Your demo request has been submitted successfully.',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#0d6efd',
-            allowOutsideClick: false,
-          }).then(() => {
-            this.leadForm.reset();
-
-            // Only access window in browser
-            if (isPlatformBrowser(this.platformId)) {
-              window.location.href = 'https://erp.esat.ae/thankyou.html';
-            }
-          });
-        },
-
-        error: (error: unknown) => {
-          console.error('API ERROR:', error);
-
-          this.isSubmitting = false;
-
-          Swal.fire({
-            icon: 'error',
-            title: 'Submission Failed',
-            text: 'Something went wrong. Please try again later.',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#dc3545',
-            allowOutsideClick: false,
-          });
-        },
-      });
+    this.http.post(url, params).subscribe({
+      next: () => {
+        // ERP request completed
+      },
+      error: (error) => {
+        console.error('ERP lead API error:', error);
+      },
+    });
   }
 }
