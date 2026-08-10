@@ -10,16 +10,11 @@
     </div>
   }
 
-  <!-- ============================= -->
-  <!-- CAREER LIST -->
-  <!-- ============================= -->
-
   @if (jobDataLoaded) {
     @if (jobCategory.length > 0) {
       <div class="career-list">
         @for (jobitem of jobCategory; track $index) {
-          <div class="career-category">
-            <!-- CATEGORY HEADER -->
+          <div>
             <div class="que accordion-header" (click)="jobitem.show = !jobitem.show">
               {{ jobitem.category }}
 
@@ -32,7 +27,6 @@
               ></i>
             </div>
 
-            <!-- CATEGORY CONTENT -->
             <div class="ans" [hidden]="!jobitem.show">
               @if (jobitem.available) {
                 <ul class="job-list">
@@ -65,11 +59,6 @@
       <div class="no-openings">
         <p>
           <b>No Openings.</b>
-        </p>
-
-        <p>
-          We currently have no vacancies for IT Solutions, but don't let that stop you sending in
-          your CV. We're always on the look out for people with a strong passion for the industry.
         </p>
       </div>
     }

@@ -100,35 +100,31 @@ export class CareersLoad implements OnInit {
   ngOnInit(): void {
     this.root.contactoption = 0;
 
-    // Browser-only DOM operation
     if (this.isBrowser) {
       const loader = document.getElementById('loadingshield');
 
       if (loader) {
         loader.style.display = 'none';
       }
+
+      this.afuConfig = {
+        multiple: false,
+        formatsAllowed: '.docx,.pdf',
+        maxSize: '2',
+
+        uploadAPI: {
+          url: `${this.root.apiLink}/resumeFile.php`,
+        },
+
+        hideResetBtn: true,
+
+        replaceTexts: {
+          uploadBtn: 'Upload your CV',
+        },
+      };
     }
 
-    // Upload configuration
-    this.afuConfig = {
-      multiple: false,
-
-      formatsAllowed: '.docx,.pdf',
-
-      maxSize: '2',
-
-      uploadAPI: {
-        url: `${this.root.apiLink}/resumeFile.php`,
-      },
-
-      hideResetBtn: true,
-
-      replaceTexts: {
-        uploadBtn: 'Upload your CV',
-      },
-    };
-
-    // Load career data
+    // ALWAYS load careers when this component is created
     this.loadCareerData();
   }
 
@@ -137,84 +133,62 @@ export class CareersLoad implements OnInit {
   // --------------------------------------------------
 
   private loadCareerData(): void {
-    // Always show loader when entering this page
+    // Start loading
     this.jobDataLoaded = false;
 
+    // Clear old data
     this.dataValue = null;
     this.jobData = [];
     this.jobCategory = [];
 
-    const cachedData = this.root.webData?.['203'];
-
-    // Use cached data if available
-    if (cachedData?.acf) {
-      this.dataValue = cachedData;
-
-      this.preparejobcategory(cachedData);
-
-      this.jobDataLoaded = true;
-
-      if (this.isBrowser) {
-        this.ref.detectChanges();
-      }
-
-      return;
-    }
-
-    // Otherwise load from API
     const apiUrl = `${this.root.httpLink}203`;
 
-    this.http
-      .get<any>(apiUrl)
-      .pipe(
-        catchError((error) => {
-          console.error('Career API Error:', error);
+    console.log('Loading careers from:', apiUrl);
 
-          this.dataValue = null;
-          this.jobData = [];
-          this.jobCategory = [];
+    this.http.get<any>(apiUrl).subscribe({
+      next: (data) => {
+        console.log('Career API response:', data);
 
-          return of(null);
-        }),
-      )
-      .subscribe({
-        next: (data) => {
-          if (data?.acf) {
-            this.dataValue = data;
+        if (data && data.acf) {
+          this.dataValue = data;
 
-            this.preparejobcategory(data);
+          // IMPORTANT:
+          // Build job categories only AFTER API response arrives
+          this.preparejobcategory(data);
 
-            console.log('Career categories:', this.jobCategory);
-          } else {
-            console.warn('Invalid career API response:', data);
+          console.log('Prepared job categories:', this.jobCategory);
 
-            this.dataValue = null;
-            this.jobData = [];
-            this.jobCategory = [];
-          }
-
-          // Hide loader only AFTER data is prepared
           this.jobDataLoaded = true;
+        } else {
+          console.error('Career API returned no ACF data:', data);
 
-          if (this.isBrowser) {
-            this.ref.detectChanges();
-          }
-        },
+          this.dataValue = data;
 
-        error: (error) => {
-          console.error('Unexpected career API error:', error);
-
-          this.dataValue = null;
           this.jobData = [];
           this.jobCategory = [];
 
           this.jobDataLoaded = true;
+        }
 
-          if (this.isBrowser) {
-            this.ref.detectChanges();
-          }
-        },
-      });
+        if (this.isBrowser) {
+          this.ref.detectChanges();
+        }
+      },
+
+      error: (error) => {
+        console.error('Career API Error:', error);
+
+        this.dataValue = null;
+        this.jobData = [];
+        this.jobCategory = [];
+
+        this.jobDataLoaded = true;
+
+        if (this.isBrowser) {
+          this.ref.detectChanges();
+        }
+      },
+    });
   }
 
   // --------------------------------------------------
@@ -224,46 +198,40 @@ export class CareersLoad implements OnInit {
   preparejobcategory(dataValue: any): void {
     this.jobCategory = [];
 
-    /*
-     * SSR-safe validation.
-     */
     if (!dataValue?.acf) {
+      console.warn('No ACF data found');
       return;
     }
 
     const labelMap: Record<string, string> = {
       software_jobs: 'Software Careers',
-
       hardware_jobs: 'Hardware Careers',
-
       sales_marketing: 'Sales & Marketing Careers',
-
       admin_jobs: 'Administrative Careers',
     };
 
-    /*
-     * Loop through ACF fields.
-     */
-    for (const key of Object.keys(dataValue.acf)) {
-      /*
-       * Ignore non-job fields.
-       */
+    Object.keys(dataValue.acf).forEach((key) => {
+      // Ignore non-job fields
       if (['content', 'main_image', 'inner_image', 'quotes'].includes(key)) {
-        continue;
+        return;
       }
 
-      const jobs = Array.isArray(dataValue.acf[key]) ? dataValue.acf[key] : [];
+      const value = dataValue.acf[key];
+
+      // Only accept arrays as job lists
+      const jobs = Array.isArray(value) ? value : [];
+
+      console.log(`Career field: ${key}`, jobs);
 
       this.jobCategory.push({
         category: labelMap[key] || 'Other Careers',
-
         joblist: jobs,
-
         show: false,
-
         available: jobs.length > 0,
       });
-    }
+    });
+
+    console.log('FINAL jobCategory:', this.jobCategory);
   }
 
   // --------------------------------------------------
