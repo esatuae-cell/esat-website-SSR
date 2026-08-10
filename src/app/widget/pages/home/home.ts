@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -29,9 +30,15 @@ export class HomeComponent {
 
   isSubmitting = false;
 
+  activelist = 3;
+
+  // Keep this only if you actually use selectedLink
+  rootScope: any;
+
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: object,
   ) {
     this.leadForm = this.fb.group({
       full_name: ['', Validators.required],
@@ -42,21 +49,45 @@ export class HomeComponent {
 
       com_name: ['', Validators.required],
 
+      subject: ['01'],
+
       comments: [''],
 
       software_modules: [''],
+
       business_type: [''],
+
       message: [''],
     });
   }
 
+  /**
+   * Set default subject
+   */
+  setDefaultSubject(): void {
+    const selectedLink = this.rootScope?.selectedLink;
+
+    const value = selectedLink === 'Brochure' ? 'Download Brochure' : 'Request For Demo';
+
+    this.leadForm.patchValue({
+      subject: value,
+    });
+
+    this.activelist = selectedLink === 'Brochure' ? 4 : 3;
+  }
+
+  /**
+   * Submit form
+   */
   apicall(): void {
     console.log('APICALL STARTED');
 
+    // Prevent multiple submissions
     if (this.isSubmitting) {
       return;
     }
 
+    // Validate form
     if (this.leadForm.invalid) {
       console.log('FORM INVALID');
 
@@ -73,8 +104,11 @@ export class HomeComponent {
 
     const resourceObj = {
       ProcedureName: 'PROC_CRM_INSERTLEADFROMWEBSITE',
+
       CompanyCode: 'ES',
+
       ParameterName: [],
+
       parameterValue: [val.full_name, val.email, val.phone, val.com_name, val.comments],
     };
 
@@ -96,11 +130,12 @@ export class HomeComponent {
             confirmButtonColor: '#0d6efd',
             allowOutsideClick: false,
           }).then(() => {
-            console.log('Redirecting to thank you page...');
-
             this.leadForm.reset();
 
-            window.location.href = 'https://erp.esat.ae/thankyou.html';
+            // Only access window in browser
+            if (isPlatformBrowser(this.platformId)) {
+              window.location.href = 'https://erp.esat.ae/thankyou.html';
+            }
           });
         },
 
@@ -115,6 +150,7 @@ export class HomeComponent {
             text: 'Something went wrong. Please try again later.',
             confirmButtonText: 'OK',
             confirmButtonColor: '#dc3545',
+            allowOutsideClick: false,
           });
         },
       });

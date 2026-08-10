@@ -16,6 +16,9 @@ export class PartnershipForm implements OnInit, OnDestroy {
 
   private timeoutId: ReturnType<typeof setTimeout> | null = null;
   private isBrowser: boolean;
+  rootScope: any;
+  activelist: number | undefined;
+  angForm: any;
 
   constructor(
     private http: HttpClient,
@@ -34,6 +37,8 @@ export class PartnershipForm implements OnInit, OnDestroy {
       phone: ['', [Validators.required, Validators.pattern(/^\d{10,}$/)]],
 
       businessType: ['', Validators.required],
+
+      subject: ['', Validators.required],
 
       softwareModules: [''],
 
@@ -60,6 +65,18 @@ export class PartnershipForm implements OnInit, OnDestroy {
       clearTimeout(this.timeoutId);
       this.timeoutId = null;
     }
+  }
+
+  setDefaultSubject(): void {
+    const selectedLink = this.rootScope?.selectedLink;
+
+    const value = selectedLink === 'Brochure' ? 'Download Brochure' : 'Request For Demo';
+
+    this.angForm.patchValue({
+      subject: value,
+    });
+
+    this.activelist = selectedLink === 'Brochure' ? 4 : 3;
   }
 
   /**
