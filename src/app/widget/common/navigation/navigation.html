@@ -1263,9 +1263,7 @@
               (mouseenter)="showDropdown()"
               (mouseleave)="hideDropdown()"
             >
-              <a class="nav-link" routerLink="careers" (click)="toggleClickDropdown($event)">
-                Careers</a
-              >
+              <a class="nav-link" href="careers" (click)="toggleClickDropdown($event)"> Careers</a>
 
               <div
                 class="dropdown-menu careers-drop vh-30 w-20 position-career border-0 shadow-lg mega-menu"
@@ -1275,16 +1273,16 @@
                   <div class="row">
                     <div class="col-lg-12">
                       <h6>Careers</h6>
-                      <a class="dropdown-item" routerLink="careers" (click)="closeDropdown()">
+                      <a class="dropdown-item" href="careers" (click)="closeDropdown()">
                         Software Careers</a
                       >
-                      <a class="dropdown-item" routerLink="careers" (click)="closeDropdown()">
+                      <a class="dropdown-item" href="careers" (click)="closeDropdown()">
                         Hardware Careers
                       </a>
-                      <a class="dropdown-item" routerLink="careers" (click)="closeDropdown()">
+                      <a class="dropdown-item" href="careers" (click)="closeDropdown()">
                         Administrative Careers</a
                       >
-                      <a class="dropdown-item" routerLink="careers" (click)="closeDropdown()">
+                      <a class="dropdown-item" href="careers" (click)="closeDropdown()">
                         Sales & Marketing Careers</a
                       >
                     </div>
@@ -1627,7 +1625,7 @@
                         [class.show]="activeMenu === 'Careers'"
                       >
                         <li data-bs-dismiss="modal">
-                          <a class="dropdown-item" routerLink="careers">Our Careers</a>
+                          <a class="dropdown-item" href="careers">Our Careers</a>
                         </li>
                       </ul>
                     </li>
