@@ -11,10 +11,12 @@
     font-size: 0.9rem;
   }
   .slider-container {
-    height: 69vh !important;
+    height: 65vh !important;
+    overflow: hidden;
   }
   .form-section {
-    height: 69vh !important;
+    height: 65vh !important;
+    overflow: hidden;
   }
 }
 
