@@ -1,10 +1,29 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  Inject,
+  inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { afterNextRender } from '@angular/core';
 
 import Swal from 'sweetalert2';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RootServices } from '../../../services/root-services';
 
 @Component({
   selector: 'app-partnership-form',
@@ -13,222 +32,215 @@ import { CommonModule } from '@angular/common';
   templateUrl: './partnership-form.html',
   styleUrl: './partnership-form.css',
 })
-export class PartnershipForm {
-  private readonly fb = inject(NonNullableFormBuilder);
-  private readonly http = inject(HttpClient);
-  private readonly destroyRef = inject(DestroyRef);
+export class PartnershipForm implements OnInit, OnDestroy {
+  lat = 24.360952;
+  lng = 54.521668;
 
-  private timeoutId: ReturnType<typeof setTimeout> | null = null;
+  activelist = 0;
+  subjectVal = 'General Inquiry';
 
-  readonly contactForm = this.fb.group({
-    fullName: ['', [Validators.required, Validators.minLength(2)]],
-    companyName: ['', [Validators.required, Validators.minLength(2)]],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.pattern(/^\d{10,}$/)]],
-    businessType: ['', Validators.required],
-    softwareModules: [''],
-    comments: [''],
-    message: [''],
-  });
+  angForm!: FormGroup;
 
-  constructor() {
-    /**
-     * Runs only in the browser.
-     * afterNextRender does not execute during SSR.
-     */
-    afterNextRender(() => {
-      this.getClientIp();
+  subjectOptions = [
+    { id: 0, name: 'General Inquiry' },
+    { id: 1, name: 'Software Inquiry' },
+    { id: 2, name: 'Hardware Inquiry' },
+    { id: 3, name: 'Request For Demo' },
+    { id: 4, name: 'Download Brochure' },
+  ];
+
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private titleService: Title,
+    private meta: Meta,
+    private route: ActivatedRoute,
+    private router: Router,
+    private el: ElementRef,
+    private rootScope: RootServices,
+    @Inject(PLATFORM_ID) private platformId: object,
+  ) {
+    this.titleService.setTitle('Contact ESAT ERP Middle East | UAE | ESAT');
+
+    this.meta.updateTag({
+      name: 'description',
+      content: "Get in touch today. Let's see what ESAT can do for you.",
     });
 
-    this.destroyRef.onDestroy(() => {
-      if (this.timeoutId) {
-        clearTimeout(this.timeoutId);
+    this.createForm();
+    this.setDefaultSubject();
+  }
+
+  // --------------------------------------------------
+  // SSR SAFE INITIALIZATION
+  // --------------------------------------------------
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const element = document.getElementById('buynow');
+
+      if (element) {
+        element.style.display = 'none';
       }
+    }
+  }
+
+  // --------------------------------------------------
+  // SSR SAFE CLEANUP
+  // --------------------------------------------------
+  ngOnDestroy(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const element = document.getElementById('buynow');
+
+      if (element) {
+        element.style.display = 'block';
+      }
+    }
+  }
+
+  // --------------------------------------------------
+  // FORM
+  // --------------------------------------------------
+  createForm(): void {
+    this.angForm = this.fb.group({
+      name: ['', Validators.required],
+
+      email: ['', [Validators.required, Validators.email]],
+
+      typeofbus: ['', Validators.required],
+
+      subject: ['', Validators.required],
+
+      phone_no: ['', [Validators.required, Validators.pattern('^[0-9]{10,12}$')]],
+
+      comp_name: ['', Validators.required],
+
+      location: [''],
+
+      website: [''],
+
+      textarea: ['', [Validators.required, Validators.minLength(10)]],
     });
   }
 
-  get fullName() {
-    return this.contactForm.controls.fullName;
+  // --------------------------------------------------
+  // SUBJECT
+  // --------------------------------------------------
+  setDefaultSubject(): void {
+    const selectedLink = this.rootScope?.selectedLink;
+
+    const value = selectedLink === 'Brochure' ? 'Download Brochure' : 'Request For Demo';
+
+    this.angForm.patchValue({
+      subject: value,
+    });
+
+    this.activelist = selectedLink === 'Brochure' ? 4 : 3;
   }
 
-  get companyName() {
-    return this.contactForm.controls.companyName;
+  // Called from the subject select in HTML
+  activate(index: number): void {
+    this.activelist = index;
   }
 
-  get email() {
-    return this.contactForm.controls.email;
-  }
-
-  get phone() {
-    return this.contactForm.controls.phone;
-  }
-
-  get businessType() {
-    return this.contactForm.controls.businessType;
-  }
-
-  get comments() {
-    return this.contactForm.controls.comments;
-  }
-
-  /**
-   * Gets the client IP only in the browser.
-   */
-  private getClientIp(): void {
-    this.http
-      .get('https://api.ipify.org?format=text', {
-        responseType: 'text',
-      })
-      .subscribe({
-        next: (ip) => this.insertIpOnLoad(ip),
-        error: (error) => {
-          console.error('Failed to get IP address:', error);
-        },
-      });
-  }
-
-  /**
-   * Records campaign page load activity.
-   */
-  private insertIpOnLoad(ip: string): void {
-    const query = {
-      UserId: 'support',
-      CompanyId: 'ES',
-      action: 'CAMPAIGNLOAD',
-      eventtype: 'CAMPAIGNLOAD',
-      methodname: 'CAMPAIGNLOAD',
-      remarks: window.location.href,
-      sessionid: '',
-      refno: ip,
-      acttype: '',
-      formid: 'CAMPAIGNLOAD',
-      auditId: 0,
-    };
-
-    this.http.post('https://report.esatcloud.com/api/user/updateactivity', query).subscribe({
-      next: () => {
-        console.log('Activity updated');
-      },
-      error: (error) => {
-        console.error('Error updating activity:', error);
-      },
+  // --------------------------------------------------
+  // VALIDATION
+  // --------------------------------------------------
+  validateControls(): void {
+    Object.values(this.angForm.controls).forEach((control) => {
+      control.markAsTouched();
+      control.markAsDirty();
     });
   }
 
-  /**
-   * Submit partnership form.
-   */
-  submit(): void {
-    if (this.contactForm.invalid) {
-      this.contactForm.markAllAsTouched();
+  // --------------------------------------------------
+  // SUBMIT
+  // --------------------------------------------------
+  onComplete(): void {
+    if (this.angForm.invalid) {
+      this.validateControls();
       return;
     }
 
-    const formValues = this.contactForm.getRawValue();
+    this.saveLeadtoERP();
 
-    const paramNames = [
-      'VAR_CLIENTNAME',
-      'VAR_LOCATION',
-      'VAR_CONTACTPERSON',
-      'VAR_EMAIL',
-      'VAR_SUBJECT',
-      'VAR_TYPEOFBUSINESS',
-      'VAR_WEBSITE',
-      'VAR_PHONE',
-      'VAR_REMARKS',
-      'VAR_COMPANYSIZE',
-      'VAR_MODULES',
-      'VAR_ACTIVITYCODE',
-      'VAR_TSAKNO',
-      'VAR_CMPNAME',
-      'VAR_COMMENTS',
-    ];
-
-    /**
-     * IMPORTANT:
-     * Your original code has 15 parameter names but only 13 values.
-     *
-     * Do not change the backend mapping until you confirm what the
-     * missing values are supposed to be.
-     */
-    const paramValues = [
-      formValues.companyName,
-      formValues.fullName,
-      formValues.email,
-      '3',
-      formValues.businessType,
-      formValues.phone,
-      formValues.message,
-      null,
-      formValues.softwareModules,
-      'ACT/ESAT/0006/05/23',
-      'TSK/ACT/WV/0048',
-      'CAMPAIGNLOAD',
-      formValues.comments,
-    ];
-
-    const resourceObj = {
-      ProcedureName: 'PROC_CRM_INSERTLEADFROMWEBSITE',
-      CompanyCode: 'ES',
-      ParameterName: paramNames,
-      parameterValue: paramValues,
+    const payload = {
+      name: this.angForm.value.name,
+      email: this.angForm.value.email,
+      typeofb: this.angForm.value.typeofbus,
+      compname: this.angForm.value.comp_name,
+      location: this.angForm.value.location,
+      web: this.angForm.value.website,
+      phone: this.angForm.value.phone_no,
+      queries: this.angForm.value.textarea,
+      type: this.activelist,
     };
 
     this.http
-      .post('https://report.esatcloud.com/api/executeCommonDBProcedureHandlerany/data', resourceObj)
+      .post('https://esat.ae/wp-content/themes/ESAT/api/emailapi/contact-form.php', payload)
       .subscribe({
         next: () => {
-          Swal.fire({
-            title: 'Thank you!',
-            text: 'We have received your request in our Partnership Program, and one of our consultants will be in touch with you shortly.',
-            icon: 'success',
-          });
-
-          this.contactForm.reset();
+          // Email request completed
         },
         error: (error) => {
-          console.error('Error submitting form:', error);
-
-          Swal.fire({
-            title: 'Something went wrong',
-            text: 'Unable to submit your request. Please try again.',
-            icon: 'error',
-          });
+          console.error('Contact form email API error:', error);
         },
       });
+
+    Swal.fire({
+      title: 'Thank you!',
+      text: 'We will contact you shortly.',
+      icon: 'success',
+    });
+
+    this.createForm();
+
+    // Restore default subject after resetting form
+    this.setDefaultSubject();
   }
 
-  /**
-   * Prevent spaces in phone number.
-   * HTML inputmode/pattern also provide validation,
-   * so this is only an additional UX restriction.
-   */
-  preventSpaces(event: KeyboardEvent): void {
-    if (event.key === ' ') {
-      event.preventDefault();
-    }
-  }
+  // --------------------------------------------------
+  // ERP
+  // --------------------------------------------------
+  saveLeadtoERP(): void {
+    const url = 'https://api.esatcloud.com/api/executeCommonDBProcedureHandlerany/data';
 
-  /**
-   * Shows container-2 temporarily.
-   *
-   * This method is browser-only because it accesses the DOM.
-   */
-  showAndHideContainer(): void {
-    const container = document.getElementById('container-2');
+    const params = {
+      ProcedureName: 'PROC_CRM_INSERTLEADFROMWEBSITE',
 
-    if (!container) {
-      return;
-    }
+      CompanyCode: 'ES',
 
-    container.classList.add('show');
+      ParameterName: [
+        'VAR_CLIENTNAME',
+        'VAR_LOCATION',
+        'VAR_CONTACTPERSON',
+        'VAR_EMAIL',
+        'VAR_SUBJECT',
+        'VAR_TYPEOFBUSINESS',
+        'VAR_WEBSITE',
+        'VAR_PHONE',
+        'VAR_REMARKS',
+      ],
 
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-    }
+      parameterValue: [
+        this.angForm.value.comp_name,
+        this.angForm.value.location,
+        this.angForm.value.name,
+        this.angForm.value.email,
+        this.activelist,
+        this.angForm.value.typeofbus,
+        this.angForm.value.website,
+        this.angForm.value.phone_no,
+        this.angForm.value.textarea,
+      ],
+    };
 
-    this.timeoutId = setTimeout(() => {
-      container.classList.remove('show');
-    }, 3700);
+    this.http.post(url, params).subscribe({
+      next: () => {
+        // ERP request completed
+      },
+      error: (error) => {
+        console.error('ERP lead API error:', error);
+      },
+    });
   }
 }

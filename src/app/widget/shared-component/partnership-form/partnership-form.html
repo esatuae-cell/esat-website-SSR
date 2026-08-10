@@ -1,108 +1,163 @@
-<form [formGroup]="contactForm" (ngSubmit)="submit()" novalidate class="row mt-vh-6">
-  <div class="form-group col-md-6">
-    <input
-      id="full_name"
-      type="text"
-      class="form-control"
-      formControlName="fullName"
-      placeholder="Enter your name *"
-      autocomplete="name"
-      [class.is-invalid]="fullName.invalid && fullName.touched"
-      (click)="showAndHideContainer()"
-    />
+<div class="partnership-outer">
+  <div class="card-titile p-3"><h5>Join the ESAT ERP Partner Program</h5></div>
 
-    @if (fullName.invalid && fullName.touched) {
-      <div class="invalid-feedback">Please enter your full name.</div>
-    }
-  </div>
+  <div class="divider p-2"></div>
+  <form
+    id="contact-form"
+    class="contact-form contact-form bg-white banner-contact rounded text-black needs-validation p-3"
+    [formGroup]="angForm"
+    novalidate
+    (ngSubmit)="onComplete()"
+  >
+    <div class="row">
+      <div class="col-6">
+        <div class="inpzero">
+          <div class="form-group">
+            <input
+              class="form-control brd-bttm"
+              formControlName="name"
+              type="text"
+              placeholder="Please enter your name"
+              [ngClass]="{
+                errorwrapper: angForm.get('name')?.invalid && angForm.get('name')?.touched,
+              }"
+            />
+          </div>
 
-  <div class="form-group col-md-6">
-    <input
-      id="phone"
-      type="tel"
-      class="form-control"
-      formControlName="phone"
-      placeholder="Enter your phone number *"
-      autocomplete="tel"
-      inputmode="numeric"
-      [class.is-invalid]="phone.invalid && phone.touched"
-      (keydown)="preventSpaces($event)"
-    />
+          <div class="error" *ngIf="angForm.get('name')?.invalid && angForm.get('name')?.touched">
+            Please enter your name
+          </div>
+        </div>
+      </div>
 
-    @if (phone.invalid && phone.touched) {
-      <div class="invalid-feedback">A valid phone number is required.</div>
-    }
-  </div>
+      <div class="col-6">
+        <!-- PHONE -->
+        <div class="inpzero">
+          <div class="form-group">
+            <input
+              class="form-control brd-bttm"
+              formControlName="phone_no"
+              type="text"
+              placeholder="05XXXXXXXX"
+              [ngClass]="{
+                errorwrapper: angForm.get('phone_no')?.invalid && angForm.get('phone_no')?.touched,
+              }"
+            />
+          </div>
 
-  <div class="form-group col-md-6">
-    <input
-      id="email"
-      type="email"
-      class="form-control"
-      formControlName="email"
-      placeholder="Enter your email address *"
-      autocomplete="email"
-      [class.is-invalid]="email.invalid && email.touched"
-    />
+          <div
+            class="error"
+            *ngIf="angForm.get('phone_no')?.invalid && angForm.get('phone_no')?.touched"
+          >
+            Please enter valid phone number
+          </div>
+        </div>
+      </div>
+    </div>
 
-    @if (email.invalid && email.touched) {
-      <div class="invalid-feedback">Please enter a valid email address.</div>
-    }
-  </div>
+    <!-- EMAIL -->
 
-  <div class="form-group col-md-6">
-    <input
-      id="company_name"
-      type="text"
-      class="form-control"
-      formControlName="companyName"
-      placeholder="Enter your company name *"
-      autocomplete="organization"
-      [class.is-invalid]="companyName.invalid && companyName.touched"
-    />
+    <div class="row">
+      <div class="col-6">
+        <div class="inpzero">
+          <div class="form-group mb-2">
+            <input
+              class="form-control brd-bttm"
+              formControlName="email"
+              type="text"
+              placeholder="Please enter your email"
+              [ngClass]="{
+                errorwrapper: angForm.get('email')?.invalid && angForm.get('email')?.touched,
+              }"
+            />
+          </div>
 
-    @if (companyName.invalid && companyName.touched) {
-      <div class="invalid-feedback">Company name is required.</div>
-    }
-  </div>
+          <div class="error" *ngIf="angForm.get('email')?.invalid && angForm.get('email')?.touched">
+            <div *ngIf="angForm.get('email')?.errors?.['required']">
+              Please enter your email address
+            </div>
 
-  <div class="form-group col-md-12 pb-2">
-    <select
-      id="business_type"
-      class="form-control"
-      formControlName="businessType"
-      [class.is-invalid]="businessType.invalid && businessType.touched"
-    >
-      <option value="" disabled>Partnership Type *</option>
+            <div *ngIf="angForm.get('email')?.errors?.['email']">
+              Please enter a valid email address
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inpzero">
+          <div class="form-group">
+            <input
+              class="form-control brd-bttm"
+              formControlName="comp_name"
+              type="text"
+              placeholder="Enter company name"
+              [ngClass]="{
+                errorwrapper:
+                  angForm.get('comp_name')?.invalid && angForm.get('comp_name')?.touched,
+              }"
+            />
+          </div>
 
-      <option value="Reseller Program">Reseller Program</option>
+          <div
+            class="error"
+            *ngIf="angForm.get('comp_name')?.invalid && angForm.get('comp_name')?.touched"
+          >
+            Please enter your company name
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <option value="Referral Program">Referral Program</option>
+    <div class="inpzero mb-2">
+      <div class="form-group">
+        <select
+          class="form-control"
+          formControlName="typeofbus"
+          [ngClass]="{
+            errorwrapper: angForm.get('typeofbus')?.invalid && angForm.get('typeofbus')?.touched,
+          }"
+        >
+          <option value="">Partnership Type</option>
 
-      <option value="Affiliate Program">Affiliate Program</option>
-    </select>
+          <option>Reseller Program</option>
 
-    @if (businessType.invalid && businessType.touched) {
-      <div class="invalid-feedback">Please select a partnership type.</div>
-    }
-  </div>
+          <option>Referral Program</option>
 
-  <div class="form-group col-md-12">
-    <textarea
-      id="comments"
-      class="form-control"
-      formControlName="comments"
-      rows="4"
-      placeholder="Enter your message here..."
-      [class.is-invalid]="comments.invalid && comments.touched"
-    ></textarea>
+          <option>Affiliate Program</option>
+        </select>
+      </div>
 
-    @if (comments.invalid && comments.touched) {
-      <div class="invalid-feedback">A message is required.</div>
-    }
-  </div>
+      <div
+        class="error"
+        *ngIf="angForm.get('typeofbus')?.invalid && angForm.get('typeofbus')?.touched"
+      >
+        Fill required field
+      </div>
+    </div>
 
-  <button type="submit" class="btn btn-primary mt-3" [disabled]="contactForm.invalid">
-    Submit
-  </button>
-</form>
+    <div class="inpzero">
+      <div class="form-group">
+        <textarea
+          class="txt form-control brd-bttm"
+          formControlName="textarea"
+          rows="5"
+          placeholder="Enter your message"
+          [ngClass]="{
+            errorwrapper: angForm.get('textarea')?.invalid && angForm.get('textarea')?.touched,
+          }"
+        ></textarea>
+      </div>
+
+      <div
+        class="error"
+        *ngIf="angForm.get('textarea')?.invalid && angForm.get('textarea')?.touched"
+      >
+        Please enter your message (minimum 10 characters)
+      </div>
+    </div>
+
+    <div class="col-sm-12 form-default btnc mt-3">
+      <button type="submit" class="btn btn-primary btnn border-0 bg-theme">Submit</button>
+    </div>
+  </form>
+</div>

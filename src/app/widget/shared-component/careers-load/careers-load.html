@@ -1,57 +1,79 @@
 <div class="container sm-size mt-5">
-  <!-- <div *ngIf="jobData.length === 0" class="text-center p-5">
-    Loading job listings...
-  </div> -->
+  <!-- ============================= -->
+  <!-- CAREER LOADER -->
+  <!-- ============================= -->
 
-  <!-- <div *ngFor="let category of jobData; let i = index" class="accordion-item">
-    <div class="accordion-header" (click)="toggleAccordion(i)">
-      {{ category.categoryName }}
-      <span>{{ selectedCategoryIndex === i ? '▲' : '▼' }}</span>
+  @if (!jobDataLoaded) {
+    <div class="career-loading">
+      <div class="career-spinner"></div>
+      <p>Loading career opportunities...</p>
     </div>
+  }
 
-    <div *ngIf="selectedCategoryIndex === i" class="accordion-content">
-      <ul class="job-list">
-        <li *ngFor="let job of category.jobs" (click)="openJobPopup(job)">
-          {{ job.title }}
-        </li>
-      </ul>
-    </div>
-  </div> -->
+  <!-- ============================= -->
+  <!-- CAREER LIST -->
+  <!-- ============================= -->
 
-  <ng-container *ngIf="jobDataLoaded">
-    <div *ngFor="let jobitem of jobCategory; let $index = index">
-      <div class="qone accordion-item">
-        <div class="que accordion-header" (click)="jobitem.show = !jobitem.show">
-          <h4 class="p-0 m-0">{{ jobitem.category }}</h4>
-          <i
-            class="arrow-down fa fa-angle-double-up"
-            [ngClass]="{ 'fa-angle-double-down': jobitem.show == true }"
-          ></i>
-        </div>
-        <div class="ans" [hidden]="!jobitem.show">
-          <ul class="job-list" *ngIf="jobitem.available">
-            <li *ngFor="let jobs of jobitem.joblist; let $index = index">
-              <span class="job-listing" (click)="openJobPopup(jobs); swcbody = false">
-                <!-- <a class="d-block f-12">{{jobs.department}}</a>  -->
-                <a>{{ jobs?.title }}</a></span
-              >
-            </li>
-          </ul>
+  @if (jobDataLoaded) {
+    @if (jobCategory.length > 0) {
+      <div class="career-list">
+        @for (jobitem of jobCategory; track $index) {
+          <div class="career-category">
+            <!-- CATEGORY HEADER -->
+            <div class="que accordion-header" (click)="jobitem.show = !jobitem.show">
+              {{ jobitem.category }}
 
-          <span *ngIf="!jobitem.available">
-            <p>
-              <b><span> No Openings.</span></b>
-            </p>
-            <p>
-              We currently have no vacancies for IT Solutions, but don't let that stop you sending
-              in your CV. We're always on the look out for people with a strong passion for the
-              industry.
-            </p>
-          </span>
-        </div>
+              <i
+                class="arrow-down fa"
+                [ngClass]="{
+                  'fa-angle-double-up': !jobitem.show,
+                  'fa-angle-double-down': jobitem.show,
+                }"
+              ></i>
+            </div>
+
+            <!-- CATEGORY CONTENT -->
+            <div class="ans" [hidden]="!jobitem.show">
+              @if (jobitem.available) {
+                <ul class="job-list">
+                  @for (jobs of jobitem.joblist; track $index) {
+                    <li>
+                      <span class="job-listing" (click)="openJobPopup(jobs); swcbody = false">
+                        {{ jobs?.title }}
+                      </span>
+                    </li>
+                  }
+                </ul>
+              } @else {
+                <div class="no-openings">
+                  <p>
+                    <b>No Openings.</b>
+                  </p>
+
+                  <p>
+                    We currently have no vacancies for IT Solutions, but don't let that stop you
+                    sending in your CV. We're always on the look out for people with a strong
+                    passion for the industry.
+                  </p>
+                </div>
+              }
+            </div>
+          </div>
+        }
       </div>
-    </div>
-  </ng-container>
+    } @else {
+      <div class="no-openings">
+        <p>
+          <b>No Openings.</b>
+        </p>
+
+        <p>
+          We currently have no vacancies for IT Solutions, but don't let that stop you sending in
+          your CV. We're always on the look out for people with a strong passion for the industry.
+        </p>
+      </div>
+    }
+  }
 </div>
 
 <div *ngIf="showPopup" class="popup-overlay">

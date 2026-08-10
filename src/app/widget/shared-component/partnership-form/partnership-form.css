@@ -49,3 +49,14 @@
 .mt-vh-6 {
   margin-top: 6vh;
 }
+.partnership-outer {
+  box-shadow: 0px 0px 20px #cdcdcd;
+  border-radius: 10px;
+}
+.card-titile {
+  border-bottom: 1px solid #c3c3c3;
+  color: #000;
+  h5 {
+    margin: 0px;
+  }
+}

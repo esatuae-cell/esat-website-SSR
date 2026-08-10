@@ -137,16 +137,16 @@ export class CareersLoad implements OnInit {
   // --------------------------------------------------
 
   private loadCareerData(): void {
+    // Always show loader when entering this page
     this.jobDataLoaded = false;
 
-    /*
-     * First try existing data from RootServices.
-     *
-     * This is preferable during SSR because the
-     * application may already have loaded the data.
-     */
+    this.dataValue = null;
+    this.jobData = [];
+    this.jobCategory = [];
+
     const cachedData = this.root.webData?.['203'];
 
+    // Use cached data if available
     if (cachedData?.acf) {
       this.dataValue = cachedData;
 
@@ -154,13 +154,14 @@ export class CareersLoad implements OnInit {
 
       this.jobDataLoaded = true;
 
+      if (this.isBrowser) {
+        this.ref.detectChanges();
+      }
+
       return;
     }
 
-    /*
-     * Make API request only when cached data
-     * isn't available.
-     */
+    // Otherwise load from API
     const apiUrl = `${this.root.httpLink}203`;
 
     this.http
@@ -169,15 +170,8 @@ export class CareersLoad implements OnInit {
         catchError((error) => {
           console.error('Career API Error:', error);
 
-          /*
-           * Important for SSR:
-           * Never leave invalid/undefined data
-           * available to the template.
-           */
           this.dataValue = null;
-
           this.jobData = [];
-
           this.jobCategory = [];
 
           return of(null);
@@ -185,54 +179,39 @@ export class CareersLoad implements OnInit {
       )
       .subscribe({
         next: (data) => {
-          /*
-           * Verify that the API actually returned
-           * the structure we expect.
-           */
           if (data?.acf) {
             this.dataValue = data;
 
             this.preparejobcategory(data);
+
+            console.log('Career categories:', this.jobCategory);
           } else {
-            console.warn('Career API returned invalid data:', data);
+            console.warn('Invalid career API response:', data);
 
             this.dataValue = null;
-
             this.jobData = [];
-
             this.jobCategory = [];
           }
 
-          /*
-           * Mark loading as complete even when
-           * the API fails.
-           */
+          // Hide loader only AFTER data is prepared
           this.jobDataLoaded = true;
 
-          /*
-           * markForCheck is only needed in browser.
-           */
           if (this.isBrowser) {
-            this.ref.markForCheck();
+            this.ref.detectChanges();
           }
         },
 
         error: (error) => {
-          /*
-           * Extra protection.
-           */
-          console.error('Unexpected Career API error:', error);
+          console.error('Unexpected career API error:', error);
 
           this.dataValue = null;
-
           this.jobData = [];
-
           this.jobCategory = [];
 
           this.jobDataLoaded = true;
 
           if (this.isBrowser) {
-            this.ref.markForCheck();
+            this.ref.detectChanges();
           }
         },
       });
