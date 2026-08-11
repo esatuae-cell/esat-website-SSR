@@ -1,18 +1,7 @@
-import {
-  Component,
-  OnInit,
-  Inject,
-  PLATFORM_ID,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -47,7 +36,7 @@ export class SupportHome implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     public rootService: RootServices,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this.createForm();
   }
@@ -66,12 +55,7 @@ export class SupportHome implements OnInit {
     this.angFormtwo = this.fb.group({
       address: [
         '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$'
-          ),
-        ],
+        [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$')],
       ],
     });
   }
@@ -90,11 +74,7 @@ export class SupportHome implements OnInit {
       .subscribe({
         next: (res: any) => {
           if (res.status === 'failed') {
-            Swal.fire(
-              'Invalid!',
-              'The username or password you entered is incorrect.',
-              'error'
-            );
+            Swal.fire('Invalid!', 'The username or password you entered is incorrect.', 'error');
             return;
           }
 
@@ -107,16 +87,11 @@ export class SupportHome implements OnInit {
 
           // SSR SAFE LOCAL STORAGE
           if (isPlatformBrowser(this.platformId) && this.angForm.value.tuse) {
-            localStorage.setItem(
-              'ESATLogInDetails',
-              JSON.stringify(this.rootService.MasterUser)
-            );
+            localStorage.setItem('ESATLogInDetails', JSON.stringify(this.rootService.MasterUser));
           }
 
           if (this.rootService.returnValue) {
-            this.router.navigateByUrl(
-              '/support/' + this.rootService.returnValue
-            );
+            this.router.navigateByUrl('/support/' + this.rootService.returnValue);
           }
 
           this.loadCart();
@@ -154,10 +129,7 @@ export class SupportHome implements OnInit {
             .subscribe();
 
           if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem(
-              'ESATCartItems',
-              JSON.stringify(this.rootService.Cart)
-            );
+            localStorage.setItem('ESATCartItems', JSON.stringify(this.rootService.Cart));
           }
         },
 
@@ -183,12 +155,9 @@ export class SupportHome implements OnInit {
         next: (res: any) => {
           if (res.isUnique === false) {
             this.http
-              .post(
-                'https://esat.ae/wp-content/themes/ESAT/api/emailapi/resetpass-form.php',
-                {
-                  email: this.angFormtwo.value.address,
-                }
-              )
+              .post('http://api.esat.ae/wp-content/themes/ESAT/api/emailapi/resetpass-form.php', {
+                email: this.angFormtwo.value.address,
+              })
               .subscribe();
 
             if (isPlatformBrowser(this.platformId)) {
@@ -206,7 +175,7 @@ export class SupportHome implements OnInit {
             Swal.fire(
               'Password link sent!',
               'You can now reset your password. Instructions have been sent to your registered email.',
-              'success'
+              'success',
             );
           } else {
             Swal.fire('Invalid!', 'Email address not found.', 'error');

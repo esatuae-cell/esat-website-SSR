@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
-import {  FormBuilder,  FormGroup,  Validators,  ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -15,7 +15,6 @@ import { RootServices } from '../../../../services/root-services';
   styleUrl: './registor.css',
 })
 export class Registor implements OnInit {
-
   // ✅ Angular 22 inject style
   private http = inject(HttpClient);
   private fb = inject(FormBuilder);
@@ -27,10 +26,9 @@ export class Registor implements OnInit {
   public client = false;
   public csiValidation = true;
   public companycode: any[] = [];
-accept: any;
+  accept: any;
 
   ngOnInit(): void {
-
     this.createForm();
 
     // ✅ SSR SAFE: only run in browser
@@ -45,22 +43,19 @@ accept: any;
   createForm() {
     this.angForm = this.fb.group(
       {
-        fname: ["", Validators.required],
-        lastname: ["", Validators.required],
-        csi: [""],
-        cname: [""],
+        fname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        csi: [''],
+        cname: [''],
         email: [
-          "",
-          [
-            Validators.required,
-            Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/)
-          ],
+          '',
+          [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/)],
         ],
-        uname: ["", [Validators.required, Validators.minLength(5)]],
-        pword: ["", [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ["", Validators.required],
+        uname: ['', [Validators.required, Validators.minLength(5)]],
+        pword: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', Validators.required],
       },
-      { validators: this.passwordMatch }
+      { validators: this.passwordMatch },
     );
   }
 
@@ -68,12 +63,10 @@ accept: any;
   // SSR SAFE API CALL
   // =========================
   private loadCompanies() {
-    this.http
-      .get<any[]>(this.root.apiLink + "/getcompany")
-      .subscribe({
-        next: (data) => this.companycode = data || [],
-        error: () => this.companycode = []
-      });
+    this.http.get<any[]>(this.root.apiLink + '/getcompany').subscribe({
+      next: (data) => (this.companycode = data || []),
+      error: () => (this.companycode = []),
+    });
   }
 
   // =========================
@@ -91,8 +84,8 @@ accept: any;
   changeValidation() {
     this.client = !this.client;
 
-    const csi = this.angForm.get("csi");
-    const cname = this.angForm.get("cname");
+    const csi = this.angForm.get('csi');
+    const cname = this.angForm.get('cname');
 
     if (this.client) {
       csi?.setValidators([Validators.required]);
@@ -121,7 +114,7 @@ accept: any;
 
     if (found) {
       this.angForm.patchValue({
-        cname: found.company_name
+        cname: found.company_name,
       });
     }
   }
@@ -130,69 +123,56 @@ accept: any;
   // SUBMIT
   // =========================
   onSubmit() {
-
     if (this.angForm.invalid) return;
 
-    const type = (this.client && this.csiValidation) ? "client" : "reader";
+    const type = this.client && this.csiValidation ? 'client' : 'reader';
 
-    this.http.post(
-      "https://esat.ae/wp-content/themes/ESAT/api/register",
-      {
+    this.http
+      .post('http://api.esat.ae/wp-content/themes/ESAT/api/register', {
         first_name: this.angForm.value.fname,
         last_name: this.angForm.value.lastname,
         username: this.angForm.value.uname,
         password: this.angForm.value.pword,
         email: this.angForm.value.email,
-        phone_no: "",
+        phone_no: '',
         company: this.angForm.value.cname,
         companyidn: this.angForm.value.csi,
         type,
         date_joined: new Date(),
-        image: "/accountupload/login_2.png",
-      }
-    ).subscribe({
-      next: (res: any) => {
+        image: '/accountupload/login_2.png',
+      })
+      .subscribe({
+        next: (res: any) => {
+          if (res.status === 'failed') {
+            Swal.fire('Error', 'Something went wrong', 'error');
+          } else if (res.status === 'emailalreadyexit') {
+            Swal.fire('Exists', 'Email already exists', 'error');
+          } else if (res.status === 1) {
+            this.sendEmail();
 
-        if (res.status === "failed") {
-          Swal.fire("Error", "Something went wrong", "error");
-        }
-
-        else if (res.status === "emailalreadyexit") {
-          Swal.fire("Exists", "Email already exists", "error");
-        }
-
-        else if (res.status === 1) {
-
-          this.sendEmail();
-
-          Swal.fire(
-            "Success",
-            "Activation link sent to email",
-            "success"
-          ).then(() => {
-            this.router.navigateByUrl("/support");
-          });
-        }
-      },
-      error: () => {
-        Swal.fire("Error", "Server error", "error");
-      }
-    });
+            Swal.fire('Success', 'Activation link sent to email', 'success').then(() => {
+              this.router.navigateByUrl('/support');
+            });
+          }
+        },
+        error: () => {
+          Swal.fire('Error', 'Server error', 'error');
+        },
+      });
   }
 
   // =========================
   // EMAIL API
   // =========================
   private sendEmail() {
-    this.http.post(
-      "https://esat.ae/wp-content/themes/ESAT/api/emailapi/register-form.php",
-      {
+    this.http
+      .post('http://api.esat.ae/wp-content/themes/ESAT/api/emailapi/register-form.php', {
         email: this.angForm.value.email,
         first_name: this.angForm.value.fname,
         last_name: this.angForm.value.lastname,
         company: this.angForm.value.cname,
         username: this.angForm.value.uname,
-      }
-    ).subscribe();
+      })
+      .subscribe();
   }
 }
