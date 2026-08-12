@@ -171,7 +171,7 @@
               >
 
               <div
-                class="dropdown-menu vh-50 w-60 position-abt border-0 shadow-lg mega-menu ps-3 pe-3"
+                class="dropdown-menu vh-63 w-60 position-abt border-0 shadow-lg mega-menu ps-3 pe-3"
                 [class.show]="isDropdownOpen"
               >
                 <div class="hard-h-65 d-flex align-items-start" id="software-menu">
@@ -195,7 +195,7 @@
                         Company
                       </button>
                     </li>
-                    <li class="nav-item p-0" role="presentation">
+                    <!-- <li class="nav-item p-0" role="presentation">
                       <button
                         class="nav-link-drop fw-semibold position-relative"
                         id="pills-profile-tab"
@@ -209,7 +209,7 @@
                       >
                         Experience
                       </button>
-                    </li>
+                    </li> -->
                     <li class="nav-item p-0" role="presentation">
                       <button
                         class="nav-link-drop fw-semibold position-relative"
@@ -278,6 +278,37 @@
                               </p>
                             </a>
                           </li>
+
+                          <li class="ps-3">
+                            <a
+                              class="title-f"
+                              routerLinkActive="active"
+                              routerLink="about/awards"
+                              (click)="closeDropdown()"
+                            >
+                              <h3>Awards & Accreditations</h3>
+                              <p>
+                                You will have better control over your employees, assets, materials,
+                                subcontracts, equipment and devices, etc., helping your business
+                                become more efficient and profitable.
+                              </p>
+                            </a>
+                          </li>
+
+                          <li class="ps-3">
+                            <a
+                              class="title-f"
+                              routerLinkActive="active"
+                              routerLink="about/news"
+                              (click)="closeDropdown()"
+                            >
+                              <h3>News</h3>
+                              <p>
+                                ESAT Business Enterprise Edition is powerful, flexible and
+                                easy-to-use.
+                              </p>
+                            </a>
+                          </li>
                         </ul>
 
                         <ul class="me-3">
@@ -324,18 +355,6 @@
                               </p>
                             </a>
                           </li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div
-                      class="tab-pane fade row"
-                      id="pills-Experience"
-                      role="tabpanel"
-                      aria-labelledby="pills-profile-tab"
-                    >
-                      <div class="soft-indust col-12">
-                        <ul class="me-3">
                           <li class="ps-3">
                             <a
                               class="title-f"
@@ -351,26 +370,21 @@
                             </a>
                           </li>
                         </ul>
-
-                        <ul class="me-3">
-                          <li class="ps-3">
-                            <a
-                              class="title-f"
-                              routerLinkActive="active"
-                              routerLink="about/awards"
-                              (click)="closeDropdown()"
-                            >
-                              <h3>Awards & Accreditations</h3>
-                              <p>
-                                You will have better control over your employees, assets, materials,
-                                subcontracts, equipment and devices, etc., helping your business
-                                become more efficient and profitable.
-                              </p>
-                            </a>
-                          </li>
-                        </ul>
                       </div>
                     </div>
+
+                    <!-- <div
+                      class="tab-pane fade row"
+                      id="pills-Experience"
+                      role="tabpanel"
+                      aria-labelledby="pills-profile-tab"
+                    >
+                      <div class="soft-indust col-12">
+                        <ul class="me-3"></ul>
+
+                        <ul class="me-3"></ul>
+                      </div>
+                    </div> -->
 
                     <div
                       class="tab-pane fade row"
@@ -380,20 +394,6 @@
                     >
                       <div class="soft-indust col-12">
                         <ul class="me-3">
-                          <li class="ps-3">
-                            <a
-                              class="title-f"
-                              routerLinkActive="active"
-                              routerLink="about/news"
-                              (click)="closeDropdown()"
-                            >
-                              <h3>News</h3>
-                              <p>
-                                ESAT Business Enterprise Edition is powerful, flexible and
-                                easy-to-use.
-                              </p>
-                            </a>
-                          </li>
                           <li class="ps-3">
                             <a
                               class="title-f"
@@ -409,9 +409,6 @@
                               </p>
                             </a>
                           </li>
-                        </ul>
-
-                        <ul class="me-3">
                           <li class="ps-3">
                             <a
                               class="title-f"
@@ -427,6 +424,9 @@
                               </p>
                             </a>
                           </li>
+                        </ul>
+
+                        <ul class="me-3">
                           <li class="ps-3">
                             <a
                               class="title-f"
@@ -1058,7 +1058,7 @@
                 >Hardware</a
               >
               <div
-                class="dropdown-menu dropdown-content vh-75 w-60 px-3 border-0 bg-none sm-software shadow-lg mega-menu"
+                class="dropdown-menu dropdown-content vh-50 w-60 px-3 border-0 bg-none sm-software shadow-lg mega-menu"
                 [class.show]="isDropdownOpen"
               >
                 <div class="container container-sm bg-white">
@@ -1231,7 +1231,7 @@
               (mouseenter)="showDropdown()"
               (mouseleave)="hideDropdown()"
             >
-              <a class="nav-link" routerLink="partnership" (click)="toggleClickDropdown($event)"
+              <a class="nav-link" href="partnership" (click)="toggleClickDropdown($event)"
                 >Partnership Program</a
               >
               <div
@@ -1290,7 +1290,7 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" routerLink="our-clients">Clients</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-clients">Clients</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="support">Support</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="contact">Contact</a></li>
 
