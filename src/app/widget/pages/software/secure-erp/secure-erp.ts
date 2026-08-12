@@ -31,7 +31,7 @@ export class SecureErp implements OnInit {
     // SEO TITLE
     // =========================
 
-    this.titleService.setTitle('Secure ERP Software UAE | Cloud ERP Solution | ESAT ERP');
+    this.titleService.setTitle('ERP Software Solutions UAE | Simple Business ERP System');
 
     // =========================
     // META DESCRIPTION
@@ -41,7 +41,7 @@ export class SecureErp implements OnInit {
       name: 'description',
 
       content:
-        'ESAT Secure ERP is a powerful cloud ERP software solution in UAE designed to protect business transactions, automate operations and manage finance, HR, inventory, CRM, manufacturing and business processes.',
+        'Manage finance, HR, and inventory in one system with ESAT. the best ERP software solutions UAE.',
     });
 
     // =========================
@@ -78,12 +78,6 @@ export class SecureErp implements OnInit {
     });
 
     this.metaService.updateTag({
-      property: 'og:title',
-
-      content: 'Secure ERP Software UAE | Cloud ERP Solution | ESAT ERP',
-    });
-
-    this.metaService.updateTag({
       property: 'og:description',
 
       content:
@@ -104,12 +98,6 @@ export class SecureErp implements OnInit {
       name: 'twitter:card',
 
       content: 'summary_large_image',
-    });
-
-    this.metaService.updateTag({
-      name: 'twitter:title',
-
-      content: 'Secure ERP Software UAE | Cloud ERP Solution | ESAT ERP',
     });
 
     this.metaService.updateTag({

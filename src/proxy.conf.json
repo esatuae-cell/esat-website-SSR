@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://api.esat.ae/wp-content/themes/ESAT/api",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

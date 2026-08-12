@@ -64,11 +64,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     private rootScope: RootServices,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {
-    this.titleService.setTitle('Contact ESAT ERP Middle East | UAE | ESAT');
+    this.titleService.setTitle('Leading Software Company in UAE | Custom Business Software – ESAT');
 
     this.meta.updateTag({
       name: 'description',
-      content: "Get in touch today. Let's see what ESAT can do for you.",
+      content:
+        'ESAT is an ERP and custom software company in UAE to simplify operations and improve efficiency.',
     });
 
     this.createForm();

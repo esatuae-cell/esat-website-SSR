@@ -24,14 +24,13 @@ export class AboutMain {
   }
 
   private setSeo() {
-    // Page Title
     this.titleService.setTitle('Best Software Development Company in UAE | ESAT');
 
     // Meta Description
     this.meta.updateTag({
       name: 'description',
       content:
-        'ESAT is a leading software development company in UAE providing ERP, cloud solutions, and business automation software for modern enterprises.',
+        'ESAT, a software development company in UAE, delivering ERP and business solutions for modern companies.',
     });
 
     // Keywords
@@ -47,41 +46,6 @@ export class AboutMain {
       content: 'index, follow',
     });
 
-    // Open Graph for Facebook / LinkedIn
-    this.meta.updateTag({
-      property: 'og:title',
-      content: 'Best Software Development Company in UAE | ESAT',
-    });
-
-    this.meta.updateTag({
-      property: 'og:description',
-      content: 'ESAT provides ERP and business automation solutions for companies in UAE.',
-    });
-
-    this.meta.updateTag({
-      property: 'og:type',
-      content: 'website',
-    });
-
-    this.meta.updateTag({
-      property: 'og:image',
-      content: 'https://yourdomain.com/assets/images/esat-og-image.jpg',
-    });
-
     // Twitter Card
-    this.meta.updateTag({
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    });
-
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: 'Best Software Development Company in UAE | ESAT',
-    });
-
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: 'ERP and cloud business solutions from ESAT UAE.',
-    });
   }
 }

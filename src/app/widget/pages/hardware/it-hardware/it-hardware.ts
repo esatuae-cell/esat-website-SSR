@@ -25,24 +25,23 @@ export class ItHardware implements OnInit {
 
   ngOnInit(): void {
     // Page Title
-    this.titleService.setTitle('IT Hardware Solutions UAE | Servers, Storage & Networking | ESAT');
+    this.titleService.setTitle(
+      'IT Hardware and Networking Solutions UAE | IT Support Services – ESAT',
+    );
 
     // Meta Tags
     this.metaService.addTags([
       {
         name: 'description',
         content:
-          'ESAT provides enterprise IT hardware solutions including servers, storage, networking, security, data center infrastructure, laptops, desktops and IT support services across UAE.',
+          'Get reliable IT Hardware and Networking Solutions UAE, to keep your business systems secure and running.',
       },
 
       // Open Graph
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: 'https://esat.ae/hardware' },
       { property: 'og:site_name', content: 'ESAT' },
-      {
-        property: 'og:title',
-        content: 'IT Hardware Solutions UAE | Servers, Storage & Networking | ESAT',
-      },
+
       {
         property: 'og:description',
         content:
@@ -59,10 +58,7 @@ export class ItHardware implements OnInit {
       // Twitter
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@EsatSocial' },
-      {
-        name: 'twitter:title',
-        content: 'IT Hardware Solutions UAE | Servers, Storage & Networking | ESAT',
-      },
+
       {
         name: 'twitter:description',
         content:

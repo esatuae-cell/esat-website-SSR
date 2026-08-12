@@ -1,15 +1,23 @@
 <section class="Suportimg" data-aos="fade-up">
   <div class="container">
     <div class="row">
+      <!-- =====================================================
+           LEFT SIDE
+      ====================================================== -->
+
       <div class="col-sm-7">
         <h2 class="styleHeader f-30">
-          Customer <br />
+          Customer
+          <br />
+
           <span>Support</span>
         </h2>
 
         <div class="supportsideText">
           <h4>
-            <span>Please Sign In to</span><br />
+            <span>Please Sign In to</span>
+            <br />
+
             access this service
           </h4>
 
@@ -17,26 +25,40 @@
 
           <h4>
             <span>Register </span>
-            <a routerLink="registor" class="c-theme">New User</a>
+
+            <a routerLink="registor" class="c-theme"> New User </a>
           </h4>
         </div>
       </div>
 
+      <!-- =====================================================
+           RIGHT SIDE - LOGIN
+      ====================================================== -->
+
       <div class="col-sm-5">
         <div class="login-form-design text-center">
           <h3>Sign In</h3>
+
           <h4>WITH YOUR ESAT ACCOUNT</h4>
 
           <div class="userImage-big"></div>
 
+          <!-- =================================================
+               LOGIN FORM
+          ================================================== -->
+
           <form [formGroup]="angForm" class="row ps-4 pe-4" (ngSubmit)="onSubmit()" novalidate>
-            <!-- Username -->
+            <!-- ===============================================
+                 USERNAME
+            ================================================ -->
+
             <div class="form-group">
               <input
                 type="text"
                 class="form-control input-lg"
                 formControlName="uname"
                 placeholder="Username"
+                autocomplete="username"
                 [class.errorwrapper]="
                   angForm.get('uname')?.invalid &&
                   (angForm.get('uname')?.dirty || angForm.get('uname')?.touched)
@@ -59,13 +81,17 @@
               }
             </div>
 
-            <!-- Password -->
+            <!-- ===============================================
+                 PASSWORD
+            ================================================ -->
+
             <div class="form-group has-feedback">
               <input
                 type="password"
                 class="form-control input-lg text-left m-0"
                 formControlName="pword"
                 placeholder="Password"
+                autocomplete="current-password"
                 [class.errorwrapper]="
                   angForm.get('pword')?.invalid &&
                   (angForm.get('pword')?.dirty || angForm.get('pword')?.touched)
@@ -88,137 +114,202 @@
               }
             </div>
 
+            <!-- ===============================================
+                 REMEMBER ME
+            ================================================ -->
+
             <div class="form-group rememberME m-0 d-flex justify-content-left c-theme pt-2 pb-2">
-              <input type="checkbox" /> &nbsp; <span>Remember Me</span>
+              <label class="d-flex align-items-center" style="cursor: pointer">
+                <input type="checkbox" formControlName="tuse" />
+
+                <span class="ms-2"> Remember Me </span>
+              </label>
             </div>
+
+            <!-- ===============================================
+                 SIGN IN BUTTON
+            ================================================ -->
 
             <div class="form-group succes-btn m-0">
               <button
                 type="submit"
                 class="btn btn-block btn-primary w-100 border-0 bg-theme"
-                [disabled]="angForm.pristine || angForm.invalid"
+                [disabled]="angForm.invalid || isLoginLoading"
               >
-                SIGN IN
+                @if (isLoginLoading) {
+                  <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+
+                  SIGNING IN...
+                } @else {
+                  SIGN IN
+                }
               </button>
+
+              <!-- =============================================
+                   FORGOT PASSWORD
+              ============================================== -->
 
               <p class="d-flex justify-content-left c-theme f-14 pt-2 pb-2">
                 <b>
-                  <a (click)="createForm()" data-bs-toggle="modal" data-bs-target="#myModalfrg"
-                    >Forgot username or password?
+                  <a
+                    href="javascript:void(0)"
+                    (click)="openForgotModal()"
+                    (keydown.enter)="openForgotModal()"
+                    role="button"
+                    tabindex="0"
+                  >
+                    Forgot username or password?
                   </a>
                 </b>
               </p>
             </div>
           </form>
 
+          <!-- =================================================
+               REGISTER
+          ================================================== -->
+
           <h5 class="f-14 mt-5">
             Don’t have an account?
+
             <a routerLink="registor"> Sign up </a>
           </h5>
         </div>
-
-        <!-- <div class="support-home text-center">
-
-          <img
-            src="assets/images/suprt.png"
-            class="img-responsive"
-            alt="Support">
-
-          <h3>We're here to</h3>
-          <h1>solve your problems</h1>
-
-          <p>
-            <b>
-              We offer strategic guidance and intelligent technology solutions
-              that give you an edge over your competitors. Talk to an ESAT
-              specialist today or visit our support page to learn how we can
-              help your business run smarter.
-            </b>
-          </p>
-
-    
-
-          <ul class="spl-button d-flex w-100 justify-content-center">
-
-            <li class="list_login p-2" routerLink="support-sw">
-              Software Support
-            </li>
-
-            <li class="list_login p-2" routerLink="support-hw">
-              Hardware Support
-            </li>
-
-          </ul>
-
-         
-
-        </div> -->
       </div>
     </div>
   </div>
 </section>
 
-<!-- Forgot Password Modal -->
+<!-- =========================================================
+     FORGOT PASSWORD MODAL
+     Angular-controlled modal
+     
+     IMPORTANT:
+     No Bootstrap data-bs-toggle
+     No Bootstrap Modal()
+     No document.getElementById()
+========================================================= -->
 
-<div class="modal fade" id="myModalfrg" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Having trouble signing in?</h4>
+@if (showForgotModal) {
+  <div
+    class="modal fade show d-block"
+    tabindex="-1"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="forgotPasswordTitle"
+    (keydown)="onModalKeydown($event)"
+  >
+    <!-- =====================================================
+         BACKDROP
+    ====================================================== -->
 
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+    <div class="modal-backdrop fade show" (click)="closeForgotModal()"></div>
 
-      <div class="modal-body">
-        <div class="container-free">
-          <form [formGroup]="angFormtwo" (ngSubmit)="onSubmitreset()" class="row">
-            <p>
-              To reset your password and username, please provide the email address associated with
-              your ESAT account.
-            </p>
+    <!-- =====================================================
+         MODAL DIALOG
+    ====================================================== -->
 
-            <p>We'll send you instructions to reset your credentials.</p>
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <!-- ===============================================
+             HEADER
+        ================================================ -->
 
-            <div class="col-sm-12 form-default">
-              <div class="form-group">
-                <label>Email Address</label>
+        <div class="modal-header">
+          <h4 class="modal-title" id="forgotPasswordTitle">Having trouble signing in?</h4>
 
-                <input
-                  type="email"
-                  class="form-control"
-                  formControlName="address"
-                  placeholder="Please enter your email address"
-                />
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="closeForgotModal()"
+          ></button>
+        </div>
+
+        <!-- ===============================================
+             BODY
+        ================================================ -->
+
+        <div class="modal-body">
+          <div class="container-free">
+            <form [formGroup]="angFormtwo" (ngSubmit)="onSubmitreset()" class="row" novalidate>
+              <p>
+                To reset your password and username, please provide the email address associated
+                with your ESAT account.
+              </p>
+
+              <p>We'll send you instructions to reset your credentials.</p>
+
+              <!-- =========================================
+                   EMAIL
+              ========================================== -->
+
+              <div class="col-sm-12 form-default">
+                <div class="form-group">
+                  <label for="resetEmail"> Email Address </label>
+
+                  <input
+                    id="resetEmail"
+                    type="email"
+                    class="form-control"
+                    formControlName="address"
+                    placeholder="Please enter your email address"
+                    autocomplete="email"
+                    [class.errorwrapper]="
+                      angFormtwo.get('address')?.invalid &&
+                      (angFormtwo.get('address')?.dirty || angFormtwo.get('address')?.touched)
+                    "
+                  />
+                </div>
+
+                @if (
+                  angFormtwo.get('address')?.invalid &&
+                  (angFormtwo.get('address')?.dirty || angFormtwo.get('address')?.touched)
+                ) {
+                  <div class="error">
+                    @if (angFormtwo.get('address')?.errors?.['required']) {
+                      <div>Please enter your email address</div>
+                    }
+
+                    @if (angFormtwo.get('address')?.errors?.['email']) {
+                      <div>Please enter a valid email address</div>
+                    }
+                  </div>
+                }
               </div>
 
-              @if (
-                angFormtwo.get('address')?.invalid &&
-                (angFormtwo.get('address')?.dirty || angFormtwo.get('address')?.touched)
-              ) {
-                <div class="error">
-                  @if (angFormtwo.get('address')?.errors?.['required']) {
-                    <div>Please enter your email address</div>
-                  }
+              <!-- =========================================
+                   SEND BUTTON
+              ========================================== -->
 
-                  @if (angFormtwo.get('address')?.errors?.['pattern']) {
-                    <div>Please enter a valid email address</div>
-                  }
-                </div>
-              }
-            </div>
+              <div class="col-sm-12 form-default mt-3">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="angFormtwo.invalid || isResetLoading"
+                >
+                  @if (isResetLoading) {
+                    <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
 
-            <div class="col-sm-12 form-default">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                [disabled]="angFormtwo.pristine || angFormtwo.invalid"
-              >
-                Send
-              </button>
-            </div>
-          </form>
+                    Sending...
+                  } @else {
+                    Send
+                  }
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-secondary ms-2"
+                  (click)="closeForgotModal()"
+                  [disabled]="isResetLoading"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+}

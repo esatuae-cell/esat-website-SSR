@@ -60,7 +60,6 @@ export class News implements OnInit {
       )
       .subscribe((res) => {
         this.news = res;
-
         // Save for browser hydration
         this.transferState.set(NEWS_KEY, res);
       });
