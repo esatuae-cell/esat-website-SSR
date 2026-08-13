@@ -56,7 +56,7 @@ export class Careers implements OnInit {
 
   infoblocks: Record<number, boolean> = {};
 
-  readonly httpDirectLink = 'http://api.esat.ae/wp-json/wp/v2/pages/';
+  readonly httpDirectLink = 'https://api.esat.ae/wp-json/wp/v2/pages/';
 
   angForm!: FormGroup;
 
@@ -340,7 +340,7 @@ export class Careers implements OnInit {
 
     this.http
       .post(
-        'http://api.esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php',
+        'https://api.esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php',
         formData,
       )
       .pipe(
