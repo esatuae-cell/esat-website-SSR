@@ -1,10 +1,10 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   Inject,
   PLATFORM_ID,
   ChangeDetectorRef,
-  OnDestroy,
 } from '@angular/core';
 
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -17,7 +17,8 @@ import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 
 import { Router, NavigationEnd } from '@angular/router';
 
-import { filter, take, catchError, of, Subject, finalize } from 'rxjs';
+import { filter, catchError, of, Subject, finalize, takeUntil } from 'rxjs';
+
 import { RootServices } from '../../../services/root-services';
 
 @Component({
@@ -27,67 +28,88 @@ import { RootServices } from '../../../services/root-services';
   templateUrl: './careers-load.html',
   styleUrl: './careers-load.css',
 })
-export class CareersLoad implements OnInit {
-  // --------------------------------------------------
+export class CareersLoad implements OnInit, OnDestroy {
+  // ==================================================
   // Data
-  // --------------------------------------------------
+  // ==================================================
 
   jobData: any[] = [];
+
   jobCategory: any[] = [];
 
   dataValue: any = null;
 
   selectedCategoryIndex: number | null = null;
+
   selectedJob: any = null;
 
   jobDataLoaded = false;
 
-  // Prevent "No Openings" until API has really completed
   jobApiLoading = false;
 
-  private destroy$ = new Subject<void>();
-
-  // --------------------------------------------------
-  // UI State
-  // --------------------------------------------------
+  // ==================================================
+  // UI
+  // ==================================================
 
   swcbody = true;
+
   showPopup = false;
+
   showForm = false;
 
   infoblocks: Record<number, boolean> = {};
 
-  // --------------------------------------------------
+  // ==================================================
   // Form
-  // --------------------------------------------------
+  // ==================================================
 
   applicationForm: FormGroup;
 
   selectedFile: File | null = null;
 
-  // --------------------------------------------------
-  // Other
-  // --------------------------------------------------
+  // ==================================================
+  // Browser
+  // ==================================================
 
   isBrowser = false;
 
   afuConfig: any = null;
 
-  httpDirectLink = 'https://esat.ae/wp-json/wp/v2/pages/';
-  router: any;
+  // ==================================================
+  // Destroy
+  // ==================================================
 
-  // --------------------------------------------------
+  private destroy$ = new Subject<void>();
+
+  // ==================================================
+  // API URLs
+  // ==================================================
+
+  private readonly wordpressApi = 'https://api.esat.ae/wp-json/wp/v2/pages/';
+
+  private readonly careerUploadApi =
+    'https://api.esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php';
+
+  // ==================================================
   // Constructor
-  // --------------------------------------------------
+  // ==================================================
 
   constructor(
     private fb: FormBuilder,
+
     private http: HttpClient,
+
     private sanitizer: DomSanitizer,
+
     public root: RootServices,
+
     private titleService: Title,
+
     private meta: Meta,
+
     private ref: ChangeDetectorRef,
+
+    private router: Router,
 
     @Inject(PLATFORM_ID)
     private platformId: object,
@@ -101,7 +123,13 @@ export class CareersLoad implements OnInit {
 
       phone_no: ['', Validators.required],
 
-      subject: [{ value: '', disabled: true }, Validators.required],
+      subject: [
+        {
+          value: '',
+          disabled: true,
+        },
+        Validators.required,
+      ],
 
       textarea: [''],
 
@@ -109,12 +137,22 @@ export class CareersLoad implements OnInit {
     });
   }
 
-  // --------------------------------------------------
-  // Init
-  // --------------------------------------------------
+  // ==================================================
+  // INIT
+  // ==================================================
 
   ngOnInit(): void {
     this.root.contactoption = 0;
+
+    console.log('=================================');
+    console.log('CAREERS COMPONENT INITIALIZED');
+    console.log('=================================');
+
+    console.log('WordPress API:', this.wordpressApi);
+
+    // ----------------------------------------------
+    // Browser only
+    // ----------------------------------------------
 
     if (this.isBrowser) {
       const loader = document.getElementById('loadingshield');
@@ -125,7 +163,9 @@ export class CareersLoad implements OnInit {
 
       this.afuConfig = {
         multiple: false,
+
         formatsAllowed: '.docx,.pdf',
+
         maxSize: '2',
 
         uploadAPI: {
@@ -140,60 +180,82 @@ export class CareersLoad implements OnInit {
       };
     }
 
-    /*
-     * Load immediately when component is created.
-     */
+    // ----------------------------------------------
+    // Load careers
+    // ----------------------------------------------
+
     this.loadCareerData();
 
-    /*
-     * IMPORTANT:
-     * If Angular reuses this component during navigation,
-     * reload careers whenever NavigationEnd occurs.
-     */
+    // ----------------------------------------------
+    // Reload when navigating to careers
+    // ----------------------------------------------
+
     if (this.isBrowser) {
       this.router.events
         .pipe(
           filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-          take(1),
+
+          takeUntil(this.destroy$),
         )
         .subscribe(() => {
+          console.log('Navigation detected - reloading careers');
+
           this.loadCareerData();
         });
     }
   }
 
-  // --------------------------------------------------
-  // Load Career Data
-  // --------------------------------------------------
+  // ==================================================
+  // LOAD CAREER DATA
+  // ==================================================
 
   private loadCareerData(): void {
     console.log('=================================');
+
     console.log('CAREERS API START');
+
+    console.log('CAREERS API URL:', this.wordpressApi + '203');
+
     console.log('=================================');
 
-    // Show loader
+    // ----------------------------------------------
+    // Reset state
+    // ----------------------------------------------
+
     this.jobDataLoaded = false;
+
     this.jobApiLoading = true;
 
-    // Clear previous data
     this.jobCategory = [];
+
     this.jobData = [];
+
     this.dataValue = null;
 
-    /*
-     * IMPORTANT:
-     * Directly request WordPress career page.
-     * Do NOT use root.webData here.
-     */
-    const apiUrl = `${this.root.httpLink}203`;
+    // ----------------------------------------------
+    // Career page
+    // WordPress page ID = 203
+    // ----------------------------------------------
 
-    console.log('Career API URL:', apiUrl);
+    const apiUrl = this.wordpressApi + '203';
+
+    // ----------------------------------------------
+    // HTTP
+    // ----------------------------------------------
 
     this.http
       .get<any>(apiUrl)
       .pipe(
+        takeUntil(this.destroy$),
+
         catchError((error) => {
-          console.error('CAREER API ERROR:', error);
+          console.error('=================================');
+
+          console.error('CAREER API ERROR');
+
+          console.error(error);
+
+          console.error('=================================');
 
           return of(null);
         }),
@@ -202,6 +264,7 @@ export class CareersLoad implements OnInit {
           console.log('CAREER API FINISHED');
 
           this.jobApiLoading = false;
+
           this.jobDataLoaded = true;
 
           if (this.isBrowser) {
@@ -213,21 +276,34 @@ export class CareersLoad implements OnInit {
         console.log('CAREER API RESPONSE:', response);
 
         if (!response) {
+          console.error('Career API returned empty response');
+
           return;
         }
+
+        // ------------------------------------------
+        // Check ACF
+        // ------------------------------------------
 
         if (!response.acf) {
-          console.error('Career API has no ACF:', response);
+          console.error('Career API has no ACF data:', response);
 
           return;
         }
+
+        // ------------------------------------------
+        // Store response
+        // ------------------------------------------
 
         this.dataValue = response;
 
-        /*
-         * Build jobs ONLY after API response
-         */
+        // ------------------------------------------
+        // Prepare jobs
+        // ------------------------------------------
+
         this.preparejobcategory(response);
+
+        console.log('=================================');
 
         console.log('JOB CATEGORY:', this.jobCategory);
 
@@ -235,17 +311,21 @@ export class CareersLoad implements OnInit {
           'JOB COUNT:',
           this.jobCategory.reduce((total, category) => total + category.joblist.length, 0),
         );
+
+        console.log('=================================');
       });
   }
 
-  // --------------------------------------------------
-  // Prepare Job Categories
-  // --------------------------------------------------
+  // ==================================================
+  // PREPARE JOB CATEGORY
+  // ==================================================
 
   preparejobcategory(dataValue: any): void {
     this.jobCategory = [];
 
     if (!dataValue?.acf) {
+      console.warn('No ACF data available');
+
       return;
     }
 
@@ -259,27 +339,38 @@ export class CareersLoad implements OnInit {
       admin_jobs: 'Administrative Careers',
     };
 
+    // ----------------------------------------------
+    // Loop ACF fields
+    // ----------------------------------------------
+
     for (const key of Object.keys(dataValue.acf)) {
-      /*
-       * Ignore non-job fields
-       */
+      // --------------------------------------------
+      // Ignore non-job fields
+      // --------------------------------------------
+
       if (['content', 'main_image', 'inner_image', 'quotes'].includes(key)) {
         continue;
       }
 
       const value = dataValue.acf[key];
 
-      /*
-       * Only arrays can be job lists
-       */
+      // --------------------------------------------
+      // Only arrays
+      // --------------------------------------------
+
       if (!Array.isArray(value)) {
         continue;
       }
 
-      /*
-       * Remove empty values
-       */
-      const jobs = value.filter((job: any) => job);
+      // --------------------------------------------
+      // Remove empty jobs
+      // --------------------------------------------
+
+      const jobs = value.filter((job: any) => job !== null && job !== undefined);
+
+      // --------------------------------------------
+      // Add category
+      // --------------------------------------------
 
       this.jobCategory.push({
         category: labelMap[key] || 'Other Careers',
@@ -295,17 +386,17 @@ export class CareersLoad implements OnInit {
     console.log('Prepared categories:', this.jobCategory);
   }
 
-  // --------------------------------------------------
-  // Accordion
-  // --------------------------------------------------
+  // ==================================================
+  // ACCORDION
+  // ==================================================
 
   toggleAccordion(index: number): void {
     this.selectedCategoryIndex = this.selectedCategoryIndex === index ? null : index;
   }
 
-  // --------------------------------------------------
-  // Job Popup
-  // --------------------------------------------------
+  // ==================================================
+  // OPEN JOB
+  // ==================================================
 
   openJobPopup(job: any): void {
     if (!job) {
@@ -323,9 +414,9 @@ export class CareersLoad implements OnInit {
     });
   }
 
-  // --------------------------------------------------
-  // Close Popup
-  // --------------------------------------------------
+  // ==================================================
+  // CLOSE POPUP
+  // ==================================================
 
   closePopup(): void {
     this.showPopup = false;
@@ -338,20 +429,25 @@ export class CareersLoad implements OnInit {
 
     this.applicationForm.reset({
       name: '',
+
       address: '',
+
       phone_no: '',
+
       subject: {
         value: '',
         disabled: true,
       },
+
       textarea: '',
+
       resume: null,
     });
   }
 
-  // --------------------------------------------------
-  // Show Application Form
-  // --------------------------------------------------
+  // ==================================================
+  // SHOW APPLICATION FORM
+  // ==================================================
 
   showApplicationForm(): void {
     if (!this.selectedJob) {
@@ -361,30 +457,46 @@ export class CareersLoad implements OnInit {
     this.showForm = true;
   }
 
-  // --------------------------------------------------
-  // Submit Application
-  // --------------------------------------------------
+  // ==================================================
+  // SUBMIT APPLICATION
+  // ==================================================
 
   submitApplication(): void {
-    /*
-     * Prevent submission when form is invalid.
-     */
+    // ----------------------------------------------
+    // Validate form
+    // ----------------------------------------------
+
     if (this.applicationForm.invalid) {
       this.applicationForm.markAllAsTouched();
 
       return;
     }
 
-    /*
-     * File is required.
-     */
+    // ----------------------------------------------
+    // Check file
+    // ----------------------------------------------
+
     if (!this.selectedFile) {
-      this.applicationForm.get('resume')?.setErrors({ required: true });
+      this.applicationForm.get('resume')?.setErrors({
+        required: true,
+      });
 
       this.applicationForm.markAllAsTouched();
 
       return;
     }
+
+    // ----------------------------------------------
+    // Browser only
+    // ----------------------------------------------
+
+    if (!this.isBrowser) {
+      return;
+    }
+
+    // ----------------------------------------------
+    // FormData
+    // ----------------------------------------------
 
     const formData = new FormData();
 
@@ -400,18 +512,17 @@ export class CareersLoad implements OnInit {
 
     formData.append('file', this.selectedFile, this.selectedFile.name);
 
-    const backendUrl = 'https://esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php';
+    console.log('Submitting career application to:', this.careerUploadApi);
 
-    /*
-     * File upload should only happen in browser.
-     */
-    if (!this.isBrowser) {
-      return;
-    }
+    // ----------------------------------------------
+    // Submit
+    // ----------------------------------------------
 
     this.http
-      .post(backendUrl, formData)
+      .post(this.careerUploadApi, formData)
       .pipe(
+        takeUntil(this.destroy$),
+
         catchError((error) => {
           console.error('Career application submission error:', error);
 
@@ -420,6 +531,8 @@ export class CareersLoad implements OnInit {
       )
       .subscribe({
         next: (response) => {
+          console.log('Career application response:', response);
+
           if (response) {
             this.closePopup();
           }
@@ -431,9 +544,9 @@ export class CareersLoad implements OnInit {
       });
   }
 
-  // --------------------------------------------------
-  // File Change
-  // --------------------------------------------------
+  // ==================================================
+  // FILE CHANGE
+  // ==================================================
 
   onFileChange(event: Event): void {
     if (!this.isBrowser) {
@@ -457,18 +570,25 @@ export class CareersLoad implements OnInit {
     this.applicationForm.get('resume')?.updateValueAndValidity();
   }
 
-  // --------------------------------------------------
-  // Toggle Information Block
-  // --------------------------------------------------
+  // ==================================================
+  // TOGGLE INFO BLOCK
+  // ==================================================
 
   toggleBlock(index: number): void {
-    /*
-     * Browser-only interaction.
-     */
     if (!this.isBrowser) {
       return;
     }
 
     this.infoblocks[index] = !this.infoblocks[index];
+  }
+
+  // ==================================================
+  // DESTROY
+  // ==================================================
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+
+    this.destroy$.complete();
   }
 }
