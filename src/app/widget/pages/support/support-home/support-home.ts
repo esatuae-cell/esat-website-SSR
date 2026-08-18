@@ -404,7 +404,7 @@ export class SupportHome implements OnInit {
 
   private sendResetEmail(email: string): void {
     this.http
-      .post<any>('https://esat.ae/wp-content/themes/ESAT/api/emailapi/resetpass-form.php', {
+      .post<any>('https://api.esat.ae/wp-content/themes/ESAT/api/emailapi/resetpass-form.php', {
         email: email,
       })
       .subscribe({

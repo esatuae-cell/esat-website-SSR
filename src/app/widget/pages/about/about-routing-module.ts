@@ -15,38 +15,34 @@ import { Terms } from './terms/terms';
 import { AboutMain } from './about-main/about-main';
 import { AboutLayout } from './about-layout/about-layout';
 import { CommonModule } from '@angular/common';
+import { NewsFull } from './news-full/news-full';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: AboutLayout,
 
-
-{ path:"", component:AboutLayout,
-
-  children: [
-
-  { path: '', component: AboutMain },
-  { path: 'founder-msg', component: FounderMsg },
-  { path: 'team', component: Team },
-  { path: 'environment', component: Enveronment },
-  { path: 'philosophy', component: OurPhilosophy },
-  { path: 'social', component: SocialResponsibility },
-  { path: 'story', component: OurStories },
-  { path: 'experience', component: OurExperience },
-  { path: 'awards', component: Awards },
-  { path: 'news', component: News },
-  { path: 'qualitypolicy', component: QualityPolicy },
-  { path: 'privacypolicy', component: PrivacyPolicy },
-  { path: 'terms', component: Terms }
-
- 
-  ]
-}
-
-]
-
+    children: [
+      { path: '', component: AboutMain },
+      { path: 'founder-msg', component: FounderMsg },
+      { path: 'team', component: Team },
+      { path: 'environment', component: Enveronment },
+      { path: 'philosophy', component: OurPhilosophy },
+      { path: 'social', component: SocialResponsibility },
+      { path: 'story', component: OurStories },
+      { path: 'experience', component: OurExperience },
+      { path: 'awards', component: Awards },
+      { path: 'news', component: News },
+      { path: 'news-full', component: NewsFull },
+      { path: 'qualitypolicy', component: QualityPolicy },
+      { path: 'privacypolicy', component: PrivacyPolicy },
+      { path: 'terms', component: Terms },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-
 export class AboutRoutingModule {}

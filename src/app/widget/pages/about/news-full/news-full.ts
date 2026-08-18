@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { RootServices } from '../../../../services/root-services';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-news-full',
@@ -12,29 +12,49 @@ import { RootServices } from '../../../../services/root-services';
   styleUrl: './news-full.css',
 })
 export class NewsFull implements OnInit {
-  news: any = null;
+  public news: any[] = [];
+  public loading = true;
 
-  constructor(
-    private route: ActivatedRoute,
-    private http: HttpClient,
-    public rootService: RootServices,
-  ) {}
+  private http = inject(HttpClient);
+  private router = inject(Router);
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const newsId = history.state?.newsId;
 
-    if (!id) return;
+    console.log('News ID:', newsId);
 
-    // ✅ FIX: removed apiUrl (not existing in your service)
-    const url = `http://api.esat.ae/wp-json/wp/v2/posts/${id}`;
+    if (!newsId) {
+      this.loading = false;
+      return;
+    }
 
-    this.http.get<any>(url).subscribe({
-      next: (response) => {
-        this.news = response;
-      },
-      error: (error) => {
-        console.error('News API error:', error);
-      },
-    });
+    this.loadNews(newsId);
+  }
+
+  private loadNews(id: number): void {
+    const apiUrl = `https://api.esat.ae/index1.php/wp-json/wp/v2/posts/${id}`;
+
+    console.log('Loading:', apiUrl);
+
+    this.http
+      .get<any>(apiUrl)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+        }),
+      )
+      .subscribe({
+        next: (res) => {
+          console.log('Full News Response:', res);
+
+          this.news = [res];
+        },
+
+        error: (error) => {
+          console.error('News API Error:', error);
+
+          this.news = [];
+        },
+      });
   }
 }

@@ -1,14 +1,23 @@
 <section id="fullnews" class="pad-50">
-  <div class="container">
+  <!-- Loading -->
+  <div class="news-loader" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading news...</p>
+  </div>
 
+  <!-- Content -->
+  <div class="container" *ngIf="!loading && news.length > 0">
     @for (item of news; track item.id) {
       <div class="row">
-        <div
-          class="col-sm-12"
-          [innerHTML]="item.content.rendered">
-        </div>
+        <div class="col-sm-12 news-content" [innerHTML]="item.content?.rendered"></div>
       </div>
     }
+  </div>
 
+  <!-- Error / no data -->
+  <div class="container" *ngIf="!loading && news.length === 0">
+    <div class="news-error">
+      <p>Unable to load this news.</p>
+    </div>
   </div>
 </section>
