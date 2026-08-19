@@ -51,11 +51,19 @@ export class SupportHome implements OnInit {
 
   Suportimg_low = 'assets/images/man_esat_logo_bgfethrt_low.jpg';
 
+  // =========================================================
+  // CONSTRUCTOR
+  // =========================================================
+
   constructor(
     private http: HttpClient,
+
     public change: ChangeDetectorRef,
+
     public $rootScope: RootServices,
+
     private fb: FormBuilder,
+
     private router: Router,
 
     @Inject(PLATFORM_ID)
@@ -84,7 +92,6 @@ export class SupportHome implements OnInit {
         '',
         [
           Validators.required,
-
           Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
         ],
       ],
@@ -96,12 +103,10 @@ export class SupportHome implements OnInit {
   // =========================================================
 
   onSubmit(): void {
-    // Prevent duplicate requests
     if (this.isLoginLoading) {
       return;
     }
 
-    // Validate form
     if (this.angForm.invalid) {
       this.angForm.markAllAsTouched();
       return;
@@ -109,91 +114,135 @@ export class SupportHome implements OnInit {
 
     this.isLoginLoading = true;
 
-    const username = this.angForm.get('uname')?.value;
-
-    const password = this.angForm.get('pword')?.value;
-
     const payload = {
-      username: username,
-      password: password,
+      username: String(this.angForm.get('uname')?.value || '').trim(),
+      password: String(this.angForm.get('pword')?.value || ''),
     };
 
+    const loginUrl = this.$rootScope.apiLink + '/do_login';
+
+    console.log('=================================');
+    console.log('LOGIN URL:', loginUrl);
+    console.log('LOGIN PAYLOAD:', payload);
+    console.log('=================================');
+
     this.http
-      .post<any>(this.$rootScope.apiLink + '/do_login', payload)
-
+      .post<any>(loginUrl, payload, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      })
       .subscribe({
-        // ===================================================
-        // SUCCESS
-        // ===================================================
-
         next: (res) => {
-          console.log('Login response:', res);
+          console.log('LOGIN API RESPONSE:', res);
 
-          // -----------------------------------------------
+          // =====================================================
+          // SUPPORT BOTH OLD AND NEW API RESPONSE FORMATS
+          // =====================================================
+
+          let user: any = null;
+
+          // New format:
+          // {
+          //   success: true,
+          //   status: "success",
+          //   data: [...]
+          // }
+
+          if (
+            res?.success === true &&
+            res?.status === 'success' &&
+            Array.isArray(res?.data) &&
+            res.data.length > 0
+          ) {
+            user = res.data[0];
+          }
+
+          // Old Slim format:
+          // [
+          //   {...user data...}
+          // ]
+          else if (Array.isArray(res) && res.length > 0) {
+            user = res[0];
+          }
+
+          // =====================================================
           // LOGIN FAILED
-          // -----------------------------------------------
+          // =====================================================
 
-          if (res?.status === 'failed' || !res || !res[0]) {
+          if (!user) {
             this.isLoginLoading = false;
 
-            Swal.fire('Invalid!', 'The username or password you entered is incorrect.', 'error');
+            Swal.fire('Invalid Login', res?.message || 'Invalid username or password.', 'error');
 
             return;
           }
 
-          // -----------------------------------------------
-          // LOGIN SUCCESS
-          // -----------------------------------------------
+          // =====================================================
+          // USER FOUND
+          // =====================================================
 
-          const user = res[0];
+          console.log('LOGIN USER:', user);
+
+          // =====================================================
+          // SAVE USER
+          // =====================================================
 
           this.$rootScope.MasterUser = user;
-
           this.$rootScope.MasterUserId = user.id;
 
-          console.log('Master User:', this.$rootScope.MasterUser);
+          console.log('MasterUserId:', this.$rootScope.MasterUserId);
 
-          console.log('Master User ID:', this.$rootScope.MasterUserId);
-
-          // -----------------------------------------------
+          // =====================================================
           // REMEMBER ME
-          // -----------------------------------------------
+          // =====================================================
 
-          const rememberMe = this.angForm.get('tuse')?.value === true;
-
-          if (rememberMe && this.isBrowser) {
+          if (this.angForm.get('tuse')?.value === true && this.isBrowser) {
             localStorage.setItem('ESATLogInDetails', JSON.stringify(user));
           }
 
-          // -----------------------------------------------
-          // LOAD CART
-          // -----------------------------------------------
-
-          this.loadUserCart();
-
-          // -----------------------------------------------
-          // REDIRECT
-          // -----------------------------------------------
-
-          if (this.$rootScope.returnValue && this.$rootScope.returnValue !== '') {
-            this.router.navigateByUrl('/support/' + this.$rootScope.returnValue);
-          } else {
-            this.router.navigateByUrl('/support');
-          }
+          // =====================================================
+          // LOGIN SUCCESS
+          // =====================================================
 
           this.isLoginLoading = false;
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Login Successful',
+            text: `Welcome ${user.first_name || user.username}`,
+            timer: 1200,
+            showConfirmButton: false,
+          }).then(() => {
+            // =================================================
+            // LOAD CART
+            // =================================================
+
+            this.loadUserCart();
+
+            // =================================================
+            // REDIRECT
+            // =================================================
+
+            if (this.$rootScope.returnValue && this.$rootScope.returnValue !== '') {
+              this.router.navigateByUrl('/support/' + this.$rootScope.returnValue);
+            } else {
+              this.router.navigateByUrl('/support');
+            }
+          });
         },
 
-        // ===================================================
-        // ERROR
-        // ===================================================
-
         error: (err) => {
-          console.error('Login error:', err);
+          console.error('LOGIN ERROR:', err);
 
           this.isLoginLoading = false;
 
-          Swal.fire('Sorry!', 'Something went wrong. Please try again.', 'error');
+          Swal.fire(
+            'Login Error',
+            err?.error?.message || 'Unable to connect to the login API.',
+            'error',
+          );
         },
       });
   }
@@ -215,7 +264,11 @@ export class SupportHome implements OnInit {
         next: (res) => {
           console.log('Cart response:', res);
 
-          if (!res || !res[0] || !res[0].productdetail) {
+          // =================================================
+          // NO CART
+          // =================================================
+
+          if (!res || !Array.isArray(res) || res.length === 0 || !res[0]?.productdetail) {
             return;
           }
 
@@ -223,33 +276,31 @@ export class SupportHome implements OnInit {
             const products = JSON.parse(res[0].productdetail);
 
             if (Array.isArray(products)) {
-              this.$rootScope.Cart = this.$rootScope.Cart || [];
-
-              /*
-               * Clear existing cart first.
-               * This prevents duplicate items
-               * when loading the cart again.
-               */
-
+              // Clear old cart
               this.$rootScope.Cart = [];
 
+              // Add products
               products.forEach((element: any) => {
                 this.$rootScope.Cart.push(element);
               });
 
-              this.change.detectChanges();
-
-              // -----------------------------------------
+              // =================================================
               // LOCAL STORAGE
-              // -----------------------------------------
+              // =================================================
 
               if (this.isBrowser) {
                 localStorage.setItem('ESATCartItems', JSON.stringify(this.$rootScope.Cart));
               }
 
-              // -----------------------------------------
+              // =================================================
+              // CHANGE DETECTION
+              // =================================================
+
+              this.change.detectChanges();
+
+              // =================================================
               // SYNC CART
-              // -----------------------------------------
+              // =================================================
 
               this.updateCart();
             }
@@ -269,17 +320,21 @@ export class SupportHome implements OnInit {
   // =========================================================
 
   private updateCart(): void {
+    if (!this.$rootScope.MasterUserId) {
+      return;
+    }
+
     this.http
       .post<any>(this.$rootScope.apiLink + '/addtocart', {
         userid: this.$rootScope.MasterUserId,
 
-        dsec: JSON.stringify(this.$rootScope.Cart),
+        dsec: JSON.stringify(this.$rootScope.Cart || []),
 
-        date: new Date(),
+        date: new Date().toISOString(),
       })
       .subscribe({
         next: (res) => {
-          console.log('Cart added to database', res);
+          console.log('Cart added to database:', res);
         },
 
         error: (err) => {
@@ -296,13 +351,7 @@ export class SupportHome implements OnInit {
     if (this.isResetLoading) {
       return;
     }
-
     this.showForgotModal = true;
-
-    /*
-     * Prevent page scrolling while modal is open.
-     */
-
     if (this.isBrowser) {
       document.body.classList.add('modal-open');
     }
@@ -322,8 +371,6 @@ export class SupportHome implements OnInit {
     if (this.isBrowser) {
       document.body.classList.remove('modal-open');
     }
-
-    // Reset form when modal closes
 
     this.angFormtwo.reset();
   }
@@ -355,11 +402,11 @@ export class SupportHome implements OnInit {
 
     this.isResetLoading = true;
 
-    const email = this.angFormtwo.get('address')?.value;
+    const email = this.angFormtwo.get('address')?.value?.trim();
 
-    // =====================================================
+    // =======================================================
     // CHECK EMAIL
-    // =====================================================
+    // =======================================================
 
     this.http
       .post<any>(this.$rootScope.apiLink + '/validate', {
@@ -371,10 +418,7 @@ export class SupportHome implements OnInit {
         next: (res) => {
           console.log('Validate response:', res);
 
-          // =================================================
-          // EMAIL EXISTS
-          // =================================================
-
+          // Email exists
           if (res?.isUnique === false) {
             this.sendResetEmail(email);
           } else {
@@ -384,15 +428,9 @@ export class SupportHome implements OnInit {
           }
         },
 
-        // ===================================================
-        // VALIDATION ERROR
-        // ===================================================
-
         error: (err) => {
           console.error('Email validation error:', err);
-
           this.isResetLoading = false;
-
           Swal.fire('Sorry!', 'Something went wrong. Please try again.', 'error');
         },
       });

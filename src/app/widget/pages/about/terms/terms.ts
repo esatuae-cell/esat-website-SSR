@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-terms',
+  selector: 'app-tcondition',
   standalone: true,
   templateUrl: './terms.html',
   styleUrl: './terms.css',

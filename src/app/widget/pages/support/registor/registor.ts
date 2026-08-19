@@ -49,7 +49,10 @@ export class Registor implements OnInit {
         cname: [''],
         email: [
           '',
-          [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/)],
+          [
+            Validators.required,
+            Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
+          ],
         ],
         uname: ['', [Validators.required, Validators.minLength(5)]],
         pword: ['', [Validators.required, Validators.minLength(8)]],
@@ -128,7 +131,7 @@ export class Registor implements OnInit {
     const type = this.client && this.csiValidation ? 'client' : 'reader';
 
     this.http
-      .post('http://api.esat.ae/wp-content/themes/ESAT/api/register', {
+      .post('https://api.esat.ae/wp-content/themes/ESAT/api/register', {
         first_name: this.angForm.value.fname,
         last_name: this.angForm.value.lastname,
         username: this.angForm.value.uname,
@@ -141,22 +144,36 @@ export class Registor implements OnInit {
         date_joined: new Date(),
         image: '/accountupload/login_2.png',
       })
+
       .subscribe({
         next: (res: any) => {
-          if (res.status === 'failed') {
-            Swal.fire('Error', 'Something went wrong', 'error');
+          console.log('REGISTER RESPONSE:', res);
+
+          if (res.status === 'usernamealreadyexit') {
+            Swal.fire('Username Exists', 'This username is already registered.', 'error');
           } else if (res.status === 'emailalreadyexit') {
-            Swal.fire('Exists', 'Email already exists', 'error');
-          } else if (res.status === 1) {
+            Swal.fire('Email Exists', 'This email address is already registered.', 'error');
+          } else if (res.status === 1 || res.status === '1') {
             this.sendEmail();
 
             Swal.fire('Success', 'Activation link sent to email', 'success').then(() => {
               this.router.navigateByUrl('/support');
             });
+          } else {
+            Swal.fire('Error', res?.message || 'Registration failed', 'error');
           }
         },
-        error: () => {
-          Swal.fire('Error', 'Server error', 'error');
+
+        error: (err) => {
+          console.error('REGISTER ERROR:', err);
+          console.error('HTTP STATUS:', err.status);
+          console.error('ERROR BODY:', err.error);
+
+          Swal.fire(
+            'Registration Error',
+            err?.error?.message || err?.error?.error || `HTTP Error ${err.status}`,
+            'error',
+          );
         },
       });
   }

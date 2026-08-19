@@ -11,11 +11,12 @@ import { Awards } from './awards/awards';
 import { News } from './news/news';
 import { QualityPolicy } from './quality-policy/quality-policy';
 import { PrivacyPolicy } from './privacy-policy/privacy-policy';
-import { Terms } from './terms/terms';
+
 import { AboutMain } from './about-main/about-main';
 import { AboutLayout } from './about-layout/about-layout';
 import { CommonModule } from '@angular/common';
 import { NewsFull } from './news-full/news-full';
+import { Terms } from './terms/terms';
 
 const routes: Routes = [
   {
@@ -36,7 +37,7 @@ const routes: Routes = [
       { path: 'news-full', component: NewsFull },
       { path: 'qualitypolicy', component: QualityPolicy },
       { path: 'privacypolicy', component: PrivacyPolicy },
-      { path: 'terms', component: Terms },
+      { path: 'tcondition', component: Terms },
     ],
   },
 ];
