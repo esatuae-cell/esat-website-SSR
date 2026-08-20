@@ -2,19 +2,19 @@ import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-trail',
   standalone: true,
   imports: [
-    CommonModule,        // ✅ FIX FOR *ngIf / *ngFor
-    ReactiveFormsModule  // forms support
+    CommonModule, // ✅ FIX FOR *ngIf / *ngFor
+    ReactiveFormsModule, // forms support
   ],
   templateUrl: './trail.html',
   styleUrls: ['./trail.css'],
 })
 export class TrailComponent {
-
   private http = inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
   private fb = inject(FormBuilder);
@@ -31,7 +31,7 @@ export class TrailComponent {
   // MODULE LIST
   // =========================
   modules = [
-      { name: 'Fixed Asset', icon: 'icon-moduleiconassets_icon' },
+    { name: 'Fixed Asset', icon: 'icon-moduleiconassets_icon' },
     { name: 'CRM', icon: 'icon-moduleiconcrm_icon' },
     { name: 'Facility & Service', icon: 'icon-moduleiconfacilitymanagement_icon' },
     { name: 'Finance & Accounts', icon: 'icon-moduleiconfinancemanagement' },
@@ -52,7 +52,7 @@ export class TrailComponent {
     { name: 'Fleet & Transportation', image: 'assets/images/fleet-nav.svg' },
     { name: 'CMMS', image: 'assets/images/cmms-nav.svg' },
     { name: 'Shipping/Logistics', image: 'assets/images/shipment-nav.svg' },
-    { name: 'Quality Management', image: 'assets/images/quality-nav.svg' }
+    { name: 'Quality Management', image: 'assets/images/quality-nav.svg' },
   ];
 
   // =========================
@@ -65,7 +65,7 @@ export class TrailComponent {
     phone: ['', [Validators.required]],
     country: ['', [Validators.required]],
     language: [''],
-    companySize: ['']
+    companySize: [''],
   });
 
   // =========================
@@ -75,25 +75,21 @@ export class TrailComponent {
   toggleModule(module: any) {
     const current = this.selectedModules();
 
-    const exists = current.find(m => m.name === module.name);
+    const exists = current.find((m) => m.name === module.name);
 
     if (exists) {
-      this.selectedModules.set(
-        current.filter(m => m.name !== module.name)
-      );
+      this.selectedModules.set(current.filter((m) => m.name !== module.name));
     } else {
       this.selectedModules.set([...current, module]);
     }
   }
 
   isSelected(module: any): boolean {
-    return this.selectedModules().some(m => m.name === module.name);
+    return this.selectedModules().some((m) => m.name === module.name);
   }
 
   removeModule(module: any) {
-    this.selectedModules.set(
-      this.selectedModules().filter(m => m.name !== module.name)
-    );
+    this.selectedModules.set(this.selectedModules().filter((m) => m.name !== module.name));
   }
 
   // =========================
@@ -125,37 +121,119 @@ export class TrailComponent {
   // SUBMIT (SSR SAFE)
   // =========================
 
-  submit() {
+  // submit() {
 
-    if (!isPlatformBrowser(this.platformId)) return; // SSR GUARD
+  //   if (!isPlatformBrowser(this.platformId)) return; // SSR GUARD
+
+  //   this.loading.set(true);
+
+  //   const payload = {
+  //     ...this.form.value,
+  //     selectedModules: this.selectedModules()
+  //   };
+
+  //   this.http.post(
+  //     'https://api.esat.ae/wp-content/themes/ESAT/api/emailapi/trail-mail.php',
+  //     payload
+  //   ).subscribe({
+  //     next: () => {
+  //       this.loading.set(false);
+
+  //       // SSR-safe UI feedback (no alert in real production)
+  //       console.log('Success');
+
+  //       // reset
+  //       this.step.set(1);
+  //       this.selectedModules.set([]);
+  //       this.form.reset();
+  //     },
+
+  //     error: (err) => {
+  //       this.loading.set(false);
+  //       console.error(err);
+  //     }
+  //   });
+  // }
+
+  submit(): void {
+    // Don't execute API during SSR
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      this.step.set(2);
+      return;
+    }
+
+    if (this.selectedModules().length === 0) {
+      this.step.set(1);
+      return;
+    }
 
     this.loading.set(true);
 
     const payload = {
-      ...this.form.value,
-      selectedModules: this.selectedModules()
+      fullName: this.form.value.fullName,
+      companyName: this.form.value.companyName,
+      email: this.form.value.email,
+      phone: this.form.value.phone,
+      country: this.form.value.country,
+      language: this.form.value.language,
+      companySize: this.form.value.companySize,
+
+      selectedModules: this.selectedModules().map((module) => module.name),
     };
 
-    this.http.post(
-      'https://esat.ae/wp-content/themes/ESAT/api/emailapi/trail-mail.php',
-      payload
-    ).subscribe({
-      next: () => {
-        this.loading.set(false);
+    console.log('TRIAL PAYLOAD:', payload);
 
-        // SSR-safe UI feedback (no alert in real production)
-        console.log('Success');
+    this.http
+      .post<any>('https://api.esat.ae/wp-content/themes/ESAT/api/emailapi/trail-mail.php', payload)
+      .subscribe({
+        next: (response) => {
+          console.log('TRIAL RESPONSE:', response);
 
-        // reset
-        this.step.set(1);
-        this.selectedModules.set([]);
-        this.form.reset();
-      },
+          this.loading.set(false);
 
-      error: (err) => {
-        this.loading.set(false);
-        console.error(err);
-      }
-    });
+          if (response?.success === true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Thank You!',
+              html: `<p>Your free trial request has been submitted successfully.</p>
+    <p>You will shortly receive your login credentials in Registed email.</p>  `,
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#0d6efd',
+            }).then(() => {
+              // Reset form
+              this.form.reset();
+
+              // Remove selected modules
+              this.selectedModules.set([]);
+
+              // Go back to Step 1
+              this.step.set(1);
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Submission Failed',
+              text: response?.message || 'Unable to submit your request. Please try again.',
+              confirmButtonText: 'OK',
+            });
+          }
+        },
+
+        error: (err) => {
+          console.error('TRIAL SUBMISSION ERROR:', err);
+          this.loading.set(false);
+          Swal.fire({
+            icon: 'error',
+            title: 'Submission Failed',
+            text: err?.error?.message || 'Something went wrong. Please try again later.',
+            confirmButtonText: 'OK',
+          });
+        },
+      });
   }
 }
