@@ -1,7 +1,7 @@
 .swiper {
   width: 100%;
   padding: 20px 0;
-  position:relative;
+  position: relative;
 }
 
 .swiper-slide {
@@ -24,15 +24,14 @@
 }
 
 .logo-item {
-     width: 212px;
-    height: 112px;
+  width: 212px;
+  height: 112px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   border-radius: 6px;
-  
 }
 
 .logo-item img {
@@ -52,7 +51,7 @@
   background: #999;
 }
 
-
-.swiper-pagination{
-  position:absolute;
-  bottom:-20px;}
+.swiper-pagination {
+  position: absolute;
+  bottom: 0px;
+}

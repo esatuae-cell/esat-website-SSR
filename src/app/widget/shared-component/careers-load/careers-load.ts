@@ -20,6 +20,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter, catchError, of, Subject, finalize, takeUntil } from 'rxjs';
 
 import { RootServices } from '../../../services/root-services';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-careers-load',
@@ -461,6 +462,89 @@ export class CareersLoad implements OnInit, OnDestroy {
   // SUBMIT APPLICATION
   // ==================================================
 
+  // submitApplication(): void {
+  //   // ----------------------------------------------
+  //   // Validate form
+  //   // ----------------------------------------------
+
+  //   if (this.applicationForm.invalid) {
+  //     this.applicationForm.markAllAsTouched();
+
+  //     return;
+  //   }
+
+  //   // ----------------------------------------------
+  //   // Check file
+  //   // ----------------------------------------------
+
+  //   if (!this.selectedFile) {
+  //     this.applicationForm.get('resume')?.setErrors({
+  //       required: true,
+  //     });
+
+  //     this.applicationForm.markAllAsTouched();
+
+  //     return;
+  //   }
+
+  //   // ----------------------------------------------
+  //   // Browser only
+  //   // ----------------------------------------------
+
+  //   if (!this.isBrowser) {
+  //     return;
+  //   }
+
+  //   // ----------------------------------------------
+  //   // FormData
+  //   // ----------------------------------------------
+
+  //   const formData = new FormData();
+
+  //   formData.append('name', this.applicationForm.get('name')?.value || '');
+
+  //   formData.append('email', this.applicationForm.get('address')?.value || '');
+
+  //   formData.append('phone', this.applicationForm.get('phone_no')?.value || '');
+
+  //   formData.append('subject', this.selectedJob?.title || 'Job Application');
+
+  //   formData.append('message', this.applicationForm.get('textarea')?.value || '');
+
+  //   formData.append('file', this.selectedFile, this.selectedFile.name);
+
+  //   console.log('Submitting career application to:', this.careerUploadApi);
+
+  //   // ----------------------------------------------
+  //   // Submit
+  //   // ----------------------------------------------
+
+  //   this.http
+  //     .post(this.careerUploadApi, formData)
+  //     .pipe(
+  //       takeUntil(this.destroy$),
+
+  //       catchError((error) => {
+  //         console.error('Career application submission error:', error);
+
+  //         return of(null);
+  //       }),
+  //     )
+  //     .subscribe({
+  //       next: (response) => {
+  //         console.log('Career application response:', response);
+
+  //         if (response) {
+  //           this.closePopup();
+  //         }
+  //       },
+
+  //       error: (error) => {
+  //         console.error('Unexpected submission error:', error);
+  //       },
+  //     });
+  // }
+
   submitApplication(): void {
     // ----------------------------------------------
     // Validate form
@@ -526,24 +610,58 @@ export class CareersLoad implements OnInit, OnDestroy {
         catchError((error) => {
           console.error('Career application submission error:', error);
 
+          Swal.fire({
+            icon: 'error',
+            title: 'Application Failed',
+            text: 'Something went wrong while submitting your application. Please try again.',
+            confirmButtonText: 'OK',
+          });
+
           return of(null);
         }),
       )
       .subscribe({
-        next: (response) => {
+        next: (response: any) => {
           console.log('Career application response:', response);
 
-          if (response) {
-            this.closePopup();
-          }
-        },
+          // ------------------------------------------
+          // SUCCESS
+          // ------------------------------------------
 
-        error: (error) => {
-          console.error('Unexpected submission error:', error);
+          if (response) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Application Submitted Successfully!',
+              text: 'Thank you for applying. Your job application and CV have been submitted successfully.',
+              confirmButtonText: 'OK',
+              allowOutsideClick: false,
+            }).then(() => {
+              // Close job application popup
+              this.closePopup();
+
+              // Reset form
+              this.applicationForm.reset();
+
+              // Clear selected file
+              this.selectedFile = null;
+            });
+
+            return;
+          }
+
+          // ------------------------------------------
+          // FAILED RESPONSE
+          // ------------------------------------------
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Application Failed',
+            text: 'Unable to submit your application. Please try again.',
+            confirmButtonText: 'OK',
+          });
         },
       });
   }
-
   // ==================================================
   // FILE CHANGE
   // ==================================================

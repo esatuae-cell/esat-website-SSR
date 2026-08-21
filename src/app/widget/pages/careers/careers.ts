@@ -7,6 +7,7 @@ import { catchError, of } from 'rxjs';
 
 import { RootServices } from '../../../services/root-services';
 import { CareersLoad } from '../../shared-component/careers-load/careers-load';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-careers',
@@ -315,9 +316,64 @@ export class Careers implements OnInit {
   // Submit
   // ============================================================
 
+  // onSubmit(): void {
+  //   if (!this.angForm || this.angForm.invalid || !this.selectedFile) {
+  //     void this.showAlert('Invalid', 'Please fill all required fields', 'error');
+
+  //     return;
+  //   }
+
+  //   this.loading = true;
+
+  //   const formData = new FormData();
+
+  //   formData.append('subject', this.angForm.value.Subject ?? '');
+
+  //   formData.append('name', this.angForm.value.name ?? '');
+
+  //   formData.append('phone', this.angForm.value.phone_no ?? '');
+
+  //   formData.append('email', this.angForm.value.address ?? '');
+
+  //   formData.append('message', this.angForm.value.textarea ?? '');
+
+  //   formData.append('file', this.selectedFile);
+
+  //   this.http
+  //     .post(
+  //       'https://api.esat.ae/wp-content/themes/ESAT/api/emailapi/career-fileupload.php',
+  //       formData,
+  //     )
+  //     .pipe(
+  //       catchError((error) => {
+  //         console.error('Career upload error:', error);
+
+  //         this.loading = false;
+
+  //         void this.showAlert('Error', 'Something went wrong', 'error');
+
+  //         return of(null);
+  //       }),
+  //     )
+  //     .subscribe((res: any) => {
+  //       this.loading = false;
+
+  //       if (res?.id === 203) {
+  //         void this.showAlert('Thank You!', 'Your CV has been sent successfully.', 'success');
+
+  //         this.resetForm();
+  //       }
+  //     });
+  // }
+
   onSubmit(): void {
     if (!this.angForm || this.angForm.invalid || !this.selectedFile) {
-      void this.showAlert('Invalid', 'Please fill all required fields', 'error');
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid',
+        text: 'Please fill all required fields and upload your CV.',
+        confirmButtonText: 'OK',
+      });
 
       return;
     }
@@ -345,11 +401,16 @@ export class Careers implements OnInit {
       )
       .pipe(
         catchError((error) => {
-          console.error('Career upload error:', error);
+          console.error('CAREER UPLOAD ERROR:', error);
 
           this.loading = false;
 
-          void this.showAlert('Error', 'Something went wrong', 'error');
+          Swal.fire({
+            icon: 'error',
+            title: 'Application Failed',
+            text: 'Something went wrong while submitting your application.',
+            confirmButtonText: 'OK',
+          });
 
           return of(null);
         }),
@@ -357,14 +418,38 @@ export class Careers implements OnInit {
       .subscribe((res: any) => {
         this.loading = false;
 
-        if (res?.id === 203) {
-          void this.showAlert('Thank You!', 'Your CV has been sent successfully.', 'success');
+        console.log('CAREER API RESPONSE:', res);
 
-          this.resetForm();
+        // ==========================================
+        // SUCCESS
+        // ==========================================
+
+        if (res?.id === 203) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Job Applied Successfully!',
+            text: 'Thank you for applying. Your CV has been submitted successfully.',
+            confirmButtonText: 'OK',
+            allowOutsideClick: false,
+          }).then(() => {
+            this.resetForm();
+          });
+
+          return;
         }
+
+        // ==========================================
+        // API RESPONSE BUT NOT SUCCESS
+        // ==========================================
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Application Failed',
+          text: res?.message || 'Unable to submit your job application. Please try again.',
+          confirmButtonText: 'OK',
+        });
       });
   }
-
   // ============================================================
   // Reset
   // ============================================================
