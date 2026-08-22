@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { About } from "../about/about";
+
 @Component({
   selector: 'app-awards',
-
+  standalone: true,
   templateUrl: './awards.html',
   styleUrl: './awards.css',
   imports: [],
