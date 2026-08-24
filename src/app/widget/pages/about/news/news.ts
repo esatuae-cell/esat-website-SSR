@@ -22,6 +22,20 @@ export class News implements OnInit {
   public $rootScope = inject(RootServices);
 
   ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const newsReloaded = sessionStorage.getItem('newsReloaded');
+
+      if (!newsReloaded) {
+        sessionStorage.setItem('newsReloaded', 'true');
+        window.location.reload();
+        return;
+      }
+
+      // Remove the flag after the reload
+      sessionStorage.removeItem('newsReloaded');
+    }
+
+    // Your existing code
     if (this.$rootScope.webData?.['news']) {
       this.news = this.$rootScope.webData['news'];
       return;

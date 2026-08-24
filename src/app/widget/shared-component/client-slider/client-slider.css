@@ -48,10 +48,19 @@
 
 /* pagination */
 .swiper-pagination-bullet {
-  background: #999;
+  background: #000 !important;
 }
 
 .swiper-pagination {
   position: absolute;
   bottom: 0px;
+}
+
+.swiper-pagination-bullet {
+  width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 8px));
+  height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 8px));
+  display: inline-block;
+  border-radius: var(--swiper-pagination-bullet-border-radius, 0%) !important;
+  background: var(--swiper-pagination-bullet-inactive-color, #000);
+  opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.2);
 }

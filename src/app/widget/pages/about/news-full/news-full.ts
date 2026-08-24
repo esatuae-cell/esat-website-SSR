@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -16,7 +15,7 @@ export class NewsFull implements OnInit {
   public loading = true;
 
   private http = inject(HttpClient);
-  private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     const newsId = history.state?.newsId;
@@ -25,6 +24,7 @@ export class NewsFull implements OnInit {
 
     if (!newsId) {
       this.loading = false;
+      this.cdr.detectChanges();
       return;
     }
 
@@ -41,6 +41,11 @@ export class NewsFull implements OnInit {
       .pipe(
         finalize(() => {
           this.loading = false;
+
+          // Force UI update
+          this.cdr.detectChanges();
+
+          console.log('Loader finished');
         }),
       )
       .subscribe({
@@ -48,12 +53,17 @@ export class NewsFull implements OnInit {
           console.log('Full News Response:', res);
 
           this.news = [res];
+
+          // Force Angular to render immediately
+          this.cdr.detectChanges();
         },
 
         error: (error) => {
           console.error('News API Error:', error);
 
           this.news = [];
+
+          this.cdr.detectChanges();
         },
       });
   }

@@ -266,17 +266,6 @@ ul.partner {
   bottom: -50px !important;
 }
 
-.swiper-pagination-bullet {
-  width: var(
-    --swiper-pagination-bullet-width,
-    var(--swiper-pagination-bullet-size, 42px)
-  ) !important;
-  height: var(
-    --swiper-pagination-bullet-height,
-    var(--swiper-pagination-bullet-size, 3px)
-  ) !important;
-}
-
 /* Large Desktop */
 @media (min-width: 1536px) {
 }
