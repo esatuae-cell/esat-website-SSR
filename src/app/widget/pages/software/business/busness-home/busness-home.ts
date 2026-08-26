@@ -160,5 +160,13 @@ export class BusnessHome {
       image: 'assets/images/esat-quality.jpg',
       route: 'quality',
     },
+
+    {
+      title: 'Catering Management',
+      iconType: 'image',
+      icon: 'assets/images/catoring_white.svg',
+      image: 'assets/images/catoring.jpg',
+      route: 'catering',
+    },
   ];
 }

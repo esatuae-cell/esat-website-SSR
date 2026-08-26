@@ -651,6 +651,29 @@ export class RootServices {
       src: 'assets/images/quality.svg',
       modcls: 'modcls',
     },
+
+    {
+      id: 'cat',
+      name: '<span>Catering Management</span>',
+      trngname: '<span>Catering Mgmt</span>',
+      shortname: 'Catering Management ',
+      visible: true,
+      disable: false,
+      icon: 'moduleiconqa_icon',
+      bt: 'mod',
+      pagelink: '354',
+      link: 'quality',
+      trainglink: 'catering',
+      thumblink: 'esat-quality.jpg',
+      brief:
+        'Catering Management helps manage catering operations, including orders, menus, inventory, staff, costing, billing, and reporting, all in one system.',
+      status: false,
+      countComp: '01',
+      countUser: '01',
+      src: 'assets/images/catoring_white.svg',
+      modcls: 'modcls',
+    },
+
     // {
     //     "id": "lg",
     //     "name": "<span>legal</span><br/> Management",

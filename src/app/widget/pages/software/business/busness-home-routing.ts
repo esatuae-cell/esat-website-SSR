@@ -25,42 +25,36 @@ import { Warehouse } from './warehouse/warehouse';
 import { CMMS } from './cmms/cmms';
 import { Fleet } from './fleet/fleet';
 import { FinanceAccounts } from './finance-accounts/finance-accounts';
-
-
+import { Catering } from './catering/catering';
 
 export const routes: Routes = [
   {
     path: '',
-    component: BusinessHomeLayout,   // 👈 ADD THIS WRAPPER
+    component: BusinessHomeLayout, // 👈 ADD THIS WRAPPER
     children: [
-
-{path:'', component :BusnessHome},
-  {path:'asset-management', component:FixedAsset},
-  {path:'budject-management',component:BudgetProject},
-  {path:'cmms',component:CMMS},
-  {path:'contract-management',component:Contract},
-  {path:'crm',component:Crm},
-  {path:'finance-management',component:FinanceAccounts},
-  {path:'fleet-management',component:Fleet},
-  {path:'hcm',component:Hcm},
-  {path:'hrm',component:Hrm},
-  {path:'Inventory',component:Inventory},
-  {path:'manufacturing',component:Manufacturing},
-  {path:'organization',component:Organization},
-  {path:'payroll',component:Payroll},
-  {path:'procurement',component:Procurement},
-  {path:'quality',component:Quality},
-  {path:'real-estate',component:RealEstate},
-  {path:'retail',component:RetailPOS},
-  {path:'sales',component:Sales},
-  {path:'shipmemt',component:Shipment},
-  {path:'warehouse',component:Warehouse},
-  {path:'facility',component:FacilityService}
- 
-    ]
-  }
-]
-
-
-
-
+      { path: '', component: BusnessHome },
+      { path: 'asset-management', component: FixedAsset },
+      { path: 'budject-management', component: BudgetProject },
+      { path: 'cmms', component: CMMS },
+      { path: 'contract-management', component: Contract },
+      { path: 'crm', component: Crm },
+      { path: 'finance-management', component: FinanceAccounts },
+      { path: 'fleet-management', component: Fleet },
+      { path: 'hcm', component: Hcm },
+      { path: 'hrm', component: Hrm },
+      { path: 'Inventory', component: Inventory },
+      { path: 'manufacturing', component: Manufacturing },
+      { path: 'organization', component: Organization },
+      { path: 'payroll', component: Payroll },
+      { path: 'procurement', component: Procurement },
+      { path: 'quality', component: Quality },
+      { path: 'real-estate', component: RealEstate },
+      { path: 'retail', component: RetailPOS },
+      { path: 'sales', component: Sales },
+      { path: 'shipmemt', component: Shipment },
+      { path: 'warehouse', component: Warehouse },
+      { path: 'facility', component: FacilityService },
+      { path: 'catering', component: Catering },
+    ],
+  },
+];

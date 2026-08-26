@@ -14,7 +14,7 @@
 
 .honeycomb-cell {
   width: 13.888888%;
-  height: 20vh;
+  height: 15vh;
   list-style: none;
   position: relative;
   border-radius: 5px;
@@ -211,4 +211,27 @@
   .honeycomb-cell_title {
     font-size: 13px;
   }
+}
+
+.honeycomb-wrapper {
+  width: 100%;
+}
+
+.honeycomb-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+.honeycomb-row:nth-child(1),
+.honeycomb-row:nth-child(2) {
+  /* 6 items */
+}
+
+.honeycomb-row:nth-child(3),
+.honeycomb-row:nth-child(4) {
+  /* 5 items, centered */
 }

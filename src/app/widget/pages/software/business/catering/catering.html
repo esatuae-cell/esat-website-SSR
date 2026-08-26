@@ -1,0 +1,106 @@
+<app-business-line-nav></app-business-line-nav>
+<section class="product" data-aos="fade-up">
+  <div class="container">
+    <div class="row" style="padding-top: 1vh">
+      <div class="col-sm-12">
+        <div class="background-clo">
+          <div
+            class="bgImg"
+            [style.backgroundImage]="'url(assets/images/' + module.thumblink + ')'"
+          ></div>
+          <img src="assets/images/catoring.jpg" class="img-responsive" />
+          <div class="modiconinside text-center">
+            <!-- <i class="modIcon icon-{{module.icon}}"></i> -->
+            <i style="display: flex; justify-content: center">
+              <img
+                style="width: 66px; padding: 10px; display: block; text-align: center"
+                src="assets/images/catoring_white.svg"
+                alt=""
+              />
+            </i>
+
+            <h6 [innerHtml]="">Catering Management</h6>
+          </div>
+          <div class="tagPrara">
+            <p>
+              Catering Management helps manage catering operations, including orders, menus,
+              inventory, staff, costing, billing, and reporting, all in one system.
+            </p>
+          </div>
+        </div>
+        <div class="overview">
+          <div class="head">
+            <h4 class="f-18 pt-3">Overview</h4>
+          </div>
+          <div class="bottom">
+            <p>
+              Catering Management is a complete solution for managing dining hall and catering
+              operations from planning to final meal distribution. It includes dining hall setup,
+              catering items, recipe management and costing, dinner requests and processing, actual
+              food production, packed meals, catering wastage, and attribute groups. The system
+              helps ensure accurate planning, cost control, efficient production, and smooth
+              catering operations.
+            </p>
+          </div>
+        </div>
+
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Components</h4>
+            <i
+              (click)="component = !component"
+              class="arrow-down fa fa-angle-double-up"
+              ngClass="{'fa-angle-double-down':component == false }"
+            ></i>
+          </div>
+          <div class="bottom row">
+            <div class="col-sm-6 margintop">
+              <ul>
+                <li><i class="icon-esatform"></i>Dining Hall Setup</li>
+                <li><i class="icon-esatform"></i>Catering Items</li>
+                <li><i class="icon-esatform"></i>Recipe Master</li>
+                <li><i class="icon-esatform"></i>Recipe Costing</li>
+                <li><i class="icon-esatform"></i>Dinner Request</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul>
+                <li><i class="icon-esatform"></i>Dinner Request Process</li>
+                <li><i class="icon-esatform"></i>Actual Production</li>
+                <li><i class="icon-esatform"></i>Packed Meal</li>
+                <li><i class="icon-esatform"></i>Catering Wastage</li>
+                <li><i class="icon-esatform"></i>Attribute Group</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footerLastAbout" data-aos="fade-up">
+  <div class="container text-center">
+    <div
+      class="footdata text-center"
+      onclick="
+        $('iframe[title|=\'chat widget\']').contents().find('#tawkchat-minified-container').click()
+      "
+    >
+      <h3 class="f-18">How to get started</h3>
+      <p>
+        Talk to one of our ESAT team experts to consult which solutions are best for your business.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/contact"><a>WANT TO KNOW MORE?</a></h3>
+        <p>Find out how ESAT can help you and your business.</p>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="f-18" routerLink="/support/support-sw"><a>NEED HELP</a></h3>
+        <p>Start here to get support.</p>
+      </div>
+    </div>
+  </div>
+</section>
