@@ -43,6 +43,47 @@
             </p>
           </div>
         </div>
+        <div class="featureandbenif">
+          <div class="head">
+            <h4 class="f-18 mt-10">Features and benefits</h4>
+            <i
+              (click)="featureandbenifit = !featureandbenifit"
+              class="arrow-down fa fa-angle-double-up"
+              [ngClass]="{ 'fa-angle-double-down': featureandbenifit == false }"
+            ></i>
+          </div>
+          <div class="bottom row" [hidden]="featureandbenifit">
+            <div class="col-sm-6 menu-h5">
+              <h5>Centralized Catering Management</h5>
+              <p>
+                Manage dining halls, catering items, recipes, requests, production, and wastage in
+                one ERP system.
+              </p>
+
+              <h5>Standardized Recipes & Costing</h5>
+              <p>Maintain consistent recipes, portions, and accurate recipe costs.</p>
+
+              <h5>Efficient Meal Planning</h5>
+              <p>Plan production based on approved meal requests and demand.</p>
+
+              <h5>Accurate Packed Meal Management</h5>
+              <p>Control meal preparation, packing, quantities, and distribution.</p>
+            </div>
+            <div class="col-sm-6 menu-h5">
+              <h5>Production Control</h5>
+              <p>Compare planned vs. actual production and identify variances.</p>
+
+              <h5>Cost & Waste Reduction</h5>
+              <p>Monitor food costs and wastage to improve operational efficiency.</p>
+
+              <h5>Workflow & Approval Control</h5>
+              <p>Digitize dinner requests with clear approval and fulfillment processes.</p>
+
+              <h5>Better Visibility & Reporting</h5>
+              <p>Provide real-time insights into requests, production, costs, and wastage.</p>
+            </div>
+          </div>
+        </div>
 
         <div class="featureandbenif">
           <div class="head">
@@ -50,27 +91,30 @@
             <i
               (click)="component = !component"
               class="arrow-down fa fa-angle-double-up"
-              ngClass="{'fa-angle-double-down':component == false }"
+              [ngClass]="{ 'fa-angle-double-down': component == false }"
             ></i>
           </div>
-          <div class="bottom row">
-            <div class="col-sm-6 margintop">
-              <ul>
-                <li><i class="icon-esatform"></i>Dining Hall Setup</li>
-                <li><i class="icon-esatform"></i>Catering Items</li>
-                <li><i class="icon-esatform"></i>Recipe Master</li>
-                <li><i class="icon-esatform"></i>Recipe Costing</li>
-                <li><i class="icon-esatform"></i>Dinner Request</li>
-              </ul>
-            </div>
-            <div class="col-sm-6">
-              <ul>
-                <li><i class="icon-esatform"></i>Dinner Request Process</li>
-                <li><i class="icon-esatform"></i>Actual Production</li>
-                <li><i class="icon-esatform"></i>Packed Meal</li>
-                <li><i class="icon-esatform"></i>Catering Wastage</li>
-                <li><i class="icon-esatform"></i>Attribute Group</li>
-              </ul>
+          <div class="margintop">
+            <div class="bottom row" [hidden]="component">
+              <div class="col-sm-12 col-md-6 col-xl-6 col-xxl-6">
+                <ul>
+                  <li><i class="icon-esatform"></i> Dining Hall Setup</li>
+                  <li><i class="icon-esatform"></i> Catering Items</li>
+                  <li><i class="icon-esatform"></i> Recipe Master</li>
+                  <li><i class="icon-esatform"></i> Recipe Costing</li>
+                  <li><i class="icon-esatform"></i> Dinner Request</li>
+                </ul>
+              </div>
+
+              <div class="col-sm-12 col-md-6 col-xl-6 col-xxl-6">
+                <ul>
+                  <li><i class="icon-esatform"></i>Dinner Request Process</li>
+                  <li><i class="icon-esatform"></i> Actual Production</li>
+                  <li><i class="icon-esatform"></i>Packed Meal</li>
+                  <li><i class="icon-esatform"></i>Catering Wastage</li>
+                  <li><i class="icon-esatform"></i> Attribute Group</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -169,4 +169,11 @@ export class BusnessHome {
       route: 'catering',
     },
   ];
+
+  solutionRows = [
+    this.solutions.slice(0, 6), // 1st row: 6
+    this.solutions.slice(6, 11), // 2nd row: 5
+    this.solutions.slice(11, 17), // 3rd row: 6
+    this.solutions.slice(17, 22), // 4th row: 5
+  ];
 }
