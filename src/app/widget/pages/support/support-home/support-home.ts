@@ -5,6 +5,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { HttpClient } from '@angular/common/http';
+
 import { Router, RouterModule } from '@angular/router';
 
 import Swal from 'sweetalert2';
@@ -25,6 +26,13 @@ export class SupportHome implements OnInit {
 
   public angForm!: FormGroup;
   public angFormtwo!: FormGroup;
+  public supportForm!: FormGroup;
+
+  // =========================================================
+  // LOGIN
+  // =========================================================
+
+  public isLoggedIn = false;
 
   // =========================================================
   // UI STATE
@@ -32,8 +40,17 @@ export class SupportHome implements OnInit {
 
   public isLoginLoading = false;
   public isResetLoading = false;
+  public isSupportLoading = false;
 
   public showForgotModal = false;
+
+  // =========================================================
+  // SUPPORT
+  // =========================================================
+
+  public selectedSupportType = '';
+
+  public selectedSupportFile: File | null = null;
 
   // =========================================================
   // SSR
@@ -79,6 +96,10 @@ export class SupportHome implements OnInit {
   // =========================================================
 
   createForm(): void {
+    // =======================================================
+    // LOGIN FORM
+    // =======================================================
+
     this.angForm = this.fb.group({
       uname: ['', [Validators.required, Validators.minLength(5)]],
 
@@ -86,6 +107,10 @@ export class SupportHome implements OnInit {
 
       tuse: [false],
     });
+
+    // =======================================================
+    // FORGOT PASSWORD FORM
+    // =======================================================
 
     this.angFormtwo = this.fb.group({
       address: [
@@ -95,6 +120,26 @@ export class SupportHome implements OnInit {
           Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
         ],
       ],
+    });
+
+    // =======================================================
+    // SUPPORT FORM
+    // =======================================================
+
+    this.supportForm = this.fb.group({
+      name: ['', Validators.required],
+
+      company_name: ['', Validators.required],
+
+      issue_type: ['', Validators.required],
+
+      module_name: [''],
+
+      form_name: [''],
+
+      contact: ['', Validators.required],
+
+      description: ['', Validators.required],
     });
   }
 
@@ -107,17 +152,31 @@ export class SupportHome implements OnInit {
       return;
     }
 
+    // =======================================================
+    // VALIDATE LOGIN FORM
+    // =======================================================
+
     if (this.angForm.invalid) {
       this.angForm.markAllAsTouched();
+
       return;
     }
 
     this.isLoginLoading = true;
 
+    // =======================================================
+    // LOGIN PAYLOAD
+    // =======================================================
+
     const payload = {
       username: String(this.angForm.get('uname')?.value || '').trim(),
+
       password: String(this.angForm.get('pword')?.value || ''),
     };
+
+    // =======================================================
+    // LOGIN URL
+    // =======================================================
 
     const loginUrl = this.$rootScope.apiLink + '/do_login';
 
@@ -126,29 +185,35 @@ export class SupportHome implements OnInit {
     console.log('LOGIN PAYLOAD:', payload);
     console.log('=================================');
 
+    // =======================================================
+    // LOGIN API
+    // =======================================================
+
     this.http
       .post<any>(loginUrl, payload, {
         headers: {
           'Content-Type': 'application/json',
         },
+
         withCredentials: true,
       })
       .subscribe({
+        // ===================================================
+        // SUCCESS
+        // ===================================================
+
         next: (res) => {
           console.log('LOGIN API RESPONSE:', res);
 
-          // =====================================================
-          // SUPPORT BOTH OLD AND NEW API RESPONSE FORMATS
-          // =====================================================
+          // =================================================
+          // USER
+          // =================================================
 
           let user: any = null;
 
-          // New format:
-          // {
-          //   success: true,
-          //   status: "success",
-          //   data: [...]
-          // }
+          // =================================================
+          // NEW API RESPONSE FORMAT
+          // =================================================
 
           if (
             res?.success === true &&
@@ -159,17 +224,16 @@ export class SupportHome implements OnInit {
             user = res.data[0];
           }
 
-          // Old Slim format:
-          // [
-          //   {...user data...}
-          // ]
+          // =================================================
+          // OLD API RESPONSE FORMAT
+          // =================================================
           else if (Array.isArray(res) && res.length > 0) {
             user = res[0];
           }
 
-          // =====================================================
+          // =================================================
           // LOGIN FAILED
-          // =====================================================
+          // =================================================
 
           if (!user) {
             this.isLoginLoading = false;
@@ -179,59 +243,74 @@ export class SupportHome implements OnInit {
             return;
           }
 
-          // =====================================================
-          // USER FOUND
-          // =====================================================
+          // =================================================
+          // LOGIN USER
+          // =================================================
 
           console.log('LOGIN USER:', user);
 
-          // =====================================================
+          // =================================================
           // SAVE USER
-          // =====================================================
+          // =================================================
 
           this.$rootScope.MasterUser = user;
+
           this.$rootScope.MasterUserId = user.id;
 
           console.log('MasterUserId:', this.$rootScope.MasterUserId);
 
-          // =====================================================
+          // =================================================
           // REMEMBER ME
-          // =====================================================
+          // =================================================
 
           if (this.angForm.get('tuse')?.value === true && this.isBrowser) {
             localStorage.setItem('ESATLogInDetails', JSON.stringify(user));
           }
 
-          // =====================================================
+          // =================================================
           // LOGIN SUCCESS
-          // =====================================================
+          // =================================================
 
           this.isLoginLoading = false;
 
           Swal.fire({
             icon: 'success',
+
             title: 'Login Successful',
+
             text: `Welcome ${user.first_name || user.username}`,
+
             timer: 1200,
+
             showConfirmButton: false,
           }).then(() => {
             // =================================================
-            // LOAD CART
+            // SHOW SUPPORT SECTION
             // =================================================
 
-            this.loadUserCart();
+            this.isLoggedIn = true;
+
+            this.change.detectChanges();
 
             // =================================================
-            // REDIRECT
+            // SCROLL TO SUPPORT SECTION
             // =================================================
 
-            if (this.$rootScope.returnValue && this.$rootScope.returnValue !== '') {
-              this.router.navigateByUrl('/support/' + this.$rootScope.returnValue);
-            } else {
-              this.router.navigateByUrl('/support');
+            if (this.isBrowser) {
+              setTimeout(() => {
+                document.querySelector('.support_entry')?.scrollIntoView({
+                  behavior: 'smooth',
+
+                  block: 'start',
+                });
+              }, 100);
             }
           });
         },
+
+        // ===================================================
+        // LOGIN ERROR
+        // ===================================================
 
         error: (err) => {
           console.error('LOGIN ERROR:', err);
@@ -240,105 +319,11 @@ export class SupportHome implements OnInit {
 
           Swal.fire(
             'Login Error',
+
             err?.error?.message || 'Unable to connect to the login API.',
+
             'error',
           );
-        },
-      });
-  }
-
-  // =========================================================
-  // LOAD CART
-  // =========================================================
-
-  private loadUserCart(): void {
-    if (!this.$rootScope.MasterUserId) {
-      return;
-    }
-
-    this.http
-      .post<any>(this.$rootScope.apiLink + '/getfromcart', {
-        userid: this.$rootScope.MasterUserId,
-      })
-      .subscribe({
-        next: (res) => {
-          console.log('Cart response:', res);
-
-          // =================================================
-          // NO CART
-          // =================================================
-
-          if (!res || !Array.isArray(res) || res.length === 0 || !res[0]?.productdetail) {
-            return;
-          }
-
-          try {
-            const products = JSON.parse(res[0].productdetail);
-
-            if (Array.isArray(products)) {
-              // Clear old cart
-              this.$rootScope.Cart = [];
-
-              // Add products
-              products.forEach((element: any) => {
-                this.$rootScope.Cart.push(element);
-              });
-
-              // =================================================
-              // LOCAL STORAGE
-              // =================================================
-
-              if (this.isBrowser) {
-                localStorage.setItem('ESATCartItems', JSON.stringify(this.$rootScope.Cart));
-              }
-
-              // =================================================
-              // CHANGE DETECTION
-              // =================================================
-
-              this.change.detectChanges();
-
-              // =================================================
-              // SYNC CART
-              // =================================================
-
-              this.updateCart();
-            }
-          } catch (error) {
-            console.error('Cart JSON parsing error:', error);
-          }
-        },
-
-        error: (err) => {
-          console.error('Cart not loaded:', err);
-        },
-      });
-  }
-
-  // =========================================================
-  // UPDATE CART
-  // =========================================================
-
-  private updateCart(): void {
-    if (!this.$rootScope.MasterUserId) {
-      return;
-    }
-
-    this.http
-      .post<any>(this.$rootScope.apiLink + '/addtocart', {
-        userid: this.$rootScope.MasterUserId,
-
-        dsec: JSON.stringify(this.$rootScope.Cart || []),
-
-        date: new Date().toISOString(),
-      })
-      .subscribe({
-        next: (res) => {
-          console.log('Cart added to database:', res);
-        },
-
-        error: (err) => {
-          console.error('Cart not added to database:', err);
         },
       });
   }
@@ -351,7 +336,9 @@ export class SupportHome implements OnInit {
     if (this.isResetLoading) {
       return;
     }
+
     this.showForgotModal = true;
+
     if (this.isBrowser) {
       document.body.classList.add('modal-open');
     }
@@ -394,6 +381,10 @@ export class SupportHome implements OnInit {
       return;
     }
 
+    // =======================================================
+    // VALIDATE
+    // =======================================================
+
     if (this.angFormtwo.invalid) {
       this.angFormtwo.markAllAsTouched();
 
@@ -402,7 +393,7 @@ export class SupportHome implements OnInit {
 
     this.isResetLoading = true;
 
-    const email = this.angFormtwo.get('address')?.value?.trim();
+    const email = String(this.angFormtwo.get('address')?.value || '').trim();
 
     // =======================================================
     // CHECK EMAIL
@@ -418,10 +409,18 @@ export class SupportHome implements OnInit {
         next: (res) => {
           console.log('Validate response:', res);
 
-          // Email exists
+          // =================================================
+          // EMAIL EXISTS
+          // =================================================
+
           if (res?.isUnique === false) {
             this.sendResetEmail(email);
-          } else {
+          }
+
+          // =================================================
+          // EMAIL NOT FOUND
+          // =================================================
+          else {
             this.isResetLoading = false;
 
             Swal.fire('Invalid!', 'Email address not found.', 'error');
@@ -430,7 +429,9 @@ export class SupportHome implements OnInit {
 
         error: (err) => {
           console.error('Email validation error:', err);
+
           this.isResetLoading = false;
+
           Swal.fire('Sorry!', 'Something went wrong. Please try again.', 'error');
         },
       });
@@ -455,7 +456,9 @@ export class SupportHome implements OnInit {
 
           Swal.fire(
             'Password link sent!',
+
             'You can now reset your password. A message with instructions has been sent to your registered email.',
+
             'success',
           );
         },
@@ -467,11 +470,327 @@ export class SupportHome implements OnInit {
 
           Swal.fire(
             'Sorry!',
+
             'Unable to send the password reset email. Please try again.',
+
             'error',
           );
         },
       });
+  }
+
+  // =========================================================
+  // SUPPORT TYPE
+  // =========================================================
+
+  selectSupportType(type: string): void {
+    this.selectedSupportType = type;
+
+    console.log('Selected Support Type:', type);
+  }
+
+  // =========================================================
+  // CHANGE SUPPORT TYPE
+  // =========================================================
+
+  changeSupportType(): void {
+    this.selectedSupportType = '';
+
+    this.selectedSupportFile = null;
+
+    this.supportForm.reset();
+  }
+
+  // =========================================================
+  // SUPPORT FILE SELECT
+  // =========================================================
+
+  onSupportFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files || input.files.length === 0) {
+      this.selectedSupportFile = null;
+
+      return;
+    }
+
+    const file = input.files[0];
+
+    // =======================================================
+    // MAXIMUM FILE SIZE = 5 MB
+    // =======================================================
+
+    const maxSize = 5 * 1024 * 1024;
+
+    if (file.size > maxSize) {
+      this.selectedSupportFile = null;
+
+      Swal.fire(
+        'File Too Large',
+
+        'Please upload a file smaller than 5 MB.',
+
+        'warning',
+      );
+
+      input.value = '';
+
+      return;
+    }
+
+    // =======================================================
+    // ALLOWED FILE TYPES
+    // =======================================================
+
+    const allowedTypes = [
+      'image/jpeg',
+
+      'image/png',
+
+      'application/pdf',
+
+      'application/msword',
+
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ];
+
+    // =======================================================
+    // INVALID FILE
+    // =======================================================
+
+    if (!allowedTypes.includes(file.type)) {
+      this.selectedSupportFile = null;
+
+      Swal.fire(
+        'Invalid File',
+
+        'Please upload JPG, JPEG, PNG, PDF, DOC or DOCX files only.',
+
+        'warning',
+      );
+
+      input.value = '';
+
+      return;
+    }
+
+    // =======================================================
+    // SAVE FILE
+    // =======================================================
+
+    this.selectedSupportFile = file;
+
+    console.log('Selected file:', file.name);
+  }
+
+  // =========================================================
+  // SUBMIT SUPPORT REQUEST
+  // =========================================================
+
+  submitSupportRequest(): void {
+    // =======================================================
+    // PREVENT DUPLICATE SUBMISSION
+    // =======================================================
+
+    if (this.isSupportLoading) {
+      return;
+    }
+
+    // =======================================================
+    // CHECK SUPPORT TYPE
+    // =======================================================
+
+    if (!this.selectedSupportType) {
+      Swal.fire(
+        'Support Type Required',
+
+        'Please select Software Support or Hardware Support.',
+
+        'warning',
+      );
+
+      return;
+    }
+
+    // =======================================================
+    // VALIDATE FORM
+    // =======================================================
+
+    if (this.supportForm.invalid) {
+      this.supportForm.markAllAsTouched();
+
+      Swal.fire(
+        'Required Fields',
+
+        'Please fill in all required fields.',
+
+        'warning',
+      );
+
+      return;
+    }
+
+    this.isSupportLoading = true;
+
+    // =======================================================
+    // CREATE FORMDATA
+    // =======================================================
+
+    const formData = new FormData();
+
+    // =======================================================
+    // LOGGED-IN USER
+    // =======================================================
+
+    const user = this.$rootScope.MasterUser || {};
+
+    const userId = this.$rootScope.MasterUserId || user.id || '';
+
+    // =======================================================
+    // SUPPORT INFORMATION
+    // =======================================================
+
+    formData.append('user_id', String(userId));
+
+    formData.append('support_type', this.selectedSupportType);
+
+    formData.append('name', String(this.supportForm.get('name')?.value || '').trim());
+
+    formData.append(
+      'company_name',
+      String(this.supportForm.get('company_name')?.value || '').trim(),
+    );
+
+    formData.append('issue_type', String(this.supportForm.get('issue_type')?.value || '').trim());
+
+    formData.append('module_name', String(this.supportForm.get('module_name')?.value || '').trim());
+
+    formData.append('form_name', String(this.supportForm.get('form_name')?.value || '').trim());
+
+    formData.append('contact', String(this.supportForm.get('contact')?.value || '').trim());
+
+    formData.append('description', String(this.supportForm.get('description')?.value || '').trim());
+
+    // =======================================================
+    // ATTACHMENT
+    // =======================================================
+
+    if (this.selectedSupportFile) {
+      formData.append(
+        'attachment',
+
+        this.selectedSupportFile,
+
+        this.selectedSupportFile.name,
+      );
+    }
+
+    // =======================================================
+    // API URL
+    // =======================================================
+
+    const supportUrl = this.$rootScope.apiLink + '/emailapi/support-request.php';
+
+    // =======================================================
+    // DEBUG
+    // =======================================================
+
+    console.log('=================================');
+
+    console.log('SUPPORT API:', supportUrl);
+
+    console.log('USER ID:', userId);
+
+    console.log('SUPPORT TYPE:', this.selectedSupportType);
+
+    console.log('SUPPORT FORM:', this.supportForm.value);
+
+    console.log('ATTACHMENT:', this.selectedSupportFile);
+
+    console.log('=================================');
+
+    // =======================================================
+    // SEND SUPPORT REQUEST
+    // =======================================================
+
+    this.http.post<any>(supportUrl, formData).subscribe({
+      // ===================================================
+      // API RESPONSE
+      // ===================================================
+
+      next: (res) => {
+        console.log('SUPPORT API RESPONSE:', res);
+
+        this.isSupportLoading = false;
+
+        // =================================================
+        // SUCCESS
+        // =================================================
+
+        if (res?.success === true) {
+          Swal.fire({
+            icon: 'success',
+
+            title: 'Request Submitted',
+
+            text: res.message || 'Your support request has been submitted successfully.',
+
+            confirmButtonText: 'OK',
+          });
+
+          // ===============================================
+          // RESET FORM
+          // ===============================================
+
+          this.supportForm.reset();
+
+          // ===============================================
+          // RESET FILE
+          // ===============================================
+
+          this.selectedSupportFile = null;
+
+          // ===============================================
+          // RESET SUPPORT TYPE
+          // ===============================================
+
+          this.selectedSupportType = '';
+
+          this.change.detectChanges();
+        }
+
+        // =================================================
+        // API RETURNED FAILURE
+        // =================================================
+        else {
+          Swal.fire(
+            'Submission Failed',
+
+            res?.message || 'Unable to submit your support request.',
+
+            'error',
+          );
+        }
+      },
+
+      // ===================================================
+      // API ERROR
+      // ===================================================
+
+      error: (err) => {
+        console.error('SUPPORT API ERROR:', err);
+
+        this.isSupportLoading = false;
+
+        Swal.fire(
+          'Submission Failed',
+
+          err?.error?.message || 'Unable to submit your support request. Please try again.',
+
+          'error',
+        );
+      },
+    });
   }
 
   // =========================================================

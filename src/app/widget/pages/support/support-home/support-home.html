@@ -1,4 +1,4 @@
-<section class="Suportimg" data-aos="fade-up">
+<section class="Suportimg login_section" data-aos="fade-up" *ngIf="!isLoggedIn">
   <div class="container">
     <div class="row">
       <!-- =====================================================
@@ -312,3 +312,248 @@
     </div>
   </div>
 }
+
+<section class="Suportimg support_entry" data-aos="fade-up" *ngIf="isLoggedIn">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <!-- Support Type Selection -->
+        <div class="card border-0 shadow-sm rounded-4" *ngIf="!selectedSupportType">
+          <div class="card-body p-4 p-md-5 text-center">
+            <h3 class="mb-3 fw-bold">Select Support Type</h3>
+
+            <p class="text-muted mb-4">Please select the type of support you require.</p>
+
+            <div class="row justify-content-center g-3">
+              <!-- Software Support -->
+              <div class="col-md-5">
+                <div class="support-option">
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="supportType"
+                    id="softwareSupport"
+                    value="Software Support"
+                    (change)="selectSupportType('Software Support')"
+                  />
+
+                  <label class="btn btn-outline-primary w-100 py-4" for="softwareSupport">
+                    <h5 class="mb-2">Software Support</h5>
+
+                    <small>
+                      Get help with software, modules, login, bugs and other technical issues.
+                    </small>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Hardware Support -->
+              <div class="col-md-5">
+                <div class="support-option">
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="supportType"
+                    id="hardwareSupport"
+                    value="Hardware Support"
+                    (change)="selectSupportType('Hardware Support')"
+                  />
+
+                  <label class="btn btn-outline-primary w-100 py-4" for="hardwareSupport">
+                    <h5 class="mb-2">Hardware Support</h5>
+
+                    <small> Get assistance with hardware, devices and equipment. </small>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Support Form -->
+        <div class="card border-0 shadow-sm rounded-4" *ngIf="selectedSupportType">
+          <div class="card-body p-4 p-md-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div>
+                <h3 class="mb-1 fw-bold">Submit a Support Request</h3>
+
+                <p class="text-muted mb-0">
+                  {{ selectedSupportType }}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm"
+                (click)="changeSupportType()"
+              >
+                Change
+              </button>
+            </div>
+
+            <form [formGroup]="supportForm" (ngSubmit)="submitSupportRequest()" novalidate>
+              <div class="row g-3">
+                <!-- Name -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">
+                    Name <span class="text-danger">*</span>
+                  </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="Enter your name"
+                  />
+                </div>
+
+                <!-- Company -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">
+                    Company Name <span class="text-danger">*</span>
+                  </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="company_name"
+                    placeholder="Enter company name"
+                  />
+                </div>
+
+                <!-- Issue -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">
+                    Issue Type <span class="text-danger">*</span>
+                  </label>
+
+                  <select class="form-select" formControlName="issue_type">
+                    <option value="" disabled>Select issue type</option>
+                    <option value="Technical Issue">Technical Issue</option>
+                    <option value="Software Issue">Software Issue</option>
+                    <option value="Login Issue">Login Issue</option>
+                    <option value="Bug Report">Bug Report</option>
+                    <option value="Feature Request">Feature Request</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <!-- Module -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold"> Module Name </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="module_name"
+                    list="moduleOptions"
+                    placeholder="Select or type module name"
+                  />
+
+                  <datalist id="moduleOptions">
+                    <option value="CRM"></option>
+                    <option value="HRM"></option>
+                    <option value="HCM"></option>
+                    <option value="Payroll"></option>
+                    <option value="Finance & Accounts"></option>
+                    <option value="Inventory"></option>
+                    <option value="Procurement"></option>
+                    <option value="Project Management"></option>
+                    <option value="Sales"></option>
+                    <option value="Fixed Assets"></option>
+                    <option value="Manufacturing"></option>
+                    <option value="Warehouse Management"></option>
+                    <option value="Property Management"></option>
+                    <option value="Facility Management"></option>
+                    <option value="Fleet Management"></option>
+                    <option value="POS"></option>
+                    <option value="CMMS"></option>
+                  </datalist>
+                </div>
+
+                <!-- Form -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold"> Form Name </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="form_name"
+                    placeholder="Enter form/page name"
+                  />
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">
+                    Contact <span class="text-danger">*</span>
+                  </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="contact"
+                    placeholder="Phone number or email address"
+                  />
+                </div>
+
+                <!-- Description -->
+                <div class="col-12">
+                  <label class="form-label fw-semibold">
+                    Description <span class="text-danger">*</span>
+                  </label>
+
+                  <textarea
+                    class="form-control"
+                    formControlName="description"
+                    rows="5"
+                    placeholder="Please describe the issue in detail..."
+                  ></textarea>
+                </div>
+
+                <!-- Attachment -->
+                <div class="col-12">
+                  <label class="form-label fw-semibold"> Attachment </label>
+
+                  <input
+                    class="form-control"
+                    type="file"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
+                    (change)="onSupportFileSelected($event)"
+                  />
+
+                  <div class="form-text">
+                    Upload screenshots or supporting documents. Maximum 5 MB.
+                  </div>
+
+                  @if (selectedSupportFile) {
+                    <div class="mt-2 text-success">
+                      Selected file: {{ selectedSupportFile.name }}
+                    </div>
+                  }
+                </div>
+
+                <!-- Submit -->
+                <div class="col-12 mt-4">
+                  <button
+                    type="submit"
+                    class="btn btn-primary px-5 py-2"
+                    [disabled]="supportForm.invalid || isSupportLoading"
+                  >
+                    @if (isSupportLoading) {
+                      <span class="spinner-border spinner-border-sm me-2"></span>
+
+                      Submitting...
+                    } @else {
+                      Submit Request
+                    }
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
