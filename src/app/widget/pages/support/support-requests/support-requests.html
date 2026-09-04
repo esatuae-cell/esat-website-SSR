@@ -1,0 +1,389 @@
+<section class="support-requests-section pad-50" data-aos="fade-up">
+  <div class="container py-5">
+    <!-- HEADER -->
+    <!-- HEADER -->
+    <div class="support-header mb-4">
+      <div>
+        <h2 class="fw-bold mb-1">Support Requests</h2>
+        <p class="text-muted mb-0">View and track your submitted support requests.</p>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="support-actions">
+        <!-- CREATE NEW TICKET -->
+        <button type="button" class="btn btn-primary" (click)="createNewTicket()">
+          <i class="bi bi-plus-circle me-1"></i>
+          Create New Ticket
+        </button>
+
+        <!-- REFRESH -->
+        <button
+          type="button"
+          class="btn btn-outline-primary refresh-btn"
+          (click)="refresh()"
+          [disabled]="loading"
+        >
+          <i class="bi bi-arrow-clockwise me-1"></i>
+          {{ loading ? 'Loading...' : 'Refresh' }}
+        </button>
+
+        <!-- LOGOUT -->
+        <button type="button" class="btn btn-outline-danger" (click)="logout()">
+          <i class="bi bi-box-arrow-right me-1"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- NOT LOGGED IN -->
+    <div *ngIf="!isLoggedIn" class="alert alert-warning">
+      Please login to view your support requests.
+    </div>
+
+    <!-- SUCCESS -->
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible">
+      {{ successMessage }}
+    </div>
+
+    <!-- ERROR -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <!-- LOADING -->
+    <div *ngIf="isLoggedIn && loading" class="loading-box">
+      <div class="spinner-border text-primary" role="status"></div>
+
+      <p class="mt-3 mb-0">Loading support requests...</p>
+    </div>
+
+    <!-- EMPTY -->
+    <div *ngIf="isLoggedIn && !loading && requests.length === 0 && !errorMessage" class="empty-box">
+      <div class="empty-icon">
+        <i class="bi bi-inbox"></i>
+      </div>
+
+      <h5 class="fw-bold">No Support Requests</h5>
+
+      <p class="text-muted mb-0">You haven't submitted any support requests yet.</p>
+    </div>
+
+    <!-- REQUESTS TABLE -->
+    <div
+      *ngIf="isLoggedIn && !loading && requests.length > 0"
+      class="card support-card border-0 shadow-sm"
+    >
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table support-table align-middle mb-0">
+            <thead>
+              <tr>
+                <th>ID</th>
+
+                <th>Support Type</th>
+
+                <th>Name</th>
+
+                <th>Company</th>
+
+                <th>Issue Type</th>
+
+                <th>Module</th>
+
+                <th>Contact</th>
+
+                <th>Description</th>
+
+                <th>Attachment</th>
+
+                <th>Status</th>
+
+                <th>Created</th>
+
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let request of requests; trackBy: trackByRequestId">
+                <!-- ID -->
+                <td>
+                  <span class="request-id"> #{{ request.id }} </span>
+                </td>
+
+                <!-- SUPPORT TYPE -->
+                <td>
+                  {{ request.support_type || '-' }}
+                </td>
+
+                <!-- NAME -->
+                <td>
+                  <strong>
+                    {{ request.name || '-' }}
+                  </strong>
+                </td>
+
+                <!-- COMPANY -->
+                <td>
+                  {{ request.company_name || '-' }}
+                </td>
+
+                <!-- ISSUE TYPE -->
+                <td>
+                  {{ request.issue_type || '-' }}
+                </td>
+
+                <!-- MODULE -->
+                <td>
+                  {{ request.module_name || '-' }}
+                </td>
+
+                <!-- CONTACT -->
+                <td>
+                  {{ request.contact || '-' }}
+                </td>
+
+                <!-- DESCRIPTION -->
+                <td>
+                  <div class="description-cell" [title]="request.description">
+                    {{ request.description || '-' }}
+                  </div>
+                </td>
+
+                <!-- ATTACHMENT -->
+                <td>
+                  <a
+                    *ngIf="hasAttachment(request)"
+                    [href]="getAttachmentUrl(request)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="attachment-link"
+                  >
+                    <i class="bi bi-paperclip me-1"></i>
+                    View
+                  </a>
+
+                  <span *ngIf="!hasAttachment(request)" class="text-muted"> - </span>
+                </td>
+
+                <!-- STATUS -->
+                <td>
+                  <!-- ADMIN -->
+                  <select
+                    *ngIf="isAdmin"
+                    class="form-select form-select-sm status-select"
+                    [(ngModel)]="request.status"
+                    (change)="updateStatus(request)"
+                  >
+                    <option *ngFor="let status of statuses" [value]="status">
+                      {{ status }}
+                    </option>
+                  </select>
+
+                  <!-- NORMAL USER -->
+                  <span
+                    *ngIf="!isAdmin"
+                    class="status-badge"
+                    [ngClass]="getStatusClass(request.status)"
+                  >
+                    {{ request.status || 'Open' }}
+                  </span>
+                </td>
+
+                <!-- CREATED -->
+                <td class="date-cell">
+                  {{ formatDate(request.created_at) }}
+                </td>
+
+                <!-- ACTION -->
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-primary"
+                    (click)="viewRequest(request)"
+                  >
+                    <i class="bi bi-eye me-1"></i>
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS MODAL -->
+<div *ngIf="selectedRequest" class="custom-modal-backdrop" (click)="closeRequest()">
+  <div class="custom-modal" (click)="$event.stopPropagation()">
+    <!-- MODAL HEADER -->
+    <div class="modal-header-custom">
+      <div>
+        <h5 class="mb-1 fw-bold">Support Request #{{ selectedRequest.id }}</h5>
+
+        <small class="text-muted">
+          {{ formatDate(selectedRequest.created_at) }}
+        </small>
+      </div>
+
+      <button type="button" class="btn-close" (click)="closeRequest()"></button>
+    </div>
+
+    <!-- MODAL BODY -->
+    <div class="modal-body-custom">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="detail-item">
+            <label> Support Type </label>
+
+            <div>
+              {{ selectedRequest.support_type || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="detail-item">
+            <label> Issue Type </label>
+
+            <div>
+              {{ selectedRequest.issue_type || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="detail-item">
+            <label> Name </label>
+
+            <div>
+              {{ selectedRequest.name || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="detail-item">
+            <label> Company </label>
+
+            <div>
+              {{ selectedRequest.company_name || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="detail-item">
+            <label> Module </label>
+
+            <div>
+              {{ selectedRequest.module_name || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="detail-item">
+            <label> Form </label>
+
+            <div>
+              {{ selectedRequest.form_name || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="detail-item">
+            <label> Contact </label>
+
+            <div>
+              {{ selectedRequest.contact || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- STATUS -->
+        <div class="col-md-6">
+          <div class="detail-item">
+            <label>Status</label>
+
+            <!-- ADMIN: EDIT STATUS -->
+            @if (isAdmin) {
+              <select class="form-select status-select-modal" [(ngModel)]="selectedRequest.status">
+                @for (status of statuses; track status) {
+                  <option [value]="status">
+                    {{ status }}
+                  </option>
+                }
+              </select>
+            } @else {
+              <!-- NORMAL USER: VIEW ONLY -->
+              <span class="status-badge" [ngClass]="getStatusClass(selectedRequest.status)">
+                {{ selectedRequest.status || 'Open' }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="col-12">
+          <div class="detail-item">
+            <label> Description </label>
+
+            <div class="description-full">
+              {{ selectedRequest.description || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- ATTACHMENT -->
+        <div class="col-12" *ngIf="hasAttachment(selectedRequest)">
+          <div class="detail-item">
+            <label> Attachment </label>
+
+            <div>
+              <a
+                [href]="getAttachmentUrl(selectedRequest)"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline-primary btn-sm"
+              >
+                <i class="bi bi-paperclip me-1"></i>
+                Open Attachment
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL FOOTER -->
+    <!-- MODAL FOOTER -->
+    @if (successMessage) {
+      <div class="alert alert-success mt-3 mb-3 d-flex align-items-center">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span>{{ successMessage }}</span>
+      </div>
+    }
+
+    @if (errorMessage) {
+      <div class="alert alert-danger mt-3 mb-3 d-flex align-items-center">
+        <i class="bi bi-exclamation-circle-fill me-2"></i>
+        <span>{{ errorMessage }}</span>
+      </div>
+    }
+
+    <div class="modal-footer-custom">
+      @if (isAdmin) {
+        <button type="button" class="btn btn-primary me-3" (click)="updateStatus(selectedRequest)">
+          <i class="bi bi-check-circle me-1"></i>
+          Update Status
+        </button>
+      }
+
+      <button type="button" class="btn btn-secondary" (click)="closeRequest()">Close</button>
+    </div>
+  </div>
+</div>

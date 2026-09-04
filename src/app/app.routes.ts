@@ -7,6 +7,7 @@ import { Clients } from './widget/pages/clients/clients';
 import { TrailComponent } from './widget/pages/trail/trail';
 import { Advertisement } from './widget/pages/advertisement/advertisement';
 import { Search } from './widget/pages/search/search';
+import { SupportRequests } from './widget/pages/support/support-requests/support-requests';
 
 export const routes: Routes = [
   {
@@ -72,6 +73,11 @@ export const routes: Routes = [
     path: 'advertisement',
     component: Advertisement,
   },
+  {
+    path: 'support-requests',
+    component: SupportRequests,
+  },
+
   { path: 'search', component: Search },
 
   {
