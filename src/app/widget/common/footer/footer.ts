@@ -4,18 +4,29 @@ import { Inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
+import { FormsModule } from '@angular/forms';
+import { AiChatService } from '../../../services/ai-chat.service';
+
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterLinkActive, RouterLink],
+  imports: [RouterLinkActive, RouterLink, FormsModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
 export class Footer {
+  chatOpen = false;
+  message = '';
+
+  messages: {
+    sender: 'user' | 'bot';
+    text: string;
+  }[] = [];
   showBackToTop = false;
 
   constructor(
     private router: Router,
+    private aiChatService: AiChatService,
     @Inject(PLATFORM_ID) private platformId: object,
   ) {}
 
@@ -44,4 +55,52 @@ export class Footer {
       });
     }
   }
+
+  toggleChat() {
+    this.chatOpen = !this.chatOpen;
+  }
+
+  // Ai chart service integration
+
+  sendMessage() {
+    if (!this.message.trim()) {
+      return;
+    }
+
+    const userMessage = this.message.trim();
+
+    console.log('1. User message:', userMessage);
+
+    this.messages.push({
+      sender: 'user',
+      text: userMessage,
+    });
+
+    this.message = '';
+
+    this.aiChatService.sendMessage(userMessage).subscribe({
+      next: (response) => {
+        console.log('2. PHP RESPONSE:', response);
+
+        this.messages.push({
+          sender: 'bot',
+          text: response.output_text || 'Empty response from server',
+        });
+      },
+
+      error: (error) => {
+        console.error('3. API ERROR:', error);
+        console.error('STATUS:', error.status);
+        console.error('ERROR:', error.error);
+        console.error('MESSAGE:', error.message);
+
+        this.messages.push({
+          sender: 'bot',
+          text: 'API Error: ' + (error.error?.error || error.message || 'Unknown error'),
+        });
+      },
+    });
+  }
+
+  // Ai chart service integration end
 }
