@@ -13,14 +13,14 @@ import AOS from 'aos';
 
 import { ChatBox } from './widget/shared-component/chat-box/chat-box';
 import { TawkChatService } from './services/tawk-chat';
-import { AccessibilityComponent } from './shared/accessibility/accessibility';
+// import { AccessibilityComponent } from './shared/accessibility/accessibility';
 
 export const appRoutes = routes;
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Header, Footer, AccessibilityComponent],
+  imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
