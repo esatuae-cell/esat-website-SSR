@@ -1,0 +1,138 @@
+<div class="chatbot-wrapper">
+  <!-- CHAT FLOATING BUTTON -->
+  <button
+    class="chat-toggle-btn"
+    (click)="toggleChat()"
+    [attr.aria-label]="isOpen ? 'Close chat' : 'Open ESAT AI chat'"
+  >
+    <span *ngIf="!isOpen">💬</span>
+    <span *ngIf="isOpen">✕</span>
+
+    <span class="chat-notification" *ngIf="!isOpen"></span>
+  </button>
+
+  <!-- CHAT WINDOW -->
+  <div class="chat-window" *ngIf="isOpen">
+    <!-- HEADER -->
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">
+          <img src="assets/images/logo.png" class="w-100" alt="ESAT AI Avatar" />
+        </div>
+
+        <div class="chat-header-text">
+          <h3>ESAT AI Assistant</h3>
+
+          <p>
+            <span class="online-dot"></span>
+            Online | Here to help
+          </p>
+        </div>
+      </div>
+
+      <div class="chat-header-actions">
+        <button
+          class="header-action-btn"
+          (click)="clearChat()"
+          title="Clear conversation"
+          aria-label="Clear conversation"
+        >
+          <span>↻</span>
+        </button>
+
+        <button
+          class="header-action-btn"
+          (click)="toggleChat()"
+          title="Close chat"
+          aria-label="Close chat"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- CHAT BODY -->
+    <div class="chat-body">
+      <!-- MESSAGE AREA -->
+      <div class="chat-messages" #chatMessages>
+        <!-- WELCOME / CHAT MESSAGES -->
+        <div *ngFor="let message of messages" class="message-row" [ngClass]="message.role">
+          <!-- ASSISTANT AVATAR -->
+          <div class="message-avatar" *ngIf="message.role === 'assistant'">
+            <img src="assets/images/logo.png" class="w-100" alt="ESAT AI Avatar" />
+          </div>
+
+          <!-- MESSAGE CONTENT -->
+          <div class="message-content">
+            <div class="message-bubble">
+              {{ message.content }}
+            </div>
+
+            <div class="message-time">
+              {{ message.time | date: 'shortTime' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- TYPING INDICATOR -->
+        <div class="message-row assistant" *ngIf="isLoading">
+          <div class="message-avatar">
+            <img src="assets/images/logo.png" class="w-100" alt="ESAT AI Avatar" />
+          </div>
+
+          <div class="message-content">
+            <div class="typing-indicator">
+              <span></span>
+              <span></span>
+              <span></span>
+
+              <small>ESAT AI is typing...</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUGGESTED QUESTIONS -->
+      <div class="suggestion-container" *ngIf="messages.length === 1 && !isLoading">
+        <p class="suggestion-title">You can ask me:</p>
+
+        <button
+          class="suggestion-btn"
+          *ngFor="let question of suggestions"
+          (click)="sendSuggestion(question)"
+        >
+          {{ question }}
+
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- CHAT FOOTER -->
+    <div class="chat-footer">
+      <div class="chat-input-container">
+        <input
+          type="text"
+          [(ngModel)]="userMessage"
+          (keyup.enter)="sendMessage()"
+          [disabled]="isLoading"
+          placeholder="Ask ESAT anything..."
+          maxlength="4000"
+          aria-label="Type your message"
+        />
+
+        <button
+          class="send-btn"
+          (click)="sendMessage()"
+          [disabled]="isLoading || !userMessage.trim()"
+          aria-label="Send message"
+        >
+          <span *ngIf="!isLoading">➤</span>
+          <span *ngIf="isLoading">...</span>
+        </button>
+      </div>
+
+      <div class="chat-footer-text">Powered by ESAT AI Assistant</div>
+    </div>
+  </div>
+</div>
