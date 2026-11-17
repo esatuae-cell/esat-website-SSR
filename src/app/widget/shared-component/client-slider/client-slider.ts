@@ -14,10 +14,8 @@ import 'swiper/css/bundle';
 })
 export class ClientSlider implements AfterViewInit, OnDestroy {
   isBrowser = false;
-
   logos: string[] = [];
   slides: string[][] = [];
-
   private swiper?: Swiper;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {

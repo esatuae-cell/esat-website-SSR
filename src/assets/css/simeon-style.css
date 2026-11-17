@@ -256,7 +256,13 @@ html.a11y-highlight-links body a {
 }
 
 /* 5. KEYBOARD FOCUS */
-body :focus-visible {
-  outline: 3px solid #ffbf47 !important;
-  outline-offset: 3px !important;
+form.gsc-search-box {
+  max-width: 100% !important;
+  border-radius: 39px;
+  overflow: hidden;
+  border: 1px solid #b5b5b5;
+}
+.gsc-input-box {
+  border: none !important;
+  box-shadow: none !important;
 }
